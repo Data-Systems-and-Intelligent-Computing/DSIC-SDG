@@ -204,9 +204,7 @@ Judul artikel kandidat:
 
 **Adaptive Configuration of Spatial Official-Statistics Data Products**
 
-## 6. Artikel Integrasi Ketua / Supervisor
-
-Artikel integrasi tidak boleh sekadar menggabungkan isi empat artikel mahasiswa.
+## 6. Artikel Integrasi Ketua / Supervisor (Pak Ardika Satria)
 
 Artikel utama harus menguji **system-level adaptive policy** pada beberapa action family dan domain yang heterogen.
 
