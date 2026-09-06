@@ -1,0 +1,5 @@
+[project]
+name = "kkciv-adaptive-data-products"
+version = "0.1.0"
+description = "Adaptive Data Product Configuration for Heterogeneous Official-Statistics Workloads"
+requires-python = ">=3.11"

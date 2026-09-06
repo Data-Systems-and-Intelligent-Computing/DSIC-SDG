@@ -1,0 +1,3 @@
+# Infrastructure services are intentionally added incrementally.
+# Freeze service versions before main experiments.
+services: {}
