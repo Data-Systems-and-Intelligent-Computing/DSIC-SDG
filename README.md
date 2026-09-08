@@ -1,294 +1,311 @@
-# Adaptive Data Product Configuration for Heterogeneous SDG Data Workloads
+# Vintage-Aware Reconciliation of Official SDG Indicators
 
 KK-CIV Research Program — Data Systems and Intelligent Computing (DSIC)
 
+Peneliti: Ardika Satria, dkk. Testbed: indikator SDG 4, 6, 7, 8, dan 15 ber-provenans BPS.
+
+---
+
 ## 1. Posisi Penelitian
 
-Repository ini adalah workspace penelitian bersama untuk mengembangkan dan mengevaluasi **Adaptive Data Product Configuration for Heterogeneous SDG Data Workloads**.
+Repository ini menampung pekerjaan untuk satu artikel yang dikerjakan bersama oleh enam peneliti. Tidak ada track mahasiswa dan tidak ada klaim pada tingkat platform. Pembagian kerja disusun sebagai jalur paralel yang bermuara pada satu naskah, bukan sebagai sub-penelitian yang berdiri sendiri-sendiri.
 
-Proposal KK-CIV berfungsi sebagai **payung penelitian** dan menyediakan domain, sumber data, infrastruktur, serta konteks 5E. Repository ini tidak mencoba menjadikan seluruh proposal KK-CIV sebagai satu artikel. Sebaliknya, KK-CIV dipakai sebagai **shared experimental platform**, sedangkan setiap artikel memiliki Research Question (RQ), baseline, variabel eksperimen, metrik, dan klaim yang berbeda.
+Proposal KK-CIV berfungsi sebagai payung yang menyediakan domain, sumber data, infrastruktur, serta konteks 5E. Artikel ini mengambil satu irisan sempit dari payung tersebut, lalu menggarapnya sampai dapat dipertanggungjawabkan secara empiris.
 
-Testbed utama menggunakan lima domain official statistics yang berasal dari kerangka 5E:
+### 1.1 Persoalan yang diteliti
 
-- SDG 4 — Education
-- SDG 6 — Environment
-- SDG 7 — Energy
-- SDG 8 — Economy
-- SDG 15 — Ecology / spatial workload
+Indikator SDG Indonesia dapat diperoleh dari beberapa jalur resmi BPS, yaitu WebAPI, metadata SIRuSa/DNA, dan kompilasi indikator SDGs. Ketiganya dapat memberikan nilai berbeda untuk indikator, wilayah, dan tahun yang sama.
 
-Nilai indikator harus mempertahankan provenance dari sumber resmi yang digunakan dalam eksperimen. Data geometri, bila dipakai pada SDG 15, diperlakukan sebagai reference/master data dan tidak boleh dicampur dengan provenance indikator.
+Perbedaan tersebut bukan kesalahan, melainkan konsekuensi dari cara statistik resmi diproduksi. Setidaknya ada tiga sebab yang perlu dibedakan.
 
-## 2. Research Question Utama
+1. **Vintage.** Angka yang sama dirilis ulang dengan nilai berbeda setelah data sumber yang lebih lengkap masuk.
+2. **Metodologi.** Definisi atau cara hitung indikator berubah antar periode.
+3. **Granularitas.** Agregat nasional tidak selalu sama dengan penjumlahan angka provinsi.
 
-**RQ-Main**
+Pada praktiknya, nilai lama biasanya ditimpa oleh nilai terbaru. Angka yang pernah dipublikasikan karena itu tidak lagi dapat dihasilkan ulang, padahal pedoman revisi statistik resmi justru menuntut kemampuan tersebut.
 
-> Dapatkah karakteristik workload digunakan untuk memilih konfigurasi data product yang lebih efisien pada official-statistics workloads yang heterogen, tanpa melanggar batas data quality, reproducibility, dan governance dibandingkan konfigurasi statis yang sama untuk semua workload?
+### 1.2 Pertanyaan yang menggerakkan penelitian
 
-### Sub-RQ sistem
+Bagaimana caranya menyimpan dan menghitung indikator SDG sehingga setiap angka yang pernah terbit tetap dapat dipanggil ulang, dan berapa ongkosnya.
 
-**RQ1 — Workload representation**  
-Karakteristik workload apa yang paling informatif untuk memprediksi konfigurasi yang sesuai?
+---
 
-**RQ2 — Configuration benefit**  
-Seberapa besar adaptive configuration mengurangi processing cost dan query cost dibandingkan static configuration?
+## 2. Pertanyaan Penelitian
 
-**RQ3 — Generalization**  
-Apakah policy yang dibentuk pada development workloads tetap efektif ketika diterapkan pada domain yang tidak digunakan saat merancang policy?
+**Pertanyaan utama**
 
-**RQ4 — Cost of adaptation**  
-Berapa profiling, decision, storage, dan maintenance overhead yang harus dibayar untuk memperoleh keuntungan adaptive configuration?
+> Ketika beberapa sumber resmi BPS memberikan nilai berbeda untuk indikator SDG yang sama, berapa ongkos mempertahankan indikator yang tetap dapat direproduksi dan ditelusuri, dan pada besaran revisi seperti apa penghitungan ulang inkremental berhenti lebih murah daripada penghitungan ulang penuh?
 
-**RQ5 — Guardrails**  
-Apakah adaptive policy tetap mempertahankan data quality, reproducibility, conformed dimensions, dan lineage/governance requirements?
+**Sub-pertanyaan**
 
-## 3. Unit Eksperimen
+**P1 — Karakterisasi ketidaksesuaian**  
+Bentuk ketidaksesuaian apa yang benar-benar muncul antarsumber resmi BPS pada lima domain 5E, dan berapa proporsi yang berasal dari revisi vintage dibanding perbedaan metodologi dan perbedaan granularitas?
 
-Penelitian tidak menganggap nama domain sebagai konfigurasi. Konfigurasi dipilih berdasarkan karakteristik workload yang dapat diukur.
+**P2 — Representasi**  
+Dapatkah ketidaksesuaian tersebut direpresentasikan sebagai vintage indikator di atas format tabel terbuka, sehingga nilai yang pernah dipublikasikan tetap dapat dipanggil ulang tanpa menyimpan salinan penuh setiap rilis?
 
-Contoh workload features:
+**P3 — Ongkos pemeliharaan**  
+Berapa waktu dan ruang yang dibutuhkan untuk menghitung ulang indikator ketika satu sumber direvisi, dan pada besaran revisi seperti apa pendekatan inkremental berhenti terbayar?
 
-- input size;
-- row count;
-- schema width;
-- cardinality;
-- temporal depth;
-- update frequency;
-- query selectivity;
-- aggregation ratio;
-- join fan-out;
-- spatial/non-spatial flag;
-- geometry complexity untuk spatial workloads;
-- observed scan bytes;
-- shuffle volume;
-- runtime history.
+**P4 — Reproducibility**  
+Apakah angka yang pernah dilaporkan dapat dihasilkan ulang persis setelah sumbernya direvisi, dan pada kondisi apa ia gagal?
 
-Candidate configuration tidak harus semuanya diaktifkan pada eksperimen pertama. Action space dibekukan sebelum main experiment.
+P4 berfungsi sebagai syarat kelayakan, sehingga hasil yang lebih murah tetapi gagal menghasilkan ulang angka lama tidak dihitung sebagai keuntungan. Sebaliknya, jawaban "ternyata tidak lebih murah" tetap merupakan temuan yang sah sepanjang eksperimennya dikerjakan dengan benar.
 
-Contoh configuration actions:
+---
 
-- Iceberg partition strategy;
-- partition granularity;
-- target file size / compaction policy;
-- sort/order strategy;
-- materialization level;
-- aggregate table selection;
-- query-serving layout;
-- spatial partition/join strategy untuk SDG 15.
+## 3. Kedudukan terhadap Literatur
 
-## 4. Baseline dan Proposed System
+Rincian dan status verifikasi setiap sumber ada di [`docs/research/related-work.md`](docs/research/related-work.md).
 
-Minimal comparison:
+Penelitian ini berdiri di antara dua literatur yang sama-sama sudah matang, tetapi belum pernah dipertemukan.
 
-**B0 — Static Default**  
-Satu konfigurasi statis digunakan untuk seluruh workload.
+Dari sisi statistik resmi, konsep *vintage* dan *revision triangle* sudah lama mapan dan dituangkan dalam pedoman seperti OECD/Eurostat Guidelines on Revisions Policy and Analysis, serta dalam produk semacam real-time data tables Statistics Canada. Literatur tersebut bekerja pada agregat yang sudah terbit, bukan pada pipeline yang memproduksinya, sehingga ongkos komputasi untuk mempertahankan riwayat angka tidak pernah masuk hitungan.
 
-**B1 — Simple Heuristic**  
-Konfigurasi dipilih menggunakan aturan sederhana, misalnya hanya berdasarkan ukuran data atau jenis temporal/spatial.
+Dari sisi sistem data, truth discovery dan data fusion sudah matang sejak Dong dkk. Bidang tersebut mengasumsikan ada satu nilai benar yang tersembunyi di balik sumber-sumber yang tidak seluruhnya dapat dipercaya. Asumsi itu keliru untuk statistik resmi karena tidak ada sumber BPS yang salah, sehingga menerapkan truth discovery di sini justru membuang informasi yang bermakna.
 
-**B2 — Domain-Tuned Configuration**  
-Konfigurasi dipilih secara manual per domain. Ini dapat dipakai sebagai pembanding tambahan, bukan sebagai oracle ilmiah.
+Pesaing terdekat adalah SDG-KG (Benjira dkk., PVLDB 18(12):5367–5370, 2025), yang menghitung indikator SDG dari data terbuka heterogen memakai knowledge graph dan penyelarasan skema berbantuan LLM, dengan strategi *Trust Your Friend* untuk memilih satu sumber ketika terjadi konflik. Artikel tersebut berbentuk demonstrasi empat halaman dan menyatakan sendiri bahwa ia bekerja pada tingkat metadata serta tidak memproses aliran data. Di dalamnya tidak terdapat evaluasi performa maupun pembahasan penyimpanan fisik.
 
-**B3 — Adaptive Policy**  
-Konfigurasi dipilih dari workload profile menggunakan policy yang dibekukan sebelum held-out evaluation.
+Penelitian ini berbeda pada tiga hal. Pertama, pekerjaannya berada pada lapisan fisik, bukan pada metadata, sehingga yang diukur adalah waktu, ruang, dan kemampuan menghasilkan ulang angka. Kedua, perbedaan antarsumber diperlakukan sebagai vintage yang harus dipertahankan, bukan sebagai konflik yang harus dipilih salah satunya. Ketiga, pengujian dilakukan pada statistik resmi nasional Indonesia dengan revisi yang benar-benar terjadi, bukan pada data terbuka Eropa.
 
-**Oracle Retrospective — optional analysis only**  
-Setelah seluruh candidate configuration selesai dijalankan, konfigurasi terbaik per workload dapat dihitung secara retrospektif untuk mengukur policy regret. Oracle tidak digunakan saat policy melakukan inference.
+Batas klaimnya perlu dinyatakan sejak awal. Kebaruan tidak boleh diklaim pada algoritma truth discovery maupun pada incremental view maintenance karena keduanya hanya dipakai sebagai mekanisme dan pembanding. Yang diklaim penelitian ini adalah perlakuan vintage indikator sebagai objek kelas satu di dalam lakehouse, beserta pengukuran ongkos mempertahankannya.
 
-## 5. Empat Research Track Mahasiswa
+---
 
-Empat mahasiswa adalah konfigurasi ideal untuk program ini. Pembagian dilakukan berdasarkan **mekanisme sistem**, bukan satu mahasiswa per SDG.
+## 4. Rancangan Eksperimen
 
-### T1 — Adaptive Execution Configuration
+### 4.1 Perlakuan yang dibandingkan
 
-**Fokus:** memilih konfigurasi eksekusi Spark/SQL berdasarkan karakteristik workload, misalnya jumlah partition, parallelism, memory allocation, dan executor/core setting.
+**B0 — Overwrite.** Hanya nilai terbaru yang disimpan. Ini praktik yang lazim dan menjadi titik nol.
 
-RQ mahasiswa:
+**B1 — Snapshot penuh.** Setiap rilis disimpan sebagai salinan tabel utuh melalui snapshot Iceberg. Reproducibility terjamin, ongkos ruang menjadi batas atas.
 
-> Dapatkah karakteristik workload digunakan untuk memilih konfigurasi eksekusi yang menurunkan waktu pemrosesan dan penggunaan sumber daya dibandingkan satu konfigurasi tetap untuk seluruh workload SDG?
+**B2 — Pemilihan sumber tunggal.** Satu sumber dipilih berdasarkan skor kepercayaan, mengikuti pola *Trust Your Friend*. Ini wakil pendekatan truth discovery dan pembanding langsung terhadap SDG-KG.
 
-**Karakteristik workload:**
+**B3 — Vintage-aware (usulan).** Vintage indikator disimpan sebagai dimensi eksplisit, penghitungan ulang dilakukan inkremental berdasarkan lineage sel indikator yang benar-benar terpengaruh.
 
-* ukuran data;
-* jumlah kolom;
-* cardinality;
-* jumlah group/filter keys;
-* tingkat skew;
-* volume shuffle;
-* rasio input-output.
-
-**Candidate configuration:**
-
-* `spark.sql.shuffle.partitions`;
-* executor cores;
-* executor memory;
-* parallelism;
-* broadcast threshold bila memang dikontrol.
-
-**Baseline:**
-
-* fixed default configuration;
-* fixed high-resource configuration;
-* size-only heuristic.
-
-**Metrik:**
-
-* wall-clock runtime;
-* CPU time;
-* peak memory;
-* shuffle bytes;
-* resource-time cost;
-* deadline miss bila digunakan.
-
-**Judul artikel:**
-
-**Workload-Aware Execution Configuration for Heterogeneous SDG Data Processing**
-
-### T2 — Adaptive Physical Design
-
-Fokus: partitioning, file layout, target file size, compaction, dan scan efficiency pada Iceberg.
-
-RQ mahasiswa:
-
-> Kapan workload-aware physical design memberikan query cost yang lebih rendah daripada satu physical design statis pada official-statistics workloads?
-
-Baseline:
-
-- unpartitioned/static layout;
-- fixed partition strategy;
-- manually tuned configuration.
+### 4.2 Metrik
 
 Metrik utama:
 
-- query latency;
-- bytes scanned;
-- files scanned;
-- shuffle bytes;
-- compaction cost;
-- storage overhead.
+- waktu penghitungan ulang setelah satu revisi;
+- jumlah sel indikator yang benar-benar berubah per revisi;
+- ruang penyimpanan total;
+- tingkat keberhasilan menghasilkan ulang angka yang pernah terbit.
 
-Judul artikel kandidat:
+Metrik pendukung:
 
-**Workload-Aware Physical Design for Iceberg-Based Official-Statistics Data Products**
+- kelengkapan lineage dari angka terbit sampai ke rekaman sumber;
+- jumlah byte yang dibaca saat penghitungan ulang;
+- proporsi ketidaksesuaian yang dapat dijelaskan otomatis sebagai vintage, metodologi, atau granularitas.
 
-### T3 — Adaptive Materialization
+### 4.3 Beban kerja revisi
 
-Fokus: memilih kapan data harus dipertahankan sebagai detail table, aggregate table, atau materialized analytical product.
+Revisi yang diuji berasal dari dua sumber, dan keduanya diperlukan untuk alasan yang berbeda.
 
-RQ mahasiswa:
+Revisi nyata diambil dari perbedaan antarsumber dan antarrilis BPS yang benar-benar terjadi pada rentang yang ditarik. Inilah yang menjadi bukti utama untuk P1.
 
-> Dapatkah workload-aware materialization menurunkan analytical query cost tanpa menghasilkan storage dan maintenance overhead yang berlebihan?
+Revisi tersuntik diperlukan karena besaran revisi nyata tidak dapat dikendalikan. Revisi sintetis dengan besaran terkontrol, mulai dari satu sel sampai satu tahun penuh untuk seluruh provinsi, disuntikkan agar titik impas pada P3 dapat dicari secara sistematis. Prosedur penyuntikannya dicatat dan dapat dijalankan ulang.
 
-Baseline:
+### 4.4 Yang dibekukan sebelum eksperimen utama
 
-- no materialization;
-- fixed materialization;
-- manually selected aggregates.
+1. snapshot dataset dan tanggal penarikan;
+2. daftar indikator yang diuji per domain;
+3. definisi ketidaksesuaian dan aturan klasifikasinya;
+4. keempat perlakuan;
+5. metrik utama;
+6. besaran revisi tersuntik;
+7. batas sumber daya.
 
-Metrik utama:
+Konfigurasi tidak boleh diubah setelah melihat hasil tanpa membuat versi eksperimen baru.
 
-- query latency;
-- storage footprint;
-- refresh/maintenance cost;
-- workload coverage;
-- time-to-freshness.
+---
 
-Judul artikel kandidat:
+## 5. Data
 
-**Adaptive Materialization for Heterogeneous Official-Statistics Analytical Workloads**
+### 5.1 Sumber
 
-### T4 — Spatial Workload Configuration
+Seluruh sumber berada pada jalur terbuka yang sudah ditarik menurut proposal, sehingga penelitian **tidak berada pada jalur kritis data berbayar Silastik/PST**.
 
-Fokus: menguji apakah policy/configuration abstraction yang sama dapat ditransfer ke spatial official-statistics workloads atau membutuhkan spatial specialization.
+- WebAPI BPS — nilai indikator;
+- SIRuSa/DNA — metadata dan definisi indikator;
+- kompilasi indikator SDGs BPS — nilai indikator pada jalur penyajian berbeda;
+- peta wilayah kerja statistik BPS atau BIG — geometri provinsi, hanya sebagai data referensi pada SDG 15.
 
-RQ mahasiswa:
+Seluruh data diambil pada granularitas nasional dan provinsi, sepanjang rentang satu dekade terakhir.
 
-> Sejauh mana workload-aware configuration dapat memilih spatial partition/join strategy yang efisien untuk official-statistics data dengan reference geometry?
+### 5.2 Catatan tentang volume
 
-Baseline:
+Volume data pada penelitian ini tergolong kecil, dan hal tersebut tidak menjadi masalah. Pertanyaan yang diajukan menyangkut kebenaran, keterlacakan, dan ongkos pemeliharaan, bukan throughput. Rancangan sengaja disusun agar tidak bergantung pada volume besar, karena indikator SDG pada granularitas nasional sampai provinsi memang tidak akan pernah besar. Karena itu, klaim penelitian tidak boleh diperluas menjadi klaim tentang skalabilitas.
 
-- fixed spatial partitioning;
-- fixed join strategy;
-- non-adaptive spatial configuration.
+Eksperimen dijalankan pada satu node dengan 8 vCPU, 16 GB RAM, dan penyimpanan 256 GB, sesuai spesifikasi pada proposal.
 
-Metrik utama:
+### 5.3 Aturan provenance
 
-- spatial query latency;
-- shuffle bytes;
-- peak memory;
-- files/partitions touched;
-- correctness of spatial result;
-- adaptation overhead.
+Nilai indikator harus mempertahankan provenans BPS. Geometri diperlakukan sebagai data referensi dan tidak boleh dicampur dengan provenans indikator.
 
-Judul artikel kandidat:
+Setiap hasil harus dapat dilacak melalui rantai:
 
-**Adaptive Configuration of Spatial Official-Statistics Data Products**
+`source manifest -> vintage -> transformation version -> indicator cell -> metric -> tabel/gambar`
 
-## 6. Artikel Integrasi Ketua / Supervisor (Pak Ardika Satria)
+---
 
-Artikel utama harus menguji **system-level adaptive policy** pada beberapa action family dan domain yang heterogen.
+## 6. Rencana Kerja Tiga Minggu untuk Enam Peneliti
 
-Judul kerja:
+Rencana ini disusun untuk 15 hari kerja, dengan akhir pekan dikosongkan sebagai penyangga. Setiap minggu ditutup satu gate yang memuat kriteria lolos beserta tindakan yang diambil bila kriteria itu tidak terpenuhi.
 
-**Adaptive Data Product Configuration for Heterogeneous SDG Data Workloads**
+### 6.1 Mengapa enam orang tidak berarti enam kali lebih cepat
 
-Kontribusi yang diharapkan:
+Pekerjaan ini memiliki jalur kritis yang berurutan. Skema tabel tidak dapat dirancang sebelum aturan klasifikasi ketidaksesuaian selesai, sedangkan B3 memerlukan skema dan lineage yang sudah jadi. Menambah orang tidak memendekkan rantai tersebut.
 
-1. unified workload representation untuk official-statistics data products;
-2. configuration action space yang eksplisit;
-3. adaptive selection policy;
-4. held-out-domain evaluation;
-5. multi-objective evaluation antara processing/query cost dan adaptation overhead;
-6. governance, reproducibility, dan data-quality guardrails.
+Ada pula satu batas yang lebih keras. Eksperimen dijalankan pada satu node, sehingga **pengukuran waktu tidak boleh dijalankan bersamaan**. Dua run yang berjalan serentak akan saling memengaruhi CPU, memori, dan I/O, dan angkanya menjadi tidak dapat dipakai. Berapa pun jumlah peneliti, eksekusi eksperimen pada Minggu 3 tetap berurutan dan dipegang satu operator.
 
-Hasil mahasiswa boleh menjadi building block atau evidence tambahan, tetapi klaim utama artikel integrasi harus berbeda dari klaim paper mahasiswa.
+Karena itu tambahan tenaga tidak dipakai untuk mempercepat jalur kritis, melainkan untuk memperdalam pekerjaan di sekitarnya: kelima domain digarap serentak alih-alih bergiliran, fondasi dibangun beriringan dengan validasi, dan penulisan berjalan sejak minggu pertama. Hasil bersihnya adalah pemadatan dari 20 hari menjadi 15 hari, dengan cakupan yang lebih dalam pada tiap domain.
 
-## 7. Batas Publikasi
+### 6.2 Pembagian jalur
 
-Untuk mencegah overlap:
+Minggu pertama dikerjakan keenam peneliti pada satu jenis pekerjaan yang sama, karena karakterisasi lima domain memang terbelah rapi. Mulai Minggu 2, tim terbagi menjadi tiga jalur tetap.
 
-- T1 memiliki klaim tentang **prediction/regret**;
-- T2 memiliki klaim tentang **physical design**;
-- T3 memiliki klaim tentang **materialization**;
-- T4 memiliki klaim tentang **spatial configuration**;
-- artikel PI memiliki klaim tentang **system-level adaptive configuration across heterogeneous workloads**.
+| Jalur | Orang | Tanggung jawab |
+|---|---|---|
+| A — Fondasi | 2 | Stack, ingestion ber-manifest, skema vintage, perlakuan B0 dan B1 |
+| B — Perlakuan | 2 | Perlakuan B2, harness revisi tersuntik, eksekusi eksperimen |
+| C — Bukti | 2 | Lineage sel indikator, audit reproducibility, verifikasi literatur, naskah |
 
-Dataset, infrastructure, dan beberapa benchmark query boleh digunakan bersama. RQ, intervensi utama, tabel hasil utama, dan novelty claim tidak boleh identik.
+Perlakuan B3 sebagai usulan utama dikerjakan bersama oleh Jalur A dan Jalur C, karena ia memerlukan skema dari A dan lineage dari C. Keputusan pada setiap gate dipegang ketua pengusul.
 
-Dokumen rinci publication boundary harus disimpan di:
+### 6.3 Minggu 1 — Membuktikan persoalannya memang ada
 
-`docs/research/publication-boundaries.md`
+Seluruh artikel bergantung pada asumsi bahwa sumber-sumber BPS benar-benar berbeda. Minggu ini menguji asumsi tersebut, dengan lima peneliti memegang satu domain masing-masing.
 
-## 8. Development dan Held-Out Workloads
+| Hari | Lima peneliti domain | Satu peneliti fondasi |
+|---|---|---|
+| H1 | Inventarisasi cakupan tiap jalur BPS pada domain masing-masing | Menyiapkan harness perbandingan bersama |
+| H2 | Menarik indikator dari minimal dua jalur, lalu membandingkan sel per sel | Harness selesai dan dipakai bersama |
+| H3 | Perbandingan penuh pada rentang nasional dan provinsi | Menaikkan stack Docker Compose |
+| H4 | Menyusun dan menguji aturan klasifikasi bersama pada kelima domain | Ingestion ber-manifest |
+| H5 | Menelusuri jejak revisi antarwaktu, lalu mengonsolidasikan hasil kelima domain | Uji tulis-baca tabel Iceberg |
 
-Agar adaptive policy tidak hanya menghafal domain, pisahkan development dan held-out workloads.
+Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
-Initial recommendation:
+**Gate G1 — Objek penelitian terbukti ada**
 
-- development/calibration: SDG 4 dan SDG 6;
-- held-out breadth: SDG 7 dan SDG 8;
-- held-out stress: SDG 15.
+Lolos bila ketiga hal berikut terpenuhi.
 
-Pembagian final harus dibekukan sebelum main evaluation.
+1. Ketidaksesuaian antarsumber terukur pada minimal tiga dari lima domain.
+2. Sebagian besar ketidaksesuaian dapat dijelaskan oleh salah satu dari tiga sebab pada §1.1. Ambang yang diusulkan adalah 70 persen, ditetapkan di muka sebagai parameter rencana, bukan sebagai temuan.
+3. Terdapat jejak revisi antarwaktu yang dapat diamati.
 
-Domain held-out tidak boleh digunakan untuk mengubah policy setelah evaluation dimulai. Perubahan karena bug harus dicatat dalam decision log.
+Bila kriteria 1 gagal, persoalan yang diteliti tidak ada dan pembangunan dihentikan. Desain dibalik ke salah satu alternatif yang sudah dipetakan, yaitu tata letak spasial SDG 15 atau pertanyaan tentang kapan arsitektur lakehouse berlebihan untuk statistik resmi.
 
-## 9. Shared Infrastructure
+Bila kriteria 3 gagal sementara kriteria 1 lolos, revisi nyata tidak dapat diamati. P1, P2, dan P4 tetap berjalan di atas ketidaksesuaian antarsumber, sedangkan P3 sepenuhnya bergantung pada revisi tersuntik. Keterbatasan ini wajib dinyatakan di dalam naskah, bukan disembunyikan.
 
-Target stack:
+### 6.4 Minggu 2 — Fondasi, perlakuan, dan lineage
+
+Ketiga jalur berjalan serentak. Pembanding diselesaikan lebih dahulu daripada usulan agar B3 punya titik banding yang sudah terbukti berjalan.
+
+| Hari | Jalur A — Fondasi | Jalur B — Perlakuan | Jalur C — Bukti |
+|---|---|---|---|
+| H6 | Merancang skema tabel indikator dengan vintage sebagai dimensi eksplisit | Menyusun skor kepercayaan sumber untuk B2 | Memetakan lineage dari sel indikator ke rekaman sumber |
+| H7 | Mengimplementasikan B0 | Mengimplementasikan B2 | Melanjutkan lineage dan memverifikasi sumber bertanda `daftar` pada related-work |
+| H8 | Mengimplementasikan B1 | Membangun harness revisi tersuntik | Menutup lineage dan menyusun prosedur audit reproducibility |
+| H9 | Bersama Jalur C mengimplementasikan B3 | Menguji harness pada besaran revisi kecil | Bersama Jalur A mengimplementasikan B3 |
+| H10 | Menguji pemanggilan ulang angka lama pada B1 dan mengukur ruang | Menjalankan keempat perlakuan pada satu skenario revisi kecil | Menulis draf Pendahuluan dan Kedudukan terhadap Literatur |
+
+Pada akhir H10 seluruh konfigurasi eksperimen dibekukan sesuai daftar pada §4.4.
+
+**Gate G2 — Keempat perlakuan berjalan pada beban yang sama**
+
+Lolos bila keempat perlakuan dapat dijalankan pada beban revisi yang identik, angka lama benar-benar dapat dipanggil ulang pada B1, seluruh harness dapat diulang dari script tanpa langkah manual, dan berkas freeze sudah ditulis.
+
+Bila B3 gagal berjalan, turunkan cakupan alih-alih memaksakannya. Jalankan B0, B1, dan B2 saja, lalu laporkan B3 sebagai rancangan yang belum tervalidasi. Artikel berubah bentuk menjadi karakterisasi empiris ditambah perbandingan pembanding, dan itu tetap kontribusi yang sah.
+
+### 6.5 Minggu 3 — Eksperimen, analisis, dan draf
+
+Eksekusi eksperimen dipegang satu operator dari Jalur B dan dijalankan berurutan. Jalur lain tidak menyentuh node selama pengukuran berlangsung.
+
+| Hari | Operator eksperimen | Jalur A dan C |
+|---|---|---|
+| H11 | Sweep revisi tersuntik dari satu sel sampai satu tahun penuh seluruh provinsi | Menyiapkan script analisis dan kerangka tabel hasil |
+| H12 | Menjalankan keempat perlakuan pada revisi nyata dari H5 | Menulis draf Metode |
+| H13 | Menjalankan ulang run yang gagal atau meragukan | Audit reproducibility keempat perlakuan untuk menjawab P4 |
+| H14 | Mengumpulkan raw timing, query plan, dan log | Mencari titik impas inkremental dan mengerjakan analisis kegagalan |
+| H15 | Memastikan seluruh hasil dapat dibentuk ulang dari `results/raw/` | Menyusun tabel dan gambar, lalu menulis draf bagian Hasil |
+
+**Gate G3 — Pertanyaan penelitian terjawab**
+
+Lolos bila keempat sub-pertanyaan terjawab dari hasil eksperimen, titik impas ditemukan atau dinyatakan secara eksplisit tidak ada, minimal satu analisis kegagalan tersedia, dan seluruh hasil dapat dibentuk ulang dari repository.
+
+Jawaban negatif pada P3, yaitu pendekatan inkremental ternyata tidak lebih murah, tetap dihitung lolos sepanjang titik impasnya terukur dan alasannya dapat dijelaskan.
+
+### 6.6 Yang dihasilkan dan yang belum
+
+Tiga minggu ini menghasilkan inti eksperimen, draf Pendahuluan, Metode, dan Hasil. Pembahasan, Kesimpulan, serta penyuntingan akhir berada di luar jendela ini. Sebagai pembanding, katalog DSIC-RG memberi empat bulan untuk topik mahasiswa yang cakupannya lebih sempit daripada penelitian ini, sehingga jadwal ini hanya berjalan bila akses data lancar sejak hari pertama.
+
+### 6.7 Bila jadwal meleset
+
+Akhir pekan dipakai sebagai penyangga, bukan sebagai hari kerja tambahan yang direncanakan. Bila satu minggu meleset lebih dari dua hari, yang dipotong adalah cakupan, bukan gate. Urutan pemotongan yang disarankan: kurangi jumlah indikator yang diuji, lalu kurangi jumlah titik pada sweep H11, dan paling akhir kurangi jumlah domain dari lima menjadi tiga.
+
+Keempat perlakuan dan ketiga gate dipertahankan dalam kondisi apa pun, karena keduanya yang menjaga hasil tetap dapat dipertanggungjawabkan.
+
+Satu risiko khas kerja tim perlu dijaga sejak awal. Enam peneliti pada satu naskah mudah terpecah menjadi enam pekerjaan yang berdiri sendiri. Setiap jalur karena itu menyerahkan keluaran ke repository bersama pada akhir tiap hari, dan tidak ada jalur yang menyimpan hasil di mesin masing-masing sampai akhir minggu.
+
+## 7. Target Luaran
+
+Target utamanya adalah artikel jurnal Q1 Scopus, dengan kandidat berikut menurut urutan prioritas.
+
+1. *Data & Knowledge Engineering* (Elsevier), yaitu venue tempat kelompok SDG-KG menerbitkan versi jurnalnya, sehingga topik ini terbukti diterima di sana.
+2. *Information Systems* (Elsevier).
+3. *Journal of Big Data* (Springer).
+
+Bila hasilnya ternyata lebih condong ke audiens statistik resmi, *Statistical Journal of the IAOS* menjadi alternatif yang lebih sesuai.
+
+Research track VLDB, SIGMOD, dan ICDE tidak dijadikan target. Skala data dan perangkat keras yang tersedia tidak mendukung klaim yang diharapkan venue tersebut, dan SDG-KG sendiri masuk VLDB melalui jalur demo.
+
+---
+
+## 8. Batas Klaim
+
+Klaim yang boleh dibuat terbatas pada empat hal berikut.
+
+- karakterisasi empiris ketidaksesuaian antarsumber resmi BPS pada lima domain;
+- rancangan penyimpanan vintage indikator di atas format tabel terbuka;
+- pengukuran ongkos penghitungan ulang dan titik impas inkremental;
+- bukti reproducibility angka terbit.
+
+Sebaliknya, hal-hal berikut tidak boleh diklaim.
+
+- kebaruan algoritma truth discovery atau incremental view maintenance;
+- klaim skalabilitas atau performa pada data besar;
+- klaim tentang platform SDG nasional yang siap produksi;
+- generalisasi ke seluruh 17 SDG atau ke negara lain.
+
+---
+
+## 9. Infrastruktur
+
+Komponen yang diaktifkan hanya yang benar-benar dibutuhkan pertanyaan penelitian.
+
+Wajib:
 
 - MinIO — object storage;
-- Apache Iceberg — open table format;
-- Apache Spark / PySpark — processing;
-- Apache Airflow — orchestration;
-- Trino — analytical query engine;
-- OpenMetadata — metadata, lineage, dan governance evidence;
-- Apache Sedona / GeoPandas / PostGIS — spatial extension bila diperlukan;
-- Docker Compose — reproducible deployment;
-- Git — code and configuration versioning.
+- Apache Iceberg — format tabel terbuka, snapshot, dan time travel;
+- Apache Spark / PySpark — pemrosesan;
+- Docker Compose — deployment yang dapat diulang;
+- Git — versioning kode dan konfigurasi.
 
-Tidak semua service harus aktif sejak hari pertama. Main experiment hanya memakai komponen yang diperlukan oleh RQ.
+Dipakai bila diperlukan:
 
-## 10. Repository Structure
+- Trino — query analitik;
+- OpenMetadata — bukti lineage dan governance;
+- Apache Airflow — orkestrasi bila jadwal penarikan perlu otomatis;
+- GeoPandas — hanya untuk geometri referensi SDG 15.
+
+Tidak dipakai pada artikel ini: Sedona, PostGIS, agen AI text-to-SQL, dashboard, dan seluruh komponen MLOps. Semuanya di luar pertanyaan penelitian.
+
+---
+
+## 10. Struktur Repository
 
 ```text
 .
@@ -301,11 +318,10 @@ Tidak semua service harus aktif sejak hari pertama. Main experiment hanya memaka
 │
 ├── docs/
 │   ├── research/
-│   │   ├── program-charter.md
+│   │   ├── related-work.md
 │   │   ├── rq-main.md
 │   │   ├── hypotheses.md
 │   │   ├── scope-freeze.md
-│   │   ├── publication-boundaries.md
 │   │   ├── experiment-freeze.md
 │   │   └── decision-log.md
 │   ├── architecture/
@@ -313,7 +329,7 @@ Tidak semua service harus aktif sejak hari pertama. Main experiment hanya memaka
 │
 ├── config/
 │   ├── domains/
-│   ├── workloads/
+│   ├── indicators/
 │   └── experiments/
 │
 ├── data/
@@ -332,20 +348,15 @@ Tidak semua service harus aktif sejak hari pertama. Main experiment hanya memaka
 │   ├── iceberg/
 │   ├── spark/
 │   ├── trino/
-│   ├── airflow/
 │   └── openmetadata/
 │
 ├── src/
-│   └── kkciv_adaptive/
-│       ├── profiling/
-│       ├── features/
-│       ├── configuration/
-│       ├── policies/
-│       ├── pipeline/
-│       ├── storage/
-│       ├── query/
-│       ├── spatial/
-│       ├── governance/
+│   └── kkciv_vintage/
+│       ├── ingestion/
+│       ├── vintage/
+│       ├── reconciliation/
+│       ├── lineage/
+│       ├── recomputation/
 │       ├── evaluation/
 │       └── utils/
 │
@@ -355,19 +366,11 @@ Tidak semua service harus aktif sejak hari pertama. Main experiment hanya memaka
 │   └── reproducibility/
 │
 ├── experiments/
-│   ├── E0_static_baseline/
-│   ├── E1_workload_profiling/
-│   ├── E2_adaptive_policy/
-│   ├── E3_heldout_transfer/
-│   ├── E4_temporal_workloads/
-│   ├── E5_spatial_workloads/
-│   └── E6_system_integration/
-│
-├── research_tracks/
-│   ├── T1_workload_to_configuration/
-│   ├── T2_adaptive_physical_design/
-│   ├── T3_adaptive_materialization/
-│   └── T4_spatial_configuration/
+│   ├── E0_overwrite_baseline/
+│   ├── E1_discrepancy_characterization/
+│   ├── E2_vintage_storage/
+│   ├── E3_recomputation_cost/
+│   └── E4_reproducibility_audit/
 │
 ├── results/
 │   ├── raw/
@@ -377,16 +380,16 @@ Tidak semua service harus aktif sejak hari pertama. Main experiment hanya memaka
 │   └── failure_cases/
 │
 ├── papers/
-│   ├── PI_system_paper/
-│   ├── T1_student_paper/
-│   ├── T2_student_paper/
-│   ├── T3_student_paper/
-│   └── T4_student_paper/
+│   └── vintage_reconciliation/
 │
 ├── scripts/
 └── notebooks/
     └── exploratory/
 ```
+
+Direktori `research_tracks/` dan `papers/T*_student_paper/` dari rancangan sebelumnya tidak lagi dipakai.
+
+---
 
 ## 11. Aturan Data
 
@@ -395,38 +398,22 @@ Raw data tidak di-commit ke Git.
 Yang wajib di-version-control:
 
 - source manifest;
-- source URL/identifier;
-- retrieval date;
+- source URL atau identifier;
+- tanggal penarikan;
 - checksum;
 - schema;
 - data dictionary;
-- preprocessing version;
-- reference-code version;
-- experiment config.
+- versi preprocessing;
+- versi kode referensi;
+- konfigurasi eksperimen.
 
-Setiap result harus dapat dilacak ke:
+Karena penelitian ini justru tentang revisi, satu aturan tambahan berlaku: **setiap penarikan ulang dari sumber yang sama disimpan sebagai vintage baru, tidak menimpa yang lama.** Menimpa penarikan lama akan menghancurkan bukti yang menjadi objek penelitian.
 
-`source manifest -> transformation version -> configuration -> experiment run -> metric -> table/figure`
+---
 
-## 12. Aturan Eksperimen
+## 12. Reproducibility
 
-Sebelum main experiment:
-
-1. freeze dataset snapshot;
-2. freeze workload definitions;
-3. freeze candidate configurations;
-4. freeze baseline;
-5. freeze primary metrics;
-6. freeze development/held-out split;
-7. freeze hardware/resource limits.
-
-Eksperimen yang gagal karena bug boleh diulang, tetapi reason harus dicatat.
-
-Konfigurasi tidak boleh diubah setelah melihat held-out result tanpa membuat experiment version baru.
-
-## 13. Reproducibility
-
-Setiap experiment directory minimal memiliki:
+Setiap direktori eksperimen minimal memuat:
 
 ```text
 README.md
@@ -436,61 +423,40 @@ results-manifest.json
 notes.md
 ```
 
-Raw timing, query plans, scan statistics, dan logs disimpan sebelum agregasi statistik.
+Raw timing, query plan, statistik pembacaan, dan log disimpan sebelum agregasi statistik dilakukan. Hasil di `results/processed/` harus dapat dibentuk ulang dari `results/raw/` memakai script yang tersedia di dalam repository. Eksperimen yang gagal karena bug boleh diulang, tetapi alasan pengulangannya dicatat pada decision log.
 
-Hasil di `results/processed/` harus dapat dibentuk ulang dari `results/raw/` menggunakan script yang ada di repository.
+---
 
-## 14. Branching Strategy
+## 13. Definition of Done
 
-Disarankan:
+Artikel dianggap siap disubmit jika:
 
-```text
-main
-├── track/T1-workload
-├── track/T2-physical-design
-├── track/T3-materialization
-└── track/T4-spatial
-```
+- keempat sub-pertanyaan terjawab dari hasil eksperimen, termasuk bila jawabannya negatif;
+- keempat perlakuan dibandingkan pada beban revisi yang sama;
+- metrik utama dan audit reproducibility tersedia;
+- minimal satu analisis kegagalan dilakukan, yaitu kondisi ketika angka lama gagal dihasilkan ulang;
+- seluruh hasil dapat dijalankan ulang dari repository;
+- tidak ada klaim yang melampaui bukti, khususnya klaim skalabilitas;
+- batas klaim terhadap SDG-KG dan literatur truth discovery dinyatakan eksplisit di dalam naskah.
 
-Mahasiswa tidak membuat fork kode core yang terpisah tanpa alasan. Perubahan pada shared core dilakukan melalui pull request dan review.
+---
 
-Setiap pull request harus menyebut:
+## 14. Yang Berada di Luar Cakupan
 
-- research track;
-- RQ yang dibantu;
-- experiment yang terdampak;
-- perubahan metric/config bila ada.
-
-## 15. Definition of Done
-
-Satu track dianggap selesai jika:
-
-- RQ dapat dijawab dari hasil eksperimen;
-- baseline dan proposed dibandingkan pada workload yang sama;
-- primary metric dan guardrail tersedia;
-- minimal satu failure analysis dilakukan;
-- hasil dapat direproduksi;
-- paper draft tidak membuat klaim di luar evidence;
-- publication boundary terhadap track lain jelas.
-
-## 16. Scope Boundary
-
-Main research program tidak otomatis mencakup:
+Beberapa komponen sengaja tidak dikerjakan pada artikel ini.
 
 - text-to-SQL agent;
-- dashboard production;
-- novel forecasting model;
-- full 17 SDGs;
-- Kubernetes;
-- streaming/Kafka;
-- feature store;
-- generative AI;
-- production national SDG platform.
+- dashboard produksi;
+- model peramalan;
+- seluruh 17 SDG;
+- Kubernetes, streaming, feature store, generative AI;
+- analitik spasial SDG 15 di luar perlakuan geometri sebagai data referensi;
+- platform SDG nasional siap produksi.
 
-Komponen tersebut dapat menjadi extension atau research track baru setelah RQ utama selesai.
+Komponen tersebut dapat menjadi penelitian lanjutan setelah artikel ini selesai.
 
 ---
 
 **Research umbrella:** KK-CIV 2026  
 **Research group:** Data Systems and Intelligent Computing (DSIC)  
-**Program focus:** Adaptive Data Product Configuration for Heterogeneous Official-Statistics Workloads
+**Fokus artikel:** Vintage-aware reconciliation and recomputation of official SDG indicators
