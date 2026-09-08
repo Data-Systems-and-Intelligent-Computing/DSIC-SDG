@@ -1,10 +1,10 @@
-# Adaptive Data Product Configuration for Heterogeneous Official-Statistics Workloads
+# Adaptive Data Product Configuration for Heterogeneous SDG Data Workloads
 
 KK-CIV Research Program — Data Systems and Intelligent Computing (DSIC)
 
 ## 1. Posisi Penelitian
 
-Repository ini adalah workspace penelitian bersama untuk mengembangkan dan mengevaluasi **Adaptive Data Product Configuration for Heterogeneous Official-Statistics Workloads**.
+Repository ini adalah workspace penelitian bersama untuk mengembangkan dan mengevaluasi **Adaptive Data Product Configuration for Heterogeneous SDG Data Workloads**.
 
 Proposal KK-CIV berfungsi sebagai **payung penelitian** dan menyediakan domain, sumber data, infrastruktur, serta konteks 5E. Repository ini tidak mencoba menjadikan seluruh proposal KK-CIV sebagai satu artikel. Sebaliknya, KK-CIV dipakai sebagai **shared experimental platform**, sedangkan setiap artikel memiliki Research Question (RQ), baseline, variabel eksperimen, metrik, dan klaim yang berbeda.
 
@@ -98,31 +98,50 @@ Setelah seluruh candidate configuration selesai dijalankan, konfigurasi terbaik 
 
 Empat mahasiswa adalah konfigurasi ideal untuk program ini. Pembagian dilakukan berdasarkan **mekanisme sistem**, bukan satu mahasiswa per SDG.
 
-### T1 — Workload-to-Configuration Prediction
+### T1 — Adaptive Execution Configuration
 
-Fokus: membentuk workload representation dan memprediksi konfigurasi terbaik dari kandidat yang tersedia.
+**Fokus:** memilih konfigurasi eksekusi Spark/SQL berdasarkan karakteristik workload, misalnya jumlah partition, parallelism, memory allocation, dan executor/core setting.
 
 RQ mahasiswa:
 
-> Dapatkah workload descriptors yang murah dihitung memprediksi konfigurasi terbaik dengan regret rendah terhadap retrospective oracle?
+> Dapatkah karakteristik workload digunakan untuk memilih konfigurasi eksekusi yang menurunkan waktu pemrosesan dan penggunaan sumber daya dibandingkan satu konfigurasi tetap untuk seluruh workload SDG?
 
-Baseline:
+**Karakteristik workload:**
 
-- size-only heuristic;
-- domain-label heuristic;
-- random configuration.
+* ukuran data;
+* jumlah kolom;
+* cardinality;
+* jumlah group/filter keys;
+* tingkat skew;
+* volume shuffle;
+* rasio input-output.
 
-Metrik utama:
+**Candidate configuration:**
 
-- configuration accuracy;
-- normalized regret terhadap oracle;
-- profiling overhead;
-- inference latency;
-- generalization pada held-out workload.
+* `spark.sql.shuffle.partitions`;
+* executor cores;
+* executor memory;
+* parallelism;
+* broadcast threshold bila memang dikontrol.
 
-Judul artikel kandidat:
+**Baseline:**
 
-**Predicting Data-Product Configurations from Official-Statistics Workload Profiles**
+* fixed default configuration;
+* fixed high-resource configuration;
+* size-only heuristic.
+
+**Metrik:**
+
+* wall-clock runtime;
+* CPU time;
+* peak memory;
+* shuffle bytes;
+* resource-time cost;
+* deadline miss bila digunakan.
+
+**Judul artikel:**
+
+**Workload-Aware Execution Configuration for Heterogeneous SDG Data Processing**
 
 ### T2 — Adaptive Physical Design
 
@@ -210,7 +229,7 @@ Artikel utama harus menguji **system-level adaptive policy** pada beberapa actio
 
 Judul kerja:
 
-**Adaptive Data Product Configuration for Heterogeneous Official-Statistics Workloads**
+**Adaptive Data Product Configuration for Heterogeneous SDG Data Workloads**
 
 Kontribusi yang diharapkan:
 
