@@ -1,2 +1,2 @@
-source_id,indicator_key,release_date,observed_period,geo_level,geo_code,geo_name,unit,value,producer,methodology_version,source_record_id
-bps_webapi,sdg08_unemployment,2025-11-05,2024,province,18,Lampung,percent,5.00,Synthetic template,,replace-with-source-record-id
+source_id,indicator_key,series_key,release_date,observed_period,geo_level,geo_code,geo_name,unit,value,producer,methodology_version,source_record_id
+bps_webapi,sdg08_unemployment,total,2025-11-05,2024,province,18,Lampung,percent,5.00,Synthetic template,,replace-with-source-record-id

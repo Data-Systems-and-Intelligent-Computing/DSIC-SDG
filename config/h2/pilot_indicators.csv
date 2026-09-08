@@ -1,0 +1,6 @@
+indicator_key,domain,webapi_domain_id,webapi_variable_id,publication_source_id,publication_page,publication_figure,alignment_status,alignment_reason
+sdg04_completion_rate,education,0000,1980,bps_tpb_2024,46-47,Gambar 4.2-4.4,comparable,Same Susenas completion-rate concept level year national geography and percent unit
+sdg06_handwashing,environment,0000,1273,bps_tpb_2024,70,Gambar 6.2,comparable,Same Susenas handwashing-facility concept year national geography and percent unit
+sdg07_renewable_share,energy,0000,1824,bps_tpb_2024,80,Gambar 7.5,comparable,Same ESDM renewable-energy-mix label year national geography and percent unit
+sdg08_hourly_wage,economy,0000,1172,bps_tpb_2024,88,Gambar 8.8,comparable,Same Sakernas national hourly-wage series and rupiah-per-hour unit
+sdg15_forest_cover,ecology,0000,1304,bps_tpb_2024,162,Gambar 15.1,methodology_mismatch,WebAPI reports area inside or outside designated forest area in thousand hectares while publication reports forest-cover proportion of total land

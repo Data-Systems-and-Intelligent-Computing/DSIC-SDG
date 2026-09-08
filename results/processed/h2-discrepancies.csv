@@ -1,0 +1,5 @@
+indicator_key,series_key,observed_period,geo_level,geo_code,unit,webapi_value,publication_value,absolute_spread,classification,classification_note
+sdg07_renewable_share,total,2018,national,9999,percent,8.6,9.00,0.40,unclassified_difference,H3 must distinguish release revision from methodology change
+sdg07_renewable_share,total,2019,national,9999,percent,9.19,9.15,0.04,unclassified_difference,H3 must distinguish release revision from methodology change
+sdg07_renewable_share,total,2020,national,9999,percent,11.27,11.20,0.07,unclassified_difference,H3 must distinguish release revision from methodology change
+sdg07_renewable_share,total,2023,national,9999,percent,,13.21,0.00,coverage_gap,The publication contains a period absent from the selected WebAPI variable

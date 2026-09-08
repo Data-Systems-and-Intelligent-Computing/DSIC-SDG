@@ -1,0 +1,7 @@
+indicator_key,webapi_category_id,series_key,unit,producer
+sdg04_completion_rate,1672,sd,percent,Badan Pusat Statistik
+sdg04_completion_rate,1673,smp,percent,Badan Pusat Statistik
+sdg04_completion_rate,1674,sma,percent,Badan Pusat Statistik
+sdg06_handwashing,0,total,percent,Badan Pusat Statistik
+sdg07_renewable_share,0,total,percent,ESDM
+sdg08_hourly_wage,0,total,rupiah_per_hour,Badan Pusat Statistik

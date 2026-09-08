@@ -1,0 +1,20 @@
+source_id,indicator_key,series_key,release_date,observed_period,geo_level,geo_code,geo_name,unit,value,producer,methodology_version,source_record_id
+bps_webapi,sdg04_completion_rate,sd,2026-09-08,2022,national,9999,Indonesia,percent,97.82,Badan Pusat Statistik,webapi-var-1980-updated-2026-08-26,domain=0000;var=1980;vervar=9999;turvar=1672;th=122;turth=0
+bps_webapi,sdg04_completion_rate,sd,2026-09-08,2023,national,9999,Indonesia,percent,97.83,Badan Pusat Statistik,webapi-var-1980-updated-2026-08-26,domain=0000;var=1980;vervar=9999;turvar=1672;th=123;turth=0
+bps_webapi,sdg04_completion_rate,sma,2026-09-08,2022,national,9999,Indonesia,percent,66.13,Badan Pusat Statistik,webapi-var-1980-updated-2026-08-26,domain=0000;var=1980;vervar=9999;turvar=1674;th=122;turth=0
+bps_webapi,sdg04_completion_rate,sma,2026-09-08,2023,national,9999,Indonesia,percent,66.79,Badan Pusat Statistik,webapi-var-1980-updated-2026-08-26,domain=0000;var=1980;vervar=9999;turvar=1674;th=123;turth=0
+bps_webapi,sdg04_completion_rate,smp,2026-09-08,2022,national,9999,Indonesia,percent,90.13,Badan Pusat Statistik,webapi-var-1980-updated-2026-08-26,domain=0000;var=1980;vervar=9999;turvar=1673;th=122;turth=0
+bps_webapi,sdg04_completion_rate,smp,2026-09-08,2023,national,9999,Indonesia,percent,90.44,Badan Pusat Statistik,webapi-var-1980-updated-2026-08-26,domain=0000;var=1980;vervar=9999;turvar=1673;th=123;turth=0
+bps_webapi,sdg06_handwashing,total,2026-09-08,2021,national,9999,Indonesia,percent,79.59,Badan Pusat Statistik,webapi-var-1273-updated-2026-07-06,domain=0000;var=1273;vervar=9999;turvar=0;th=121;turth=0
+bps_webapi,sdg06_handwashing,total,2026-09-08,2022,national,9999,Indonesia,percent,79.33,Badan Pusat Statistik,webapi-var-1273-updated-2026-07-06,domain=0000;var=1273;vervar=9999;turvar=0;th=122;turth=0
+bps_webapi,sdg06_handwashing,total,2026-09-08,2023,national,9999,Indonesia,percent,80.15,Badan Pusat Statistik,webapi-var-1273-updated-2026-07-06,domain=0000;var=1273;vervar=9999;turvar=0;th=123;turth=0
+bps_webapi,sdg07_renewable_share,total,2026-09-08,2018,national,9999,Indonesia,percent,8.6,ESDM,webapi-var-1824-updated-2024-05-06,domain=0000;var=1824;vervar=9999;turvar=0;th=118;turth=0
+bps_webapi,sdg07_renewable_share,total,2026-09-08,2019,national,9999,Indonesia,percent,9.19,ESDM,webapi-var-1824-updated-2024-05-06,domain=0000;var=1824;vervar=9999;turvar=0;th=119;turth=0
+bps_webapi,sdg07_renewable_share,total,2026-09-08,2020,national,9999,Indonesia,percent,11.27,ESDM,webapi-var-1824-updated-2024-05-06,domain=0000;var=1824;vervar=9999;turvar=0;th=120;turth=0
+bps_webapi,sdg07_renewable_share,total,2026-09-08,2021,national,9999,Indonesia,percent,12.16,ESDM,webapi-var-1824-updated-2024-05-06,domain=0000;var=1824;vervar=9999;turvar=0;th=121;turth=0
+bps_webapi,sdg07_renewable_share,total,2026-09-08,2022,national,9999,Indonesia,percent,12.3,ESDM,webapi-var-1824-updated-2024-05-06,domain=0000;var=1824;vervar=9999;turvar=0;th=122;turth=0
+bps_webapi,sdg08_hourly_wage,total,2026-09-08,2019,national,9999,Indonesia,rupiah_per_hour,15823,Badan Pusat Statistik,webapi-var-1172-updated-2025-12-02,domain=0000;var=1172;vervar=9999;turvar=0;th=119;turth=0
+bps_webapi,sdg08_hourly_wage,total,2026-09-08,2020,national,9999,Indonesia,rupiah_per_hour,17696,Badan Pusat Statistik,webapi-var-1172-updated-2025-12-02,domain=0000;var=1172;vervar=9999;turvar=0;th=120;turth=0
+bps_webapi,sdg08_hourly_wage,total,2026-09-08,2021,national,9999,Indonesia,rupiah_per_hour,18089,Badan Pusat Statistik,webapi-var-1172-updated-2025-12-02,domain=0000;var=1172;vervar=9999;turvar=0;th=121;turth=0
+bps_webapi,sdg08_hourly_wage,total,2026-09-08,2022,national,9999,Indonesia,rupiah_per_hour,17542,Badan Pusat Statistik,webapi-var-1172-updated-2025-12-02,domain=0000;var=1172;vervar=9999;turvar=0;th=122;turth=0
+bps_webapi,sdg08_hourly_wage,total,2026-09-08,2023,national,9999,Indonesia,rupiah_per_hour,19027,Badan Pusat Statistik,webapi-var-1172-updated-2025-12-02,domain=0000;var=1172;vervar=9999;turvar=0;th=123;turth=0

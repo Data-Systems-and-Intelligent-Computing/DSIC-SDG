@@ -214,6 +214,17 @@ perbandingan nilai antarrilis dimulai pada H2 dan menjadi syarat Gate G1. Temuan
 proposal, aturan status, manifest, dan batas penggunaan sumber dicatat di
 [`docs/research/h1-data-audit.md`](docs/research/h1-data-audit.md).
 
+H2 juga sudah selesai sebagai pilot satu indikator per domain. Empat indikator dapat dibandingkan
+langsung antara snapshot WebAPI dan publikasi TPB 2024; tutupan hutan ditolak karena perbedaan
+definisi dan satuan. Dari 19 sel yang beririsan, 16 sama dan 3 berbeda. Ketiga perbedaan berasal
+dari bauran energi terbarukan tahun 2018-2020, sedangkan nilai publikasi 2023 tidak tersedia pada
+variabel WebAPI terpilih. Jalankan `make h2-run` untuk membentuk ulang hasil. Laporan lengkap ada
+di [`docs/research/h2-source-comparison.md`](docs/research/h2-source-comparison.md).
+
+Hasil H2 belum meloloskan Gate G1 karena perbedaan baru ditemukan pada satu domain. H3 perlu
+memperluas jumlah indikator dan cakupan provinsi sampai penyebab perbedaan dapat dipisahkan menjadi
+versi rilis, metodologi, atau granularitas.
+
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
 **Gate G1 — Objek penelitian terbukti ada**

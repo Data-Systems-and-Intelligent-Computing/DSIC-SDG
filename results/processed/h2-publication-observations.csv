@@ -1,0 +1,21 @@
+source_id,indicator_key,series_key,release_date,observed_period,geo_level,geo_code,geo_name,unit,value,producer,methodology_version,source_record_id
+bps_tpb_2024,sdg04_completion_rate,sd,2024-12-31,2022,national,9999,Indonesia,percent,97.82,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=46;figure=4.2;series=sd;year=2022
+bps_tpb_2024,sdg04_completion_rate,sd,2024-12-31,2023,national,9999,Indonesia,percent,97.83,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=46;figure=4.2;series=sd;year=2023
+bps_tpb_2024,sdg04_completion_rate,sma,2024-12-31,2022,national,9999,Indonesia,percent,66.13,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=47;figure=4.4;series=sma;year=2022
+bps_tpb_2024,sdg04_completion_rate,sma,2024-12-31,2023,national,9999,Indonesia,percent,66.79,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=47;figure=4.4;series=sma;year=2023
+bps_tpb_2024,sdg04_completion_rate,smp,2024-12-31,2022,national,9999,Indonesia,percent,90.13,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=46;figure=4.3;series=smp;year=2022
+bps_tpb_2024,sdg04_completion_rate,smp,2024-12-31,2023,national,9999,Indonesia,percent,90.44,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=46;figure=4.3;series=smp;year=2023
+bps_tpb_2024,sdg06_handwashing,total,2024-12-31,2021,national,9999,Indonesia,percent,79.59,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=70;figure=6.2;series=total;year=2021
+bps_tpb_2024,sdg06_handwashing,total,2024-12-31,2022,national,9999,Indonesia,percent,79.33,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=70;figure=6.2;series=total;year=2022
+bps_tpb_2024,sdg06_handwashing,total,2024-12-31,2023,national,9999,Indonesia,percent,80.15,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=70;figure=6.2;series=total;year=2023
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2018,national,9999,Indonesia,percent,9.00,ESDM,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=80;figure=7.5;series=total;year=2018
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2019,national,9999,Indonesia,percent,9.15,ESDM,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=80;figure=7.5;series=total;year=2019
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2020,national,9999,Indonesia,percent,11.20,ESDM,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=80;figure=7.5;series=total;year=2020
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2021,national,9999,Indonesia,percent,12.16,ESDM,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=80;figure=7.5;series=total;year=2021
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2022,national,9999,Indonesia,percent,12.30,ESDM,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=80;figure=7.5;series=total;year=2022
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2023,national,9999,Indonesia,percent,13.21,ESDM,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=80;figure=7.5;series=total;year=2023
+bps_tpb_2024,sdg08_hourly_wage,total,2024-12-31,2019,national,9999,Indonesia,rupiah_per_hour,15823,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=88;figure=8.8;series=total;year=2019
+bps_tpb_2024,sdg08_hourly_wage,total,2024-12-31,2020,national,9999,Indonesia,rupiah_per_hour,17696,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=88;figure=8.8;series=total;year=2020
+bps_tpb_2024,sdg08_hourly_wage,total,2024-12-31,2021,national,9999,Indonesia,rupiah_per_hour,18089,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=88;figure=8.8;series=total;year=2021
+bps_tpb_2024,sdg08_hourly_wage,total,2024-12-31,2022,national,9999,Indonesia,rupiah_per_hour,17542,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=88;figure=8.8;series=total;year=2022
+bps_tpb_2024,sdg08_hourly_wage,total,2024-12-31,2023,national,9999,Indonesia,rupiah_per_hour,19027,Badan Pusat Statistik,tpb-2024-figure,pub=936a26d5d2b168b9971d3b02;page=88;figure=8.8;series=total;year=2023

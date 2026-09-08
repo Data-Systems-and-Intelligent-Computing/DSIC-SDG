@@ -1,0 +1,80 @@
+{
+  "created_at": "2026-09-08T14:26:18.082510+00:00",
+  "inputs": [
+    {
+      "path": "config/h2/pilot_indicators.csv",
+      "sha256": "abbccaef9704ade01763516f24b05875fcf80f558315d8629c4e8bc316e26d31"
+    },
+    {
+      "path": "config/h2/pilot_series.csv",
+      "sha256": "eba3800dc020e4e6e7ecef9161dbc49fd33222066c6bfbc3b657c3e64c8bc03b"
+    },
+    {
+      "path": "data/reference/h2/tpb-2024-figure-observations.csv",
+      "sha256": "d723df80849a3f0db48a8f18ba98494beaec09d78d0dd6680fc343ce348a6bac"
+    },
+    {
+      "path": "data/manifests/h1-free-webapi-data.json",
+      "sha256": "54f99452eece1a45abad7d11397aa1d3d711f9452503c5a0eecdf3ec899c4d51"
+    },
+    {
+      "path": "data/manifests/h1-free-publications.json",
+      "sha256": "e5370c608458a1d69f054b98200c2949738231cbeef448e93f2196aa455c59bb"
+    },
+    {
+      "path": "data/raw/h1/publications/bps_tpb_2024.pdf",
+      "sha256": "abb977463619a16c5811bab47074452d75807483da5a315e831c1d07aa390cd8",
+      "source_id": "bps_tpb_2024"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h2-webapi-observations.csv",
+      "rows": 19,
+      "sha256": "107d8a7140288538c8da45d51ac94228ac2530c8f36dc503fdafb5e22cd542a1"
+    },
+    {
+      "path": "results/processed/h2-publication-observations.csv",
+      "rows": 20,
+      "sha256": "4d39e181257174b7c51e054ca003502cc874f4cb4eee9dca3640b355ccbcbe2d"
+    },
+    {
+      "path": "results/processed/h2-normalized-observations.csv",
+      "rows": 39,
+      "sha256": "7d874291baeb516955d6b5e2d20632ab7ed42cf081a6d21622780ae6ff01804a"
+    },
+    {
+      "path": "results/processed/h2-cell-comparison.csv",
+      "rows": 20,
+      "sha256": "34b0608381acfadfafc2a0dd8de9da48b07f92f637b170f6f9b68411cd71fb2f"
+    },
+    {
+      "path": "results/processed/h2-discrepancies.csv",
+      "rows": 4,
+      "sha256": "5f9d03de7362ae9b26d1373f5bf3dc76fafc0d1ce9c809cb9a32a063eaa68381"
+    },
+    {
+      "path": "results/processed/h2-indicator-summary.csv",
+      "rows": 5,
+      "sha256": "e54f1cc280d043f93174b9640ddeb32b3f5628f0fa374451f97b4f55787215ee"
+    }
+  ],
+  "policy": {
+    "comparison_key": [
+      "indicator_key",
+      "series_key",
+      "observed_period",
+      "geo_level",
+      "geo_code",
+      "unit"
+    ],
+    "cost_class": "free",
+    "excluded_sources": [
+      "bps_dna",
+      "bps_sirusa",
+      "silastik_pst"
+    ],
+    "geography": "national"
+  },
+  "stage": "H2"
+}

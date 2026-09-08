@@ -11,6 +11,7 @@ from typing import Iterable
 REQUIRED_COLUMNS = {
     "source_id",
     "indicator_key",
+    "series_key",
     "release_date",
     "observed_period",
     "geo_level",
@@ -22,7 +23,14 @@ REQUIRED_COLUMNS = {
     "methodology_version",
     "source_record_id",
 }
-CELL_KEY = ("indicator_key", "observed_period", "geo_level", "geo_code", "unit")
+CELL_KEY = (
+    "indicator_key",
+    "series_key",
+    "observed_period",
+    "geo_level",
+    "geo_code",
+    "unit",
+)
 OUTPUT_COLUMNS = [
     *CELL_KEY,
     "geo_name",
