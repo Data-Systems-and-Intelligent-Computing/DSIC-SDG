@@ -1,0 +1,26 @@
+indicator_key,source_id,publication_id,selection_status,verified_geographies,period_start,period_end,page,locator,producer,notes
+sdg04_minimum_competency,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2022,2023,46,Indikator 4.1.1(a),Badan Pusat Statistik,National and demographic breakdowns; no province series
+sdg04_completion_rate,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2022,2023,46-47,Indikator 4.1.2,Badan Pusat Statistik,National and demographic breakdowns; no province or regency series
+sdg04_parity_index,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2022,2023,50,Indikator 4.5.1,Badan Pusat Statistik,Publication breakdown does not add provincial coverage
+sdg04_literacy,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2023,2023,52,Indikator 4.6.1(a),Badan Pusat Statistik,Current national literacy rate complements the historical WebAPI table
+sdg04_paud,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2022,2023,48,Indikator 4.2.2,Badan Pusat Statistik,National and demographic breakdowns
+sdg04_basic_services,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2022,2023,52-53,Indikator 4.a.1,Kemendikbud/Dapodik,Components are presented by school level
+sdg06_drinking_water,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2023,2023,70,Indikator 6.1.1,Badan Pusat Statistik/Susenas,Safely managed water is distinct from adequate access in WebAPI variable 845
+sdg06_sanitation,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2021,2023,69-70,Indikator 6.2.1(a),Badan Pusat Statistik/Susenas,National presentation
+sdg06_handwashing,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2021,2023,70,Indikator 6.2.1(b),Badan Pusat Statistik/Susenas,National presentation
+sdg07_electricity_access,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2018,2023,78,Indikator 7.1.1; Gambar 7.1,ESDM,Electrification ratio is separate from household electricity-use percentage
+sdg07_clean_cooking,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2018,2023,79-80,Indikator 7.1.2,ESDM,Publication uses gas connections and electricity for cooking rather than one combined clean-cooking rate
+sdg07_renewable_share,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected,national,2018,2023,80,Indikator 7.2.1; Gambar 7.5,ESDM,National series
+sdg07_energy_intensity,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected,national,2018,2023,81,Indikator 7.3.1; Gambar 7.6,ESDM,National series
+sdg08_gdp_per_capita_growth,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2019,2023,86,Indikator 8.1.1; Gambar 8.2,Badan Pusat Statistik,National presentation
+sdg08_productivity_growth,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2019,2023,86,Indikator 8.2.1; Gambar 8.3,Badan Pusat Statistik,National presentation
+sdg08_informal_employment,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2021,2023,87,Indikator 8.3.1; Gambar 8.4,Badan Pusat Statistik,National and sector or sex breakdowns
+sdg08_hourly_wage,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2019,2023,88,Indikator 8.5.1; Gambar 8.8,Badan Pusat Statistik,National and urban-rural breakdowns
+sdg08_unemployment,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2021,2023,89,Indikator 8.5.2,Badan Pusat Statistik,National and demographic breakdowns
+sdg08_neet,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2021,2023,90,Indikator 8.6.1,Badan Pusat Statistik,National and demographic breakdowns
+sdg08_financial_access,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2018,2022,93,Indikator 8.10.1; Gambar 8.20-8.21,Bank Indonesia,Exact national bank-office and ATM ratios; no provincial series
+sdg15_forest_cover,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2018,2022,162,Indikator 15.1.1; Gambar 15.1,KLHK,National forest-area proportion
+sdg15_protected_biodiversity,bps_tpb_2024,936a26d5d2b168b9971d3b02,proxy_not_selected,national,2020,2022,162,Indikator 15.1.2(a); Gambar 15.2,KLHK,National HCV-area proxy is not the same as global indicator 15.1.2
+sdg15_degraded_land,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected_limited,national,2018,2022,163,Indikator 15.3.1; Gambar 15.4,KLHK,Only two national observations are presented
+sdg15_sustainable_forest,bps_tpb_2024,936a26d5d2b168b9971d3b02,proxy_not_selected,national,2021,2023,162,Indikator 15.2.1(a); Gambar 15.3,KLHK,Count of advanced KPH units is not the global sustainable-forest indicator
+sdg15_red_list,bps_tpb_2024,936a26d5d2b168b9971d3b02,selected,national,2018,2022,164,Indikator 15.5.1; Gambar 15.7,KLHK,National publication series

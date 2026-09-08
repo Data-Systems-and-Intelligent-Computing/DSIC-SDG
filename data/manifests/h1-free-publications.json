@@ -1,0 +1,31 @@
+{
+  "authentication": "BPS_API_KEY environment variable",
+  "channel": "BPS WebAPI publication catalog",
+  "cost_class": "free",
+  "files": [
+    {
+      "bytes": 29888991,
+      "download_url": "https://webapi.bps.go.id/download.php?f=QHO11dg2w+Bk/kTiaeXKQ1k4UjQxdGE0S1duZE5PT213cmljK043eHV0S3N5TUc5MWplRk5wVkFwaklyalBLeHB1UW0xM3VKNFdjLy9OTm43MUpHSWlOQmpORCthc0R0d2hIYisxV1FnSmF1OVczY3hvdVYwUXhvTTVLT0M3NDZVaXZYdWZQU2dxdlJZeGVnNHJPQWFBTG5kcFkwK3BNMjhhRWpIVVhzQ0I2eis4ZmI4OVc5Vk5PRkwwenhqVmozRzNVYkZhc3BQd3lJZVMvOTl4a3lLbmt3UXlHeUVoMng1cmhsbjJQMHFOa3NMdnVqa1g1am9UUDdWd043T3Y1K1dvWVZ2TjFJMzF3aUVsQnZ1QXhvVVhVd1d5UStRaVVnRWxXVklRdURwTW1tOHdjYllPYVJ1a2hrNm1rPQ==",
+      "publication_id": "8ffdc46aa817bf0c4c47e105",
+      "raw_path": "data/raw/h1/publications/bps_tpb_2025.pdf",
+      "release_date": "2025-12-30",
+      "sha256": "bd50461f8b7c49ac1a9fb48d4ffc88e06ac8b4ae904eb5dcd8649b76c235f03d",
+      "source_id": "bps_tpb_2025",
+      "title": "Indikator Tujuan Pembangunan Berkelanjutan Indonesia 2025",
+      "update_date": null
+    },
+    {
+      "bytes": 19570594,
+      "download_url": "https://webapi.bps.go.id/download.php?f=PrsgfjpZ/ahrWjPkIQmVgVJkS29sZld2UEM0SEpqMno3V0kxbUt0cTZBK3BPVDA1Tk5MSjd1cGUwQmxaWDNrYXhTenlSYmlQNzNtVFgxZmRUeFozYXBMMG0weHptcGR5V2ZnRE4wNU9BcUVvZ0FacHNiM0x1TWFydjNRZTdXSnNEYzIvQ2xhYURsNVUvdElzNVNsb3pGYmpOVjZSejE5dFJhV0tkQmpoMWxOTjBJSklON2Q5aS9mTnFTMVZ3NUNiWDRJcVkxYVJGM2VwbERtSDNOWWU1YUdCWk41UWgyRkJiNzBIWGlWREpYTklNaUtnbWhxSDFBRnhTNVhLL3ZsaCtveUVFZEJFZG5qWnhLbExOVVVBZGlZTERjZW9LQ0paZWJya3Z3OHZTTldLeWxpQnF4bWNuY0dpLzg4PQ==",
+      "publication_id": "936a26d5d2b168b9971d3b02",
+      "raw_path": "data/raw/h1/publications/bps_tpb_2024.pdf",
+      "release_date": "2024-12-31",
+      "sha256": "abb977463619a16c5811bab47074452d75807483da5a315e831c1d07aa390cd8",
+      "source_id": "bps_tpb_2024",
+      "title": "Indikator Tujuan Pembangunan Berkelanjutan Indonesia 2024",
+      "update_date": null
+    }
+  ],
+  "key_fingerprint": "93437d84",
+  "retrieved_at": "2026-09-08T14:05:34.154058+00:00"
+}

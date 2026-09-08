@@ -1,0 +1,39 @@
+indicator_key,domain,webapi_domain_id,webapi_variable_id,selection_status,coverage,producer,notes
+sdg04_minimum_competency,education,0000,1417,selected_limited,national_2017,Badan Pusat Statistik,Free but only one historical period; reading and mathematics are categories
+sdg04_completion_rate,education,0000,1980,selected,province_2015_2023,Badan Pusat Statistik,Exact completion-rate table by level and province
+sdg04_aps,education,0000,2211,selected,province_2016_2025,Badan Pusat Statistik,APS by province and age group
+sdg04_apm,education,0000,304,selected,province_2016_2025,Badan Pusat Statistik,APM by province and education level
+sdg04_apk,education,0000,303,selected,province_2016_2025,Badan Pusat Statistik,APK by province and education level
+sdg04_hls,education,0000,417,selected,national_province_regency_2016_2025,Badan Pusat Statistik,New-method expected years of schooling
+sdg04_rls,education,0000,415,selected,national_province_regency_2016_2025,Badan Pusat Statistik,New-method mean years of schooling
+sdg04_parity_index,education,0000,1455,selected,province_2016_2025,Badan Pusat Statistik,APM female-to-male ratio by level
+sdg04_literacy,education,0000,4,selected_limited,national_province_regency_2004_2013,Badan Pusat Statistik,Free table exists but falls outside the target decade
+sdg04_paud,education,0000,1990,selected,province_2015_2023,Badan Pusat Statistik,Organized learning participation one year before primary-school age
+sdg04_dropout,education,0000,,unavailable_free,,Badan Pusat Statistik,No exact dropout-rate table found in the central WebAPI catalog; out-of-school rate is not substituted
+sdg04_basic_services,education,0000,1794,selected_limited,national_by_school_level_2015_2022,Kemendikbud/Dapodik,Electricity component; no provincial dimension
+sdg04_basic_services,education,0000,1797,selected_limited,national_by_school_level_2016_2022,Kemendikbud/Dapodik,Water component; no provincial dimension
+sdg04_basic_services,education,0000,1798,selected_limited,national_by_school_level_2016_2018,Kemendikbud/Dapodik,Separate-toilet component; no provincial dimension
+sdg06_drinking_water,environment,0000,845,selected,province_with_method_break,Badan Pusat Statistik/Susenas,Access to adequate drinking-water source; methodology break noted for 2011
+sdg06_sanitation,environment,0000,847,selected,province_2016_2025,Badan Pusat Statistik/Susenas,Adequate sanitation; methodology changed in 2019
+sdg06_handwashing,environment,0000,1273,selected,province_2016_2025,Badan Pusat Statistik/Susenas,Handwashing facility with soap and water
+sdg06_water_source,environment,0000,,unavailable_free,,Badan Pusat Statistik,No exact table by detailed drinking-water source found; adequate-access rate is not substituted
+sdg07_electricity_access,energy,0000,2832,selected,national_province_regency_2020_2025,Badan Pusat Statistik,Households using PLN or non-PLN electricity
+sdg07_electricity_access,energy,0000,1155,selected_limited,national_2013_2022,ESDM,National electrification ratio retained as a separate concept
+sdg07_clean_cooking,energy,0000,150,selected,province_with_category,Badan Pusat Statistik,Main cooking fuel; clean-fuel indicator must be derived from explicit categories
+sdg07_renewable_share,energy,0000,1824,selected_limited,national_2015_2022,ESDM,National only
+sdg07_energy_intensity,energy,0000,1808,selected_limited,national_2014_2022_with_gap,ESDM,National only and 2019 is absent
+sdg08_gdp_per_capita_growth,economy,0000,296,selected,province_series_2010,Badan Pusat Statistik,PDRB per-capita growth at constant 2010 prices
+sdg08_productivity_growth,economy,0000,1161,selected,province_2016_2025,Badan Pusat Statistik,PDB per worker; source notes temporary values and regional handling
+sdg08_unemployment,economy,0000,543,selected,province_2017_2026,Badan Pusat Statistik,Source notes historical backcasts and methodology changes
+sdg08_labor_force_participation,economy,0000,2396,selected,province_2021_2026,Badan Pusat Statistik,TPAK by province
+sdg08_informal_employment,economy,0000,2153,selected,province_2018_2025,Badan Pusat Statistik,Informal-employment proportion by province
+sdg08_hourly_wage,economy,0000,1172,selected,province_2016_2025,Badan Pusat Statistik,2015-2019 values were revised because of weighting changes
+sdg08_neet,economy,0000,1186,selected,province_2016_2025,Badan Pusat Statistik,Youth age 15-24 not in education employment or training
+sdg08_financial_access,economy,0000,,unavailable_free,,Otoritas Jasa Keuangan/Bank Indonesia,No exact branches-or-ATM-per-100000-adults table found in the central WebAPI catalog
+sdg15_forest_cover,ecology,0000,1304,selected_derived,province_selected_years_2014_2023,KLHK,Forest-cover proportion requires a land-area denominator and category mapping
+sdg15_protected_biodiversity,ecology,0000,,unavailable_free,,KLHK,No exact terrestrial biodiversity-area protection table found
+sdg15_degraded_land,ecology,0000,,unavailable_free,,KLHK,Critical-land area is not substituted for the SDG degraded-land proportion
+sdg15_conservation_area,ecology,0000,1304,selected_derived,province_selected_years_2014_2023,KLHK,May be derived only if conservation classes in the table match the intended definition
+sdg15_land_cover_change,ecology,0000,1304,selected_derived,province_selected_years_2014_2023,KLHK,Derived as differences between comparable land-cover releases
+sdg15_sustainable_forest,ecology,0000,,unavailable_free,,KLHK,No exact sustainable-forest-management indicator found
+sdg15_red_list,ecology,0000,,unavailable_free,,KLHK,No exact Red List Index table found

@@ -1,0 +1,783 @@
+{
+  "authentication": "BPS_API_KEY environment variable",
+  "file_count": 29,
+  "files": [
+    {
+      "available_period_count": 13,
+      "data_cell_count": 0,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_literacy"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-4.json",
+      "selected_period_count": 0,
+      "selected_period_labels": [],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "90c40047036e33415f0a5683050cdb210669f0221773fe6bad640b0e9133c115",
+      "title": "",
+      "variable_id": "4"
+    },
+    {
+      "available_period_count": 16,
+      "data_cell_count": 1770,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg07_clean_cooking"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-150.json",
+      "selected_period_count": 7,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "8ab565a08bf08596c4c3c2b5272b26631af62bb18dfa475416c8c5357d00a057",
+      "title": "Persentase Rumah Tangga Menurut Provinsi dan Bahan Bakar Utama untuk Memasak",
+      "variable_id": "150"
+    },
+    {
+      "available_period_count": 15,
+      "data_cell_count": 397,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_gdp_per_capita_growth"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-296.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "c1eb1b0c9ef6b4bcf3e626760c386cf1c3ce727926e2366f43c1c447aa0b6c82",
+      "title": "[Seri 2010] Laju Pertumbuhan Produk Domestik Regional Bruto Per Kapita Atas Dasar Harga Konstan 2010",
+      "variable_id": "296"
+    },
+    {
+      "available_period_count": 23,
+      "data_cell_count": 1179,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_apk"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-303.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "e757a2dc2373c4d9e6f6005dfffd81bca64b4351296a34e25efd939ed0b4746f",
+      "title": "Angka Partisipasi Kasar (APK) Menurut Provinsi dan Jenjang Pendidikan",
+      "variable_id": "303"
+    },
+    {
+      "available_period_count": 23,
+      "data_cell_count": 1179,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_apm"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-304.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "71caca149ecc024320cd5b4b508391ff8167e18e8bc93f12169ae46ab6702bb0",
+      "title": "Angka Partisipasi Murni (APM) Menurut Provinsi dan Jenjang Pendidikan",
+      "variable_id": "304"
+    },
+    {
+      "available_period_count": 16,
+      "data_cell_count": 6047,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_rls"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-415.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "29313efae73306e36c4907ed5f097fa72008ab714e607fbb16a95f79099adb21",
+      "title": "[Metode Baru] Rata-rata Lama Sekolah",
+      "variable_id": "415"
+    },
+    {
+      "available_period_count": 16,
+      "data_cell_count": 6047,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_hls"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-417.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "821b966d32e24156e028bd4923dfb09cec4ff4376def402e4204622a5fb81275",
+      "title": "[Metode Baru] Harapan Lama Sekolah",
+      "variable_id": "417"
+    },
+    {
+      "available_period_count": 40,
+      "data_cell_count": 825,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_unemployment"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-543.json",
+      "selected_period_count": 12,
+      "selected_period_labels": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "9908cecf7ac30eb061517efdf6819781cb653041d4f1183b1d1fcd241b7cd3ce",
+      "title": "Tingkat Pengangguran Terbuka Menurut Provinsi",
+      "variable_id": "543"
+    },
+    {
+      "available_period_count": 23,
+      "data_cell_count": 183,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg06_drinking_water"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-845.json",
+      "selected_period_count": 5,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "97a540042cef060fffb987024baf8489e02a686fc4565284e91c6369a0baf1fa",
+      "title": "Persentase Rumah Tangga yang Memiliki Akses terhadap Sumber Air Minum Layak Menurut Provinsi",
+      "variable_id": "845"
+    },
+    {
+      "available_period_count": 33,
+      "data_cell_count": 393,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg06_sanitation"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-847.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "9aa34c3a182e6ab094c0dbb5aad6dfc0ce1ad8227bf14d43311b630bfdf36fe9",
+      "title": "Persentase Rumah Tangga menurut Provinsi dan Memiliki Akses terhadap Sanitasi Layak",
+      "variable_id": "847"
+    },
+    {
+      "available_period_count": 14,
+      "data_cell_count": 8,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg07_electricity_access"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1155.json",
+      "selected_period_count": 8,
+      "selected_period_labels": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "d9d42acbeed127410ddac3d92910572f1cc2758bad61fe9ae5770d490acce0bb",
+      "title": "Rasio Elektrifikasi",
+      "variable_id": "1155"
+    },
+    {
+      "available_period_count": 15,
+      "data_cell_count": 390,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_productivity_growth"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1161.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "a683d7d77fa173f23468891ed5c28393e5eaa069f81e58cc4eb6e9921ce7ad92",
+      "title": "Laju Pertumbuhan PDB Per Tenaga Kerja/Tingkat Pertumbuhan PDB Riil Per Orang Bekerja Per Tahun",
+      "variable_id": "1161"
+    },
+    {
+      "available_period_count": 11,
+      "data_cell_count": 393,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_hourly_wage"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1172.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "4708120fc45575940c657102656412bf3df4b3ddf2e328c6b5d3a03ab95a4355",
+      "title": "Upah Rata - Rata Per Jam Pekerja Menurut Provinsi",
+      "variable_id": "1172"
+    },
+    {
+      "available_period_count": 11,
+      "data_cell_count": 393,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_neet"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1186.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "f7e79319f0744471bf7a4e9eb5a9393fae249760f2571ad8f3a537940685d07b",
+      "title": "Persentase Usia Muda (15-24 Tahun) Yang Sedang Tidak Sekolah, Bekerja Atau Mengikuti Pelatihan",
+      "variable_id": "1186"
+    },
+    {
+      "available_period_count": 10,
+      "data_cell_count": 358,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg06_handwashing"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1273.json",
+      "selected_period_count": 10,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "e40280dc9a74344334e5c61ed28bf0a42b811bf60cc97f6b090f188fe0fb1f0e",
+      "title": "6.2.1* Persentase Rumah Tangga yang Memiliki Fasilitas Cuci Tangan dengan Sabun dan Air Menurut Provinsi",
+      "variable_id": "1273"
+    },
+    {
+      "available_period_count": 6,
+      "data_cell_count": 525,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg15_conservation_area",
+        "sdg15_forest_cover",
+        "sdg15_land_cover_change"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1304.json",
+      "selected_period_count": 5,
+      "selected_period_labels": [
+        "2023",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_derived"
+      ],
+      "sha256": "f89a8b55184ad1d450a6d916869139707bd302cb886b8d79243476d0ae8751c3",
+      "title": "Luas Penutupan Lahan Indonesa di Dalam dan di Luar Kawasan Hutan Menurut Provinsi",
+      "variable_id": "1304"
+    },
+    {
+      "available_period_count": 1,
+      "data_cell_count": 12,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_minimum_competency"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1417.json",
+      "selected_period_count": 1,
+      "selected_period_labels": [
+        "2017"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "b4602be7b31140b261be1ad930dd571b6f40bb8167f327d599d78c1f1a2cb5c0",
+      "title": "Proporsi Anak Kelas 4 SD yang Mencapai Standar Kemampuan Minimum Dalam Membaca dan Matematika",
+      "variable_id": "1417"
+    },
+    {
+      "available_period_count": 11,
+      "data_cell_count": 1362,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_parity_index"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1455.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "15b8d630c271d18fee1eee35f4bf7391aa837121b8efbb60a95d3dfa79915bd2",
+      "title": "Rasio Angka Partisipasi Murni (APM) Perempuan/Laki-Laki Menurut Provinsi dan Jenjang Pendidikan",
+      "variable_id": "1455"
+    },
+    {
+      "available_period_count": 8,
+      "data_cell_count": 32,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_basic_services"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1794.json",
+      "selected_period_count": 8,
+      "selected_period_labels": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "6ce46e1481cf8acfa2eab161c5304a0b732b348a31cba38567a8d1b5a4bba00c",
+      "title": "Proporsi Sekolah dengan Akses Listrik ",
+      "variable_id": "1794"
+    },
+    {
+      "available_period_count": 7,
+      "data_cell_count": 28,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_basic_services"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1797.json",
+      "selected_period_count": 7,
+      "selected_period_labels": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "bf332e9c0789d769fff2ad0ea95f2c3dc6bcbc04881bf0ff94b7b1a276cb8ab9",
+      "title": "Proporsi Sekolah dengan Akses Fasilitas Sumber Air Layak ",
+      "variable_id": "1797"
+    },
+    {
+      "available_period_count": 3,
+      "data_cell_count": 12,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_basic_services"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1798.json",
+      "selected_period_count": 3,
+      "selected_period_labels": [
+        "2018",
+        "2017",
+        "2016"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "44c2f69121afda77c960f413151fb2447aea0337b976ed4129a092235c96d306",
+      "title": "Proporsi Sekolah dengan Akses Fasilitas Toilet Terpisah",
+      "variable_id": "1798"
+    },
+    {
+      "available_period_count": 8,
+      "data_cell_count": 7,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg07_energy_intensity"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1808.json",
+      "selected_period_count": 7,
+      "selected_period_labels": [
+        "2022",
+        "2021",
+        "2020",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "82dd09e86d01b9eb6bfcd37b0ac80b10b36a47b56df65b4a1da6488b90e2e4ad",
+      "title": "Intensitas Energi Primer",
+      "variable_id": "1808"
+    },
+    {
+      "available_period_count": 8,
+      "data_cell_count": 8,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg07_renewable_share"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1824.json",
+      "selected_period_count": 8,
+      "selected_period_labels": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "f30608c4c6fcbd1023fa0732e0187b536d9a69e433085c0d51b12063ba0af00e",
+      "title": "Bauran Energi Terbarukan",
+      "variable_id": "1824"
+    },
+    {
+      "available_period_count": 9,
+      "data_cell_count": 945,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_completion_rate"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1980.json",
+      "selected_period_count": 9,
+      "selected_period_labels": [
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "9d570c2d472fadc903976208ad2c67bb3fe08161f6eb54d6c2d9f84375218122",
+      "title": "Tingkat Penyelesaian Pendidikan Menurut Jenjang Pendidikan dan Provinsi",
+      "variable_id": "1980"
+    },
+    {
+      "available_period_count": 9,
+      "data_cell_count": 315,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_paud"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-1990.json",
+      "selected_period_count": 9,
+      "selected_period_labels": [
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "3770e0e1f6ee0d30474a232546416d2366ffe20e158b9fd39000f3bde2a76fa8",
+      "title": "Tingkat partisipasi dalam pembelajaran yang teroganisir (satu tahun sebelum usia sekolah dasar) menurut provinsi",
+      "variable_id": "1990"
+    },
+    {
+      "available_period_count": 8,
+      "data_cell_count": 288,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_informal_employment"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-2153.json",
+      "selected_period_count": 8,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "95356807ef96ab52114000d3f3de5ac91edae8aa94c139894882150546fd5dd6",
+      "title": "Proporsi Lapangan Kerja Informal Menurut Provinsi",
+      "variable_id": "2153"
+    },
+    {
+      "available_period_count": 11,
+      "data_cell_count": 1572,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_aps"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-2211.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "0271ac498d07c18f6c60941f25a26aa87391d6b4553285b2699207600c9275f0",
+      "title": "Angka Partisipasi Sekolah (APS) Menurut Provinsi dan Kelompok Umur",
+      "variable_id": "2211"
+    },
+    {
+      "available_period_count": 6,
+      "data_cell_count": 405,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_labor_force_participation"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-2396.json",
+      "selected_period_count": 6,
+      "selected_period_labels": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "28488187eeaedf52c87ec4969b3895233f73ae41d1b78e487628261ea07bba72",
+      "title": "Persentase Angkatan Kerja Terhadap Penduduk Usia Kerja (TPAK) menurut Provinsi",
+      "variable_id": "2396"
+    },
+    {
+      "available_period_count": 6,
+      "data_cell_count": 2753,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg07_electricity_access"
+      ],
+      "raw_path": "data/raw/h1/webapi/var-0000-2832.json",
+      "selected_period_count": 6,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "8d170603a1e7e8c10dc8888adba51676c40440917cdfcf914854209ceb9bf988",
+      "title": "Persentase Rumah Tangga yang menggunakan Listrik (PLN/Non PLN)",
+      "variable_id": "2832"
+    }
+  ],
+  "key_fingerprint": "93437d84",
+  "policy": {
+    "cost_class": "free",
+    "excluded_sources": [
+      "bps_dna",
+      "bps_sirusa",
+      "silastik_pst",
+      "paid_digital_maps"
+    ],
+    "since_year": 2015
+  },
+  "retrieved_at": "2026-09-08T14:04:19.191282+00:00",
+  "selection_path": "config/sources/free_webapi_selection.csv",
+  "source_id": "bps_webapi"
+}

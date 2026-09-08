@@ -1,0 +1,16 @@
+{
+  "key_fingerprint": "93437d84",
+  "page_count": 176,
+  "raw_path": "data/raw/h1/webapi-variables-0000.json",
+  "record_count": 1753,
+  "request": {
+    "area": 1,
+    "authentication": "BPS_API_KEY environment variable",
+    "domain": "0000",
+    "endpoint": "https://webapi.bps.go.id/v1/api/list/",
+    "model": "var"
+  },
+  "retrieved_at": "2026-09-08T13:56:09.436553+00:00",
+  "sha256": "0cce31f695746d9a94dc08d13a6d7be734b780566b184b57defbc27ddf406d3b",
+  "source_id": "bps_webapi"
+}

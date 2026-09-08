@@ -4,6 +4,9 @@ tes.md
 .env.*
 !.env.example
 
+__pycache__/
+*.py[cod]
+
 # Source payloads are reproducible from versioned manifests and are not committed.
 data/raw/**
 !data/raw/.gitkeep

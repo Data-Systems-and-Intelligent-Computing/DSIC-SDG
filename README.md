@@ -18,7 +18,7 @@ Indikator SDG Indonesia dapat diperoleh dari beberapa jalur resmi BPS, yaitu Web
 
 Perbedaan tersebut bukan kesalahan, melainkan konsekuensi dari cara statistik resmi diproduksi. Setidaknya ada tiga sebab yang perlu dibedakan.
 
-1. **Vintage.** Angka yang sama dirilis ulang dengan nilai berbeda setelah data sumber yang lebih lengkap masuk.
+1. **Vintage (versi rilis data).** Angka yang sama dirilis ulang dengan nilai berbeda setelah data sumber yang lebih lengkap masuk.
 2. **Metodologi.** Definisi atau cara hitung indikator berubah antar periode.
 3. **Granularitas.** Agregat nasional tidak selalu sama dengan penjumlahan angka provinsi.
 
@@ -125,14 +125,20 @@ Konfigurasi tidak boleh diubah setelah melihat hasil tanpa membuat versi eksperi
 
 ### 5.1 Sumber
 
-Seluruh sumber yang ditargetkan berada pada jalur terbuka, sehingga penelitian **tidak berada pada jalur kritis data berbayar Silastik/PST**. Ketersediaan setiap indikator pada tiap jalur masih harus dibuktikan melalui inventaris H1; proposal belum menyertakan manifest, ID API, checksum, atau tanggal penarikan yang dapat diverifikasi.
+Seluruh sumber aktif berada pada jalur gratis. H1 memakai WebAPI BPS dan dua publikasi TPB yang
+diunduh melalui katalog publikasi WebAPI. SIRuSa dan DNA berstatus `hold`. Silastik/PST, data mikro,
+publikasi elektronik berbayar, dan peta digital berbayar tidak digunakan.
 
-- WebAPI BPS — nilai indikator;
-- SIRuSa/DNA — metadata dan definisi indikator;
-- kompilasi indikator SDGs BPS — nilai indikator pada jalur penyajian berbeda; produsen asli pada setiap tabel tetap dicatat karena publikasi juga memuat data kementerian/lembaga;
-- peta wilayah kerja statistik BPS atau BIG — geometri provinsi, hanya sebagai data referensi pada SDG 15.
+- WebAPI BPS - katalog variabel dan nilai tabel dinamis;
+- *Indikator Tujuan Pembangunan Berkelanjutan Indonesia 2024* - rilis beku yang paling lengkap
+  untuk pemetaan indikator H1;
+- edisi 2025 - rilis terbaru dan kandidat pembanding versi rilis;
+- batas wilayah BPS/BIG - `hold` sampai rilis referensi gratis yang tepat dikonfirmasi.
 
-Target awal adalah granularitas nasional dan provinsi sepanjang rentang satu dekade terakhir. Cakupan aktual dicatat per indikator dan menjadi dasar penyempitan sampel setelah H1.
+H1 menemukan 29 variabel WebAPI gratis dengan 240 ID periode sejak 2015 dan 27.826 sel data.
+Dari 35 kandidat indikator, 14 berstatus `verified`, 17 `partial`, dan 4 `unavailable`. Rincian
+keputusan serta alasan penolakan proksi tersedia di
+[`docs/research/h1-data-audit.md`](docs/research/h1-data-audit.md).
 
 ### 5.2 Catatan tentang volume
 
@@ -188,8 +194,24 @@ Seluruh artikel bergantung pada asumsi bahwa sumber-sumber BPS benar-benar berbe
 
 Perlengkapan H1 tersedia di [`config/indicators/`](config/indicators/), registry kanal di
 [`config/sources/bps_sources.csv`](config/sources/bps_sources.csv), dan harness pada
-[`scripts/h1.py`](scripts/h1.py). Jalankan `make h1-validate`, `make h1-summary`, dan
-`make h1-example`. Temuan pemeriksaan proposal serta batas penggunaan sumber dicatat di
+[`scripts/h1.py`](scripts/h1.py). Alurnya berurutan:
+
+1. `make h1-discover-webapi` menarik katalog variabel domain pusat dan mengusulkan kandidat `var_id`;
+2. kandidat disaring manual menjadi [`config/sources/free_webapi_selection.csv`](config/sources/free_webapi_selection.csv);
+3. `make h1-fetch-free-webapi` menarik deret terpilih sejak 2015 dan mencatat manifest ber-checksum;
+4. `make h1-fetch-free-publications` menarik PDF TPB 2024 dan 2025 dari katalog resmi;
+5. locator publikasi disimpan di [`config/sources/free_publication_selection.csv`](config/sources/free_publication_selection.csv);
+6. `make h1-profile-coverage` mengukur cakupan nyata tiap variabel, yaitu tingkat geografi, rentang
+   tahun, tahun bolong, kepadatan sel, dan `last_update`;
+7. `make h1-apply-coverage` menuliskan keputusan status beserta locator ke inventaris, lalu memvalidasinya.
+
+`make h1-validate`, `make h1-summary`, dan `make h1-example` dapat dijalankan kapan saja. Aturan
+penurunan status ditetapkan di muka dan bukan hasil penafsiran setelah melihat data.
+
+Status per 2026-09-08: H1 Hari 1 selesai dengan 14 baris `verified`, 17 `partial`, 4
+`unavailable`, dan tidak ada `proposal_only`. Status ini membuktikan cakupan dan locator sumber;
+perbandingan nilai antarrilis dimulai pada H2 dan menjadi syarat Gate G1. Temuan pemeriksaan
+proposal, aturan status, manifest, dan batas penggunaan sumber dicatat di
 [`docs/research/h1-data-audit.md`](docs/research/h1-data-audit.md).
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.

@@ -1,0 +1,176 @@
+indicator_key,domain,indicator_name,rank,match_score,webapi_domain_id,webapi_variable_id,webapi_title,subject_id,subject_name
+sdg04_minimum_competency,education,Siswa mencapai standar kemampuan minimum literasi dan numerasi (AKM),1,0.5500,0000,1417,Proporsi Anak Kelas 4 SD yang Mencapai Standar Kemampuan Minimum Dalam Membaca dan Matematika,28,Pendidikan
+sdg04_minimum_competency,education,Siswa mencapai standar kemampuan minimum literasi dan numerasi (AKM),2,0.2326,0000,1748,Jumlah Fasilitas Publik yang Menerapkan Standar Pelayanan Masyarakat (SPM) dan Teregister,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_minimum_competency,education,Siswa mencapai standar kemampuan minimum literasi dan numerasi (AKM),3,0.2058,0000,1762,Persentase Kabupaten Kota yang mencapai 80 % Imunisasi Dasar Lengkap Pada Bayi,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_minimum_competency,education,Siswa mencapai standar kemampuan minimum literasi dan numerasi (AKM),4,0.2016,0000,544,Kebutuhan Hidup Minimum/Layak (Khm/Khl) Selama Sebulan (Rupiah) Menurut Provinsi,5,Konsumsi dan Pengeluaran
+sdg04_minimum_competency,education,Siswa mencapai standar kemampuan minimum literasi dan numerasi (AKM),5,0.1984,0000,1764,Jumlah Kabupaten/Kota yang mencapai eliminasi Malaria,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_completion_rate,education,Angka penyelesaian SD/SMP/SMA,1,0.4752,0000,1799,"Persentase Guru TK, SD, SMP, SMA, dan SLB Bersertifikasi Pendidik, Persentase Guru Berkualifikasi Minimal S1 pada Satuan Tingkat Pendidikan",181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_completion_rate,education,Angka penyelesaian SD/SMP/SMA,2,0.4053,0000,1424,Angka Partisipasi Kasar (APK) SD/sederajat Menurut Jenis Kelamin,28,Pendidikan
+sdg04_completion_rate,education,Angka penyelesaian SD/SMP/SMA,3,0.4013,0000,1423,Angka Partisipasi Kasar (APK) SD/sederajat Menurut Klasifikasi Desa,28,Pendidikan
+sdg04_completion_rate,education,Angka penyelesaian SD/SMP/SMA,4,0.3974,0000,1427,Angka Partisipasi Kasar (APK) SMP/sederajat Menurut Jenis Kelamin,28,Pendidikan
+sdg04_completion_rate,education,Angka penyelesaian SD/SMP/SMA,5,0.3937,0000,1426,Angka Partisipasi Kasar (APK) SMP/sederajat Menurut Klasifikasi Desa,28,Pendidikan
+sdg04_aps,education,Angka Partisipasi Sekolah (APS) 7-12 13-15 16-18 19-24,1,0.4231,0000,301,Angka Partisipasi Sekolah (APS) Menurut Provinsi,28,Pendidikan
+sdg04_aps,education,Angka Partisipasi Sekolah (APS) 7-12 13-15 16-18 19-24,2,0.4092,0000,2211,Angka Partisipasi Sekolah (APS) Menurut Provinsi dan Kelompok Umur,28,Pendidikan
+sdg04_aps,education,Angka Partisipasi Sekolah (APS) 7-12 13-15 16-18 19-24,3,0.2836,0000,1353,Angka Kelahiran Pada Perempuan Usia 15-19 Tahun Menurut Provinsi ,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_aps,education,Angka Partisipasi Sekolah (APS) 7-12 13-15 16-18 19-24,4,0.2836,0000,1397,Angka Kelahiran Pada Perempuan Usia 15-19 Tahun Menurut Provinsi,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_aps,education,Angka Partisipasi Sekolah (APS) 7-12 13-15 16-18 19-24,5,0.2727,0000,1398,Angka Kelahiran Pada Perempuan Usia 15-19 Tahun Menurut Daerah Tempat Tinggal,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_apm,education,Angka Partisipasi Murni (APM) SD/SMP/SMA,1,0.6964,0000,1135,Angka Partisipasi Murni (APM) SD/sederajat Perkotaan Menurut Jenis Kelamin,40,Gender
+sdg04_apm,education,Angka Partisipasi Murni (APM) SD/SMP/SMA,2,0.6964,0000,1138,Angka Partisipasi Murni (APM) SD/sederajat Perdesaan Menurut Jenis Kelamin,40,Gender
+sdg04_apm,education,Angka Partisipasi Murni (APM) SD/SMP/SMA,3,0.6892,0000,1140,Angka Partisipasi Murni (APM) SMP/sederajat Perkotaan Menurut Jenis Kelamin,40,Gender
+sdg04_apm,education,Angka Partisipasi Murni (APM) SD/SMP/SMA,4,0.6892,0000,1141,Angka Partisipasi Murni (APM) SMP/sederajat Perdesaan Menurut Jenis Kelamin,40,Gender
+sdg04_apm,education,Angka Partisipasi Murni (APM) SD/SMP/SMA,5,0.6800,0000,1139,Angka Partisipasi Murni (APM) SD/sederajat Perdesaan+Perkotaan Menurut Jenis Kelamin,40,Gender
+sdg04_apk,education,Angka Partisipasi Kasar (APK) SD/SMP/SMA/PT,1,0.6472,0000,1424,Angka Partisipasi Kasar (APK) SD/sederajat Menurut Jenis Kelamin,28,Pendidikan
+sdg04_apk,education,Angka Partisipasi Kasar (APK) SD/SMP/SMA/PT,2,0.6469,0000,1423,Angka Partisipasi Kasar (APK) SD/sederajat Menurut Klasifikasi Desa,28,Pendidikan
+sdg04_apk,education,Angka Partisipasi Kasar (APK) SD/SMP/SMA/PT,3,0.6394,0000,1426,Angka Partisipasi Kasar (APK) SMP/sederajat Menurut Klasifikasi Desa,28,Pendidikan
+sdg04_apk,education,Angka Partisipasi Kasar (APK) SD/SMP/SMA/PT,4,0.6394,0000,1427,Angka Partisipasi Kasar (APK) SMP/sederajat Menurut Jenis Kelamin,28,Pendidikan
+sdg04_apk,education,Angka Partisipasi Kasar (APK) SD/SMP/SMA/PT,5,0.6357,0000,1425,Angka Partisipasi Kasar (APK) SD/sederajat Menurut Kuintil Pengeluaran,28,Pendidikan
+sdg04_hls,education,Harapan Lama Sekolah (HLS),1,0.8895,0000,457,Angka Harapan Lama Sekolah (HLS) menurut Jenis Kelamin,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_hls,education,Harapan Lama Sekolah (HLS),2,0.7393,0000,417,[Metode Baru] Harapan Lama Sekolah,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_hls,education,Harapan Lama Sekolah (HLS),3,0.5587,0000,5,Rata-Rata Lama Sekolah,26,Indeks Pembangunan Manusia
+sdg04_hls,education,Harapan Lama Sekolah (HLS),4,0.5259,0000,415,[Metode Baru] Rata-rata Lama Sekolah,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_hls,education,Harapan Lama Sekolah (HLS),5,0.5083,0000,459,Rata-rata Lama Sekolah (RLS) menurut Jenis Kelamin,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_rls,education,Rata-rata Lama Sekolah (RLS),1,0.9108,0000,459,Rata-rata Lama Sekolah (RLS) menurut Jenis Kelamin,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_rls,education,Rata-rata Lama Sekolah (RLS),2,0.7417,0000,5,Rata-Rata Lama Sekolah,26,Indeks Pembangunan Manusia
+sdg04_rls,education,Rata-rata Lama Sekolah (RLS),3,0.6867,0000,415,[Metode Baru] Rata-rata Lama Sekolah,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_rls,education,Rata-rata Lama Sekolah (RLS),4,0.6322,0000,417,[Metode Baru] Harapan Lama Sekolah,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_rls,education,Rata-rata Lama Sekolah (RLS),5,0.6229,0000,1429,Rata-Rata Lama Sekolah Penduduk Umur 15 Tahun ke Atas Menurut Provinsi,28,Pendidikan
+sdg04_parity_index,education,Indeks paritas untuk APM APK dan AMH,1,0.3375,0000,2600,4.5.1* Rasio Angka Partisipasi Kasar (APK) pada jenjang PT/sederajat untuk perempuan/laki-laki menurut provinsi,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg04_parity_index,education,Indeks paritas untuk APM APK dan AMH,2,0.3307,0000,2572,4.5.1 Rasio Angka Partisipasi Murni (APM) pada jenjang SD/sederajat untuk perempuan/laki-laki menurut status disabilitas,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg04_parity_index,education,Indeks paritas untuk APM APK dan AMH,3,0.3307,0000,2602,4.5.1* Rasio Angka Partisipasi Kasar (APK) pada jenjang PT/sederajat untuk perempuan/laki-laki menurut status disabilitas,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg04_parity_index,education,Indeks paritas untuk APM APK dan AMH,4,0.3301,0000,2593,4.5.1* Rasio Angka Partisipasi Kasar (APK) pada jenjang SMA/sederajat untuk perempuan/laki-laki menurut status disabilitas,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg04_parity_index,education,Indeks paritas untuk APM APK dan AMH,5,0.3251,0000,2601,4.5.1* Rasio Angka Partisipasi Kasar (APK) pada jenjang PT/sederajat untuk perempuan/laki-laki menurut daerah tempat tinggal,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg04_literacy,education,Angka Melek Huruf penduduk dewasa,1,0.6240,0000,4,Angka Melek Huruf,26,Indeks Pembangunan Manusia
+sdg04_literacy,education,Angka Melek Huruf penduduk dewasa,2,0.5885,0000,1462,Angka Melek Aksara Penduduk 15-24 Tahun Menurut Provinsi,28,Pendidikan
+sdg04_literacy,education,Angka Melek Huruf penduduk dewasa,3,0.5885,0000,1466,Angka Melek Aksara Penduduk 15-59 Tahun Menurut Provinsi,28,Pendidikan
+sdg04_literacy,education,Angka Melek Huruf penduduk dewasa,4,0.5870,0000,1463,Angka Melek Aksara Penduduk 15-24 Tahun Menurut Klasifikasi Desa,28,Pendidikan
+sdg04_literacy,education,Angka Melek Huruf penduduk dewasa,5,0.5870,0000,1467,Angka Melek Aksara Penduduk 15-59 Tahun Menurut Klasifikasi Desa,28,Pendidikan
+sdg04_paud,education,Partisipasi pembelajaran terorganisir PAUD usia pra-SD,1,0.4756,0000,1990,Tingkat partisipasi dalam pembelajaran yang teroganisir (satu tahun sebelum usia sekolah dasar) menurut provinsi,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_paud,education,Partisipasi pembelajaran terorganisir PAUD usia pra-SD,2,0.4669,0000,1994,Tingkat partisipasi dalam pembelajaran yang teroganisir (satu tahun sebelum usia sekolah dasar) menurut Jenis Kelamin,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_paud,education,Partisipasi pembelajaran terorganisir PAUD usia pra-SD,3,0.4633,0000,2684,4.2.2* Tingkat Partisipasi dalam Pembelajaran yang Teroganisir (Satu Tahun Sebelum Usia Sekolah Dasar) menurut Status Disabilitas,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg04_paud,education,Partisipasi pembelajaran terorganisir PAUD usia pra-SD,4,0.4627,0000,1992,Tingkat partisipasi dalam pembelajaran yang teroganisir (satu tahun sebelum usia sekolah dasar) menurut Daerah Tempat Tinggal,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_paud,education,Partisipasi pembelajaran terorganisir PAUD usia pra-SD,5,0.4591,0000,2682,4.2.2* Tingkat Partisipasi dalam Pembelajaran yang Teroganisir (Satu Tahun Sebelum Usia Sekolah Dasar) menurut Kuintil Pengeluaran,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg04_dropout,education,Angka Putus Sekolah per jenjang,1,0.6810,0000,1986,Angka Anak Tidak Sekolah Menurut Jenjang Pendidikan dan Jenis Kelamin,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_dropout,education,Angka Putus Sekolah per jenjang,2,0.6722,0000,1988,Angka Anak Tidak Sekolah Menurut Jenjang Pendidikan dan Kuintil Pengeluaran,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_dropout,education,Angka Putus Sekolah per jenjang,3,0.6694,0000,1984,Angka Anak Tidak Sekolah Menurut Jenjang Pendidikan dan Daerah Tempat Tinggal,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_dropout,education,Angka Putus Sekolah per jenjang,4,0.5292,0000,301,Angka Partisipasi Sekolah (APS) Menurut Provinsi,28,Pendidikan
+sdg04_dropout,education,Angka Putus Sekolah per jenjang,5,0.5235,0000,457,Angka Harapan Lama Sekolah (HLS) menurut Jenis Kelamin,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_basic_services,education,Sekolah dengan layanan dasar air listrik sanitasi,1,0.4078,0000,1794,Proporsi Sekolah dengan Akses Listrik ,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_basic_services,education,Sekolah dengan layanan dasar air listrik sanitasi,2,0.3933,0000,1797,Proporsi Sekolah dengan Akses Fasilitas Sumber Air Layak ,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg04_basic_services,education,Sekolah dengan layanan dasar air listrik sanitasi,3,0.3603,0000,2741,6.1.1* Persentase rumah tangga yang menggunakan layanan air minum yang dikelola secara aman menurut provinsi,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg04_basic_services,education,Sekolah dengan layanan dasar air listrik sanitasi,4,0.3601,0000,2496,"Indeks Harga Perdagangan Besar (IHPB) Seksi Bijih Besi dan Mineral; Listrik, Gas, dan Air (2023=100)",20,Harga Perdagangan Besar
+sdg04_basic_services,education,Sekolah dengan layanan dasar air listrik sanitasi,5,0.3563,0000,1267,Proporsi Rumah Tangga Yang Memiliki Akses Terhadap Layanan Sanitasi Layak,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg06_drinking_water,environment,Rumah tangga dengan akses air minum layak dan aman bila tersedia,1,0.5627,0000,854,Persentase Rumah Tangga yang Memiliki Akses terhadap Sumber Air Minum Layak Menurut Provinsi dan Klasifikasi Desa,29,Perumahan
+sdg06_drinking_water,environment,Rumah tangga dengan akses air minum layak dan aman bila tersedia,2,0.5615,0000,845,Persentase Rumah Tangga yang Memiliki Akses terhadap Sumber Air Minum Layak Menurut Provinsi,29,Perumahan
+sdg06_drinking_water,environment,Rumah tangga dengan akses air minum layak dan aman bila tersedia,3,0.5571,0000,1554,"Persentase Rumah Tangga Yang Memiliki Akses Terhadap Layanan Sumber Air Minum Layak Dan Berkelanjutan (40% Bawah), Menurut Provinsi",181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg06_drinking_water,environment,Rumah tangga dengan akses air minum layak dan aman bila tersedia,4,0.5559,0000,1556,"Persentase Rumah Tangga Yang Memiliki Akses Terhadap Layanan Sumber Air Minum Layak Dan Berkelanjutan (40% Bawah), Menurut Daerah Tempat Tinggal",181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg06_drinking_water,environment,Rumah tangga dengan akses air minum layak dan aman bila tersedia,5,0.5556,0000,2830,Persentase Rumah Tangga yang Memiliki Akses terhadap Sumber Air Minum Layak menurut Kabupaten/Kota,None,
+sdg06_sanitation,environment,Rumah tangga dengan akses sanitasi layak dan aman,1,0.7020,0000,1267,Proporsi Rumah Tangga Yang Memiliki Akses Terhadap Layanan Sanitasi Layak,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg06_sanitation,environment,Rumah tangga dengan akses sanitasi layak dan aman,2,0.6977,0000,847,Persentase Rumah Tangga menurut Provinsi dan Memiliki Akses terhadap Sanitasi Layak,29,Perumahan
+sdg06_sanitation,environment,Rumah tangga dengan akses sanitasi layak dan aman,3,0.6947,0000,2748,6.2.1* Persentase rumah tangga yang memiliki akses terhadap sanitasi layak menurut kabupaten/kota,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg06_sanitation,environment,Rumah tangga dengan akses sanitasi layak dan aman,4,0.6925,0000,834,Persentase Rumah Tangga yang Memiliki Akses terhadap Sanitasi Layak Menurut Provinsi dan Klasifikasi Desa,29,Perumahan
+sdg06_sanitation,environment,Rumah tangga dengan akses sanitasi layak dan aman,5,0.6868,0000,1270,Proporsi Rumah Tangga Yang Memiliki Akses Terhadap Layanan Sanitasi Layak Menurut Daerah Tempat Tinggal,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg06_handwashing,environment,Rumah tangga dengan fasilitas cuci tangan dan sabun,1,0.8831,0000,1273,6.2.1* Persentase Rumah Tangga yang Memiliki Fasilitas Cuci Tangan dengan Sabun dan Air Menurut Provinsi,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg06_handwashing,environment,Rumah tangga dengan fasilitas cuci tangan dan sabun,2,0.8774,0000,1274,Proporsi Rumah Tangga Yang Memiliki Fasilitas Cuci Tangan Dengan Sabun Dan Air Menurut Daerah Tempat Tinggal,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg06_handwashing,environment,Rumah tangga dengan fasilitas cuci tangan dan sabun,3,0.8709,0000,2617,6.2.1* Persentase Rumah Tangga yang Memiliki Fasilitas Cuci Tangan dengan Sabun dan Air Menurut Kuintil Pengeluaran,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg06_handwashing,environment,Rumah tangga dengan fasilitas cuci tangan dan sabun,4,0.8699,0000,2623,6.2.1* Persentase Rumah Tangga yang Memiliki Fasilitas Cuci Tangan dengan Sabun dan Air Menurut Kelompok Pengeluaran,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg06_handwashing,environment,Rumah tangga dengan fasilitas cuci tangan dan sabun,5,0.8575,0000,2596,6.2.1* Persentase Rumah Tangga yang Memiliki Fasilitas Cuci Tangan dengan Sabun dan Air Menurut Jenis Kelamin Kepala Rumah Tangga,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg06_water_source,environment,Rumah tangga menurut jenis sumber air minum bersih,1,0.5806,0000,845,Persentase Rumah Tangga yang Memiliki Akses terhadap Sumber Air Minum Layak Menurut Provinsi,29,Perumahan
+sdg06_water_source,environment,Rumah tangga menurut jenis sumber air minum bersih,2,0.5659,0000,2830,Persentase Rumah Tangga yang Memiliki Akses terhadap Sumber Air Minum Layak menurut Kabupaten/Kota,None,
+sdg06_water_source,environment,Rumah tangga menurut jenis sumber air minum bersih,3,0.5599,0000,854,Persentase Rumah Tangga yang Memiliki Akses terhadap Sumber Air Minum Layak Menurut Provinsi dan Klasifikasi Desa,29,Perumahan
+sdg06_water_source,environment,Rumah tangga menurut jenis sumber air minum bersih,4,0.5556,0000,1554,"Persentase Rumah Tangga Yang Memiliki Akses Terhadap Layanan Sumber Air Minum Layak Dan Berkelanjutan (40% Bawah), Menurut Provinsi",181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg06_water_source,environment,Rumah tangga menurut jenis sumber air minum bersih,5,0.5432,0000,1556,"Persentase Rumah Tangga Yang Memiliki Akses Terhadap Layanan Sumber Air Minum Layak Dan Berkelanjutan (40% Bawah), Menurut Daerah Tempat Tinggal",181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg07_electricity_access,energy,Rasio elektrifikasi atau rumah tangga dengan akses listrik,1,0.5332,0000,1794,Proporsi Sekolah dengan Akses Listrik ,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg07_electricity_access,energy,Rasio elektrifikasi atau rumah tangga dengan akses listrik,2,0.4981,0000,1155,Rasio Elektrifikasi,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg07_electricity_access,energy,Rasio elektrifikasi atau rumah tangga dengan akses listrik,3,0.3326,0000,2832,Persentase Rumah Tangga yang menggunakan Listrik (PLN/Non PLN),None,
+sdg07_electricity_access,energy,Rasio elektrifikasi atau rumah tangga dengan akses listrik,4,0.3272,0000,2016,Proporsi rumah tangga dengan akses terhadap pelayanan dasar menurut provinsi,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg07_electricity_access,energy,Rasio elektrifikasi atau rumah tangga dengan akses listrik,5,0.3250,0000,1796,Proporsi Sekolah dengan Akses Komputer,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg07_clean_cooking,energy,Rumah tangga dengan bahan bakar atau teknologi memasak bersih,1,0.6083,0000,150,Persentase Rumah Tangga Menurut Provinsi dan Bahan Bakar Utama untuk Memasak,152,Lingkungan Hidup
+sdg07_clean_cooking,energy,Rumah tangga dengan bahan bakar atau teknologi memasak bersih,2,0.5478,0000,940,Banyaknya Desa/Kelurahan Menurut Jenis Bahan Bakar untuk Memasak yang Digunakan oleh Sebagian Besar Keluarga,168,Potensi Desa
+sdg07_clean_cooking,energy,Rumah tangga dengan bahan bakar atau teknologi memasak bersih,3,0.4027,0000,92,Produksi Bahan Bakar Minyak,10,Pertambangan
+sdg07_clean_cooking,energy,Rumah tangga dengan bahan bakar atau teknologi memasak bersih,4,0.3927,0000,1895,"Inflasi (2018=100) Menurut Kelompok dan Sub Kelompok 03 Perumahan, Air, Listrik dan Bahan Bakar Rumah Tangga",3,Inflasi
+sdg07_clean_cooking,energy,Rumah tangga dengan bahan bakar atau teknologi memasak bersih,5,0.3879,0000,1930,"Inflasi (2012=100) Menurut Kelompok 03 Perumahan, Air, Listrik, Gas dan Bahan Bakar",3,Inflasi
+sdg07_renewable_share,energy,Bauran energi terbarukan terhadap konsumsi energi final,1,0.5323,0000,1824,Bauran Energi Terbarukan,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg07_renewable_share,energy,Bauran energi terbarukan terhadap konsumsi energi final,2,0.3824,0000,1861,Persentase Rata-Rata Konsumsi Telekomunikasi Rumah Tangga Terhadap Konsumsi Total Menurut Provinsi,2,Komunikasi
+sdg07_renewable_share,energy,Bauran energi terbarukan terhadap konsumsi energi final,3,0.3767,0000,1860,Persentase Rata-Rata Konsumsi Telekomunikasi Rumah Tangga Terhadap Konsumsi Non Makanan Menurut Provinsi,2,Komunikasi
+sdg07_renewable_share,energy,Bauran energi terbarukan terhadap konsumsi energi final,4,0.2630,0000,56,Indikator Konsumsi Terpilih,5,Konsumsi dan Pengeluaran
+sdg07_renewable_share,energy,Bauran energi terbarukan terhadap konsumsi energi final,5,0.2567,0000,1529,Rasio Penerimaan Pajak Terhadap PDB,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg07_energy_intensity,energy,Intensitas energi primer per PDB,1,0.7821,0000,1808,Intensitas Energi Primer,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg07_energy_intensity,energy,Intensitas energi primer per PDB,2,0.5242,0000,1158,Proporsi Pasokan Energi Primer,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg07_energy_intensity,energy,Intensitas energi primer per PDB,3,0.3272,0000,1529,Rasio Penerimaan Pajak Terhadap PDB,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg07_energy_intensity,energy,Intensitas energi primer per PDB,4,0.3036,0000,1824,Bauran Energi Terbarukan,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg07_energy_intensity,energy,Intensitas energi primer per PDB,5,0.3030,0000,1188,Proporsi Kontribusi Pariwisata Terhadap PDB,16,Pariwisata
+sdg08_gdp_per_capita_growth,economy,Laju pertumbuhan PDB atau PDRB per kapita,1,0.6057,0000,9,Laju Pertumbuhan PDB Menurut Lapangan Usaha,11,Produk Domestik Bruto (Lapangan Usaha)
+sdg08_gdp_per_capita_growth,economy,Laju pertumbuhan PDB atau PDRB per kapita,2,0.6052,0000,1216,Laju Pertumbuhan PDB Industri Manufaktur,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_gdp_per_capita_growth,economy,Laju pertumbuhan PDB atau PDRB per kapita,3,0.5978,0000,104,[Seri 2010] Laju Pertumbuhan PDB Seri 2010,11,Produk Domestik Bruto (Lapangan Usaha)
+sdg08_gdp_per_capita_growth,economy,Laju pertumbuhan PDB atau PDRB per kapita,4,0.5942,0000,108,[Seri 2010] 4. Laju Pertumbuhan PDB menurut Pengeluaran,169,Produk Domestik Bruto (Pengeluaran)
+sdg08_gdp_per_capita_growth,economy,Laju pertumbuhan PDB atau PDRB per kapita,5,0.5889,0000,1161,Laju Pertumbuhan PDB Per Tenaga Kerja/Tingkat Pertumbuhan PDB Riil Per Orang Bekerja Per Tahun,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_productivity_growth,economy,Laju pertumbuhan PDB riil per tenaga kerja,1,0.8588,0000,1161,Laju Pertumbuhan PDB Per Tenaga Kerja/Tingkat Pertumbuhan PDB Riil Per Orang Bekerja Per Tahun,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_productivity_growth,economy,Laju pertumbuhan PDB riil per tenaga kerja,2,0.5476,0000,9,Laju Pertumbuhan PDB Menurut Lapangan Usaha,11,Produk Domestik Bruto (Lapangan Usaha)
+sdg08_productivity_growth,economy,Laju pertumbuhan PDB riil per tenaga kerja,3,0.5329,0000,1216,Laju Pertumbuhan PDB Industri Manufaktur,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_productivity_growth,economy,Laju pertumbuhan PDB riil per tenaga kerja,4,0.5256,0000,104,[Seri 2010] Laju Pertumbuhan PDB Seri 2010,11,Produk Domestik Bruto (Lapangan Usaha)
+sdg08_productivity_growth,economy,Laju pertumbuhan PDB riil per tenaga kerja,5,0.5223,0000,108,[Seri 2010] 4. Laju Pertumbuhan PDB menurut Pengeluaran,169,Produk Domestik Bruto (Pengeluaran)
+sdg08_unemployment,economy,Tingkat Pengangguran Terbuka (TPT),1,0.7666,0000,543,Tingkat Pengangguran Terbuka Menurut Provinsi,6,Tenaga Kerja
+sdg08_unemployment,economy,Tingkat Pengangguran Terbuka (TPT),2,0.7432,0000,2562,Tingkat Pengangguran Terbuka menurut Provinsi (Triwulanan),6,Tenaga Kerja
+sdg08_unemployment,economy,Tingkat Pengangguran Terbuka (TPT),3,0.7343,0000,1180,Tingkat Pengangguran Terbuka Berdasarkan Kelompok Umur,6,Tenaga Kerja
+sdg08_unemployment,economy,Tingkat Pengangguran Terbuka (TPT),4,0.7294,0000,1179,Tingkat Pengangguran Terbuka Berdasarkan Tingkat Pendidikan,6,Tenaga Kerja
+sdg08_unemployment,economy,Tingkat Pengangguran Terbuka (TPT),5,0.7293,0000,1178,Tingkat Pengangguran Terbuka Berdasarkan Daerah Tempat Tinggal,6,Tenaga Kerja
+sdg08_labor_force_participation,economy,Tingkat Partisipasi Angkatan Kerja (TPAK),1,0.7937,0000,2200,Tingkat Partisipasi Angkatan Kerja Menurut Jenis Kelamin,40,Gender
+sdg08_labor_force_participation,economy,Tingkat Partisipasi Angkatan Kerja (TPAK),2,0.5400,0000,2396,Persentase Angkatan Kerja Terhadap Penduduk Usia Kerja (TPAK) menurut Provinsi,6,Tenaga Kerja
+sdg08_labor_force_participation,economy,Tingkat Partisipasi Angkatan Kerja (TPAK),3,0.5350,0000,714,Persentase Angkatan Kerja Terhadap Penduduk Usia Kerja (TPAK) Menurut Golongan Umur,6,Tenaga Kerja
+sdg08_labor_force_participation,economy,Tingkat Partisipasi Angkatan Kerja (TPAK),4,0.5350,0000,2518,Persentase Angkatan Kerja Terhadap Penduduk Usia Kerja (TPAK) Menurut Kelompok Umur,6,Tenaga Kerja
+sdg08_labor_force_participation,economy,Tingkat Partisipasi Angkatan Kerja (TPAK),5,0.4300,0000,2395,Bukan Angkatan Kerja (BAK) menurut Provinsi,6,Tenaga Kerja
+sdg08_informal_employment,economy,Proporsi pekerja informal terhadap total pekerja,1,0.6978,0000,1190,Jumlah Pekerja Pada Industri Pariwisata Dalam Proporsi Terhadap Total Pekerja,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_informal_employment,economy,Proporsi pekerja informal terhadap total pekerja,2,0.5433,0000,1192,Proporsi Kredit UMKM Terhadap Total Kredit,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_informal_employment,economy,Proporsi pekerja informal terhadap total pekerja,3,0.5339,0000,1814,Proporsi Komuter (Pekerja Ulang Alik) Terhadap Jumlah Penduduk menurut Wilayah,6,Tenaga Kerja
+sdg08_informal_employment,economy,Proporsi pekerja informal terhadap total pekerja,4,0.5261,0000,1258,Proporsi Volume Remitansi (Dalam US Dollars) Terhadap Total PDB,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_informal_employment,economy,Proporsi pekerja informal terhadap total pekerja,5,0.5087,0000,1219,Proporsi Nilai Tambah Industri Kecil Terhadap Total Nilai Tambah Industri,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_hourly_wage,economy,Rata-rata upah atau gaji per jam pekerja,1,0.6974,0000,1172,Upah Rata - Rata Per Jam Pekerja Menurut Provinsi,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_hourly_wage,economy,Rata-rata upah atau gaji per jam pekerja,2,0.6880,0000,1174,Upah Rata - Rata Per Jam Pekerja Menurut Jenis Kelamin,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_hourly_wage,economy,Rata-rata upah atau gaji per jam pekerja,3,0.6880,0000,1176,Upah Rata - Rata Per Jam Pekerja Menurut Kelompok Umur,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_hourly_wage,economy,Rata-rata upah atau gaji per jam pekerja,4,0.6796,0000,1175,Upah Rata - Rata Per Jam Pekerja Menurut Tingkat Pendidikan,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_hourly_wage,economy,Rata-rata upah atau gaji per jam pekerja,5,0.6750,0000,1173,Upah Rata - Rata Per Jam Pekerja Menurut Daerah Tempat Tinggal,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_neet,economy,Proporsi pemuda NEET,1,0.1889,0000,1811,Proporsi Penduduk 50 Tahun ke Atas,12,Kependudukan
+sdg08_neet,economy,Proporsi pemuda NEET,2,0.1680,0000,1158,Proporsi Pasokan Energi Primer,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_neet,economy,Proporsi pemuda NEET,3,0.1579,0000,1794,Proporsi Sekolah dengan Akses Listrik ,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_neet,economy,Proporsi pemuda NEET,4,0.1548,0000,1192,Proporsi Kredit UMKM Terhadap Total Kredit,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_neet,economy,Proporsi pemuda NEET,5,0.1440,0000,475,Populasi Kuda menurut Provinsi,24,Peternakan
+sdg08_financial_access,economy,Kantor atau ATM per 100000 penduduk dewasa,1,0.2917,0000,1390,Insiden Tuberkulosis (ITB) Per 100.000 Penduduk,30,Kesehatan
+sdg08_financial_access,economy,Kantor atau ATM per 100000 penduduk dewasa,2,0.2917,0000,1763,Insiden Tuberkolosis (ITB) Per 100.000 Penduduk,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg08_financial_access,economy,Kantor atau ATM per 100000 penduduk dewasa,3,0.2840,0000,299,Risiko Penduduk Terkena Tindak Pidana (Per 100.000 Penduduk) ,34,Politik dan Keamanan
+sdg08_financial_access,economy,Kantor atau ATM per 100000 penduduk dewasa,4,0.2743,0000,1976,Laju Pertumbuhan Penduduk,12,Kependudukan
+sdg08_financial_access,economy,Kantor atau ATM per 100000 penduduk dewasa,5,0.2733,0000,136,Distribusi Persentase Penduduk,12,Kependudukan
+sdg15_forest_cover,ecology,Proporsi tutupan hutan terhadap luas daratan,1,0.4472,0000,1298,Proporsi Luas Lahan Kritis Yang Direhabilitasi Terhadap Luas Lahan Keseluruhan,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_forest_cover,ecology,Proporsi tutupan hutan terhadap luas daratan,2,0.3838,0000,1303,Luas Izin Usaha Pemanfaatan Hasil Hutan Kayu pada Hutan Alam,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_forest_cover,ecology,Proporsi tutupan hutan terhadap luas daratan,3,0.3820,0000,114,Luas Areal Perusahaan Hak Pengusahaan Hutan per Provinsi,60,Kehutanan
+sdg15_forest_cover,ecology,Proporsi tutupan hutan terhadap luas daratan,4,0.3616,0000,1304,Luas Penutupan Lahan Indonesa di Dalam dan di Luar Kawasan Hutan Menurut Provinsi,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_forest_cover,ecology,Proporsi tutupan hutan terhadap luas daratan,5,0.3193,0000,1188,Proporsi Kontribusi Pariwisata Terhadap PDB,16,Pariwisata
+sdg15_protected_biodiversity,ecology,Kawasan penting keanekaragaman hayati darat yang dilindungi,1,0.2430,0000,640,Indikator Penting Perusahaan Listrik,7,Energi
+sdg15_protected_biodiversity,ecology,Kawasan penting keanekaragaman hayati darat yang dilindungi,2,0.2413,0000,1805,Luas Kawasan Konservasi Perairan (KKP) yang Dikelola Secara Berkelanjutan,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_protected_biodiversity,ecology,Kawasan penting keanekaragaman hayati darat yang dilindungi,3,0.2353,0000,876,Indikator Penting Perusahaan Gas,7,Energi
+sdg15_protected_biodiversity,ecology,Kawasan penting keanekaragaman hayati darat yang dilindungi,4,0.2269,0000,873,Indikator Penting Perusahaan Air Bersih,7,Energi
+sdg15_protected_biodiversity,ecology,Kawasan penting keanekaragaman hayati darat yang dilindungi,5,0.2236,0000,1302,Jumlah Kawasan Konservasi Yang Memperoleh Nilai Indeks Mett Minimal 70%,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_degraded_land,ecology,Proporsi lahan terdegradasi terhadap total luas daratan,1,0.5259,0000,1298,Proporsi Luas Lahan Kritis Yang Direhabilitasi Terhadap Luas Lahan Keseluruhan,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_degraded_land,ecology,Proporsi lahan terdegradasi terhadap total luas daratan,2,0.4068,0000,1219,Proporsi Nilai Tambah Industri Kecil Terhadap Total Nilai Tambah Industri,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_degraded_land,ecology,Proporsi lahan terdegradasi terhadap total luas daratan,3,0.4065,0000,1192,Proporsi Kredit UMKM Terhadap Total Kredit,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_degraded_land,ecology,Proporsi lahan terdegradasi terhadap total luas daratan,4,0.3937,0000,1258,Proporsi Volume Remitansi (Dalam US Dollars) Terhadap Total PDB,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_degraded_land,ecology,Proporsi lahan terdegradasi terhadap total luas daratan,5,0.3883,0000,2756,9.3.1* Proporsi Nilai Tambah Industri Mikro dan Kecil terhadap Total Nilai Tambah Sektor Industri ,180,Tujuan Pembangunan Berkelanjutan 2025
+sdg15_conservation_area,ecology,Luas kawasan hutan atau konservasi per provinsi,1,0.6959,0000,1304,Luas Penutupan Lahan Indonesa di Dalam dan di Luar Kawasan Hutan Menurut Provinsi,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_conservation_area,ecology,Luas kawasan hutan atau konservasi per provinsi,2,0.5889,0000,114,Luas Areal Perusahaan Hak Pengusahaan Hutan per Provinsi,60,Kehutanan
+sdg15_conservation_area,ecology,Luas kawasan hutan atau konservasi per provinsi,3,0.5776,0000,1805,Luas Kawasan Konservasi Perairan (KKP) yang Dikelola Secara Berkelanjutan,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_conservation_area,ecology,Luas kawasan hutan atau konservasi per provinsi,4,0.4800,0000,1289,Jumlah Kawasan Konservasi Perairan,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_conservation_area,ecology,Luas kawasan hutan atau konservasi per provinsi,5,0.4455,0000,131,Luas Tanaman Perkebunan Menurut Provinsi,54,Perkebunan
+sdg15_land_cover_change,ecology,Luas perubahan tutupan atau penggunaan lahan per provinsi,1,0.5311,0000,588,Luas dan Penyebaran Lahan Kritis Menurut Provinsi,60,Kehutanan
+sdg15_land_cover_change,ecology,Luas perubahan tutupan atau penggunaan lahan per provinsi,2,0.4891,0000,1304,Luas Penutupan Lahan Indonesa di Dalam dan di Luar Kawasan Hutan Menurut Provinsi,181,Tujuan Pembangunan Berkelanjutan Edisi I
+sdg15_land_cover_change,ecology,Luas perubahan tutupan atau penggunaan lahan per provinsi,3,0.4563,0000,114,Luas Areal Perusahaan Hak Pengusahaan Hutan per Provinsi,60,Kehutanan
+sdg15_land_cover_change,ecology,Luas perubahan tutupan atau penggunaan lahan per provinsi,4,0.3756,0000,131,Luas Tanaman Perkebunan Menurut Provinsi,54,Perkebunan
+sdg15_land_cover_change,ecology,Luas perubahan tutupan atau penggunaan lahan per provinsi,5,0.3756,0000,2504,Luas Panen Padi Menurut Provinsi (Bulanan),53,Tanaman Pangan
+sdg15_sustainable_forest,ecology,Indikator pengelolaan hutan lestari,1,0.3778,0000,640,Indikator Penting Perusahaan Listrik,7,Energi
+sdg15_sustainable_forest,ecology,Indikator pengelolaan hutan lestari,2,0.3631,0000,876,Indikator Penting Perusahaan Gas,7,Energi
+sdg15_sustainable_forest,ecology,Indikator pengelolaan hutan lestari,3,0.3528,0000,708,Indikator Kesehatan,30,Kesehatan
+sdg15_sustainable_forest,ecology,Indikator pengelolaan hutan lestari,4,0.3372,0000,873,Indikator Penting Perusahaan Air Bersih,7,Energi
+sdg15_sustainable_forest,ecology,Indikator pengelolaan hutan lestari,5,0.3095,0000,103,Indikator Sosial Budaya,27,Sosial Budaya
+sdg15_red_list,ecology,Red List Index,1,0.1317,0000,1070,Realisasi Pendapatan Negara,13,Keuangan
+sdg15_red_list,ecology,Red List Index,2,0.1273,0000,143,Rasio Jenis Kelamin,12,Kependudukan
+sdg15_red_list,ecology,Red List Index,3,0.1245,0000,2282,Penyediaan Fisik untuk Energi Indonesia,104,Neraca Sosial Ekonomi
+sdg15_red_list,ecology,Red List Index,4,0.1135,0000,1505,[Metode Baru] Selisih IPM,26,Indeks Pembangunan Manusia
+sdg15_red_list,ecology,Red List Index,5,0.1132,0000,2286,Penggunaan Fisik untuk Energi Indonesia,104,Neraca Sosial Ekonomi
