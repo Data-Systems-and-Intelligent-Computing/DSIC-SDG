@@ -1,0 +1,3 @@
+source_id,indicator_key,release_date,observed_period,geo_level,geo_code,geo_name,unit,value,producer,methodology_version,source_record_id
+bps_tpb_2025,sdg08_unemployment,2025-12-30,2024,province,18,Lampung,percent,5.00,Synthetic fixture,synthetic-v1,example-publication-tpt-lampung-2024
+bps_tpb_2025,sdg08_hourly_wage,2025-12-30,2024,province,18,Lampung,rupiah_per_hour,102.00,Synthetic fixture,synthetic-v1,example-publication-wage-lampung-2024

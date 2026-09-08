@@ -125,14 +125,14 @@ Konfigurasi tidak boleh diubah setelah melihat hasil tanpa membuat versi eksperi
 
 ### 5.1 Sumber
 
-Seluruh sumber berada pada jalur terbuka yang sudah ditarik menurut proposal, sehingga penelitian **tidak berada pada jalur kritis data berbayar Silastik/PST**.
+Seluruh sumber yang ditargetkan berada pada jalur terbuka, sehingga penelitian **tidak berada pada jalur kritis data berbayar Silastik/PST**. Ketersediaan setiap indikator pada tiap jalur masih harus dibuktikan melalui inventaris H1; proposal belum menyertakan manifest, ID API, checksum, atau tanggal penarikan yang dapat diverifikasi.
 
 - WebAPI BPS — nilai indikator;
 - SIRuSa/DNA — metadata dan definisi indikator;
-- kompilasi indikator SDGs BPS — nilai indikator pada jalur penyajian berbeda;
+- kompilasi indikator SDGs BPS — nilai indikator pada jalur penyajian berbeda; produsen asli pada setiap tabel tetap dicatat karena publikasi juga memuat data kementerian/lembaga;
 - peta wilayah kerja statistik BPS atau BIG — geometri provinsi, hanya sebagai data referensi pada SDG 15.
 
-Seluruh data diambil pada granularitas nasional dan provinsi, sepanjang rentang satu dekade terakhir.
+Target awal adalah granularitas nasional dan provinsi sepanjang rentang satu dekade terakhir. Cakupan aktual dicatat per indikator dan menjadi dasar penyempitan sampel setelah H1.
 
 ### 5.2 Catatan tentang volume
 
@@ -185,6 +185,12 @@ Seluruh artikel bergantung pada asumsi bahwa sumber-sumber BPS benar-benar berbe
 | H3 | Perbandingan penuh pada rentang nasional dan provinsi | Menaikkan stack Docker Compose |
 | H4 | Menyusun dan menguji aturan klasifikasi bersama pada kelima domain | Ingestion ber-manifest |
 | H5 | Menelusuri jejak revisi antarwaktu, lalu mengonsolidasikan hasil kelima domain | Uji tulis-baca tabel Iceberg |
+
+Perlengkapan H1 tersedia di [`config/indicators/`](config/indicators/), registry kanal di
+[`config/sources/bps_sources.csv`](config/sources/bps_sources.csv), dan harness pada
+[`scripts/h1.py`](scripts/h1.py). Jalankan `make h1-validate`, `make h1-summary`, dan
+`make h1-example`. Temuan pemeriksaan proposal serta batas penggunaan sumber dicatat di
+[`docs/research/h1-data-audit.md`](docs/research/h1-data-audit.md).
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 

@@ -1,1 +1,12 @@
 tes.md
+
+.env
+.env.*
+!.env.example
+
+# Source payloads are reproducible from versioned manifests and are not committed.
+data/raw/**
+!data/raw/.gitkeep
+
+# Local PDF inspection artifacts.
+tmp/
