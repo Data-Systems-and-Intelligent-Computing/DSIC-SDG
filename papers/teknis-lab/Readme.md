@@ -821,6 +821,8 @@ Artinya: 3 snapshot aktual, 42 baris saat ketiganya dibaca dengan time travel, 1
 
 Angka 42 adalah **jumlah kemunculan baris logis**, bukan jumlah byte di disk. H8A sengaja belum mengukur durasi atau ruang fisik karena eksperimen performa dan ruang dijadwalkan pada H10 setelah spesifikasi sumber daya dibekukan.
 
+VM menarik commit implementasi `64eb50f`, lalu commit perbaikan stdin `d733799`. Pada keadaan ini 58 test VM lulus dan satu test ekstraksi PDF H3 dilewati karena PDF mentah tidak disimpan di Git. Working tree VM bersih setelah integrasi.
+
 ### Bukti yang dapat diaudit
 
 - [kontrak B1](../../contracts/h8-b1-full-snapshot.json)
@@ -834,6 +836,8 @@ Angka 42 adalah **jumlah kemunculan baris logis**, bukan jumlah byte di disk. H8
 - [manifest B1](../../data/manifests/h8-b1-full-snapshot.json)
 - [laporan H8A](../../docs/research/h8-b1-full-snapshot.md)
 
+Commit jangkar: `64eb50f` dan `d733799`.
+
 ### Yang harus dikoreksi manusia bila perlu
 
 Setujui bahwa istilah “snapshot penuh” berarti semua 14 sel ditulis ulang pada setiap rilis. Periksa pula keputusan membawa maju empat sel TPB 2025 ketika WebAPI 2026 tidak mempunyai pengganti. Drop-and-recreate hanya menyasar tabel eksperimen B1 agar rerun tetap idempoten; bila histori antar-run perlu dipertahankan, kebijakan ini harus diubah sebelum H10. Jangan mengubah 42 baris logis menjadi klaim byte penyimpanan tanpa pengukuran fisik H10.
@@ -843,7 +847,7 @@ Setujui bahwa istilah “snapshot penuh” berarti semua 14 sel ditulis ulang pa
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
 - seluruh 59 unit test lokal lulus;
-- di VM, 54 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
+- di VM, 58 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
 - H5, H6A, H7A, dan H7B berhasil menulis serta membaca tabel Iceberg;

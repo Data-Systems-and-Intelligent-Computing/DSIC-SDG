@@ -322,7 +322,8 @@ snapshot lama; audit logis berhasil `38/38` (`1,0000`). Angka 42 belum merupakan
 pengukuran ruang/waktu tetap dijadwalkan pada H10. Jalankan `make h8-run`; kontrak dan batas
 interpretasi tersedia di
 [`docs/research/h8-b1-full-snapshot.md`](docs/research/h8-b1-full-snapshot.md). Integrasi Iceberg
-dijalankan dengan `make h8-apply` dan memeriksa ketiga state memakai `VERSION AS OF`.
+dijalankan dengan `make h8-apply` dan memeriksa ketiga state memakai `VERSION AS OF`. Uji VM lulus
+dengan marker `H8_VERIFY|3|42|14|38|0|3|0|0|0|0`.
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 

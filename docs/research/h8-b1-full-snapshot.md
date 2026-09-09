@@ -4,7 +4,9 @@
 
 H8 Jalur A mengimplementasikan perlakuan B1 pada workload revisi nyata yang sama dengan B0:
 38 observasi, 14 sel stabil, dan tiga rilis berurutan. Implementasi logis serta uji unit telah
-lulus. Integrasi Iceberg dijalankan melalui `make h8-apply` pada VM eksperimen.
+lulus. Integrasi Iceberg melalui `make h8-apply` pada VM eksperimen juga lulus dengan marker
+`H8_VERIFY|3|42|14|38|0|3|0|0|0|0`. Pada VM, 58 test lulus dan satu test ekstraksi PDF dilewati
+karena data mentahnya memang tidak disimpan di Git.
 
 ## Kontrak perlakuan
 
@@ -76,6 +78,8 @@ Pada integrasi pertama, proses Spark di dalam loop shell ikut mengonsumsi stdin 
 run berhenti setelah snapshot pertama. Guard jumlah snapshot menolak hasil `got 1`. Stdin proses
 Docker kemudian dialihkan dari `/dev/null`; rerun yang bersih memproses ketiga rilis. Catatan ini
 dipertahankan agar kegagalan integrasi tidak hilang dari audit.
+
+Commit implementasi adalah `64eb50f`; perbaikan isolasi stdin adalah `d733799`.
 
 ## Artefak audit
 
