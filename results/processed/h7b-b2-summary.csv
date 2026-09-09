@@ -1,0 +1,12 @@
+metric,value,unit,interpretation
+input_candidates,38,rows,complete H6 real-revision workload
+selected_rows,14,rows,one frozen B2 winner per stable cell
+discarded_rows,24,rows,non-selected official observations
+lower_score_discards,10,rows,discarded by trust score
+tie_break_discards,14,rows,discarded after an equal score
+latest_vintage_selected,4,cells,selected observation is mechanically latest
+older_vintage_selected,10,cells,higher source score defeats a newer vintage
+selected_value_differs_from_latest,10,cells,B2 answer differs numerically from latest-vintage answer
+vintage_read_successes,14,requests,selected observations remain addressable
+vintage_read_failures,24,requests,discarded observations are unavailable by design
+vintage_read_success_rate,0.3684,ratio,negative reproducibility result for discarded B2 candidates

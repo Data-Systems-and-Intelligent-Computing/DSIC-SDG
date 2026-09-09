@@ -1,0 +1,102 @@
+{
+  "contract_version": "b2.1",
+  "history_policy": "expire all Iceberg snapshots except the latest after materialization",
+  "iceberg_target": "kkciv.experiments.b2_indicator_selected",
+  "implementation_status": "implemented",
+  "inputs": [
+    {
+      "path": "contracts/h7b-b2-single-source.json",
+      "sha256": "18ba718cb4b115a10b1f6b0820fe7ee792850c1f2a9c9091d493eaa020c44ea1"
+    },
+    {
+      "path": "infra/spark/h7b-b2.sql",
+      "sha256": "2bbd45707f4a22616fde54fa51b827c259f95f011d4f0b7d7a5c15d5b6f91c89"
+    },
+    {
+      "path": "data/manifests/h6b-source-trust.json",
+      "sha256": "4b0c2fbb6ae0e27741eab5f31667d4095f53ac80929283c50ed868c8d0c2806d"
+    },
+    {
+      "path": "config/sources/bps_sources.csv",
+      "rows": 7,
+      "sha256": "07418d3c0c4335e52fecae25fe5dd5008d5305b7c28116fc11bed9c3828aa29f"
+    },
+    {
+      "path": "results/processed/h6-indicator-observations.csv",
+      "rows": 38,
+      "sha256": "80650a40d1fafeb1e3ec0f71eacf88be90efbe4bb5c919df39fd33af06832af2"
+    },
+    {
+      "path": "results/processed/h6-release-vintages.csv",
+      "rows": 3,
+      "sha256": "7092d42c678a2c42dc0ea516672d3025cb817232b28adebeba9b627aabd602f2"
+    },
+    {
+      "path": "results/processed/h6b-selection-preview.csv",
+      "rows": 14,
+      "sha256": "0d4e47a41ac15126da484a197662f7be5a2e8560cb0af2f50e00be490d04fb36"
+    },
+    {
+      "path": "results/processed/h6b-source-trust-scores.csv",
+      "rows": 3,
+      "sha256": "114b33a9bb9274d0fa8f4cd546afe14d4e64f1fc29fe80ed3d97a5b9dac5006d"
+    },
+    {
+      "path": "results/processed/h6b-source-trust-validation.csv",
+      "rows": 6,
+      "sha256": "a6d7c072f1a4c22132b68268ad8995a1102415727907d8bbd31b5d99f4d7bf63"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h7b-b2-selected-state.csv",
+      "rows": 14,
+      "sha256": "52755622d8548c69c17d623e293dd9afb3b6816bce4ff55ae335b8e2c3a0b855"
+    },
+    {
+      "path": "results/processed/h7b-b2-discarded-candidates.csv",
+      "rows": 24,
+      "sha256": "35b9560520ed07c0da060528cc093b9a474ed03bf76f469a3c2854812d782e7f"
+    },
+    {
+      "path": "results/processed/h7b-b2-reproducibility.csv",
+      "rows": 38,
+      "sha256": "644aa3cfe24f5d40168221e98c13cf2a802857fc27345c56939421be9cafb754"
+    },
+    {
+      "path": "results/processed/h7b-b2-summary.csv",
+      "rows": 11,
+      "sha256": "cf6a84273f9e1d58626e9e5e878250d0ccce8b653c40e76764040f1e8519c8be"
+    },
+    {
+      "path": "results/processed/h7b-b2-validation.csv",
+      "rows": 6,
+      "sha256": "487a100f262a101c12e6fe4b662740cf73c00d75e5f01035d6b191ec7cdada09"
+    }
+  ],
+  "reproducibility": {
+    "discarded_observation_addressable": false,
+    "historical_read_expected": "failure_for_discarded_candidates",
+    "selected_observation_addressable": true
+  },
+  "score_contract_version": "h6b.1",
+  "stage": "H7",
+  "track": "B",
+  "treatment_id": "B2",
+  "workload": {
+    "cell_count": 14,
+    "discarded_rows": 24,
+    "input_rows": 38,
+    "latest_selected": 4,
+    "lower_score_discards": 10,
+    "older_selected": 10,
+    "reproduction_failures": 24,
+    "reproduction_successes": 14,
+    "selected_rows": 14,
+    "source_count": 3,
+    "source_stage": "H6 Jalur B",
+    "tie_break_discards": 14,
+    "value_differs_from_latest": 10,
+    "vintage_read_success_rate": "0.3684"
+  }
+}

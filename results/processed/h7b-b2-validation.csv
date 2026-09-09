@@ -1,0 +1,7 @@
+invariant,status,checked_rows,detail
+frozen_h6b_selection,passed,14,materialized rows match the manifested H6B preview
+one_row_per_cell,passed,14,one selected observation for every stable H6 cell
+complete_candidate_partition,passed,38,selected and discarded sets are disjoint and complete
+explicit_discard_reason,passed,24,every non-selected observation records score or tie-break rejection
+no_rescoring,passed,3,source scores and ranks are copied unchanged from H6B
+reproducibility_accounting,passed,38,only the 14 selected observation IDs remain addressable

@@ -1,0 +1,44 @@
+{
+  "contract_version": "b2.1",
+  "treatment_id": "B2",
+  "name": "single_source_trust_selection",
+  "description": "Materialize exactly one observation per stable cell using the frozen H6B source-trust ranking.",
+  "input": {
+    "manifest": "data/manifests/h6b-source-trust.json",
+    "score_contract_version": "h6b.1",
+    "selection_artifact": "results/processed/h6b-selection-preview.csv",
+    "selection_policy": "consume the frozen H6B preview without rescoring"
+  },
+  "state": {
+    "table": "kkciv.experiments.b2_indicator_selected",
+    "primary_key": ["cell_id"],
+    "partitioning": ["domain"],
+    "history_policy": "expire all Iceberg snapshots except the latest after materialization"
+  },
+  "schema": {
+    "base_columns": "h6_indicator_observations",
+    "additional_columns": [
+      ["selected_source_id", "STRING", false],
+      ["trust_score", "DECIMAL(7,6)", false],
+      ["source_rank", "INT", false],
+      ["candidate_count", "INT", false],
+      ["discarded_candidate_count", "INT", false],
+      ["selected_is_latest_vintage", "BOOLEAN", false],
+      ["selection_contract_version", "STRING", false],
+      ["selection_run_id", "STRING", false]
+    ]
+  },
+  "reproducibility": {
+    "selected_observation_addressable": true,
+    "discarded_observation_addressable": false,
+    "expected_result_for_discarded_vintage": "unavailable_by_design"
+  },
+  "invariants": [
+    "one selected row per cell_id",
+    "every selected row exactly matches the frozen H6B preview",
+    "no value or conflict outcome is used to rescore a source",
+    "every non-selected candidate has an explicit discard reason",
+    "selected and discarded candidates partition the complete H6 workload",
+    "prior physical snapshots are unavailable after expiration"
+  ]
+}

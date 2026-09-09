@@ -286,6 +286,14 @@ juga dihapus agar time travel tidak mengubah B0 menjadi penyimpanan multiversi. 
 [`docs/research/h7-b0-overwrite.md`](docs/research/h7-b0-overwrite.md).
 Uji pada VM lulus dengan marker `H7_VERIFY|14|14|14|24|1|3|0|0|0`.
 
+H7 Jalur B mengimplementasikan B2 dengan menyalin keputusan skor H6B yang telah dibekukan ke state
+single-source. Dari 38 kandidat, 14 observasi TPB 2025 terpilih dan 24 dibuang: 10 karena skor
+WebAPI lebih rendah serta 14 karena tie-break terhadap TPB 2024 yang berskor sama tetapi lebih
+lama. Hanya empat pilihan merupakan vintage terbaru; sepuluh pilihan lain berbeda nilainya dari
+latest-vintage. Audit baca ulang berhasil pada 14 observasi terpilih dan gagal pada 24 observasi
+yang dibuang (`0,3684`). Jalankan `make h7b-run`; implementasi dan batas interpretasinya ada di
+[`docs/research/h7b-b2-single-source.md`](docs/research/h7b-b2-single-source.md).
+
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
 **Gate G1 — Objek penelitian terbukti ada**
