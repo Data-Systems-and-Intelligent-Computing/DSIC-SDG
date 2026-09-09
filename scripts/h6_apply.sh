@@ -13,7 +13,7 @@ manifest = json.load(open("data/manifests/h6-vintage-schema.json"))
 for item in manifest["outputs"]:
     digest = hashlib.sha256(open(item["path"], "rb").read()).hexdigest()
     if digest != item["sha256"]:
-        raise SystemExit(f"checksum mismatch for {item[\"path\"]}")
+        raise SystemExit("checksum mismatch for " + item["path"])
 fixture = manifest["fixture"]
 print(fixture["vintage_rows"], fixture["observation_rows"], fixture["cell_count"])
 '
