@@ -133,7 +133,7 @@ done < <(tail -n +2 results/processed/h7-b0-operations.csv)
 sql+="
 CALL kkciv.system.expire_snapshots(
   table => 'experiments.b0_indicator_current',
-  older_than => current_timestamp(),
+  older_than => TIMESTAMP '9999-12-31 00:00:00',
   retain_last => 1
 );
 SELECT concat(
