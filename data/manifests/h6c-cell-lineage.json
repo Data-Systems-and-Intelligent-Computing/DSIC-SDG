@@ -1,0 +1,61 @@
+{
+  "contract_version": "h6c.1",
+  "graph": {
+    "cell_count": 14,
+    "completeness_rate": "1.0000",
+    "edge_count": 235,
+    "matching": "exact_identifiers_only",
+    "maximum_paths_per_cell": 3,
+    "minimum_paths_per_cell": 2,
+    "node_count": 101,
+    "path_count": 38,
+    "raw_locator_collision_groups": 4,
+    "raw_locator_collision_observations": 20,
+    "source_record_count": 38
+  },
+  "inputs": [
+    {
+      "path": "contracts/h6c-cell-lineage.json",
+      "sha256": "b59d2603ab31ed973ea08dc163f3782fb09b57284e8f8b3b10b2f279111372ed"
+    },
+    {
+      "path": "data/manifests/h6-vintage-schema.json",
+      "sha256": "416c6892d04a0a3c0b3c475f8a51d941a88cca9c68a197cf681f9449511f0ff4"
+    },
+    {
+      "path": "results/processed/h6-release-vintages.csv",
+      "rows": 3,
+      "sha256": "7092d42c678a2c42dc0ea516672d3025cb817232b28adebeba9b627aabd602f2"
+    },
+    {
+      "path": "results/processed/h6-indicator-observations.csv",
+      "rows": 38,
+      "sha256": "80650a40d1fafeb1e3ec0f71eacf88be90efbe4bb5c919df39fd33af06832af2"
+    }
+  ],
+  "lineage_status": "validated",
+  "outputs": [
+    {
+      "path": "results/processed/h6c-lineage-nodes.csv",
+      "rows": 101,
+      "sha256": "3ef2b1271c7099bbcb86ba48de41d600055ecf1046129189c4428bd6acd7a374"
+    },
+    {
+      "path": "results/processed/h6c-lineage-edges.csv",
+      "rows": 235,
+      "sha256": "6f083e662893e9e968bbc782a52114d8fca154e70245a5ef559fc652e5956d44"
+    },
+    {
+      "path": "results/processed/h6c-cell-source-paths.csv",
+      "rows": 38,
+      "sha256": "569b5f9de7cd104f09ba415168e36aa2b46282bd34283f152b313192d5c91263"
+    },
+    {
+      "path": "results/processed/h6c-lineage-validation.csv",
+      "rows": 7,
+      "sha256": "47329ee331220bd756cd6bbd490d31100b963001b6e9edd154f5feb855700821"
+    }
+  ],
+  "stage": "H6",
+  "track": "C"
+}

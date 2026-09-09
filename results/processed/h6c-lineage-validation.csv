@@ -1,0 +1,8 @@
+invariant,status,checked_rows,detail
+graph_contract,passed,18,nine node types and nine directed relationships match h6c.1
+unique_graph_identities,passed,336,all node_id and edge_id values are deterministic and unique
+complete_core_paths,passed,38,one four-hop manifest-to-cell path per H6 observation
+exact_source_record_resolution,passed,38,artifact locator plus explicit cell coordinates resolves every source record node
+raw_locator_collisions_disclosed,passed,20,4 reused publication locators are retained and resolved
+cell_reachability,passed,14,every cell has 2-3 manifested source paths
+no_fuzzy_matching,passed,235,"all edges derive from explicit H6 identifiers, paths, checksums, or foreign keys"

@@ -276,6 +276,14 @@ Jalankan `make h6b-run`; rumus dan batas interpretasinya ada di
 [`docs/research/h6b-source-trust-score.md`](docs/research/h6b-source-trust-score.md).
 Uji pada VM lulus dengan marker `H6B_VERIFY|3|14|4|10|10|frozen`.
 
+H6 Jalur C memetakan lineage 38 observasi H6 menjadi 101 node, 235 edge, dan 38 core path untuk
+14 `cell_id`, dengan kelengkapan `1,0000`. Jalur utamanya adalah manifest sumber → artefak →
+rekaman sumber → observasi → sel indikator, ditambah konteks vintage, batch, run, dan versi
+transformasi. Audit menemukan empat locator PDF yang dipakai ulang oleh 20 observasi; locator
+mentah dipertahankan dan node rekaman di-resolve memakai koordinat sel H6 yang eksplisit, tanpa
+fuzzy matching. Jalankan `make h6c-run`; model dan batas kelengkapannya ada di
+[`docs/research/h6c-cell-lineage.md`](docs/research/h6c-cell-lineage.md).
+
 H7 Jalur A mengimplementasikan B0 sebagai baseline overwrite dengan tepat satu baris terkini per
 `cell_id`. Tiga vintage H6 diterapkan berurutan: 38 observasi masuk menjadi 14 baris current,
 sementara 24 observasi lama ditimpa. Dari overwrite tersebut, 14 mengubah nilai dan 10 mengganti

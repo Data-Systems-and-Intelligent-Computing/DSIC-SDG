@@ -1,0 +1,68 @@
+{
+  "contract_version": "h6c.1",
+  "track": "C",
+  "name": "indicator_cell_to_source_record_lineage",
+  "description": "Build deterministic cell-level lineage from manifested source records to H6 indicator cells.",
+  "input": {
+    "manifest": "data/manifests/h6-vintage-schema.json",
+    "source_stage": "H6 Jalur A"
+  },
+  "graph": {
+    "direction": "upstream_to_downstream",
+    "node_types": [
+      "source_manifest",
+      "source_artifact",
+      "source_record",
+      "vintage",
+      "ingestion_batch",
+      "transformation_run",
+      "transformation_version",
+      "observation",
+      "indicator_cell"
+    ],
+    "relationships": [
+      "manifest_declares_artifact",
+      "manifest_declares_vintage",
+      "artifact_contains_record",
+      "record_sources_observation",
+      "vintage_contextualizes_observation",
+      "ingestion_batch_feeds_run",
+      "transformation_run_derives_observation",
+      "transformation_version_projects_observation",
+      "observation_materializes_cell"
+    ]
+  },
+  "identity": {
+    "hash": "sha256_utf8_unit_separator_first_20_hex",
+    "source_record_node_fields": [
+      "source_artifact_sha256",
+      "source_record_id",
+      "indicator_key",
+      "series_key",
+      "observed_period",
+      "geo_level",
+      "geo_code"
+    ],
+    "reason": "publication source_record_id locates a table column but may omit the geographic row"
+  },
+  "resolution": {
+    "matching": "exact_identifiers_only",
+    "fuzzy_matching_allowed": false,
+    "raw_locator_collision_policy": "append explicit H6 cell coordinates to the record-node identity",
+    "required_core_path": [
+      "source_manifest",
+      "source_artifact",
+      "source_record",
+      "observation",
+      "indicator_cell"
+    ]
+  },
+  "invariants": [
+    "every H6 observation has one complete core lineage path",
+    "every node_id and edge_id is deterministic and unique",
+    "every source record node is unique within its artifact and explicit cell coordinates",
+    "raw source locator collisions are reported rather than hidden",
+    "every indicator cell is reachable from every manifested observation assigned to it",
+    "no lineage edge is inferred by label similarity"
+  ]
+}
