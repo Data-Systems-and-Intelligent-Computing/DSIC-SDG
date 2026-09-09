@@ -1,5 +1,6 @@
 tes.md
 
+.agents
 .env
 .env.*
 !.env.example
