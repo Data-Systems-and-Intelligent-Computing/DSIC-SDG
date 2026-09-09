@@ -1,4 +1,4 @@
-.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
+.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h7-run h7-apply stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
 
 PYTHON ?= python3
 H1 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h1.cli
@@ -7,6 +7,7 @@ H3 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h3.cli
 H4 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h4.cli
 H5 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h5.cli
 H6 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h6.cli
+H7 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h7.cli
 COMPOSE ?= docker-compose --env-file infra/docker/versions.env
 STACK_HOST ?= sigerciv@34.128.67.92
 STACK_DIR ?= /home/sigerciv/DSIC-SDG
@@ -33,6 +34,8 @@ help:
 	@echo "make h5-iceberg   Write and read the H5 trace table through Iceberg"
 	@echo "make h6-run       Validate the explicit-vintage schema against H5 traces"
 	@echo "make h6-apply     Create and verify the H6 Iceberg tables"
+	@echo "make h7-run       Apply the B0 overwrite baseline logically"
+	@echo "make h7-apply     Create and verify the B0 Iceberg table"
 	@echo "make stack-up     Bring up MinIO, the Iceberg REST catalog, and Spark"
 	@echo "make stack-remote-up  Sync and start the stack on STACK_HOST"
 	@echo "make stack-remote-status  Show the remote stack status"
@@ -106,6 +109,12 @@ h6-run:
 
 h6-apply:
 	bash scripts/h6_apply.sh
+
+h7-run:
+	$(H7)
+
+h7-apply: h7-run
+	bash scripts/h7_apply.sh
 
 stack-up:
 	$(COMPOSE) up -d

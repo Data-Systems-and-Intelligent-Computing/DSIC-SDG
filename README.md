@@ -266,6 +266,15 @@ dan 14 sel tanpa kehilangan provenance. Jalankan `make h6-run`; keputusan lengka
 [`docs/research/h6-explicit-vintage-schema.md`](docs/research/h6-explicit-vintage-schema.md).
 Uji dua tabel pada VM lulus dengan marker `H6_VERIFY|3|38|14|2|3|1|3|0|0`.
 
+H7 Jalur A mengimplementasikan B0 sebagai baseline overwrite dengan tepat satu baris terkini per
+`cell_id`. Tiga vintage H6 diterapkan berurutan: 38 observasi masuk menjadi 14 baris current,
+sementara 24 observasi lama ditimpa. Dari overwrite tersebut, 14 mengubah nilai dan 10 mengganti
+baris dengan nilai numerik yang sama. Audit 38 alamat vintage hanya dapat memanggil ulang 14
+observasi terkini (`0,3684`); 24 observasi historis gagal sesuai desain B0. Snapshot Iceberg lama
+juga dihapus agar time travel tidak mengubah B0 menjadi penyimpanan multiversi. Jalankan
+`make h7-run`; kontrak, hasil, dan batas interpretasinya ada di
+[`docs/research/h7-b0-overwrite.md`](docs/research/h7-b0-overwrite.md).
+
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
 **Gate G1 — Objek penelitian terbukti ada**

@@ -1,0 +1,71 @@
+{
+  "contract_version": "b0.1",
+  "history_policy": "expire all Iceberg snapshots except the latest after the batch",
+  "iceberg_target": "kkciv.experiments.b0_indicator_current",
+  "implementation_status": "implemented",
+  "inputs": [
+    {
+      "path": "contracts/h7-b0-overwrite.json",
+      "sha256": "8091a23c6e156c052847d0a2675926a921f5070980690d057efa2681a2a4dbea"
+    },
+    {
+      "path": "infra/spark/h7-b0.sql",
+      "sha256": "2235b7dc0b9a1b30be798b33719a0678f96f282c8752fec1d33e4043161a4eb3"
+    },
+    {
+      "path": "data/manifests/h6-vintage-schema.json",
+      "sha256": "416c6892d04a0a3c0b3c475f8a51d941a88cca9c68a197cf681f9449511f0ff4"
+    },
+    {
+      "path": "results/processed/h6-release-vintages.csv",
+      "rows": 3,
+      "sha256": "7092d42c678a2c42dc0ea516672d3025cb817232b28adebeba9b627aabd602f2"
+    },
+    {
+      "path": "results/processed/h6-indicator-observations.csv",
+      "rows": 38,
+      "sha256": "80650a40d1fafeb1e3ec0f71eacf88be90efbe4bb5c919df39fd33af06832af2"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h7-b0-operations.csv",
+      "rows": 3,
+      "sha256": "751325bb541f3369565881569e12b3c6f46b0407d831ac71fa29713cf933a2ee"
+    },
+    {
+      "path": "results/processed/h7-b0-final-state.csv",
+      "rows": 14,
+      "sha256": "61e7ba1a44256d5dc832ab4f488336fb16c02b784942cc65d54f3100fb8ef284"
+    },
+    {
+      "path": "results/processed/h7-b0-reproducibility.csv",
+      "rows": 38,
+      "sha256": "94c57730504e9d2ea4124c690ec2109ce6ffb18d29e77ff0f8f13e5ca0b15a80"
+    },
+    {
+      "path": "results/processed/h7-b0-summary.csv",
+      "rows": 9,
+      "sha256": "d463413d617f4a3414e4e669ea2d90a74f0954a071a4876c021e0aff373d5762"
+    }
+  ],
+  "reproducibility": {
+    "historical_read_expected": "failure_by_design",
+    "historical_reproduction_capable": false,
+    "vintage_key_supported": false
+  },
+  "stage": "H7",
+  "treatment_id": "B0",
+  "workload": {
+    "final_rows": 14,
+    "input_rows": 38,
+    "overwritten_rows": 24,
+    "reproduction_failures": 24,
+    "reproduction_successes": 14,
+    "same_value_overwrites": 10,
+    "source_stage": "H6",
+    "value_changed_rows": 14,
+    "vintage_batches": 3,
+    "vintage_read_success_rate": "0.3684"
+  }
+}

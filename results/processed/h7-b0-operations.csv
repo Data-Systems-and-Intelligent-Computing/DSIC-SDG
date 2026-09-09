@@ -1,0 +1,4 @@
+operation_order,vintage_id,source_id,vintage_date,input_rows,inserted_rows,overwritten_rows,value_changed_rows,same_value_overwrites,output_rows,state_sha256
+1,aa7252a58f41161c17c3,bps_tpb_2024,2024-12-31,14,14,0,0,0,14,4c0462f0817bcd9ed7eef73610058e9ad61c9897c0162779f2c553bfc9a2e78c
+2,9ab2011a3892edfac889,bps_tpb_2025,2025-12-30,14,0,14,4,10,14,4e98d1fe8a1d56e8b55448546761c8504b2320cd32e79168f49ddaba2641019d
+3,b132d2fab33291e0733e,bps_webapi,2026-09-08,10,0,10,10,0,14,ae63527bd7d8c2471502a0c8e24830fed31286666dae7f1c76118eb5c5b8a928

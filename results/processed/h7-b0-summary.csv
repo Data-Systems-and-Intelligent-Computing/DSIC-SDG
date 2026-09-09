@@ -1,0 +1,10 @@
+metric,value,unit,interpretation
+input_observations,38,rows,ordered H6 real-revision workload
+vintage_batches,3,batches,"TPB 2024, TPB 2025, WebAPI 2026"
+final_current_rows,14,rows,exactly one row per stable cell
+overwritten_rows,24,rows,prior vintage addresses removed
+value_changed_overwrites,14,rows,incoming numeric value differs
+same_value_overwrites,10,rows,new vintage replaces an equal numeric value
+vintage_read_successes,14,requests,only current observations remain addressable
+vintage_read_failures,24,requests,historical observations unavailable by B0 design
+vintage_read_success_rate,0.3684,ratio,"negative-control result for P4, not a performance metric"

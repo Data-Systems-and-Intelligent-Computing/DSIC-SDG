@@ -1,0 +1,37 @@
+{
+  "contract_version": "b0.1",
+  "treatment_id": "B0",
+  "name": "overwrite",
+  "description": "Keep exactly one latest observation per stable indicator cell.",
+  "input": {
+    "manifest": "data/manifests/h6-vintage-schema.json",
+    "vintage_order": ["vintage_date ASC", "retrieved_at ASC", "vintage_id ASC"],
+    "workload": "all H5 real-revision trace observations projected by H6"
+  },
+  "state": {
+    "table": "kkciv.experiments.b0_indicator_current",
+    "primary_key": ["cell_id"],
+    "matched_action": "replace the complete current row",
+    "not_matched_action": "insert the incoming row",
+    "history_policy": "expire all Iceberg snapshots except the latest after the batch",
+    "partitioning": ["domain"]
+  },
+  "schema": {
+    "base_columns": "h6_indicator_observations",
+    "additional_columns": [
+      ["applied_order", "INT", false],
+      ["replaced_observation_id", "STRING", true]
+    ]
+  },
+  "reproducibility": {
+    "addressable_key": ["cell_id"],
+    "vintage_key_supported": false,
+    "expected_result_for_overwritten_vintage": "unavailable_by_design"
+  },
+  "invariants": [
+    "one row per cell_id",
+    "final row equals the observation from the latest incoming vintage for that cell",
+    "prior observation_id values are not addressable after snapshot expiration",
+    "the same ordered H6 input produces the same logical final state"
+  ]
+}
