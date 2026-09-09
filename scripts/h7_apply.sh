@@ -171,8 +171,15 @@ SELECT concat(
 );
 "
 
+set +e
 output="$("${compose[@]}" exec -T spark /opt/spark/bin/spark-sql --silent -e "$sql" 2>&1)"
+spark_status=$?
+set -e
 printf '%s\n' "$output"
+if (( spark_status != 0 )); then
+  echo "H7 Spark SQL execution failed with status ${spark_status}" >&2
+  exit "$spark_status"
+fi
 
 verification="H7_VERIFY|${expected_final}|${expected_final}|${expected_success}|${expected_failure}|1|"
 if ! printf '%s\n' "$output" | grep -Eq "^${verification}[1-9][0-9]*\|0\|0\|0$"; then
