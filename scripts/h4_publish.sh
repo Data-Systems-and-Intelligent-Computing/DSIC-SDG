@@ -32,5 +32,14 @@ done
   mc alias set local http://127.0.0.1:9000 "$MINIO_ROOT_USER" "$MINIO_ROOT_PASSWORD" >/dev/null
   mc mb --ignore-existing "local/'"$bucket"'" >/dev/null
   mc cp --recursive "/tmp/'"$batch_id"'/" "local/'"$bucket"'/'"$object_prefix"'" >/dev/null
+  for file in "/tmp/'"$batch_id"'"/*; do
+    object="${file##*/}"
+    set -- $(sha256sum "$file")
+    expected="$1"
+    set -- $(mc cat "local/'"$bucket"'/'"$object_prefix"'$object" | sha256sum)
+    actual="$1"
+    test "$actual" = "$expected"
+    echo "verified $actual $object"
+  done
   mc ls --recursive "local/'"$bucket"'/'"$object_prefix"'"
 '
