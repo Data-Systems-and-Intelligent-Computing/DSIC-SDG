@@ -254,6 +254,8 @@ menjadi 96 dari 123 kejadian, atau 78,05 persen. Empat perubahan langsung antarp
 sepuluh jejak tiga-vintage dibekukan menjadi 14 jejak dengan 38 baris vintage. Pipeline dapat
 dijalankan dengan `make h5-run`; laporan, batas klaim, dan uji tulis-baca Iceberg ada di
 [`docs/research/h5-revision-trace-and-gate1.md`](docs/research/h5-revision-trace-and-gate1.md).
+Uji pada VM menghasilkan marker `H5_VERIFY|38|14|1|3|1`, sehingga 38 baris dapat dibaca kembali
+dari tabel Iceberg beserta data file fisiknya.
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 

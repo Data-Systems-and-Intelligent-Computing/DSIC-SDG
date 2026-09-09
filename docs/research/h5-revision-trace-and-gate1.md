@@ -84,8 +84,11 @@ kejadian H4 agar rantai H3 -> H4 -> H5 dapat ditelusuri tanpa pencocokan kabur.
 Uji dinyatakan lulus hanya bila jumlah baris, jumlah jejak, rentang urutan vintage, dan keberadaan
 minimal satu data file cocok dengan manifest H5.
 
-Status eksekusi VM akan dicatat setelah commit implementasi ditarik ke
-`sigerciv@34.128.67.92` dan perintah tersebut selesai.
+Eksekusi telah diverifikasi pada 9 September 2026 di `sigerciv@34.128.67.92` setelah VM menarik
+commit `89a9bd4` dari `main`. Marker baca-balik adalah `H5_VERIFY|38|14|1|3|1`: 38 baris, 14
+jejak, urutan vintage minimum 1 dan maksimum 3, serta satu data file Iceberg. Seluruh 29 tes lulus;
+satu tes ekstraksi PDF dilewati karena payload PDF mentah sengaja tidak disimpan di Git. Clone VM
+tetap bersih setelah eksekusi.
 
 ## Artefak dan reproduksi
 
@@ -103,4 +106,3 @@ make h5-run
 make test
 make h5-iceberg  # membutuhkan stack yang aktif
 ```
-
