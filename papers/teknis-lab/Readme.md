@@ -889,7 +889,7 @@ H8B_VERIFY|14|5|1-2-4-7-14|28|4|20|0|0|3|validation_ready
 
 Artinya: 14 sel dasar, 5 skenario, urutan ukuran `1-2-4-7-14`, 28 baris injeksi, 4 perlakuan, 20 route, 0 mismatch payload, 0 validasi gagal, 3 keputusan manusia tervalidasi, dan harness siap untuk validasi eksekusi H9.
 
-VM menarik commit `5c3969c`, menjalankan `make h8b-run` dua kali, dan menghasilkan marker serta enam checksum artefak yang identik. Sebanyak 62 test VM lulus dan satu test ekstraksi PDF dilewati karena PDF mentah tidak disimpan di Git. Working tree VM tetap bersih.
+VM menarik commit implementasi `5c3969c`, menjalankan `make h8b-run` dua kali, dan menghasilkan marker serta enam checksum artefak yang identik. Setelah keputusan manusia dicatat, VM menarik commit kontrak `8846d7c` dan kembali memperoleh marker baru serta checksum identik pada dua run. Sebanyak 63 test VM lulus dan satu test ekstraksi PDF dilewati karena PDF mentah tidak disimpan di Git. Working tree VM tetap bersih.
 
 Profil ini **bukan freeze eksperimen utama** dan belum sama dengan sweep satu tahun seluruh provinsi. Tidak ada runtime maupun byte penyimpanan yang diukur pada H8B. B3 juga belum berjalan; route B3 hanya memastikan bentuk inputnya sudah disediakan.
 
@@ -908,7 +908,7 @@ Pada 10 September 2026, peninjau manusia menyetujui tiga keputusan metodologis: 
 - [manifest H8B](../../data/manifests/h8b-injected-revision-harness.json)
 - [laporan H8B](../../docs/research/h8b-injected-revision-harness.md)
 
-Commit jangkar: `5c3969c`.
+Commit jangkar: `5c3969c` dan `8846d7c`.
 
 ### Yang harus dikoreksi manusia bila perlu
 
@@ -919,7 +919,7 @@ Latest-vintage, aturan satu unit, dan tepat satu sumber per run utama sudah dise
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
 - seluruh 64 unit test lokal lulus;
-- di VM, 62 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
+- di VM, 63 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
 - H5, H6A, H7A, dan H7B berhasil menulis serta membaca tabel Iceberg;

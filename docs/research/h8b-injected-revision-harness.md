@@ -5,8 +5,9 @@
 H8 Jalur B membangun generator revisi sintetis yang deterministik dan dapat memberikan payload
 yang sama kepada B0, B1, B2, serta B3. Tahap ini memvalidasi pembentukan workload; belum ada
 perlakuan yang dijalankan, belum ada waktu yang diukur, dan konfigurasi eksperimen utama belum
-dibekukan. VM menarik commit `5c3969c`, menjalankan pipeline dua kali dengan checksum identik,
-serta menghasilkan marker yang sama dengan lokal. Sebanyak 62 test VM lulus dan satu test PDF
+dibekukan. VM menarik implementasi awal `5c3969c` dan kontrak keputusan `8846d7c`, menjalankan
+pipeline dua kali dengan checksum identik, serta menghasilkan marker yang sama dengan lokal.
+Sebanyak 63 test VM lulus dan satu test PDF
 dilewati karena data mentahnya tidak disimpan di Git; worktree tetap bersih.
 
 ## Mengapa fixture B0 dipakai sebagai titik awal
@@ -81,9 +82,9 @@ Marker pipeline:
 H8B_VERIFY|14|5|1-2-4-7-14|28|4|20|0|0|3|validation_ready
 ```
 
-Marker tersebut menambahkan angka `3` sebagai jumlah keputusan manusia yang tervalidasi. Versi
-sebelumnya tanpa kolom keputusan telah diperoleh dua kali berturut-turut di VM; setelah persetujuan
-dicatat, marker versi kontrak `h8b.2` harus diverifikasi ulang melalui jalur Git dan VM.
+Marker tersebut menambahkan angka `3` sebagai jumlah keputusan manusia yang tervalidasi. Marker
+versi kontrak `h8b.2` telah diperoleh dua kali berturut-turut di VM setelah commit persetujuan
+ditarik, bukan hanya dihitung sebagai ekspektasi lokal.
 
 ## Keputusan manusia 10 September 2026
 
