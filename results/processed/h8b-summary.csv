@@ -1,6 +1,7 @@
 metric,value,unit,interpretation
 base_cells,14,cells,manifested B0 latest-vintage validation fixture
 validation_scenarios,5,scenarios,not the final H10 experiment freeze
+approved_human_decisions,3,decisions,"base state, mutation unit, and main-sweep source scope"
 scenario_sizes,1-2-4-7-14,cells,nested deterministic validation prefixes
 injected_revision_rows,28,rows,sum across independent validation scenarios
 target_treatments,4,treatments,"B0, B1, B2, and planned B3"

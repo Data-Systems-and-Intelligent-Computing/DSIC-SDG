@@ -1,0 +1,4 @@
+decision_id,decided_at,decided_by,status,scope,decision,rationale
+h8b_base_state,2026-09-10,human_reviewer,approved,injection_base,use_latest_vintage_as_canonical_base,"Approved explicitly by the human reviewer; B0 and B1 have the same latest state"
+h8b_mutation_unit,2026-09-10,human_reviewer,approved,mutation_rule,change_exactly_one_published_unit,"Approved explicitly as a dependency-change mechanism rather than a model of the empirical BPS revision distribution"
+h8b_main_sweep_source,2026-09-10,human_reviewer,approved,main_sweep,exactly_one_revised_source_per_run,"Approved explicitly for the main sweep; the validation-only profile may remain mixed-source"

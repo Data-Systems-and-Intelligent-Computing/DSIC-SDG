@@ -1,15 +1,26 @@
 {
-  "contract_version": "h8b.1",
+  "contract_version": "h8b.2",
   "harness_status": "validation_ready",
+  "human_decisions": {
+    "approved": 3,
+    "approved_at": "2026-09-10",
+    "main_sweep_source_scope": "exactly_one_revised_source_per_run",
+    "validation_profile_may_mix_revised_sources": true
+  },
   "inputs": [
     {
       "path": "contracts/h8b-injected-revision-harness.json",
-      "sha256": "9960bcf73cc3872094f3cee51a503380c083e156f5d61d05c023eee5da80fb10"
+      "sha256": "3a6beef726c75b8b43b6f545b09bae65964bb0d30aecaa40f826865e20d9999f"
     },
     {
       "path": "config/h8b/injection_scenarios.csv",
       "rows": 5,
       "sha256": "b56d7d0999ca4622b2824d5b7db862f0969d779b7c94c68d1e6d926df262f559"
+    },
+    {
+      "path": "config/h8b/human_decisions.csv",
+      "rows": 3,
+      "sha256": "8a76b59367f7b646e970138dc5961dcf1ed7c519d2a9a4026af9f55f6164e28f"
     },
     {
       "path": "data/manifests/h7-b0-overwrite.json",
@@ -55,13 +66,13 @@
     },
     {
       "path": "results/processed/h8b-validation.csv",
-      "rows": 9,
-      "sha256": "9082fc0f887c0e9aaa0b157b91c0d20925fcbccdf467b08049995d27c6c91d41"
+      "rows": 10,
+      "sha256": "d5378efd4923ad3fd116e86c70052a43e4277cd0430ac805d6c5d465f76b1643"
     },
     {
       "path": "results/processed/h8b-summary.csv",
-      "rows": 9,
-      "sha256": "924381ab86f17b3c608fac80046a2efd69401513fe8ab08bc636f27c5a1f2875"
+      "rows": 10,
+      "sha256": "dac407f445464e0ebf913fd0d65017de63afc98dc49762ff658ed3ffd334b8e8"
     }
   ],
   "profile": {

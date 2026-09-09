@@ -10,6 +10,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="KK-CIV H8 Jalur B injected-revision harness")
     parser.add_argument("--contract", type=Path, default=Path("contracts/h8b-injected-revision-harness.json"))
     parser.add_argument("--scenarios", type=Path, default=Path("config/h8b/injection_scenarios.csv"))
+    parser.add_argument("--human-decisions", type=Path, default=Path("config/h8b/human_decisions.csv"))
     parser.add_argument("--b0-manifest", type=Path, default=Path("data/manifests/h7-b0-overwrite.json"))
     parser.add_argument("--h6-manifest", type=Path, default=Path("data/manifests/h6-vintage-schema.json"))
     parser.add_argument("--plan-output", type=Path, default=Path("results/processed/h8b-injection-plan.csv"))
@@ -26,6 +27,7 @@ def main() -> int:
     result = run_h8b(
         contract_path=args.contract,
         scenario_path=args.scenarios,
+        human_decisions_path=args.human_decisions,
         b0_manifest_path=args.b0_manifest,
         h6_manifest_path=args.h6_manifest,
         plan_output=args.plan_output,
@@ -47,7 +49,8 @@ def main() -> int:
         f"H8B_VERIFY|{result['base_cells']}|{result['scenario_count']}|"
         f"{result['scenario_sizes']}|{result['injected_rows']}|"
         f"{result['treatment_count']}|{result['route_rows']}|"
-        f"{result['route_mismatches']}|0|{result['status']}"
+        f"{result['route_mismatches']}|0|{result['approved_human_decisions']}|"
+        f"{result['status']}"
     )
     print(f"Manifest: {args.manifest_output}")
     return 0

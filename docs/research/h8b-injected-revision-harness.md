@@ -72,17 +72,30 @@ input, bukan keberhasilan B3.
 - 28 baris injeksi bila kelima skenario dihitung sebagai run independen;
 - empat perlakuan dan 20 route;
 - nol checksum payload yang berbeda antarperlakuan;
-- seluruh sembilan invariant lulus;
+- seluruh sepuluh invariant lulus;
 - nol run waktu dan nol pengukuran penyimpanan.
 
 Marker pipeline:
 
 ```text
-H8B_VERIFY|14|5|1-2-4-7-14|28|4|20|0|0|validation_ready
+H8B_VERIFY|14|5|1-2-4-7-14|28|4|20|0|0|3|validation_ready
 ```
 
-Marker tersebut telah diperoleh dua kali berturut-turut di VM, bukan hanya dihitung sebagai
-ekspektasi lokal.
+Marker tersebut menambahkan angka `3` sebagai jumlah keputusan manusia yang tervalidasi. Versi
+sebelumnya tanpa kolom keputusan telah diperoleh dua kali berturut-turut di VM; setelah persetujuan
+dicatat, marker versi kontrak `h8b.2` harus diverifikasi ulang melalui jalur Git dan VM.
+
+## Keputusan manusia 10 September 2026
+
+Tiga keputusan berikut telah berstatus `approved` dan kini menjadi input ber-checksum:
+
+1. latest-vintage dipakai sebagai nilai awal kanonik injeksi;
+2. nilai target diubah tepat satu unit pada presisi publikasi;
+3. sweep utama wajib merevisi tepat satu `revised_source_id` per run.
+
+Keputusan ketiga tidak mengubah profil validasi H8B yang sudah terbentuk. Profil tersebut tetap
+boleh mencakup lebih dari satu sumber karena hanya menguji mekanisme umum. Constraint satu sumber
+wajib diterapkan ketika konfigurasi eksperimen utama dibentuk dan divalidasi sebelum H11.
 
 ## Reproduksi
 
@@ -98,6 +111,7 @@ dan jumlah baris. Pengujian menjalankan pipeline dua kali dan membandingkan byte
 
 - kontrak: `contracts/h8b-injected-revision-harness.json`;
 - konfigurasi skenario: `config/h8b/injection_scenarios.csv`;
+- keputusan manusia: `config/h8b/human_decisions.csv`;
 - pipeline: `src/kkciv_vintage/h8b/`;
 - rencana lima skenario: `results/processed/h8b-injection-plan.csv`;
 - 28 perubahan sintetis: `results/processed/h8b-injected-revisions.csv`;
@@ -106,13 +120,10 @@ dan jumlah baris. Pengujian menjalankan pipeline dua kali dan membandingkan byte
 - ringkasan: `results/processed/h8b-summary.csv`;
 - manifest: `data/manifests/h8b-injected-revision-harness.json`.
 
-## Hal yang memerlukan audit manusia
+## Hal yang masih memerlukan audit manusia
 
-1. Setujui penggunaan latest-vintage sebagai nilai awal kanonik injeksi.
-2. Tinjau aturan satu unit pada presisi publikasi; aturan ini dibuat untuk mengubah dependensi sel,
-   bukan meniru distribusi besar revisi BPS.
-3. Tentukan apakah sweep utama harus merevisi tepat satu sumber per run. Profil validasi dapat
-   memuat `revised_source_id` berbeda karena tujuannya menguji mekanisme umum.
-4. Jangan menyebut ukuran `1-2-4-7-14` sebagai freeze eksperimen utama.
-5. Adapter H9/H10 harus memakai `revised_source_id` untuk keputusan B2 dan tidak boleh memberi skor
+1. Jangan menyebut ukuran `1-2-4-7-14` sebagai freeze eksperimen utama.
+2. Adapter H9/H10 harus memakai `revised_source_id` untuk keputusan B2 dan tidak boleh memberi skor
    ke identitas sintetis.
+3. Saat membuat konfigurasi sweep utama, validasi bahwa setiap scenario/run hanya mempunyai satu
+   `revised_source_id` sesuai persetujuan manusia.

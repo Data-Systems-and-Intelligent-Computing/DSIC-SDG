@@ -879,24 +879,27 @@ make test
 | 7 | 50,0000% | 4 | siap, belum dijalankan |
 | 14 | 100,0000% | 4 | siap, belum dijalankan |
 
-Kelima skenario menghasilkan 28 baris karena setiap skenario adalah run independen (`1+2+4+7+14`). Terdapat 20 route, yaitu lima skenario dikali empat perlakuan, dengan nol mismatch checksum payload. Semua perubahan dapat dibalik dari kolom nilai sebelum dan delta. Sembilan invariant lulus.
+Kelima skenario menghasilkan 28 baris karena setiap skenario adalah run independen (`1+2+4+7+14`). Terdapat 20 route, yaitu lima skenario dikali empat perlakuan, dengan nol mismatch checksum payload. Semua perubahan dapat dibalik dari kolom nilai sebelum dan delta. Sepuluh invariant lulus.
 
 Marker validasi:
 
 ```text
-H8B_VERIFY|14|5|1-2-4-7-14|28|4|20|0|0|validation_ready
+H8B_VERIFY|14|5|1-2-4-7-14|28|4|20|0|0|3|validation_ready
 ```
 
-Artinya: 14 sel dasar, 5 skenario, urutan ukuran `1-2-4-7-14`, 28 baris injeksi, 4 perlakuan, 20 route, 0 mismatch payload, 0 validasi gagal, dan harness siap untuk validasi eksekusi H9.
+Artinya: 14 sel dasar, 5 skenario, urutan ukuran `1-2-4-7-14`, 28 baris injeksi, 4 perlakuan, 20 route, 0 mismatch payload, 0 validasi gagal, 3 keputusan manusia tervalidasi, dan harness siap untuk validasi eksekusi H9.
 
 VM menarik commit `5c3969c`, menjalankan `make h8b-run` dua kali, dan menghasilkan marker serta enam checksum artefak yang identik. Sebanyak 62 test VM lulus dan satu test ekstraksi PDF dilewati karena PDF mentah tidak disimpan di Git. Working tree VM tetap bersih.
 
 Profil ini **bukan freeze eksperimen utama** dan belum sama dengan sweep satu tahun seluruh provinsi. Tidak ada runtime maupun byte penyimpanan yang diukur pada H8B. B3 juga belum berjalan; route B3 hanya memastikan bentuk inputnya sudah disediakan.
 
+Pada 10 September 2026, peninjau manusia menyetujui tiga keputusan metodologis: latest-vintage sebagai nilai awal kanonik, delta tepat satu unit presisi publikasi, dan sweep utama tepat satu sumber yang direvisi per run. Persetujuan ketiga berlaku pada konfigurasi eksperimen utama; profil validasi H8B tetap boleh campuran sumber. Keputusan dicatat dalam [human_decisions.csv](../../config/h8b/human_decisions.csv), divalidasi pipeline, dan dimasukkan ke manifest. Kontrak naik dari `h8b.1` menjadi `h8b.2` agar perubahan keputusan tidak tersembunyi.
+
 ### Bukti yang dapat diaudit
 
 - [kontrak harness](../../contracts/h8b-injected-revision-harness.json)
 - [konfigurasi lima skenario](../../config/h8b/injection_scenarios.csv)
+- [tiga keputusan manusia](../../config/h8b/human_decisions.csv)
 - [rencana injeksi](../../results/processed/h8b-injection-plan.csv)
 - [28 perubahan sintetis](../../results/processed/h8b-injected-revisions.csv)
 - [20 route perlakuan](../../results/processed/h8b-treatment-routes.csv)
@@ -909,13 +912,13 @@ Commit jangkar: `5c3969c`.
 
 ### Yang harus dikoreksi manusia bila perlu
 
-Setujui latest-vintage sebagai titik awal injeksi dan aturan perubahan satu unit presisi publikasi. Profil validasi dapat menyentuh lebih dari satu `revised_source_id`; sebelum H11, putuskan apakah eksperimen utama wajib merevisi tepat satu sumber per run. Jangan menyebut ukuran `1-2-4-7-14` sebagai ukuran final atau menganggap route B3 sebagai bukti B3 sudah berjalan.
+Latest-vintage, aturan satu unit, dan tepat satu sumber per run utama sudah disetujui manusia. Yang masih perlu diperiksa adalah seed, pemetaan setiap `revised_source_id`, serta implementasi constraint satu sumber ketika konfigurasi utama dibuat. Jangan menyebut ukuran `1-2-4-7-14` sebagai ukuran final atau menganggap route B3 sebagai bukti B3 sudah berjalan.
 
 ## 17. Pemeriksaan akhir yang sudah lulus
 
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
-- seluruh 63 unit test lokal lulus;
+- seluruh 64 unit test lokal lulus;
 - di VM, 62 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
@@ -973,8 +976,9 @@ docker compose --env-file infra/docker/versions.env ps
 - [ ] Setujui bahwa empat komponen opsional belum diperlukan pada protokol saat ini.
 - [ ] Setujui arti snapshot penuh B1, empat baris yang dibawa maju, dan kebijakan rebuild tabel B1.
 - [ ] Pastikan angka 42 tidak dipakai sebagai ukuran byte sebelum pengukuran H10.
-- [ ] Setujui titik awal, seed, aturan delta, dan pemetaan `revised_source_id` pada H8B.
-- [ ] Putuskan apakah sweep utama membatasi tepat satu sumber yang direvisi per run.
+- [x] Setujui latest-vintage sebagai titik awal dan satu unit presisi publikasi sebagai aturan delta H8B (disetujui 2026-09-10).
+- [x] Putuskan sweep utama membatasi tepat satu sumber yang direvisi per run (disetujui 2026-09-10).
+- [ ] Periksa seed dan pemetaan setiap `revised_source_id` pada H8B.
 - [ ] Putuskan spesifikasi VM sebelum pengukuran performa dimulai.
 
 ## 19. Cara melakukan koreksi tanpa merusak jejak audit

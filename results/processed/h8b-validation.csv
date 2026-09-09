@@ -1,6 +1,7 @@
 invariant,status,checked_rows,detail
 unique_base_cells,passed,14,B0 contributes one latest observation per stable cell
 explicit_validation_profile,passed,5,ordered sizes 1-2-4-7-14 are labeled validation_only
+human_method_decisions,passed,3,"canonical base, mutation unit, and single-source main sweep were approved on 2026-09-10"
 deterministic_nested_selection,passed,28,one seeded SHA-256 ranking supplies every nested prefix
 exact_value_mutation,passed,28,every target changes by one published decimal unit
 protected_cell_dimensions,passed,28,the synthetic batch identifies cells without changing their dimensions

@@ -1,5 +1,5 @@
 {
-  "contract_version": "h8b.1",
+  "contract_version": "h8b.2",
   "stage": "H8",
   "track": "B",
   "name": "injected_revision_harness",
@@ -17,6 +17,14 @@
     "status": "validation_only",
     "final_experiment_freeze": false,
     "required_fixture_sizes": [1, 2, 4, 7, 14]
+  },
+  "human_decisions": {
+    "registry": "config/h8b/human_decisions.csv",
+    "approved_at": "2026-09-10",
+    "latest_vintage_as_canonical_base": true,
+    "one_published_unit_mutation": true,
+    "main_sweep_exactly_one_revised_source_per_run": true,
+    "validation_profile_may_mix_revised_sources": true
   },
   "selection": {
     "algorithm": "sort by sha256(seed + unit-separator + cell_id), then cell_id; take the first selection_count cells",

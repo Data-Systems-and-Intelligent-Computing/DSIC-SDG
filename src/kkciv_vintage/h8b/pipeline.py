@@ -77,6 +77,11 @@ PROTECTED_DIMENSIONS = [
     "unit",
 ]
 TREATMENTS = ["B0", "B1", "B2", "B3"]
+REQUIRED_HUMAN_DECISIONS = {
+    "h8b_base_state": ("injection_base", "use_latest_vintage_as_canonical_base"),
+    "h8b_mutation_unit": ("mutation_rule", "change_exactly_one_published_unit"),
+    "h8b_main_sweep_source": ("main_sweep", "exactly_one_revised_source_per_run"),
+}
 TEN_PLACES = Decimal("0.0000000001")
 
 
@@ -123,7 +128,7 @@ def _payload_hash(rows: list[dict[str, str]]) -> str:
 
 def validate_contract(contract: dict[str, Any]) -> None:
     if (
-        contract.get("contract_version") != "h8b.1"
+        contract.get("contract_version") != "h8b.2"
         or contract.get("stage") != "H8"
         or contract.get("track") != "B"
     ):
@@ -131,6 +136,16 @@ def validate_contract(contract: dict[str, Any]) -> None:
     profile = contract["scenario_profile"]
     if profile["status"] != "validation_only" or profile["final_experiment_freeze"] is not False:
         raise ValueError("H8B validation profile must not claim the final experiment freeze")
+    decisions = contract["human_decisions"]
+    if decisions != {
+        "registry": "config/h8b/human_decisions.csv",
+        "approved_at": "2026-09-10",
+        "latest_vintage_as_canonical_base": True,
+        "one_published_unit_mutation": True,
+        "main_sweep_exactly_one_revised_source_per_run": True,
+        "validation_profile_may_mix_revised_sources": True,
+    }:
+        raise ValueError("H8B human decisions do not match the approved protocol")
     selection = contract["selection"]
     if selection != {
         "algorithm": "sort by sha256(seed + unit-separator + cell_id), then cell_id; take the first selection_count cells",
@@ -165,6 +180,25 @@ def validate_contract(contract: dict[str, Any]) -> None:
     boundary = contract["measurement_boundary"]
     if boundary["timing"] != "not_measured" or boundary["storage"] != "not_measured":
         raise ValueError("H8B must not claim timing or storage measurements")
+
+
+def validate_human_decisions(rows: list[dict[str, str]]) -> None:
+    if len(rows) != len(REQUIRED_HUMAN_DECISIONS):
+        raise ValueError("H8B requires exactly three human decisions")
+    by_id = {row["decision_id"]: row for row in rows}
+    if set(by_id) != set(REQUIRED_HUMAN_DECISIONS):
+        raise ValueError("H8B human decision IDs are incomplete")
+    for decision_id, (scope, decision) in REQUIRED_HUMAN_DECISIONS.items():
+        row = by_id[decision_id]
+        if (
+            row["decided_at"] != "2026-09-10"
+            or row["decided_by"] != "human_reviewer"
+            or row["status"] != "approved"
+            or row["scope"] != scope
+            or row["decision"] != decision
+            or not row["rationale"]
+        ):
+            raise ValueError(f"H8B human decision {decision_id} is not approved as recorded")
 
 
 def _manifested_b0_state(manifest_path: Path) -> tuple[Path, dict[str, Any]]:
@@ -374,6 +408,7 @@ def run_h8b(
     *,
     contract_path: Path,
     scenario_path: Path,
+    human_decisions_path: Path,
     b0_manifest_path: Path,
     h6_manifest_path: Path,
     plan_output: Path,
@@ -385,6 +420,8 @@ def run_h8b(
 ) -> dict[str, Any]:
     contract = json.loads(contract_path.read_text(encoding="utf-8"))
     validate_contract(contract)
+    human_decisions = _read_csv(human_decisions_path)
+    validate_human_decisions(human_decisions)
     base_path, base_item = _manifested_b0_state(b0_manifest_path)
     vintage_path, vintage_item = _manifested_h6_vintages(h6_manifest_path)
     base_rows = _read_csv(base_path)
@@ -401,6 +438,7 @@ def run_h8b(
     validations = [
         {"invariant": "unique_base_cells", "status": "passed", "checked_rows": str(metrics["base_cells"]), "detail": "B0 contributes one latest observation per stable cell"},
         {"invariant": "explicit_validation_profile", "status": "passed", "checked_rows": str(metrics["scenario_count"]), "detail": f"ordered sizes {metrics['scenario_sizes']} are labeled validation_only"},
+        {"invariant": "human_method_decisions", "status": "passed", "checked_rows": str(len(human_decisions)), "detail": "canonical base, mutation unit, and single-source main sweep were approved on 2026-09-10"},
         {"invariant": "deterministic_nested_selection", "status": "passed", "checked_rows": str(metrics["injected_rows"]), "detail": "one seeded SHA-256 ranking supplies every nested prefix"},
         {"invariant": "exact_value_mutation", "status": "passed", "checked_rows": str(metrics["injected_rows"]), "detail": "every target changes by one published decimal unit"},
         {"invariant": "protected_cell_dimensions", "status": "passed", "checked_rows": str(metrics["injected_rows"]), "detail": "the synthetic batch identifies cells without changing their dimensions"},
@@ -412,6 +450,7 @@ def run_h8b(
     summary = [
         {"metric": "base_cells", "value": str(metrics["base_cells"]), "unit": "cells", "interpretation": "manifested B0 latest-vintage validation fixture"},
         {"metric": "validation_scenarios", "value": str(metrics["scenario_count"]), "unit": "scenarios", "interpretation": "not the final H10 experiment freeze"},
+        {"metric": "approved_human_decisions", "value": str(len(human_decisions)), "unit": "decisions", "interpretation": "base state, mutation unit, and main-sweep source scope"},
         {"metric": "scenario_sizes", "value": str(metrics["scenario_sizes"]), "unit": "cells", "interpretation": "nested deterministic validation prefixes"},
         {"metric": "injected_revision_rows", "value": str(metrics["injected_rows"]), "unit": "rows", "interpretation": "sum across independent validation scenarios"},
         {"metric": "target_treatments", "value": str(metrics["treatment_count"]), "unit": "treatments", "interpretation": "B0, B1, B2, and planned B3"},
@@ -443,10 +482,17 @@ def run_h8b(
             "final_experiment_freeze": False,
             **metrics,
         },
+        "human_decisions": {
+            "approved": len(human_decisions),
+            "approved_at": "2026-09-10",
+            "main_sweep_source_scope": "exactly_one_revised_source_per_run",
+            "validation_profile_may_mix_revised_sources": True,
+        },
         "measurement": contract["measurement_boundary"],
         "inputs": [
             {"path": str(contract_path), "sha256": _sha256(contract_path)},
             {"path": str(scenario_path), "rows": len(scenarios), "sha256": _sha256(scenario_path)},
+            {"path": str(human_decisions_path), "rows": len(human_decisions), "sha256": _sha256(human_decisions_path)},
             {"path": str(b0_manifest_path), "sha256": _sha256(b0_manifest_path)},
             {"path": str(base_path), "rows": base_item["rows"], "sha256": base_item["sha256"]},
             {"path": str(h6_manifest_path), "sha256": _sha256(h6_manifest_path)},
@@ -459,4 +505,8 @@ def run_h8b(
         json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
-    return {**metrics, "status": manifest["harness_status"]}
+    return {
+        **metrics,
+        "approved_human_decisions": len(human_decisions),
+        "status": manifest["harness_status"],
+    }
