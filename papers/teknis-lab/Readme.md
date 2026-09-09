@@ -789,6 +789,8 @@ Membuat batas atas penyimpanan yang menjamin seluruh angka lama tetap dapat dipa
 8. Mengambil tiga `snapshot_id` aktual dan membaca masing-masing dengan `VERSION AS OF` untuk membandingkannya dengan CSV bermanifest.
 9. Menjalankan pipeline dua kali pada pengujian determinisme dan menjalankan seluruh unit test.
 
+Integrasi pertama berhenti setelah snapshot pertama karena proses `docker compose exec` ikut membaca stdin loop katalog CSV. Pemeriksaan jumlah snapshot menangkap keadaan `got 1` dan menggagalkan run. Script kemudian diperbaiki dengan mengalihkan stdin proses Spark dari `/dev/null`; rerun dimulai lagi dari tabel B1 yang dibuat bersih dan memproses ketiga baris katalog.
+
 Perintah:
 
 ```bash

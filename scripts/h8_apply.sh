@@ -71,7 +71,7 @@ SELECT concat(
 );
 "
   set +e
-  output="$("${compose[@]}" exec -T spark /opt/spark/bin/spark-sql --silent -e "$sql" 2>&1)"
+  output="$("${compose[@]}" exec -T spark /opt/spark/bin/spark-sql --silent -e "$sql" </dev/null 2>&1)"
   spark_status=$?
   set -e
   printf '%s\n' "$output"

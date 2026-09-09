@@ -72,6 +72,11 @@ make h8-apply
 state akhir dengan B0, dan menulis manifest H8. `make h8-apply` mengulang tahap logis, membuat tiga
 snapshot Iceberg, lalu membaca masing-masing snapshot kembali.
 
+Pada integrasi pertama, proses Spark di dalam loop shell ikut mengonsumsi stdin katalog sehingga
+run berhenti setelah snapshot pertama. Guard jumlah snapshot menolak hasil `got 1`. Stdin proses
+Docker kemudian dialihkan dari `/dev/null`; rerun yang bersih memproses ketiga rilis. Catatan ini
+dipertahankan agar kegagalan integrasi tidak hilang dari audit.
+
 ## Artefak audit
 
 - kontrak: `contracts/h8-b1-full-snapshot.json`;
