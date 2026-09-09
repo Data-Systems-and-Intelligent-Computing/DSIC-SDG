@@ -1,0 +1,103 @@
+{
+  "batch_id": "h4-2981e0fb3bc2d960",
+  "gate_g1": {
+    "criterion_1_mismatch_domains": [
+      "ecology",
+      "economy",
+      "energy"
+    ],
+    "criterion_1_passed": true,
+    "criterion_2_candidate_inclusive_passed": true,
+    "criterion_2_candidate_inclusive_rate": "0.8455",
+    "criterion_2_confirmed_core_events": 85,
+    "criterion_2_confirmed_passed": false,
+    "criterion_2_confirmed_rate": "0.6911",
+    "criterion_2_core_cause_events_candidate_inclusive": 104,
+    "criterion_2_total_events": 123,
+    "criterion_3_status": "pending_H5_revision_trace_freeze",
+    "overall_gate_status": "pending_H5"
+  },
+  "generated_from_snapshot_at": "2026-09-09T00:26:24.886207+00:00",
+  "inputs": [
+    {
+      "path": "data/manifests/h3-comparison.json",
+      "sha256": "7bdf036e824a419b50bd290dae70db200b4beb502b9003944992345e7e2a7978"
+    },
+    {
+      "path": "data/manifests/h3-release-reconciliation.json",
+      "sha256": "5604b4b09c458d4e9c823f63fdc9200e97532682d676090702638ac297903be7"
+    },
+    {
+      "path": "config/h4/classification_rules.csv",
+      "sha256": "e0fd8eb3a04b615ac6221e6e4270b50d6e9b2573409a99b3938b0e9c158630df"
+    },
+    {
+      "path": "config/h4/indicator_domains.csv",
+      "sha256": "a64b27eb5dd2dfaa799215237622f1b48c4da8e70ecd95ce630e4595a8bce20a"
+    },
+    {
+      "path": "results/processed/h3-webapi-observations.csv",
+      "rows": 1435,
+      "sha256": "9d9443aca6b83cc000ec2747cf061bb49285b49495ee86f3b4ae272560dd0357"
+    },
+    {
+      "path": "results/processed/h3-publication-observations.csv",
+      "rows": 1435,
+      "sha256": "b3d8c61fb3e65763db75e9c07994a958e8aaaec41c4258f591f62991f78b7959"
+    },
+    {
+      "path": "results/processed/h3-discrepancies.csv",
+      "rows": 33,
+      "sha256": "db4917cf874520f436d7487cc99f1f395efd2d47dd483861dfd623aabbc855e3"
+    },
+    {
+      "path": "results/processed/h3-granularity.csv",
+      "rows": 82,
+      "sha256": "2ff90a0061d82e706c26f6d8a1478a3c87436cb3d370108d275baec7969c1df4"
+    },
+    {
+      "path": "results/processed/h3-release-normalized-observations.csv",
+      "rows": 4796,
+      "sha256": "708036948f678e40e023c8d4adbda6d6fee130bb5f28f529797d6b1c76b740f1"
+    },
+    {
+      "path": "results/processed/h3-release-discrepancies.csv",
+      "rows": 8,
+      "sha256": "2ba7db6c691904346e055a456a0d2e1d426626dabba5079cbfb37b545f5106b5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h4-ingested-observations.csv",
+      "rows": 7666,
+      "sha256": "7d5cf902259dde3294f0f364fa24835554e7fc2b73f995456ddc46bb0d5a0a89"
+    },
+    {
+      "path": "results/processed/h4-ingestion-inventory.csv",
+      "rows": 32,
+      "sha256": "9455cf5b810bf9f1c9ae14adf8224cf7037142b35d8c084b060458e06de407df"
+    },
+    {
+      "path": "results/processed/h4-classified-events.csv",
+      "rows": 123,
+      "sha256": "8fe612c4a78f8f9c5a8d1ea177fb6401aa422787eacb1cc574cc2927b1b40f2b"
+    },
+    {
+      "path": "results/processed/h4-classification-summary.csv",
+      "rows": 12,
+      "sha256": "e5524c8489d9a8737852d3d5e48c2b5d33a4fe7c575d004f6aa439d2e5a6da27"
+    }
+  ],
+  "policy": {
+    "candidate_evidence_is_reported_separately": true,
+    "classification_rules": "config/h4/classification_rules.csv",
+    "core_cause_families": [
+      "granularity",
+      "methodology",
+      "vintage"
+    ],
+    "cost_class": "free",
+    "gate_g1_explanation_threshold": "0.70"
+  },
+  "stage": "H4"
+}

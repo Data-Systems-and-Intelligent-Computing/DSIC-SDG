@@ -1,12 +1,14 @@
-.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
+.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
 
 PYTHON ?= python3
 H1 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h1.cli
 H2 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h2.cli
 H3 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h3.cli
+H4 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h4.cli
 COMPOSE ?= docker-compose --env-file infra/docker/versions.env
 STACK_HOST ?= sigerciv@34.128.67.92
-STACK_DIR ?= /home/sigerciv/penelitian-kk-h3-runtime
+STACK_DIR ?= /home/sigerciv/DSIC-SDG
+STACK_BRANCH ?= main
 REMOTE_COMPOSE = ssh $(STACK_HOST) 'cd $(STACK_DIR) && docker compose --env-file infra/docker/versions.env'
 
 help:
@@ -23,6 +25,8 @@ help:
 	@echo "make h3-fetch     Download the free WebAPI snapshot used by the H3 release supplement"
 	@echo "make h3-run       Compare national and province cells across both channels"
 	@echo "make h3-releases  Compare WebAPI, TPB 2024, and TPB 2025 release cells"
+	@echo "make h4-run       Ingest manifested H3 outputs and apply shared classification rules"
+	@echo "make h4-publish   Publish the H4 batch to the running MinIO warehouse"
 	@echo "make stack-up     Bring up MinIO, the Iceberg REST catalog, and Spark"
 	@echo "make stack-remote-up  Sync and start the stack on STACK_HOST"
 	@echo "make stack-remote-status  Show the remote stack status"
@@ -79,6 +83,12 @@ h3-fetch:
 h3-releases:
 	$(H3) releases
 
+h4-run:
+	$(H4)
+
+h4-publish:
+	bash scripts/h4_publish.sh
+
 stack-up:
 	$(COMPOSE) up -d
 	$(COMPOSE) ps
@@ -92,9 +102,7 @@ stack-freeze:
 	done | tee infra/docker/image-digests.txt
 
 stack-remote-sync:
-	ssh $(STACK_HOST) 'mkdir -p $(STACK_DIR)/data $(STACK_DIR)/results'
-	COPYFILE_DISABLE=1 tar -czf - docker-compose.yml infra/docker/versions.env infra/spark/spark-defaults.conf | \
-		ssh $(STACK_HOST) 'tar -xzf - -C $(STACK_DIR)'
+	ssh $(STACK_HOST) 'cd $(STACK_DIR) && git pull --ff-only origin $(STACK_BRANCH)'
 
 stack-remote-up: stack-remote-sync
 	$(REMOTE_COMPOSE) up -d --wait

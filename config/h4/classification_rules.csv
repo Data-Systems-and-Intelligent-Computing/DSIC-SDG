@@ -1,0 +1,9 @@
+rule_id,input_kind,input_label,classification,cause_family,evidence_level,counts_toward_g1,description
+R01,baseline_discrepancy,last_digit_difference,rounding_or_presentation,rounding_or_presentation,observed,no,Difference is no larger than one unit in the last published decimal place
+R02,baseline_discrepancy,candidate_revision,vintage_candidate,vintage,candidate,yes,WebAPI was updated after the publication but a prior WebAPI snapshot is unavailable
+R03,baseline_discrepancy,unclassified_difference,unclassified_difference,unclassified,unresolved,no,Difference exceeds published precision without a later update marker
+R04,release_discrepancy,published_release_change,vintage_observed,vintage,observed,yes,Two dated official publications report different values for the same aligned cell
+R05,release_discrepancy,release_revision_candidate,vintage_candidate,vintage,candidate,yes,WebAPI and a dated publication differ without two historical WebAPI snapshots
+R06,release_discrepancy,methodology_or_denominator_change_candidate,methodology_candidate,methodology,candidate,yes,Publication wording or denominator changes together with the value
+R07,release_discrepancy,methodology_or_unit_change_candidate,methodology_or_unit_candidate,methodology,candidate,yes,The gap is incompatible with rounding and requires a unit or methodology check
+R08,granularity,national_vs_unweighted_mean,granularity_structural,granularity,observed,yes,National value differs from the unweighted mean of its province values

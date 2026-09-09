@@ -1,0 +1,17 @@
+indicator_key,domain
+sdg04_completion_rate,education
+sdg04_parity_index,education
+sdg04_paud,education
+sdg06_handwashing,environment
+sdg06_sanitation,environment
+sdg07_clean_cooking,energy
+sdg07_electricity_access,energy
+sdg07_energy_intensity,energy
+sdg07_renewable_share,energy
+sdg08_gdp_per_capita_growth,economy
+sdg08_hourly_wage,economy
+sdg08_informal_employment,economy
+sdg08_neet,economy
+sdg08_productivity_growth,economy
+sdg08_unemployment,economy
+sdg15_forest_cover,ecology

@@ -1,0 +1,13 @@
+domain,cause_family,evidence_level,event_count,counts_toward_g1
+ecology,methodology,candidate,1,yes
+economy,granularity,observed,40,yes
+economy,rounding_or_presentation,observed,13,no
+economy,vintage,candidate,14,yes
+economy,vintage,observed,2,yes
+education,granularity,observed,24,yes
+energy,granularity,observed,6,yes
+energy,methodology,candidate,1,yes
+energy,rounding_or_presentation,observed,6,no
+energy,vintage,candidate,3,yes
+energy,vintage,observed,1,yes
+environment,granularity,observed,12,yes

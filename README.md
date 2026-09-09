@@ -239,6 +239,14 @@ telah lolos pemeriksaan kesehatan dan Spark berhasil mengakses katalog `kkciv`. 
 image dibekukan di [`infra/docker/`](infra/docker/). Jalankan `make stack-remote-status` untuk
 memeriksa layanan dan `make stack-remote-up` untuk menyinkronkan konfigurasi lalu menaikkannya.
 
+H4 menerapkan delapan aturan klasifikasi yang sama pada kelima domain dan membentuk batch ingestion
+ber-manifest berisi 7.666 observasi. Dari 123 kejadian, 104 atau 84,55 persen masuk keluarga
+vintage, metodologi, atau granularitas bila bukti kandidat ikut dihitung. Bukti terkonfirmasi baru
+85 kejadian atau 69,11 persen, sedikit di bawah ambang 70 persen. Gate G1 karena itu tetap
+`pending_H5`; H5 perlu mengonfirmasi minimal dua kandidat dan membekukan jejak revisinya. Hasil,
+aturan, serta batas interpretasinya tersedia di
+[`docs/research/h4-classification-and-ingestion.md`](docs/research/h4-classification-and-ingestion.md).
+
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
 **Gate G1 — Objek penelitian terbukti ada**
