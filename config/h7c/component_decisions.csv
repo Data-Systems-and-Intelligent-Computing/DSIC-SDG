@@ -1,0 +1,5 @@
+component,status,decision_basis,current_evidence,activation_trigger
+Trino,not_used,Spark SQL is sufficient for current analytical checks,docker-compose.yml has no Trino service,add only if a cross-engine query experiment is approved
+OpenMetadata,not_used,H6C and H7C emit a deterministic lineage graph as versioned CSV and manifest,docker-compose.yml has no OpenMetadata service,add only if external catalog UI or governance integration becomes an evaluated requirement
+Apache Airflow,not_used,all pulls and transformations are frozen batch commands invoked through Makefile,docker-compose.yml has no Airflow service,add only if recurring scheduled ingestion becomes part of the protocol
+GeoPandas,not_used,no geometry workload is active and SDG 15 geometry remains reference-only/hold,pyproject.toml has no GeoPandas dependency,add only after an authoritative free geometry source and spatial experiment are approved

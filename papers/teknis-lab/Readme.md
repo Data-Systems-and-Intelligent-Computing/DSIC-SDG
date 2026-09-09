@@ -1,8 +1,8 @@
-# Rekap Teknis dan Panduan Audit H1–H6C, H7A, dan H7B
+# Rekap Teknis dan Panduan Audit H1–H6C dan H7A–H7C
 
-Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C, H7 Jalur A, dan H7 Jalur B. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
+Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C serta H7 Jalur A, B, dan C. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
 
-Rekap ini membekukan keadaan implementasi sampai commit `4eec549` (`Record H6 track C VM verification`) pada 9 September 2026. File ini sendiri ditambahkan setelah batas tersebut. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
+Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 September 2026, lalu H7C ditambahkan sebagai kelanjutan audit pada tanggal yang sama. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
 
 ## 1. Ringkasan status
 
@@ -18,8 +18,9 @@ Rekap ini membekukan keadaan implementasi sampai commit `4eec549` (`Record H6 tr
 | H6 Jalur C | Lineage tingkat sel | 101 node, 235 edge, 38 path | Selesai dan divalidasi |
 | H7 Jalur A | Perlakuan B0, overwrite | 38 masukan menjadi 14 current | Selesai dan diuji di Iceberg VM |
 | H7 Jalur B | Perlakuan B2, single source | 14 dipilih, 24 dibuang | Selesai dan diuji di Iceberg VM |
+| H7 Jalur C | Lineage perlakuan dan verifikasi related work | 207 node, 491 edge, 15 sumber unik | Selesai dan divalidasi lokal |
 
-Yang **belum** dikerjakan pada batas audit ini adalah H7 Jalur C, B1, harness revisi tersuntik, B3, penutupan lineage sampai metrik/tabel, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Perlakuan yang baru berjalan adalah B0 dan B2, yaitu 2 dari 4 perlakuan yang direncanakan.
+Yang **belum** dikerjakan pada batas audit ini adalah B1, harness revisi tersuntik, B3, penutupan lineage sampai metrik/tabel/gambar, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Perlakuan yang baru berjalan adalah B0 dan B2, yaitu 2 dari 4 perlakuan yang direncanakan.
 
 ## 2. Cara memahami bukti di repositori
 
@@ -58,7 +59,7 @@ pipeline/test/integrasi dijalankan di /home/sigerciv/DSIC-SDG
 bukti marker dicatat kembali dalam dokumentasi/manifest, lalu commit dan push
 ```
 
-Repo di VM menggunakan SSH untuk origin. Pull selalu memakai `--ff-only` agar VM tidak membuat merge commit diam-diam. Tahap yang mempunyai marker VM eksplisit adalah H5, H6A, H6B, H6C, H7A, dan H7B. H3 mempunyai bukti kesehatan stack. Tidak ada marker VM khusus H1 atau H2, sehingga keduanya jangan disebut sudah diverifikasi terpisah di VM.
+Repo di VM menggunakan SSH untuk origin. Pull selalu memakai `--ff-only` agar VM tidak membuat merge commit diam-diam. Tahap yang mempunyai marker VM eksplisit pada catatan ini adalah H5, H6A, H6B, H6C, H7A, dan H7B; H7C mempunyai marker lokal dan akan dicatat sebagai marker VM setelah commit implementasinya ditarik. H3 mempunyai bukti kesehatan stack. Tidak ada marker VM khusus H1 atau H2, sehingga keduanya jangan disebut sudah diverifikasi terpisah di VM.
 
 Stack yang sudah dinaikkan dan diperiksa di VM:
 
@@ -695,16 +696,89 @@ Commit jangkar: `93b2f2e` dan `d93cd3f`.
 
 Periksa alasan skor, tie-break, dan daftar 24 kandidat yang dibuang. B0 dan B2 sama-sama hanya dapat mengembalikan 14/38 alamat, tetapi state akhirnya berbeda pada 10 sel. Perbedaan itu penting dan harus tetap terlihat dalam eksperimen berikutnya.
 
-## 14. Pemeriksaan akhir yang sudah lulus
+## 14. H7 Jalur C — Lineage perlakuan dan verifikasi related work
+
+### Tujuan
+
+Menghubungkan keputusan B0 dan B2 kembali ke sumber H6C serta menyelesaikan verifikasi seluruh referensi yang sebelumnya hanya berstatus `daftar`.
+
+### Langkah yang dieksekusi
+
+1. Membekukan kontrak [h7c-evidence-lineage.json](../../contracts/h7c-evidence-lineage.json).
+2. Menginventarisasi 18 kemunculan `daftar` menjadi 15 sumber unik.
+3. Memeriksa setiap sumber pada penerbit, prosiding, arXiv, ECB, rOpenSci, Microsoft Learn, atau repositori proyek resmi.
+4. Menautkan bukti primer dan memperbaiki metadata di [related-work.md](../../docs/research/related-work.md).
+5. Mempertahankan 101 node dan 235 edge H6C tanpa mengubah identitas.
+6. Menambahkan node `treatment_run`, `treatment_decision`, dan `treatment_output` untuk B0 dan B2.
+7. Menghubungkan masing-masing dari 76 keputusan ke path sumber H6C serta keluaran serving yang tepat.
+8. Memeriksa status Trino, OpenMetadata, Airflow, dan GeoPandas terhadap Compose dan dependency Python.
+9. Menjalankan sembilan invariant serta uji determinisme dan negative test.
+
+Perintah:
+
+```bash
+make h7c-run
+make test
+```
+
+### Hasil
+
+- 15 sumber unik menutup seluruh 18 kemunculan `daftar`;
+- 0 baris tabel `daftar` tersisa;
+- graf gabungan berisi 207 node dan 491 edge;
+- 76 path keputusan terdiri dari 38 B0 dan 38 B2;
+- 28 alamat dapat dibaca dan 48 tidak dapat dibaca sesuai state kedua perlakuan;
+- semua 76 path mempunyai hubungan sumber-ke-output lengkap (`1,0000`);
+- empat komponen opsional dinilai dan seluruhnya berstatus `not_used`.
+
+Marker pipeline:
+
+```text
+H7C_VERIFY|15|18|0|207|491|76|28|48|1.0000|4|validated
+```
+
+Artinya: 15 sumber unik, 18 kemunculan lama, 0 `daftar` tersisa, 207 node, 491 edge, 76 path perlakuan, 28 alamat tersedia, 48 tidak tersedia, kelengkapan 1,0000, empat komponen opsional tidak dipakai, dan status tervalidasi.
+
+### Apakah komponen opsional digunakan?
+
+| Komponen | Jawaban | Alasan saat ini |
+|---|---|---|
+| Trino | **Tidak** | Seluruh query validasi masih cukup dijalankan dengan Spark SQL; tidak ada studi lintas mesin. |
+| OpenMetadata | **Tidak** | Bukti lineage disimpan langsung sebagai CSV graf dan manifest ber-checksum. |
+| Apache Airflow | **Tidak** | Pipeline dijalankan sebagai batch beku melalui Makefile, bukan jadwal penarikan berulang. |
+| GeoPandas | **Tidak** | Tidak ada workload geometri aktif; sumber geometri SDG 15 masih `hold`. |
+
+Keputusan ini bukan larangan permanen. Pemicu pemasangan masing-masing komponen dicatat di [component_decisions.csv](../../config/h7c/component_decisions.csv). Sampai pemicu itu masuk protokol, pemasangan komponen hanya menambah kompleksitas tanpa memberi bukti baru.
+
+### Bukti yang dapat diaudit
+
+- [kontrak H7C](../../contracts/h7c-evidence-lineage.json)
+- [inventaris metadata primer](../../config/h7c/related_work_verification.csv)
+- [keputusan komponen](../../config/h7c/component_decisions.csv)
+- [207 node](../../results/processed/h7c-lineage-nodes.csv)
+- [491 edge](../../results/processed/h7c-lineage-edges.csv)
+- [76 path perlakuan](../../results/processed/h7c-treatment-lineage.csv)
+- [hasil verifikasi 15 sumber](../../results/processed/h7c-related-work-verification.csv)
+- [status empat komponen](../../results/processed/h7c-component-status.csv)
+- [sembilan invariant](../../results/processed/h7c-validation.csv)
+- [manifest H7C](../../data/manifests/h7c-evidence-lineage.json)
+- [laporan H7C](../../docs/research/h7c-evidence-lineage.md)
+
+### Yang harus dikoreksi manusia bila perlu
+
+Status `metadata` bukan berarti semua paper sudah dibaca penuh. Audit manusia perlu menilai relevansi 15 sumber, enam koreksi tahun utama, dan posisi dokumentasi produk sebagai related work. Kelengkapan lineage 1,0000 hanya berlaku pada 76 keputusan B0/B2; B1, B3, metrik, tabel, dan gambar belum tercakup.
+
+## 15. Pemeriksaan akhir yang sudah lulus
 
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
-- seluruh 49 unit test lokal lulus;
+- seluruh 55 unit test lokal lulus;
 - di VM, 48 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
 - H5, H6A, H7A, dan H7B berhasil menulis serta membaca tabel Iceberg;
-- H6B dan H6C menghasilkan artefak deterministik dan marker validasi di VM.
+- H6B dan H6C menghasilkan artefak deterministik dan marker validasi di VM;
+- H7C menghasilkan artefak deterministik dan marker lokal; bukti VM dicatat setelah pull commit implementasi.
 
 Urutan pemeriksaan cepat tanpa menarik ulang data mentah:
 
@@ -718,6 +792,7 @@ make h6b-run
 make h6c-run
 make h7-run
 make h7b-run
+make h7c-run
 make test
 ```
 
@@ -733,7 +808,7 @@ git log -1 --oneline
 docker compose --env-file infra/docker/versions.env ps
 ```
 
-## 15. Daftar audit manusia yang disarankan
+## 16. Daftar audit manusia yang disarankan
 
 - [ ] Cocokkan 29 pilihan WebAPI H1 dengan definisi indikator, bukan hanya kemiripan nama.
 - [ ] Setujui atau koreksi 14 `verified`, 17 `partial`, dan 4 `unavailable`.
@@ -746,9 +821,12 @@ docker compose --env-file infra/docker/versions.env ps
 - [ ] Periksa empat locator PDF H6C yang dipakai ulang oleh 20 observasi.
 - [ ] Setujui penghapusan snapshot lama sebagai bagian definisi B0 dan B2.
 - [ ] Bandingkan 10 sel yang berbeda antara hasil latest-vintage/B0 dan hasil B2.
+- [ ] Periksa 15 rekaman metadata H7C dan enam koreksi tahun utama sebelum memakai klaim rinci.
+- [ ] Pastikan 76 path H7C menunjuk keputusan serta output B0/B2 yang tepat.
+- [ ] Setujui bahwa empat komponen opsional belum diperlukan pada protokol saat ini.
 - [ ] Putuskan spesifikasi VM sebelum pengukuran performa dimulai.
 
-## 16. Cara melakukan koreksi tanpa merusak jejak audit
+## 17. Cara melakukan koreksi tanpa merusak jejak audit
 
 Jika audit manusia menemukan kesalahan:
 
@@ -764,7 +842,7 @@ Jika audit manusia menemukan kesalahan:
 
 Dengan prosedur tersebut, koreksi manusia menjadi bagian dari provenance penelitian dan tidak menghapus bukti keputusan sebelumnya dari riwayat Git.
 
-## 17. Batas klaim pada posisi sekarang
+## 18. Batas klaim pada posisi sekarang
 
 Yang sudah dapat diklaim:
 
@@ -773,6 +851,8 @@ Yang sudah dapat diklaim:
 - lebih dari 70% event sudah mempunyai sebab inti terkonfirmasi menurut aturan yang dibekukan;
 - jejak vintage dapat disimpan, dibaca, dan dilacak sampai rekaman sumber;
 - dua baseline, B0 dan B2, sudah berjalan pada workload 38 observasi/14 sel.
+- seluruh keputusan B0/B2 dapat ditelusuri dari rekaman sumber sampai keluaran perlakuan;
+- tidak ada lagi sumber related work yang hanya berstatus `daftar`.
 
 Yang belum dapat diklaim:
 
@@ -783,4 +863,4 @@ Yang belum dapat diklaim:
 - bahwa Gate G2 atau G3 sudah lolos;
 - bahwa hasil 14 sel dapat digeneralisasi ke seluruh indikator BPS.
 
-Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; fondasi tiga jalur H6 selesai; B0 dan B2 selesai; eksperimen pembanding lengkap dan pengukuran utama belum dimulai.**
+Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; fondasi tiga jalur H6 dan H7C selesai; B0 dan B2 selesai; B1, B3, penutupan lineage, dan pengukuran utama belum dimulai.**

@@ -1,0 +1,10 @@
+invariant,status,checked_rows,detail
+h7c_contract,passed,7,"literature, lineage extension, component, and exact-matching policies match h7c.1"
+prior_daftar_inventory,passed,18,15 unique records account for every prior daftar occurrence
+primary_metadata_evidence,passed,15,"every source has an HTTPS publisher, repository, institution, product, or project record"
+no_remaining_daftar,passed,0,related-work contains no unverified table row
+base_h6c_graph_immutable,passed,336,all H6C node and edge rows are copied without identity changes
+treatment_decision_coverage,passed,76,B0=38 and B2=38 decisions cover the same H6 workload
+source_to_output_paths,passed,76,every treatment decision inherits one exact H6C source path and resolves to one serving output
+optional_components_disclosed,passed,4,"Trino, OpenMetadata, Airflow, and GeoPandas are explicitly not used"
+no_fuzzy_matching,passed,491,"all inherited and new edges use hashes, manifests, observation_id, or cell_id"

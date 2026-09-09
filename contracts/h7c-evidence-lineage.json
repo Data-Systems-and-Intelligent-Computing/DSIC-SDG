@@ -1,0 +1,58 @@
+{
+  "contract_version": "h7c.1",
+  "stage": "H7",
+  "track": "C",
+  "name": "treatment_evidence_lineage_and_related_work_verification",
+  "literature_verification": {
+    "prior_status": "daftar",
+    "required_final_status": "metadata",
+    "expected_unique_sources": 15,
+    "expected_prior_occurrences": 18,
+    "accepted_evidence_authorities": [
+      "publisher",
+      "official_proceedings",
+      "preprint_repository",
+      "official_working_paper",
+      "official_project",
+      "official_product_documentation"
+    ],
+    "unverified_marker": "| daftar |"
+  },
+  "lineage_extension": {
+    "base_contract_version": "h6c.1",
+    "treatments": ["B0", "B2"],
+    "required_decisions_per_treatment": 38,
+    "required_outputs_per_treatment": 14,
+    "new_node_types": [
+      "treatment_run",
+      "treatment_decision",
+      "treatment_output"
+    ],
+    "new_relationships": [
+      "observation_enters_treatment",
+      "treatment_run_evaluates_candidate",
+      "decision_resolves_to_output",
+      "output_serves_cell"
+    ],
+    "matching": "exact_identifiers_only",
+    "fuzzy_matching_allowed": false
+  },
+  "optional_components": {
+    "expected_components": [
+      "Trino",
+      "OpenMetadata",
+      "Apache Airflow",
+      "GeoPandas"
+    ],
+    "required_current_status": "not_used"
+  },
+  "invariants": [
+    "all prior daftar occurrences resolve to one verified source record",
+    "the related-work document has no remaining daftar marker",
+    "every B0 and B2 decision inherits one complete H6C source path",
+    "every treatment decision resolves to the exact serving output for its cell",
+    "base H6C node and edge identities remain unchanged",
+    "optional components are not reported as active without repository evidence",
+    "no lineage or literature identity is inferred with fuzzy matching"
+  ]
+}

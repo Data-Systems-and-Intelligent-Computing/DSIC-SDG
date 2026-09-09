@@ -304,6 +304,15 @@ yang dibuang (`0,3684`). Jalankan `make h7b-run`; implementasi dan batas interpr
 [`docs/research/h7b-b2-single-source.md`](docs/research/h7b-b2-single-source.md).
 Uji idempoten pada VM lulus dengan marker `H7B_VERIFY|14|14|1|10|14|24|1|3|0|0|0`.
 
+H7 Jalur C memperluas graf H6C ke seluruh keputusan B0 dan B2 tanpa mengubah identitas sumber yang
+sudah dibekukan. Graf gabungan berisi 207 node, 491 edge, dan 76 path keputusan-ke-output dengan
+kelengkapan `1,0000`; 28 alamat masih dapat dibaca dan 48 tidak dapat dibaca sesuai hasil kedua
+perlakuan. H7C juga menutup 18 kemunculan status `daftar` yang mewakili 15 sumber unik pada
+related work. Seluruhnya kini mempunyai metadata primer dan tidak ada baris `daftar` tersisa.
+Jalankan `make h7c-run`; kontrak, koreksi bibliografi, dan batas interpretasinya ada di
+[`docs/research/h7c-evidence-lineage.md`](docs/research/h7c-evidence-lineage.md).
+Marker pipeline adalah `H7C_VERIFY|15|18|0|207|491|76|28|48|1.0000|4|validated`.
+
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
 **Gate G1 — Objek penelitian terbukti ada**
@@ -412,12 +421,17 @@ Wajib:
 - Docker Compose — deployment yang dapat diulang;
 - Git — versioning kode dan konfigurasi.
 
-Dipakai bila diperlukan:
+Komponen opsional berikut sudah dinilai pada H7C dan **belum digunakan**:
 
-- Trino — query analitik;
-- OpenMetadata — bukti lineage dan governance;
-- Apache Airflow — orkestrasi bila jadwal penarikan perlu otomatis;
-- GeoPandas — hanya untuk geometri referensi SDG 15.
+| Komponen | Status sekarang | Pemicu penggunaan |
+|---|---|---|
+| Trino | Tidak digunakan; query saat ini memakai Spark SQL | Aktifkan hanya bila eksperimen lintas query engine disetujui |
+| OpenMetadata | Tidak digunakan; lineage disimpan sebagai CSV/manifest deterministik | Aktifkan bila UI katalog atau integrasi governance menjadi objek evaluasi |
+| Apache Airflow | Tidak digunakan; pipeline dijalankan sebagai batch beku melalui Makefile | Aktifkan bila penarikan terjadwal masuk protokol |
+| GeoPandas | Tidak digunakan; workload geometri SDG 15 belum aktif | Aktifkan setelah sumber geometri gratis disetujui dan eksperimen spasial dibuka |
+
+Keputusan mesin-baca dan pemicunya berada di
+[`config/h7c/component_decisions.csv`](config/h7c/component_decisions.csv).
 
 Tidak dipakai pada artikel ini: Sedona, PostGIS, agen AI text-to-SQL, dashboard, dan seluruh komponen MLOps. Semuanya di luar pertanyaan penelitian.
 

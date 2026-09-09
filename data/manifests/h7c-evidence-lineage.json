@@ -1,0 +1,98 @@
+{
+  "contract_version": "h7c.1",
+  "evidence_status": "validated",
+  "inputs": [
+    {
+      "path": "contracts/h7c-evidence-lineage.json",
+      "sha256": "703f2b6520bf3c2457ce155e22687c9b762437f436d4dc0afe18a9d70dcb2d2c"
+    },
+    {
+      "path": "config/h7c/related_work_verification.csv",
+      "sha256": "407e243a224a1343b18e91efb0cd4e6584e3ef1a937d6f17b7277e33086e5102"
+    },
+    {
+      "path": "config/h7c/component_decisions.csv",
+      "sha256": "474838e185d39d5e07bc171390474894e1b0e3673930f75396db81e68602eff7"
+    },
+    {
+      "path": "docs/research/related-work.md",
+      "sha256": "32416831885e3dc2d5509f6acfd1959695cb4ed02db621edfad6f4a20af0d9bf"
+    },
+    {
+      "path": "docker-compose.yml",
+      "sha256": "8467f272d034e885b67d2679940e752f61644a101895f38346c4e1dc44420323"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "3f1fda6930ba3965e8a691f4fb05666f6c27a6d76066ea045c6c9c45e967b517"
+    },
+    {
+      "path": "data/manifests/h6c-cell-lineage.json",
+      "sha256": "d9f3d571c7886ad60f1195b9fcbad4899a54fe5ce5b6f023cca62a0505a452b6"
+    },
+    {
+      "path": "data/manifests/h7-b0-overwrite.json",
+      "sha256": "3a58c69db80ff66d43f965b24ab770a7c03a99a554d2ac36d9b0e239e29c99ff"
+    },
+    {
+      "path": "data/manifests/h7b-b2-single-source.json",
+      "sha256": "9f7330f0c0c80e3feefd308bd8642b6ee36ac2107c853e18b2374e379f57648f"
+    }
+  ],
+  "lineage": {
+    "addressable_requests": 28,
+    "base_edges": 235,
+    "base_nodes": 101,
+    "combined_edges": 491,
+    "combined_nodes": 207,
+    "completeness_rate": "1.0000",
+    "matching": "exact_identifiers_only",
+    "non_addressable_requests": 48,
+    "treatment_outputs": 28,
+    "treatment_paths": 76
+  },
+  "literature": {
+    "prior_occurrences": 18,
+    "remaining_daftar": 0,
+    "unique_sources": 15
+  },
+  "optional_components": {
+    "assessed": 4,
+    "not_used": 4,
+    "used": 0
+  },
+  "outputs": [
+    {
+      "path": "results/processed/h7c-lineage-nodes.csv",
+      "rows": 207,
+      "sha256": "bf3f54912238154e5ed2e72795a6de7a62187395081e291a8f1961889daa553e"
+    },
+    {
+      "path": "results/processed/h7c-lineage-edges.csv",
+      "rows": 491,
+      "sha256": "8546fcbac7b5e3799f21d02a8a8b0bb9f21e17de0b5434877afe005a09b6c9af"
+    },
+    {
+      "path": "results/processed/h7c-treatment-lineage.csv",
+      "rows": 76,
+      "sha256": "af1e248fe947e52968d3e3269e6715d5b522b04500686cb84c5db59d1309c033"
+    },
+    {
+      "path": "results/processed/h7c-related-work-verification.csv",
+      "rows": 15,
+      "sha256": "9b5a1aecb7913b718e0db38bbb94134087127acce28f391e5a255d9ae1fba80a"
+    },
+    {
+      "path": "results/processed/h7c-component-status.csv",
+      "rows": 4,
+      "sha256": "474838e185d39d5e07bc171390474894e1b0e3673930f75396db81e68602eff7"
+    },
+    {
+      "path": "results/processed/h7c-validation.csv",
+      "rows": 9,
+      "sha256": "92a1d5bcaec03e01d33021d64afa26775bb508187e8078e8403bb2140efed723"
+    }
+  ],
+  "stage": "H7",
+  "track": "C"
+}
