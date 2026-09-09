@@ -82,5 +82,9 @@ make h6b-run
 make test
 ```
 
-Status verifikasi VM akan dicatat setelah commit ditarik dan dijalankan pada
-`sigerciv@34.128.67.92`.
+Eksekusi diverifikasi pada 9 September 2026 di `sigerciv@34.128.67.92` setelah VM menarik commit
+`bc6fd31` dari `main`. Marker `H6B_VERIFY|3|14|4|10|10|frozen` membuktikan tiga skor sumber, 14
+pilihan sel, empat pilihan yang sama dengan vintage terbaru, sepuluh pilihan vintage lebih lama,
+sepuluh nilai terpilih yang berbeda dari nilai latest, dan status skor `frozen`. Seluruh 40 tes
+yang dapat dijalankan di VM lulus; satu tes ekstraksi PDF H3 dilewati karena payload mentah tidak
+disimpan di Git. Clone VM tetap bersih setelah reproduksi.

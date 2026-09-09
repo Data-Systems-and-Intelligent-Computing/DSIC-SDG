@@ -274,6 +274,7 @@ sel H6, TPB 2025 dan TPB 2024 sama-sama memperoleh `0,962500`, sedangkan WebAPI 
 pada seluruh sel, termasuk sepuluh sel yang mempunyai vintage WebAPI lebih baru dan berbeda.
 Jalankan `make h6b-run`; rumus dan batas interpretasinya ada di
 [`docs/research/h6b-source-trust-score.md`](docs/research/h6b-source-trust-score.md).
+Uji pada VM lulus dengan marker `H6B_VERIFY|3|14|4|10|10|frozen`.
 
 H7 Jalur A mengimplementasikan B0 sebagai baseline overwrite dengan tepat satu baris terkini per
 `cell_id`. Tiga vintage H6 diterapkan berurutan: 38 observasi masuk menjadi 14 baris current,
