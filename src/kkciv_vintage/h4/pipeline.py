@@ -514,6 +514,11 @@ def run_h4(
     manifest = {
         "stage": "H4",
         "batch_id": batch_id,
+        "object_store_target": {
+            "scheme": "s3",
+            "bucket": "kkciv-warehouse",
+            "prefix": f"ingest/h4/{batch_id}/",
+        },
         "generated_from_snapshot_at": max(
             baseline_manifest["created_at"], release_manifest["created_at"]
         ),

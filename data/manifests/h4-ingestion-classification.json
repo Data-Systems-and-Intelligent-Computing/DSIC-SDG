@@ -66,6 +66,11 @@
       "sha256": "2ba7db6c691904346e055a456a0d2e1d426626dabba5079cbfb37b545f5106b5"
     }
   ],
+  "object_store_target": {
+    "bucket": "kkciv-warehouse",
+    "prefix": "ingest/h4/h4-2981e0fb3bc2d960/",
+    "scheme": "s3"
+  },
   "outputs": [
     {
       "path": "results/processed/h4-ingested-observations.csv",

@@ -91,3 +91,9 @@ Pada VM, masuk ke **~/DSIC-SDG**, jalankan **git pull --ff-only origin main**,
 Perintah publish menulis kelima artefak H4 ke bucket **kkciv-warehouse** pada prefiks
 **ingest/h4/batch_id/** melalui MinIO yang sudah berjalan. Tidak ada payload mentah atau rahasia
 .env yang dikirim dari laptop.
+
+Eksekusi telah diverifikasi pada 9 September 2026 dari branch **main** pada VM
+**sigerciv@34.128.67.92**. Pipeline menghasilkan ulang batch yang sama, tes H4 lulus, dan kelima
+objek dapat dibaca kembali dari MinIO. Checksum SHA-256 empat keluaran CSV sama dengan manifest;
+clone VM tetap bersih setelah eksekusi. Satu tes ekstraksi PDF H3 dilewati karena PDF mentah memang
+tidak disimpan di Git, sedangkan tes yang sama lulus pada lingkungan lokal yang memiliki snapshot.
