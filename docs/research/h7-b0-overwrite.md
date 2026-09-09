@@ -52,8 +52,12 @@ berurutan, menghapus snapshot lama, lalu memeriksa:
 - hanya satu snapshot Iceberg yang tertinggal dan tabel mempunyai data file;
 - tidak ada duplikasi sel atau ketidakcocokan audit.
 
-Status verifikasi VM akan dicatat setelah commit implementasi ditarik dan dijalankan pada
-`sigerciv@34.128.67.92`.
+Eksekusi telah diverifikasi pada 9 September 2026 di `sigerciv@34.128.67.92` setelah VM menarik
+commit `010f6c6` dari `main`. Marker
+`H7_VERIFY|14|14|14|24|1|3|0|0|0` membuktikan 14 baris, 14 `cell_id`, 14 permintaan current
+berhasil, 24 permintaan historis gagal, tepat satu snapshot tersisa, tiga data file aktif, nol
+duplikasi sel, nol perbedaan state, dan nol perbedaan audit. Eksekusi ulang juga lulus setelah
+state sebelumnya dihapus, sehingga script bersifat idempoten.
 
 ## Artefak dan reproduksi
 
