@@ -1,0 +1,6 @@
+domain,observation_rows,unique_cells,compared_cells,exact_matches,value_mismatches,single_source_cells,national_cells,province_cells
+ecology,10,7,3,2,1,4,7,0
+economy,2370,2293,58,56,2,2235,104,2189
+education,1975,1899,70,70,0,1829,293,1606
+energy,52,29,16,11,5,13,29,0
+environment,389,380,9,9,0,371,32,348

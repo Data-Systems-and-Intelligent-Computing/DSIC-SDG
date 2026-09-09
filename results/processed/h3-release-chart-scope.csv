@@ -1,0 +1,15 @@
+domain,indicator_key,webapi_province_cells,publication_province_cells,overlap_province_cells,webapi_province_year_start,webapi_province_year_end,coverage_status,coverage_note
+ecology,sdg15_forest_cover,0,0,0,,,national_chart_only,This release supplement configures national chart cells only; consult the baseline appendix comparison and its explicit alignment decisions
+economy,sdg08_gdp_per_capita_growth,386,0,0,2015,2025,webapi_province_outside_chart_supplement,The configured TPB 2024/2025 chart supplement is national; the full TPB 2024 appendix comparison is in h3-cell-comparison.csv
+economy,sdg08_hourly_wage,382,0,0,2015,2025,webapi_province_outside_chart_supplement,The configured TPB 2024/2025 chart supplement is national; the full TPB 2024 appendix comparison is in h3-cell-comparison.csv
+economy,sdg08_informal_employment,280,0,0,2018,2025,webapi_province_outside_chart_supplement,The configured TPB 2024/2025 chart supplement is national; the full TPB 2024 appendix comparison is in h3-cell-comparison.csv
+economy,sdg08_neet,382,0,0,2015,2025,webapi_province_outside_chart_supplement,The configured TPB 2024/2025 chart supplement is national; the full TPB 2024 appendix comparison is in h3-cell-comparison.csv
+economy,sdg08_productivity_growth,377,0,0,2015,2025,webapi_province_outside_chart_supplement,The configured TPB 2024/2025 chart supplement is national; the full TPB 2024 appendix comparison is in h3-cell-comparison.csv
+economy,sdg08_unemployment,382,0,0,2015,2025,webapi_province_outside_chart_supplement,The configured TPB 2024/2025 chart supplement is national; the full TPB 2024 appendix comparison is in h3-cell-comparison.csv
+education,sdg04_completion_rate,918,0,0,2015,2023,webapi_province_outside_chart_supplement,The configured TPB 2024/2025 chart supplement is national; the full TPB 2024 appendix comparison is in h3-cell-comparison.csv
+education,sdg04_parity_index,382,0,0,2015,2025,webapi_province_outside_chart_supplement,The configured TPB 2024/2025 chart supplement is national; the full TPB 2024 appendix comparison is in h3-cell-comparison.csv
+education,sdg04_paud,306,0,0,2015,2023,webapi_province_outside_chart_supplement,The configured TPB 2024/2025 chart supplement is national; the full TPB 2024 appendix comparison is in h3-cell-comparison.csv
+energy,sdg07_electricity_access,0,0,0,,,national_chart_only,This release supplement configures national chart cells only; consult the baseline appendix comparison and its explicit alignment decisions
+energy,sdg07_energy_intensity,0,0,0,,,national_chart_only,This release supplement configures national chart cells only; consult the baseline appendix comparison and its explicit alignment decisions
+energy,sdg07_renewable_share,0,0,0,,,national_chart_only,This release supplement configures national chart cells only; consult the baseline appendix comparison and its explicit alignment decisions
+environment,sdg06_handwashing,348,0,0,2016,2025,webapi_province_outside_chart_supplement,The configured TPB 2024/2025 chart supplement is national; the full TPB 2024 appendix comparison is in h3-cell-comparison.csv

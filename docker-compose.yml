@@ -1,3 +1,81 @@
-# Infrastructure services are intentionally added incrementally.
-# Freeze service versions before main experiments.
-services: {}
+# H3 foundation stack: object storage, an Iceberg catalog, and Spark.
+#
+# Only the components §9 of the README marks as required are here. Trino,
+# OpenMetadata, and Airflow stay out until a research question needs them.
+#
+# Image tags come from infra/docker/versions.env. Freeze them to digests with
+# `make stack-freeze` before the Week 3 measurements.
+
+name: kkciv-vintage
+
+services:
+  minio:
+    image: minio/minio:${MINIO_VERSION}
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-kkciv}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-kkcivsecret}
+      MINIO_DOMAIN: minio
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:9000:9000"
+      - "${BIND_ADDRESS:-127.0.0.1}:9001:9001"
+    volumes:
+      - minio-data:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+    mem_limit: 1g
+
+  # One-shot: create the warehouse bucket, then exit.
+  minio-init:
+    image: minio/mc:${MINIO_MC_VERSION}
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 ${MINIO_ROOT_USER:-kkciv} ${MINIO_ROOT_PASSWORD:-kkcivsecret} &&
+      mc mb --ignore-existing local/${WAREHOUSE_BUCKET:-kkciv-warehouse} &&
+      mc ls local
+      "
+    restart: "no"
+
+  iceberg-rest:
+    image: apache/iceberg-rest-fixture:${ICEBERG_REST_VERSION}
+    depends_on:
+      minio-init:
+        condition: service_completed_successfully
+    environment:
+      CATALOG_WAREHOUSE: s3://${WAREHOUSE_BUCKET:-kkciv-warehouse}/
+      CATALOG_IO__IMPL: org.apache.iceberg.aws.s3.S3FileIO
+      CATALOG_S3_ENDPOINT: http://minio:9000
+      CATALOG_S3_PATH__STYLE__ACCESS: "true"
+      AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER:-kkciv}
+      AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:-kkcivsecret}
+      AWS_REGION: ${AWS_REGION:-us-east-1}
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:8181:8181"
+    mem_limit: 1g
+
+  spark:
+    image: tabulario/spark-iceberg:${SPARK_ICEBERG_VERSION}
+    depends_on:
+      - iceberg-rest
+    environment:
+      AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER:-kkciv}
+      AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:-kkcivsecret}
+      AWS_REGION: ${AWS_REGION:-us-east-1}
+      SPARK_DRIVER_MEMORY: ${SPARK_DRIVER_MEMORY:-2g}
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:8888:8888"
+      - "${BIND_ADDRESS:-127.0.0.1}:4040:4040"
+    volumes:
+      - ./infra/spark/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf:ro
+      - ./data:/home/iceberg/data:ro
+      - ./results:/home/iceberg/results
+    mem_limit: 3g
+
+volumes:
+  minio-data:

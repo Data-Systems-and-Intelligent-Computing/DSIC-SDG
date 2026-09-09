@@ -1,0 +1,99 @@
+{
+  "created_at": "2026-09-09T00:26:24.886207+00:00",
+  "gate_g1": {
+    "criterion_1_observed_domains": [
+      "ecology",
+      "economy",
+      "energy"
+    ],
+    "criterion_1_passed": true,
+    "criterion_1_required_mismatch_domains": 3,
+    "overall_gate_status": "pending_H4_classification_and_H5_revision_trace"
+  },
+  "inputs": [
+    {
+      "path": "data/manifests/h3-free-webapi-data.json",
+      "sha256": "ed9d3f8e5e708fd60df7da943b929b74a66561493f82c93069be0b6830097c3d"
+    },
+    {
+      "path": "config/h3/webapi_series.csv",
+      "sha256": "6461d229dc470a122fb0aa30d2bae6b0a08316c761d44575f609e6ea900e0401"
+    },
+    {
+      "path": "config/h3/publication_series.csv",
+      "sha256": "ed295a194fc6b8cc32be3b9933aef539c3a3420d3aba5c31cf34bfc1c7e7719e"
+    },
+    {
+      "path": "data/manifests/h1-free-publications.json",
+      "sha256": "e5370c608458a1d69f054b98200c2949738231cbeef448e93f2196aa455c59bb"
+    },
+    {
+      "path": "config/h3/exclusions.csv",
+      "sha256": "0cedd5804a705f10d2a86ed00667ea96166f38c67b8241ee8aa774efdb966279"
+    },
+    {
+      "path": "data/raw/h1/publications/bps_tpb_2025.pdf",
+      "sha256": "bd50461f8b7c49ac1a9fb48d4ffc88e06ac8b4ae904eb5dcd8649b76c235f03d",
+      "source_id": "bps_tpb_2025"
+    },
+    {
+      "path": "data/raw/h1/publications/bps_tpb_2024.pdf",
+      "sha256": "abb977463619a16c5811bab47074452d75807483da5a315e831c1d07aa390cd8",
+      "source_id": "bps_tpb_2024"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h3-release-webapi-observations.csv",
+      "rows": 4591,
+      "sha256": "4ab1decc61302a10e3145fea66d9f607733c884ce14f964d77c9af6c4a59954a"
+    },
+    {
+      "path": "results/processed/h3-release-publication-observations.csv",
+      "rows": 205,
+      "sha256": "c30164b7bb7f22e2c2834478e0dcd31cd5e7703620a8ba5b472f2512d28b75b3"
+    },
+    {
+      "path": "results/processed/h3-release-normalized-observations.csv",
+      "rows": 4796,
+      "sha256": "708036948f678e40e023c8d4adbda6d6fee130bb5f28f529797d6b1c76b740f1"
+    },
+    {
+      "path": "results/processed/h3-release-cell-comparison.csv",
+      "rows": 4608,
+      "sha256": "ffae4fddd5807d87173160544909f7d5a8e8a87566106f15406dd3896279f63b"
+    },
+    {
+      "path": "results/processed/h3-release-discrepancies.csv",
+      "rows": 8,
+      "sha256": "2ba7db6c691904346e055a456a0d2e1d426626dabba5079cbfb37b545f5106b5"
+    },
+    {
+      "path": "results/processed/h3-release-domain-summary.csv",
+      "rows": 5,
+      "sha256": "fc213d4f56cf9c0ea1bd26e69f7c060bfea8cd4ac11a222a8b9b33507a4cab2e"
+    },
+    {
+      "path": "results/processed/h3-release-chart-scope.csv",
+      "rows": 14,
+      "sha256": "437f5786b07832a419975b464e69dd8e8db4b7267874550b0327fbe8718db649"
+    }
+  ],
+  "policy": {
+    "classification_status": "candidate_only_until_H4",
+    "comparison_semantics": "compare when at least two configured source releases share a cell",
+    "cost_class": "free",
+    "excluded_sources": [
+      "bps_dna",
+      "bps_sirusa",
+      "silastik_pst",
+      "paid_digital_maps"
+    ],
+    "geographies": [
+      "national",
+      "province"
+    ]
+  },
+  "skipped_non_numeric_webapi_cells": 0,
+  "stage": "H3"
+}

@@ -1,0 +1,49 @@
+indicator_key,domain,webapi_variable_id,webapi_category_id,geography_mode,webapi_geography_id,output_geo_level,output_geo_code,output_geo_name,webapi_derived_period_id,series_key,unit,producer
+sdg04_completion_rate,education,1980,1672,province_and_national,,,,,0,sd.total,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1980,1673,province_and_national,,,,,0,smp.total,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1980,1674,province_and_national,,,,,0,sma.total,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1981,1672,fixed,1,national,9999,Indonesia,0,sd.residence.urban,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1981,1672,fixed,2,national,9999,Indonesia,0,sd.residence.rural,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1981,1673,fixed,1,national,9999,Indonesia,0,smp.residence.urban,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1981,1673,fixed,2,national,9999,Indonesia,0,smp.residence.rural,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1981,1674,fixed,1,national,9999,Indonesia,0,sma.residence.urban,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1981,1674,fixed,2,national,9999,Indonesia,0,sma.residence.rural,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1982,1672,fixed,1,national,9999,Indonesia,0,sd.sex.male,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1982,1672,fixed,2,national,9999,Indonesia,0,sd.sex.female,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1982,1673,fixed,1,national,9999,Indonesia,0,smp.sex.male,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1982,1673,fixed,2,national,9999,Indonesia,0,smp.sex.female,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1982,1674,fixed,1,national,9999,Indonesia,0,sma.sex.male,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1982,1674,fixed,2,national,9999,Indonesia,0,sma.sex.female,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1672,fixed,1,national,9999,Indonesia,0,sd.expenditure.q1,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1672,fixed,2,national,9999,Indonesia,0,sd.expenditure.q2,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1672,fixed,3,national,9999,Indonesia,0,sd.expenditure.q3,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1672,fixed,4,national,9999,Indonesia,0,sd.expenditure.q4,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1672,fixed,5,national,9999,Indonesia,0,sd.expenditure.q5,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1673,fixed,1,national,9999,Indonesia,0,smp.expenditure.q1,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1673,fixed,2,national,9999,Indonesia,0,smp.expenditure.q2,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1673,fixed,3,national,9999,Indonesia,0,smp.expenditure.q3,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1673,fixed,4,national,9999,Indonesia,0,smp.expenditure.q4,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1673,fixed,5,national,9999,Indonesia,0,smp.expenditure.q5,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1674,fixed,1,national,9999,Indonesia,0,sma.expenditure.q1,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1674,fixed,2,national,9999,Indonesia,0,sma.expenditure.q2,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1674,fixed,3,national,9999,Indonesia,0,sma.expenditure.q3,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1674,fixed,4,national,9999,Indonesia,0,sma.expenditure.q4,percent,Badan Pusat Statistik
+sdg04_completion_rate,education,1983,1674,fixed,5,national,9999,Indonesia,0,sma.expenditure.q5,percent,Badan Pusat Statistik
+sdg04_paud,education,1990,0,province_and_national,,,,,0,total,percent,Badan Pusat Statistik
+sdg04_parity_index,education,1455,1169,province_and_national,,,,,0,sd.total,index_percent,Badan Pusat Statistik
+sdg06_handwashing,environment,1273,0,province_and_national,,,,,0,total,percent,Badan Pusat Statistik
+sdg06_handwashing,environment,1274,0,fixed,1,national,9999,Indonesia,0,residence.urban,percent,Badan Pusat Statistik
+sdg06_handwashing,environment,1274,0,fixed,2,national,9999,Indonesia,0,residence.rural,percent,Badan Pusat Statistik
+sdg07_electricity_access,energy,1155,0,fixed,1,national,9999,Indonesia,0,total,percent,ESDM
+sdg07_renewable_share,energy,1824,0,fixed,9999,national,9999,Indonesia,0,total,percent,ESDM
+sdg07_energy_intensity,energy,1808,0,fixed,1,national,9999,Indonesia,0,total,sbm_per_billion_rupiah,ESDM
+sdg08_gdp_per_capita_growth,economy,296,0,province_and_national,,,,,0,total,percent,Badan Pusat Statistik
+sdg08_productivity_growth,economy,1161,0,province_and_national,,,,,0,total,percent,Badan Pusat Statistik
+sdg08_unemployment,economy,543,0,province_and_national,,,,,190,total.august,percent,Badan Pusat Statistik
+sdg08_informal_employment,economy,2153,0,province_and_national,,,,,0,total,percent,Badan Pusat Statistik
+sdg08_hourly_wage,economy,1172,0,province_and_national,,,,,0,total,rupiah_per_hour,Badan Pusat Statistik
+sdg08_hourly_wage,economy,1173,0,fixed,1,national,9999,Indonesia,0,residence.urban,rupiah_per_hour,Badan Pusat Statistik
+sdg08_hourly_wage,economy,1173,0,fixed,2,national,9999,Indonesia,0,residence.rural,rupiah_per_hour,Badan Pusat Statistik
+sdg08_hourly_wage,economy,1174,0,fixed,1,national,9999,Indonesia,0,sex.male,rupiah_per_hour,Badan Pusat Statistik
+sdg08_hourly_wage,economy,1174,0,fixed,2,national,9999,Indonesia,0,sex.female,rupiah_per_hour,Badan Pusat Statistik
+sdg08_neet,economy,1186,0,province_and_national,,,,,0,total,percent,Badan Pusat Statistik

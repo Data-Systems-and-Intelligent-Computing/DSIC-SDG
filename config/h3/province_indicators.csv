@@ -1,0 +1,12 @@
+indicator_key,domain,sdg_code,webapi_domain_id,webapi_variable_id,webapi_period_type_id,publication_source_id,publication_pages,publication_code,alignment_status,alignment_reason
+sdg04_completion_rate,education,4.1.2*,0000,1980,0,bps_tpb_2024,254-255,4.1.2*,comparable,Same Susenas completion-rate concept per level with province geography and percent unit
+sdg06_sanitation,environment,6.2.1*,0000,847,0,bps_tpb_2024,269,6.2.1*,comparable,Same Susenas adequate-sanitation concept with province geography and percent unit
+sdg06_handwashing,environment,6.2.1*,0000,1273,0,bps_tpb_2024,269,6.2.1*,comparable,Same Susenas handwashing-facility concept with province geography and percent unit
+sdg07_clean_cooking,energy,7.1.2.(b),0000,150,0,bps_tpb_2024,272,7.1.2.(b),comparable,Publication reports the household gas-use ratio which matches the Gas/Elpiji category of WebAPI 150
+sdg07_electricity_access,energy,7.1.1*,0000,2832,0,bps_tpb_2024,272,7.1.1*,concept_mismatch,Publication reports the ESDM electrification ratio while WebAPI 2832 reports the BPS share of households using electricity; WebAPI 1155 carries the ratio but only nationally
+sdg08_productivity_growth,economy,8.2.1*,0000,1161,0,bps_tpb_2024,274,8.2.1*,comparable,Same real GDP per worker growth concept with province geography and percent unit
+sdg08_informal_employment,economy,8.3.1*,0000,2153,0,bps_tpb_2024,274,8.3.1*,comparable,Same Sakernas August informal-employment proportion with province geography and percent unit
+sdg08_hourly_wage,economy,8.5.1*,0000,1172,0,bps_tpb_2024,275,8.5.1*,comparable,Same Sakernas August hourly-wage series with province geography and rupiah-per-hour unit
+sdg08_unemployment,economy,8.5.2*,0000,543,190,bps_tpb_2024,275,8.5.2*,comparable,Same Sakernas open-unemployment rate; the WebAPI August period type is selected to match the publication source note
+sdg08_neet,economy,8.6.1*,0000,1186,0,bps_tpb_2024,276,8.6.1*,comparable,Same Sakernas August NEET proportion with province geography and percent unit
+sdg15_degraded_land,ecology,15.3.1*,0000,,0,bps_tpb_2024,288,15.3.1*,no_webapi_series,The publication carries 15.3.1 by province but H1 found no free WebAPI table for it so no province comparison is possible

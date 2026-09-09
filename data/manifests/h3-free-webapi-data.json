@@ -1,0 +1,569 @@
+{
+  "authentication": "BPS_API_KEY environment variable",
+  "file_count": 20,
+  "files": [
+    {
+      "available_period_count": 15,
+      "data_cell_count": 397,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_gdp_per_capita_growth"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-296.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "bf07da7c434b3b7d8be2073edab56daa1511cc1edb4995b33fe6fb1818a763fd",
+      "title": "[Seri 2010] Laju Pertumbuhan Produk Domestik Regional Bruto Per Kapita Atas Dasar Harga Konstan 2010",
+      "variable_id": "296"
+    },
+    {
+      "available_period_count": 40,
+      "data_cell_count": 825,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_unemployment"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-543.json",
+      "selected_period_count": 12,
+      "selected_period_labels": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "b43e46a830e1bb67bb5f710c75c9a13a5d87ac0fea83852d1c4c7b571cc0cf85",
+      "title": "Tingkat Pengangguran Terbuka Menurut Provinsi",
+      "variable_id": "543"
+    },
+    {
+      "available_period_count": 14,
+      "data_cell_count": 8,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg07_electricity_access"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1155.json",
+      "selected_period_count": 8,
+      "selected_period_labels": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "740a5c0e30de22f21c96f679c564e3e5782c81c15d3b09074c45c9e1c52cd72f",
+      "title": "Rasio Elektrifikasi",
+      "variable_id": "1155"
+    },
+    {
+      "available_period_count": 15,
+      "data_cell_count": 390,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_productivity_growth"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1161.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "b3cc4271c6e439690982bb1b9e0e65a5b1220c03a832360281bd95bdec407591",
+      "title": "Laju Pertumbuhan PDB Per Tenaga Kerja/Tingkat Pertumbuhan PDB Riil Per Orang Bekerja Per Tahun",
+      "variable_id": "1161"
+    },
+    {
+      "available_period_count": 11,
+      "data_cell_count": 393,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_hourly_wage"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1172.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "3ffbb04cdeacd809ab02f7fb77cc5089a5a1a3ea1cf8371c5d26f66f72ce2c35",
+      "title": "Upah Rata - Rata Per Jam Pekerja Menurut Provinsi",
+      "variable_id": "1172"
+    },
+    {
+      "available_period_count": 10,
+      "data_cell_count": 30,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_hourly_wage"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1173.json",
+      "selected_period_count": 10,
+      "selected_period_labels": [
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "de4135483bfd927ea5fc473cdf5bab7d6f38e6875fa97f27a3e533f7e1bc56a6",
+      "title": "Upah Rata - Rata Per Jam Pekerja Menurut Daerah Tempat Tinggal",
+      "variable_id": "1173"
+    },
+    {
+      "available_period_count": 10,
+      "data_cell_count": 20,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_hourly_wage"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1174.json",
+      "selected_period_count": 10,
+      "selected_period_labels": [
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "95d71913d262ef4a6ac92b805b83a0f9a9efd03720f07af8f399e7ec21961e81",
+      "title": "Upah Rata - Rata Per Jam Pekerja Menurut Jenis Kelamin",
+      "variable_id": "1174"
+    },
+    {
+      "available_period_count": 11,
+      "data_cell_count": 393,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_neet"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1186.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "e4b5ceaa2c3a4a240da46733a1a835aac5840f1a68817073c009a5d4362ad9d4",
+      "title": "Persentase Usia Muda (15-24 Tahun) Yang Sedang Tidak Sekolah, Bekerja Atau Mengikuti Pelatihan",
+      "variable_id": "1186"
+    },
+    {
+      "available_period_count": 10,
+      "data_cell_count": 358,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg06_handwashing"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1273.json",
+      "selected_period_count": 10,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "f78023c47898fee389bed2656ee82cda64c202b5212a70769d56867da3684d3b",
+      "title": "6.2.1* Persentase Rumah Tangga yang Memiliki Fasilitas Cuci Tangan dengan Sabun dan Air Menurut Provinsi",
+      "variable_id": "1273"
+    },
+    {
+      "available_period_count": 11,
+      "data_cell_count": 29,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg06_handwashing"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1274.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "39cae9523ee75e6101c2d84e98e75bc4fd2ef137b2995526b366e61e2b78532c",
+      "title": "Proporsi Rumah Tangga Yang Memiliki Fasilitas Cuci Tangan Dengan Sabun Dan Air Menurut Daerah Tempat Tinggal",
+      "variable_id": "1274"
+    },
+    {
+      "available_period_count": 6,
+      "data_cell_count": 525,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg15_forest_cover"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1304.json",
+      "selected_period_count": 5,
+      "selected_period_labels": [
+        "2023",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_derived"
+      ],
+      "sha256": "304b9463ba06899a2b49f91796c53e645486b00b35f48f43e05e95b357aebdd3",
+      "title": "Luas Penutupan Lahan Indonesa di Dalam dan di Luar Kawasan Hutan Menurut Provinsi",
+      "variable_id": "1304"
+    },
+    {
+      "available_period_count": 11,
+      "data_cell_count": 1362,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_parity_index"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1455.json",
+      "selected_period_count": 11,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "ba8630b18029d75e3c5a067565a1fb4f46e410c74f7babb4265c7a86c6980259",
+      "title": "Rasio Angka Partisipasi Murni (APM) Perempuan/Laki-Laki Menurut Provinsi dan Jenjang Pendidikan",
+      "variable_id": "1455"
+    },
+    {
+      "available_period_count": 8,
+      "data_cell_count": 7,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg07_energy_intensity"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1808.json",
+      "selected_period_count": 7,
+      "selected_period_labels": [
+        "2022",
+        "2021",
+        "2020",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "eaac47a822db6f1cf2388d6a7d9d1973846cb578726e979dd0826ba6576836a9",
+      "title": "Intensitas Energi Primer",
+      "variable_id": "1808"
+    },
+    {
+      "available_period_count": 8,
+      "data_cell_count": 8,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg07_renewable_share"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1824.json",
+      "selected_period_count": 8,
+      "selected_period_labels": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "366d3dce573a5bd9a1cae2aca846790662cd1d263fd2584b78572939147f222c",
+      "title": "Bauran Energi Terbarukan",
+      "variable_id": "1824"
+    },
+    {
+      "available_period_count": 9,
+      "data_cell_count": 945,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_completion_rate"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1980.json",
+      "selected_period_count": 9,
+      "selected_period_labels": [
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "601340a8d5c320e7149c63ab3a97dcd65cc26c110639f67b77372419da20e27d",
+      "title": "Tingkat Penyelesaian Pendidikan Menurut Jenjang Pendidikan dan Provinsi",
+      "variable_id": "1980"
+    },
+    {
+      "available_period_count": 9,
+      "data_cell_count": 81,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_completion_rate"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1981.json",
+      "selected_period_count": 9,
+      "selected_period_labels": [
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "4e2f4a28121be1f196ee3b0c6c3132827f98ba13bd40c8d814473cb02c0fc838",
+      "title": "Tingkat Penyelesaian Pendidikan Menurut Jenjang Pendidikan dan Wilayah",
+      "variable_id": "1981"
+    },
+    {
+      "available_period_count": 9,
+      "data_cell_count": 81,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_completion_rate"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1982.json",
+      "selected_period_count": 9,
+      "selected_period_labels": [
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "072246d7e7bf094d6cfcc8125a1ae756c0718611552a778cb1a064576a4be570",
+      "title": "Tingkat Penyelesaian Pendidikan Menurut Jenjang Pendidikan dan Jenis Kelamin",
+      "variable_id": "1982"
+    },
+    {
+      "available_period_count": 9,
+      "data_cell_count": 135,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_completion_rate"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1983.json",
+      "selected_period_count": 9,
+      "selected_period_labels": [
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected_limited"
+      ],
+      "sha256": "f21f69c6cee73ca725814866486057f6b48a22d1cd2ea851d898d986a55b4624",
+      "title": "Tingkat Penyelesaian Pendidikan Menurut Jenjang Pendidikan dan Kuintil Pengeluaran",
+      "variable_id": "1983"
+    },
+    {
+      "available_period_count": 9,
+      "data_cell_count": 315,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg04_paud"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-1990.json",
+      "selected_period_count": 9,
+      "selected_period_labels": [
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "5b5c2c1143e683be1cda61d364d39a467baca22d3a4a3d9dec9eaca844004da3",
+      "title": "Tingkat partisipasi dalam pembelajaran yang teroganisir (satu tahun sebelum usia sekolah dasar) menurut provinsi",
+      "variable_id": "1990"
+    },
+    {
+      "available_period_count": 8,
+      "data_cell_count": 288,
+      "domain": "0000",
+      "indicator_keys": [
+        "sdg08_informal_employment"
+      ],
+      "raw_path": "data/raw/h3/webapi/var-0000-2153.json",
+      "selected_period_count": 8,
+      "selected_period_labels": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018"
+      ],
+      "selection_statuses": [
+        "selected"
+      ],
+      "sha256": "b12ea672757b9e2800cd7eca6f5414e65b1936d2c0a0e0cbb284380e8af2463f",
+      "title": "Proporsi Lapangan Kerja Informal Menurut Provinsi",
+      "variable_id": "2153"
+    }
+  ],
+  "key_fingerprint": "93437d84",
+  "policy": {
+    "cost_class": "free",
+    "excluded_sources": [
+      "bps_dna",
+      "bps_sirusa",
+      "silastik_pst",
+      "paid_digital_maps"
+    ],
+    "since_year": 2015
+  },
+  "retrieved_at": "2026-09-08T23:38:59.693316+00:00",
+  "selection_path": "config/h3/webapi_selection.csv",
+  "source_id": "bps_webapi"
+}

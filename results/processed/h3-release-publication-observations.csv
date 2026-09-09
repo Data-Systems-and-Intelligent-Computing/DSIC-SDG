@@ -1,0 +1,206 @@
+source_id,indicator_key,series_key,release_date,observed_period,geo_level,geo_code,geo_name,unit,value,producer,methodology_version,source_record_id
+bps_tpb_2024,sdg04_completion_rate,sd.expenditure.q1,2024-12-31,2022,national,9999,Indonesia,percent,96.42,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.expenditure.q1;year=2022
+bps_tpb_2024,sdg04_completion_rate,sd.expenditure.q1,2024-12-31,2023,national,9999,Indonesia,percent,96.36,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.expenditure.q1;year=2023
+bps_tpb_2024,sdg04_completion_rate,sd.expenditure.q2,2024-12-31,2022,national,9999,Indonesia,percent,97.68,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.expenditure.q2;year=2022
+bps_tpb_2024,sdg04_completion_rate,sd.expenditure.q2,2024-12-31,2023,national,9999,Indonesia,percent,97.76,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.expenditure.q2;year=2023
+bps_tpb_2024,sdg04_completion_rate,sd.expenditure.q3,2024-12-31,2022,national,9999,Indonesia,percent,98.14,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.expenditure.q3;year=2022
+bps_tpb_2024,sdg04_completion_rate,sd.expenditure.q3,2024-12-31,2023,national,9999,Indonesia,percent,98.12,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.expenditure.q3;year=2023
+bps_tpb_2024,sdg04_completion_rate,sd.expenditure.q4,2024-12-31,2022,national,9999,Indonesia,percent,98.34,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.expenditure.q4;year=2022
+bps_tpb_2024,sdg04_completion_rate,sd.expenditure.q4,2024-12-31,2023,national,9999,Indonesia,percent,98.45,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.expenditure.q4;year=2023
+bps_tpb_2024,sdg04_completion_rate,sd.expenditure.q5,2024-12-31,2022,national,9999,Indonesia,percent,98.76,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.expenditure.q5;year=2022
+bps_tpb_2024,sdg04_completion_rate,sd.expenditure.q5,2024-12-31,2023,national,9999,Indonesia,percent,98.74,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.expenditure.q5;year=2023
+bps_tpb_2024,sdg04_completion_rate,sd.residence.rural,2024-12-31,2022,national,9999,Indonesia,percent,96.85,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.residence.rural;year=2022
+bps_tpb_2024,sdg04_completion_rate,sd.residence.rural,2024-12-31,2023,national,9999,Indonesia,percent,96.86,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.residence.rural;year=2023
+bps_tpb_2024,sdg04_completion_rate,sd.residence.urban,2024-12-31,2022,national,9999,Indonesia,percent,98.55,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.residence.urban;year=2022
+bps_tpb_2024,sdg04_completion_rate,sd.residence.urban,2024-12-31,2023,national,9999,Indonesia,percent,98.54,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.residence.urban;year=2023
+bps_tpb_2024,sdg04_completion_rate,sd.sex.female,2024-12-31,2022,national,9999,Indonesia,percent,98.21,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.sex.female;year=2022
+bps_tpb_2024,sdg04_completion_rate,sd.sex.female,2024-12-31,2023,national,9999,Indonesia,percent,98.19,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.sex.female;year=2023
+bps_tpb_2024,sdg04_completion_rate,sd.sex.male,2024-12-31,2022,national,9999,Indonesia,percent,97.44,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.sex.male;year=2022
+bps_tpb_2024,sdg04_completion_rate,sd.sex.male,2024-12-31,2023,national,9999,Indonesia,percent,97.47,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.sex.male;year=2023
+bps_tpb_2024,sdg04_completion_rate,sd.total,2024-12-31,2022,national,9999,Indonesia,percent,97.82,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.total;year=2022
+bps_tpb_2024,sdg04_completion_rate,sd.total,2024-12-31,2023,national,9999,Indonesia,percent,97.83,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.2;series=sd.total;year=2023
+bps_tpb_2024,sdg04_completion_rate,sma.expenditure.q1,2024-12-31,2022,national,9999,Indonesia,percent,51.71,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.expenditure.q1;year=2022
+bps_tpb_2024,sdg04_completion_rate,sma.expenditure.q1,2024-12-31,2023,national,9999,Indonesia,percent,52.41,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.expenditure.q1;year=2023
+bps_tpb_2024,sdg04_completion_rate,sma.expenditure.q2,2024-12-31,2022,national,9999,Indonesia,percent,59.85,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.expenditure.q2;year=2022
+bps_tpb_2024,sdg04_completion_rate,sma.expenditure.q2,2024-12-31,2023,national,9999,Indonesia,percent,62.21,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.expenditure.q2;year=2023
+bps_tpb_2024,sdg04_completion_rate,sma.expenditure.q3,2024-12-31,2022,national,9999,Indonesia,percent,65.58,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.expenditure.q3;year=2022
+bps_tpb_2024,sdg04_completion_rate,sma.expenditure.q3,2024-12-31,2023,national,9999,Indonesia,percent,68.26,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.expenditure.q3;year=2023
+bps_tpb_2024,sdg04_completion_rate,sma.expenditure.q4,2024-12-31,2022,national,9999,Indonesia,percent,71.13,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.expenditure.q4;year=2022
+bps_tpb_2024,sdg04_completion_rate,sma.expenditure.q4,2024-12-31,2023,national,9999,Indonesia,percent,70.32,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.expenditure.q4;year=2023
+bps_tpb_2024,sdg04_completion_rate,sma.expenditure.q5,2024-12-31,2022,national,9999,Indonesia,percent,80.24,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.expenditure.q5;year=2022
+bps_tpb_2024,sdg04_completion_rate,sma.expenditure.q5,2024-12-31,2023,national,9999,Indonesia,percent,77.76,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.expenditure.q5;year=2023
+bps_tpb_2024,sdg04_completion_rate,sma.residence.rural,2024-12-31,2022,national,9999,Indonesia,percent,55.48,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.residence.rural;year=2022
+bps_tpb_2024,sdg04_completion_rate,sma.residence.rural,2024-12-31,2023,national,9999,Indonesia,percent,56.38,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.residence.rural;year=2023
+bps_tpb_2024,sdg04_completion_rate,sma.residence.urban,2024-12-31,2022,national,9999,Indonesia,percent,73.91,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.residence.urban;year=2022
+bps_tpb_2024,sdg04_completion_rate,sma.residence.urban,2024-12-31,2023,national,9999,Indonesia,percent,73.25,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.residence.urban;year=2023
+bps_tpb_2024,sdg04_completion_rate,sma.sex.female,2024-12-31,2022,national,9999,Indonesia,percent,68.31,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.sex.female;year=2022
+bps_tpb_2024,sdg04_completion_rate,sma.sex.female,2024-12-31,2023,national,9999,Indonesia,percent,69.54,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.sex.female;year=2023
+bps_tpb_2024,sdg04_completion_rate,sma.sex.male,2024-12-31,2022,national,9999,Indonesia,percent,64.09,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.sex.male;year=2022
+bps_tpb_2024,sdg04_completion_rate,sma.sex.male,2024-12-31,2023,national,9999,Indonesia,percent,64.14,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.sex.male;year=2023
+bps_tpb_2024,sdg04_completion_rate,sma.total,2024-12-31,2022,national,9999,Indonesia,percent,66.13,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.total;year=2022
+bps_tpb_2024,sdg04_completion_rate,sma.total,2024-12-31,2023,national,9999,Indonesia,percent,66.79,Badan Pusat Statistik,tpb-2024-figure,page=47;figure=Gambar 4.4;series=sma.total;year=2023
+bps_tpb_2024,sdg04_completion_rate,smp.expenditure.q1,2024-12-31,2022,national,9999,Indonesia,percent,85.76,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.expenditure.q1;year=2022
+bps_tpb_2024,sdg04_completion_rate,smp.expenditure.q1,2024-12-31,2023,national,9999,Indonesia,percent,85.17,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.expenditure.q1;year=2023
+bps_tpb_2024,sdg04_completion_rate,smp.expenditure.q2,2024-12-31,2022,national,9999,Indonesia,percent,88.69,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.expenditure.q2;year=2022
+bps_tpb_2024,sdg04_completion_rate,smp.expenditure.q2,2024-12-31,2023,national,9999,Indonesia,percent,89.36,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.expenditure.q2;year=2023
+bps_tpb_2024,sdg04_completion_rate,smp.expenditure.q3,2024-12-31,2022,national,9999,Indonesia,percent,90.61,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.expenditure.q3;year=2022
+bps_tpb_2024,sdg04_completion_rate,smp.expenditure.q3,2024-12-31,2023,national,9999,Indonesia,percent,91.12,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.expenditure.q3;year=2023
+bps_tpb_2024,sdg04_completion_rate,smp.expenditure.q4,2024-12-31,2022,national,9999,Indonesia,percent,91.88,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.expenditure.q4;year=2022
+bps_tpb_2024,sdg04_completion_rate,smp.expenditure.q4,2024-12-31,2023,national,9999,Indonesia,percent,92.36,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.expenditure.q4;year=2023
+bps_tpb_2024,sdg04_completion_rate,smp.expenditure.q5,2024-12-31,2022,national,9999,Indonesia,percent,94.18,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.expenditure.q5;year=2022
+bps_tpb_2024,sdg04_completion_rate,smp.expenditure.q5,2024-12-31,2023,national,9999,Indonesia,percent,94.55,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.expenditure.q5;year=2023
+bps_tpb_2024,sdg04_completion_rate,smp.residence.rural,2024-12-31,2022,national,9999,Indonesia,percent,86.60,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.residence.rural;year=2022
+bps_tpb_2024,sdg04_completion_rate,smp.residence.rural,2024-12-31,2023,national,9999,Indonesia,percent,87.01,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.residence.rural;year=2023
+bps_tpb_2024,sdg04_completion_rate,smp.residence.urban,2024-12-31,2022,national,9999,Indonesia,percent,92.74,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.residence.urban;year=2022
+bps_tpb_2024,sdg04_completion_rate,smp.residence.urban,2024-12-31,2023,national,9999,Indonesia,percent,92.85,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.residence.urban;year=2023
+bps_tpb_2024,sdg04_completion_rate,smp.sex.female,2024-12-31,2022,national,9999,Indonesia,percent,91.71,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.sex.female;year=2022
+bps_tpb_2024,sdg04_completion_rate,smp.sex.female,2024-12-31,2023,national,9999,Indonesia,percent,92.10,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.sex.female;year=2023
+bps_tpb_2024,sdg04_completion_rate,smp.sex.male,2024-12-31,2022,national,9999,Indonesia,percent,88.64,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.sex.male;year=2022
+bps_tpb_2024,sdg04_completion_rate,smp.sex.male,2024-12-31,2023,national,9999,Indonesia,percent,88.86,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.sex.male;year=2023
+bps_tpb_2024,sdg04_completion_rate,smp.total,2024-12-31,2022,national,9999,Indonesia,percent,90.13,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.total;year=2022
+bps_tpb_2024,sdg04_completion_rate,smp.total,2024-12-31,2023,national,9999,Indonesia,percent,90.44,Badan Pusat Statistik,tpb-2024-figure,page=46;figure=Gambar 4.3;series=smp.total;year=2023
+bps_tpb_2024,sdg04_parity_index,sd.total,2024-12-31,2022,national,9999,Indonesia,index_percent,100.01,Badan Pusat Statistik,tpb-2024-figure,page=50;figure=Gambar 4.12;series=sd.total;year=2022
+bps_tpb_2024,sdg04_parity_index,sd.total,2024-12-31,2023,national,9999,Indonesia,index_percent,99.96,Badan Pusat Statistik,tpb-2024-figure,page=50;figure=Gambar 4.12;series=sd.total;year=2023
+bps_tpb_2024,sdg04_paud,total,2024-12-31,2022,national,9999,Indonesia,percent,95.10,Badan Pusat Statistik,tpb-2024-figure,page=48;figure=Gambar 4.8;series=total;year=2022
+bps_tpb_2024,sdg04_paud,total,2024-12-31,2023,national,9999,Indonesia,percent,95.54,Badan Pusat Statistik,tpb-2024-figure,page=48;figure=Gambar 4.8;series=total;year=2023
+bps_tpb_2024,sdg06_handwashing,residence.rural,2024-12-31,2021,national,9999,Indonesia,percent,74.05,Badan Pusat Statistik,tpb-2024-figure,page=70;figure=Gambar 6.2;series=residence.rural;year=2021
+bps_tpb_2024,sdg06_handwashing,residence.rural,2024-12-31,2022,national,9999,Indonesia,percent,75.37,Badan Pusat Statistik,tpb-2024-figure,page=70;figure=Gambar 6.2;series=residence.rural;year=2022
+bps_tpb_2024,sdg06_handwashing,residence.rural,2024-12-31,2023,national,9999,Indonesia,percent,75.17,Badan Pusat Statistik,tpb-2024-figure,page=70;figure=Gambar 6.2;series=residence.rural;year=2023
+bps_tpb_2024,sdg06_handwashing,residence.urban,2024-12-31,2021,national,9999,Indonesia,percent,83.80,Badan Pusat Statistik,tpb-2024-figure,page=70;figure=Gambar 6.2;series=residence.urban;year=2021
+bps_tpb_2024,sdg06_handwashing,residence.urban,2024-12-31,2022,national,9999,Indonesia,percent,82.22,Badan Pusat Statistik,tpb-2024-figure,page=70;figure=Gambar 6.2;series=residence.urban;year=2022
+bps_tpb_2024,sdg06_handwashing,residence.urban,2024-12-31,2023,national,9999,Indonesia,percent,83.72,Badan Pusat Statistik,tpb-2024-figure,page=70;figure=Gambar 6.2;series=residence.urban;year=2023
+bps_tpb_2024,sdg06_handwashing,total,2024-12-31,2021,national,9999,Indonesia,percent,79.59,Badan Pusat Statistik,tpb-2024-figure,page=70;figure=Gambar 6.2;series=total;year=2021
+bps_tpb_2024,sdg06_handwashing,total,2024-12-31,2022,national,9999,Indonesia,percent,79.33,Badan Pusat Statistik,tpb-2024-figure,page=70;figure=Gambar 6.2;series=total;year=2022
+bps_tpb_2024,sdg06_handwashing,total,2024-12-31,2023,national,9999,Indonesia,percent,80.15,Badan Pusat Statistik,tpb-2024-figure,page=70;figure=Gambar 6.2;series=total;year=2023
+bps_tpb_2024,sdg07_electricity_access,total,2024-12-31,2018,national,9999,Indonesia,percent,98.30,ESDM,tpb-2024-figure,page=78;figure=Gambar 7.1;series=total;year=2018
+bps_tpb_2024,sdg07_electricity_access,total,2024-12-31,2019,national,9999,Indonesia,percent,98.89,ESDM,tpb-2024-figure,page=78;figure=Gambar 7.1;series=total;year=2019
+bps_tpb_2024,sdg07_electricity_access,total,2024-12-31,2020,national,9999,Indonesia,percent,99.20,ESDM,tpb-2024-figure,page=78;figure=Gambar 7.1;series=total;year=2020
+bps_tpb_2024,sdg07_electricity_access,total,2024-12-31,2021,national,9999,Indonesia,percent,99.45,ESDM,tpb-2024-figure,page=78;figure=Gambar 7.1;series=total;year=2021
+bps_tpb_2024,sdg07_electricity_access,total,2024-12-31,2022,national,9999,Indonesia,percent,99.63,ESDM,tpb-2024-figure,page=78;figure=Gambar 7.1;series=total;year=2022
+bps_tpb_2024,sdg07_electricity_access,total,2024-12-31,2023,national,9999,Indonesia,percent,99.79,ESDM,tpb-2024-figure,page=78;figure=Gambar 7.1;series=total;year=2023
+bps_tpb_2024,sdg07_energy_intensity,total,2024-12-31,2018,national,9999,Indonesia,sbm_per_billion_rupiah,428.60,ESDM,tpb-2024-figure,page=81;figure=Gambar 7.6;series=total;year=2018
+bps_tpb_2024,sdg07_energy_intensity,total,2024-12-31,2019,national,9999,Indonesia,sbm_per_billion_rupiah,424.87,ESDM,tpb-2024-figure,page=81;figure=Gambar 7.6;series=total;year=2019
+bps_tpb_2024,sdg07_energy_intensity,total,2024-12-31,2020,national,9999,Indonesia,sbm_per_billion_rupiah,133.50,ESDM,tpb-2024-figure,page=81;figure=Gambar 7.6;series=total;year=2020
+bps_tpb_2024,sdg07_energy_intensity,total,2024-12-31,2021,national,9999,Indonesia,sbm_per_billion_rupiah,133.90,ESDM,tpb-2024-figure,page=81;figure=Gambar 7.6;series=total;year=2021
+bps_tpb_2024,sdg07_energy_intensity,total,2024-12-31,2022,national,9999,Indonesia,sbm_per_billion_rupiah,160.50,ESDM,tpb-2024-figure,page=81;figure=Gambar 7.6;series=total;year=2022
+bps_tpb_2024,sdg07_energy_intensity,total,2024-12-31,2023,national,9999,Indonesia,sbm_per_billion_rupiah,132.60,ESDM,tpb-2024-figure,page=81;figure=Gambar 7.6;series=total;year=2023
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2018,national,9999,Indonesia,percent,9.00,ESDM,tpb-2024-figure,page=80;figure=Gambar 7.5;series=total;year=2018
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2019,national,9999,Indonesia,percent,9.15,ESDM,tpb-2024-figure,page=80;figure=Gambar 7.5;series=total;year=2019
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2020,national,9999,Indonesia,percent,11.20,ESDM,tpb-2024-figure,page=80;figure=Gambar 7.5;series=total;year=2020
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2021,national,9999,Indonesia,percent,12.16,ESDM,tpb-2024-figure,page=80;figure=Gambar 7.5;series=total;year=2021
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2022,national,9999,Indonesia,percent,12.30,ESDM,tpb-2024-figure,page=80;figure=Gambar 7.5;series=total;year=2022
+bps_tpb_2024,sdg07_renewable_share,total,2024-12-31,2023,national,9999,Indonesia,percent,13.21,ESDM,tpb-2024-figure,page=80;figure=Gambar 7.5;series=total;year=2023
+bps_tpb_2024,sdg08_gdp_per_capita_growth,total,2024-12-31,2017,national,9999,Indonesia,percent,3.79,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.1;series=total;year=2017
+bps_tpb_2024,sdg08_gdp_per_capita_growth,total,2024-12-31,2018,national,9999,Indonesia,percent,3.93,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.1;series=total;year=2018
+bps_tpb_2024,sdg08_gdp_per_capita_growth,total,2024-12-31,2019,national,9999,Indonesia,percent,4.27,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.1;series=total;year=2019
+bps_tpb_2024,sdg08_gdp_per_capita_growth,total,2024-12-31,2020,national,9999,Indonesia,percent,-3.03,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.1;series=total;year=2020
+bps_tpb_2024,sdg08_gdp_per_capita_growth,total,2024-12-31,2021,national,9999,Indonesia,percent,2.52,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.1;series=total;year=2021
+bps_tpb_2024,sdg08_gdp_per_capita_growth,total,2024-12-31,2022,national,9999,Indonesia,percent,4.15,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.1;series=total;year=2022
+bps_tpb_2024,sdg08_gdp_per_capita_growth,total,2024-12-31,2023,national,9999,Indonesia,percent,3.93,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.1;series=total;year=2023
+bps_tpb_2024,sdg08_hourly_wage,residence.rural,2024-12-31,2019,national,9999,Indonesia,rupiah_per_hour,12205,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=residence.rural;year=2019
+bps_tpb_2024,sdg08_hourly_wage,residence.rural,2024-12-31,2020,national,9999,Indonesia,rupiah_per_hour,14242,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=residence.rural;year=2020
+bps_tpb_2024,sdg08_hourly_wage,residence.rural,2024-12-31,2021,national,9999,Indonesia,rupiah_per_hour,14182,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=residence.rural;year=2021
+bps_tpb_2024,sdg08_hourly_wage,residence.rural,2024-12-31,2022,national,9999,Indonesia,rupiah_per_hour,13151,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=residence.rural;year=2022
+bps_tpb_2024,sdg08_hourly_wage,residence.rural,2024-12-31,2023,national,9999,Indonesia,rupiah_per_hour,14101,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=residence.rural;year=2023
+bps_tpb_2024,sdg08_hourly_wage,residence.urban,2024-12-31,2019,national,9999,Indonesia,rupiah_per_hour,17825,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=residence.urban;year=2019
+bps_tpb_2024,sdg08_hourly_wage,residence.urban,2024-12-31,2020,national,9999,Indonesia,rupiah_per_hour,19651,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=residence.urban;year=2020
+bps_tpb_2024,sdg08_hourly_wage,residence.urban,2024-12-31,2021,national,9999,Indonesia,rupiah_per_hour,20234,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=residence.urban;year=2021
+bps_tpb_2024,sdg08_hourly_wage,residence.urban,2024-12-31,2022,national,9999,Indonesia,rupiah_per_hour,19751,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=residence.urban;year=2022
+bps_tpb_2024,sdg08_hourly_wage,residence.urban,2024-12-31,2023,national,9999,Indonesia,rupiah_per_hour,21483,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=residence.urban;year=2023
+bps_tpb_2024,sdg08_hourly_wage,sex.female,2024-12-31,2019,national,9999,Indonesia,rupiah_per_hour,14360,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.7;series=sex.female;year=2019
+bps_tpb_2024,sdg08_hourly_wage,sex.female,2024-12-31,2020,national,9999,Indonesia,rupiah_per_hour,17410,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.7;series=sex.female;year=2020
+bps_tpb_2024,sdg08_hourly_wage,sex.female,2024-12-31,2021,national,9999,Indonesia,rupiah_per_hour,17848,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.7;series=sex.female;year=2021
+bps_tpb_2024,sdg08_hourly_wage,sex.female,2024-12-31,2022,national,9999,Indonesia,rupiah_per_hour,16056,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.7;series=sex.female;year=2022
+bps_tpb_2024,sdg08_hourly_wage,sex.female,2024-12-31,2023,national,9999,Indonesia,rupiah_per_hour,16779,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.7;series=sex.female;year=2023
+bps_tpb_2024,sdg08_hourly_wage,sex.male,2024-12-31,2019,national,9999,Indonesia,rupiah_per_hour,16547,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.7;series=sex.male;year=2019
+bps_tpb_2024,sdg08_hourly_wage,sex.male,2024-12-31,2020,national,9999,Indonesia,rupiah_per_hour,17836,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.7;series=sex.male;year=2020
+bps_tpb_2024,sdg08_hourly_wage,sex.male,2024-12-31,2021,national,9999,Indonesia,rupiah_per_hour,18210,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.7;series=sex.male;year=2021
+bps_tpb_2024,sdg08_hourly_wage,sex.male,2024-12-31,2022,national,9999,Indonesia,rupiah_per_hour,18261,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.7;series=sex.male;year=2022
+bps_tpb_2024,sdg08_hourly_wage,sex.male,2024-12-31,2023,national,9999,Indonesia,rupiah_per_hour,20125,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.7;series=sex.male;year=2023
+bps_tpb_2024,sdg08_hourly_wage,total,2024-12-31,2019,national,9999,Indonesia,rupiah_per_hour,15823,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=total;year=2019
+bps_tpb_2024,sdg08_hourly_wage,total,2024-12-31,2020,national,9999,Indonesia,rupiah_per_hour,17696,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=total;year=2020
+bps_tpb_2024,sdg08_hourly_wage,total,2024-12-31,2021,national,9999,Indonesia,rupiah_per_hour,18089,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=total;year=2021
+bps_tpb_2024,sdg08_hourly_wage,total,2024-12-31,2022,national,9999,Indonesia,rupiah_per_hour,17542,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=total;year=2022
+bps_tpb_2024,sdg08_hourly_wage,total,2024-12-31,2023,national,9999,Indonesia,rupiah_per_hour,19027,Badan Pusat Statistik,tpb-2024-figure,page=88;figure=Gambar 8.8;series=total;year=2023
+bps_tpb_2024,sdg08_informal_employment,total,2024-12-31,2021,national,9999,Indonesia,percent,59.45,Badan Pusat Statistik,tpb-2024-figure,page=87;figure=Gambar 8.4;series=total;year=2021
+bps_tpb_2024,sdg08_informal_employment,total,2024-12-31,2022,national,9999,Indonesia,percent,59.31,Badan Pusat Statistik,tpb-2024-figure,page=87;figure=Gambar 8.4;series=total;year=2022
+bps_tpb_2024,sdg08_informal_employment,total,2024-12-31,2023,national,9999,Indonesia,percent,59.11,Badan Pusat Statistik,tpb-2024-figure,page=87;figure=Gambar 8.4;series=total;year=2023
+bps_tpb_2024,sdg08_neet,total,2024-12-31,2020,national,9999,Indonesia,percent,24.28,Badan Pusat Statistik,tpb-2024-figure,page=90;figure=Gambar 8.11;series=total;year=2020
+bps_tpb_2024,sdg08_neet,total,2024-12-31,2021,national,9999,Indonesia,percent,22.40,Badan Pusat Statistik,tpb-2024-figure,page=90;figure=Gambar 8.11;series=total;year=2021
+bps_tpb_2024,sdg08_neet,total,2024-12-31,2022,national,9999,Indonesia,percent,23.22,Badan Pusat Statistik,tpb-2024-figure,page=90;figure=Gambar 8.11;series=total;year=2022
+bps_tpb_2024,sdg08_neet,total,2024-12-31,2023,national,9999,Indonesia,percent,22.25,Badan Pusat Statistik,tpb-2024-figure,page=90;figure=Gambar 8.11;series=total;year=2023
+bps_tpb_2024,sdg08_productivity_growth,total,2024-12-31,2019,national,9999,Indonesia,percent,3.00,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.3;series=total;year=2019
+bps_tpb_2024,sdg08_productivity_growth,total,2024-12-31,2020,national,9999,Indonesia,percent,-1.84,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.3;series=total;year=2020
+bps_tpb_2024,sdg08_productivity_growth,total,2024-12-31,2021,national,9999,Indonesia,percent,1.65,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.3;series=total;year=2021
+bps_tpb_2024,sdg08_productivity_growth,total,2024-12-31,2022,national,9999,Indonesia,percent,2.00,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.3;series=total;year=2022
+bps_tpb_2024,sdg08_productivity_growth,total,2024-12-31,2023,national,9999,Indonesia,percent,1.63,Badan Pusat Statistik,tpb-2024-figure,page=86;figure=Gambar 8.3;series=total;year=2023
+bps_tpb_2024,sdg08_unemployment,total.august,2024-12-31,2021,national,9999,Indonesia,percent,6.49,Badan Pusat Statistik,tpb-2024-figure,page=89;figure=Gambar 8.9;series=total.august;year=2021
+bps_tpb_2024,sdg08_unemployment,total.august,2024-12-31,2022,national,9999,Indonesia,percent,5.86,Badan Pusat Statistik,tpb-2024-figure,page=89;figure=Gambar 8.9;series=total.august;year=2022
+bps_tpb_2024,sdg08_unemployment,total.august,2024-12-31,2023,national,9999,Indonesia,percent,5.32,Badan Pusat Statistik,tpb-2024-figure,page=89;figure=Gambar 8.9;series=total.august;year=2023
+bps_tpb_2024,sdg15_forest_cover,total,2024-12-31,2018,national,9999,Indonesia,percent,49.80,KLHK,tpb-2024-figure,page=162;figure=Gambar 15.1;series=total;year=2018
+bps_tpb_2024,sdg15_forest_cover,total,2024-12-31,2019,national,9999,Indonesia,percent,50.10,KLHK,tpb-2024-figure,page=162;figure=Gambar 15.1;series=total;year=2019
+bps_tpb_2024,sdg15_forest_cover,total,2024-12-31,2020,national,9999,Indonesia,percent,50.90,KLHK,tpb-2024-figure,page=162;figure=Gambar 15.1;series=total;year=2020
+bps_tpb_2024,sdg15_forest_cover,total,2024-12-31,2021,national,9999,Indonesia,percent,50.80,KLHK,tpb-2024-figure,page=162;figure=Gambar 15.1;series=total;year=2021
+bps_tpb_2024,sdg15_forest_cover,total,2024-12-31,2022,national,9999,Indonesia,percent,51.20,KLHK,tpb-2024-figure,page=162;figure=Gambar 15.1;series=total;year=2022
+bps_tpb_2025,sdg04_completion_rate,sd.total,2025-12-30,2020,national,9999,Indonesia,percent,96.00,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=sd.total;year=2020
+bps_tpb_2025,sdg04_completion_rate,sd.total,2025-12-30,2021,national,9999,Indonesia,percent,97.37,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=sd.total;year=2021
+bps_tpb_2025,sdg04_completion_rate,sd.total,2025-12-30,2022,national,9999,Indonesia,percent,97.82,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=sd.total;year=2022
+bps_tpb_2025,sdg04_completion_rate,sd.total,2025-12-30,2023,national,9999,Indonesia,percent,97.83,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=sd.total;year=2023
+bps_tpb_2025,sdg04_completion_rate,sd.total,2025-12-30,2024,national,9999,Indonesia,percent,97.84,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=sd.total;year=2024
+bps_tpb_2025,sdg04_completion_rate,sma.total,2025-12-30,2020,national,9999,Indonesia,percent,63.95,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=sma.total;year=2020
+bps_tpb_2025,sdg04_completion_rate,sma.total,2025-12-30,2021,national,9999,Indonesia,percent,65.94,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=sma.total;year=2021
+bps_tpb_2025,sdg04_completion_rate,sma.total,2025-12-30,2022,national,9999,Indonesia,percent,66.13,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=sma.total;year=2022
+bps_tpb_2025,sdg04_completion_rate,sma.total,2025-12-30,2023,national,9999,Indonesia,percent,66.79,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=sma.total;year=2023
+bps_tpb_2025,sdg04_completion_rate,sma.total,2025-12-30,2024,national,9999,Indonesia,percent,67.07,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=sma.total;year=2024
+bps_tpb_2025,sdg04_completion_rate,smp.total,2025-12-30,2020,national,9999,Indonesia,percent,87.89,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=smp.total;year=2020
+bps_tpb_2025,sdg04_completion_rate,smp.total,2025-12-30,2021,national,9999,Indonesia,percent,88.88,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=smp.total;year=2021
+bps_tpb_2025,sdg04_completion_rate,smp.total,2025-12-30,2022,national,9999,Indonesia,percent,90.13,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=smp.total;year=2022
+bps_tpb_2025,sdg04_completion_rate,smp.total,2025-12-30,2023,national,9999,Indonesia,percent,90.44,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=smp.total;year=2023
+bps_tpb_2025,sdg04_completion_rate,smp.total,2025-12-30,2024,national,9999,Indonesia,percent,91.15,Badan Pusat Statistik,tpb-2025-figure,page=25;figure=Gambar 4.1;series=smp.total;year=2024
+bps_tpb_2025,sdg07_energy_intensity,total,2025-12-30,2020,national,9999,Indonesia,sbm_per_billion_rupiah,133.50,ESDM,tpb-2025-figure,page=49;figure=Gambar 7.3;series=total;year=2020
+bps_tpb_2025,sdg07_energy_intensity,total,2025-12-30,2021,national,9999,Indonesia,sbm_per_billion_rupiah,133.90,ESDM,tpb-2025-figure,page=49;figure=Gambar 7.3;series=total;year=2021
+bps_tpb_2025,sdg07_energy_intensity,total,2025-12-30,2022,national,9999,Indonesia,sbm_per_billion_rupiah,160.50,ESDM,tpb-2025-figure,page=49;figure=Gambar 7.3;series=total;year=2022
+bps_tpb_2025,sdg07_energy_intensity,total,2025-12-30,2023,national,9999,Indonesia,sbm_per_billion_rupiah,132.60,ESDM,tpb-2025-figure,page=49;figure=Gambar 7.3;series=total;year=2023
+bps_tpb_2025,sdg07_energy_intensity,total,2025-12-30,2024,national,9999,Indonesia,sbm_per_billion_rupiah,133.00,ESDM,tpb-2025-figure,page=49;figure=Gambar 7.3;series=total;year=2024
+bps_tpb_2025,sdg07_renewable_share,total,2025-12-30,2019,national,9999,Indonesia,percent,9.15,ESDM,tpb-2025-figure,page=49;figure=Gambar 7.2;series=total;year=2019
+bps_tpb_2025,sdg07_renewable_share,total,2025-12-30,2020,national,9999,Indonesia,percent,11.20,ESDM,tpb-2025-figure,page=49;figure=Gambar 7.2;series=total;year=2020
+bps_tpb_2025,sdg07_renewable_share,total,2025-12-30,2021,national,9999,Indonesia,percent,12.16,ESDM,tpb-2025-figure,page=49;figure=Gambar 7.2;series=total;year=2021
+bps_tpb_2025,sdg07_renewable_share,total,2025-12-30,2022,national,9999,Indonesia,percent,12.30,ESDM,tpb-2025-figure,page=49;figure=Gambar 7.2;series=total;year=2022
+bps_tpb_2025,sdg07_renewable_share,total,2025-12-30,2023,national,9999,Indonesia,percent,13.10,ESDM,tpb-2025-figure,page=49;figure=Gambar 7.2;series=total;year=2023
+bps_tpb_2025,sdg07_renewable_share,total,2025-12-30,2024,national,9999,Indonesia,percent,14.68,ESDM,tpb-2025-figure,page=49;figure=Gambar 7.2;series=total;year=2024
+bps_tpb_2025,sdg08_gdp_per_capita_growth,total,2025-12-30,2017,national,9999,Indonesia,percent,3.79,Badan Pusat Statistik,tpb-2025-figure,page=54;figure=Gambar 8.1;series=total;year=2017
+bps_tpb_2025,sdg08_gdp_per_capita_growth,total,2025-12-30,2018,national,9999,Indonesia,percent,3.93,Badan Pusat Statistik,tpb-2025-figure,page=54;figure=Gambar 8.1;series=total;year=2018
+bps_tpb_2025,sdg08_gdp_per_capita_growth,total,2025-12-30,2019,national,9999,Indonesia,percent,4.27,Badan Pusat Statistik,tpb-2025-figure,page=54;figure=Gambar 8.1;series=total;year=2019
+bps_tpb_2025,sdg08_gdp_per_capita_growth,total,2025-12-30,2020,national,9999,Indonesia,percent,-3.26,Badan Pusat Statistik,tpb-2025-figure,page=54;figure=Gambar 8.1;series=total;year=2020
+bps_tpb_2025,sdg08_gdp_per_capita_growth,total,2025-12-30,2021,national,9999,Indonesia,percent,2.76,Badan Pusat Statistik,tpb-2025-figure,page=54;figure=Gambar 8.1;series=total;year=2021
+bps_tpb_2025,sdg08_gdp_per_capita_growth,total,2025-12-30,2022,national,9999,Indonesia,percent,4.15,Badan Pusat Statistik,tpb-2025-figure,page=54;figure=Gambar 8.1;series=total;year=2022
+bps_tpb_2025,sdg08_gdp_per_capita_growth,total,2025-12-30,2023,national,9999,Indonesia,percent,3.93,Badan Pusat Statistik,tpb-2025-figure,page=54;figure=Gambar 8.1;series=total;year=2023
+bps_tpb_2025,sdg08_gdp_per_capita_growth,total,2025-12-30,2024,national,9999,Indonesia,percent,3.95,Badan Pusat Statistik,tpb-2025-figure,page=54;figure=Gambar 8.1;series=total;year=2024
+bps_tpb_2025,sdg08_informal_employment,total,2025-12-30,2017,national,9999,Indonesia,percent,43.75,Badan Pusat Statistik,tpb-2025-figure,page=56;figure=Gambar 8.3;series=total;year=2017
+bps_tpb_2025,sdg08_informal_employment,total,2025-12-30,2018,national,9999,Indonesia,percent,56.98,Badan Pusat Statistik,tpb-2025-figure,page=56;figure=Gambar 8.3;series=total;year=2018
+bps_tpb_2025,sdg08_informal_employment,total,2025-12-30,2019,national,9999,Indonesia,percent,55.88,Badan Pusat Statistik,tpb-2025-figure,page=56;figure=Gambar 8.3;series=total;year=2019
+bps_tpb_2025,sdg08_informal_employment,total,2025-12-30,2020,national,9999,Indonesia,percent,60.47,Badan Pusat Statistik,tpb-2025-figure,page=56;figure=Gambar 8.3;series=total;year=2020
+bps_tpb_2025,sdg08_informal_employment,total,2025-12-30,2021,national,9999,Indonesia,percent,59.45,Badan Pusat Statistik,tpb-2025-figure,page=56;figure=Gambar 8.3;series=total;year=2021
+bps_tpb_2025,sdg08_informal_employment,total,2025-12-30,2022,national,9999,Indonesia,percent,59.31,Badan Pusat Statistik,tpb-2025-figure,page=56;figure=Gambar 8.3;series=total;year=2022
+bps_tpb_2025,sdg08_informal_employment,total,2025-12-30,2023,national,9999,Indonesia,percent,59.11,Badan Pusat Statistik,tpb-2025-figure,page=56;figure=Gambar 8.3;series=total;year=2023
+bps_tpb_2025,sdg08_informal_employment,total,2025-12-30,2024,national,9999,Indonesia,percent,57.95,Badan Pusat Statistik,tpb-2025-figure,page=56;figure=Gambar 8.3;series=total;year=2024
+bps_tpb_2025,sdg08_neet,total,2025-12-30,2018,national,9999,Indonesia,percent,22.15,Badan Pusat Statistik,tpb-2025-figure,page=58;figure=Gambar 8.5;series=total;year=2018
+bps_tpb_2025,sdg08_neet,total,2025-12-30,2019,national,9999,Indonesia,percent,21.77,Badan Pusat Statistik,tpb-2025-figure,page=58;figure=Gambar 8.5;series=total;year=2019
+bps_tpb_2025,sdg08_neet,total,2025-12-30,2020,national,9999,Indonesia,percent,24.28,Badan Pusat Statistik,tpb-2025-figure,page=58;figure=Gambar 8.5;series=total;year=2020
+bps_tpb_2025,sdg08_neet,total,2025-12-30,2021,national,9999,Indonesia,percent,22.40,Badan Pusat Statistik,tpb-2025-figure,page=58;figure=Gambar 8.5;series=total;year=2021
+bps_tpb_2025,sdg08_neet,total,2025-12-30,2022,national,9999,Indonesia,percent,23.22,Badan Pusat Statistik,tpb-2025-figure,page=58;figure=Gambar 8.5;series=total;year=2022
+bps_tpb_2025,sdg08_neet,total,2025-12-30,2023,national,9999,Indonesia,percent,22.25,Badan Pusat Statistik,tpb-2025-figure,page=58;figure=Gambar 8.5;series=total;year=2023
+bps_tpb_2025,sdg08_neet,total,2025-12-30,2024,national,9999,Indonesia,percent,20.31,Badan Pusat Statistik,tpb-2025-figure,page=58;figure=Gambar 8.5;series=total;year=2024
+bps_tpb_2025,sdg08_productivity_growth,total,2025-12-30,2017,national,9999,Indonesia,percent,2.80,Badan Pusat Statistik,tpb-2025-figure,page=55;figure=Gambar 8.2;series=total;year=2017
+bps_tpb_2025,sdg08_productivity_growth,total,2025-12-30,2018,national,9999,Indonesia,percent,0.79,Badan Pusat Statistik,tpb-2025-figure,page=55;figure=Gambar 8.2;series=total;year=2018
+bps_tpb_2025,sdg08_productivity_growth,total,2025-12-30,2019,national,9999,Indonesia,percent,3.00,Badan Pusat Statistik,tpb-2025-figure,page=55;figure=Gambar 8.2;series=total;year=2019
+bps_tpb_2025,sdg08_productivity_growth,total,2025-12-30,2020,national,9999,Indonesia,percent,-1.84,Badan Pusat Statistik,tpb-2025-figure,page=55;figure=Gambar 8.2;series=total;year=2020
+bps_tpb_2025,sdg08_productivity_growth,total,2025-12-30,2021,national,9999,Indonesia,percent,1.65,Badan Pusat Statistik,tpb-2025-figure,page=55;figure=Gambar 8.2;series=total;year=2021
+bps_tpb_2025,sdg08_productivity_growth,total,2025-12-30,2022,national,9999,Indonesia,percent,2.00,Badan Pusat Statistik,tpb-2025-figure,page=55;figure=Gambar 8.2;series=total;year=2022
+bps_tpb_2025,sdg08_productivity_growth,total,2025-12-30,2023,national,9999,Indonesia,percent,1.63,Badan Pusat Statistik,tpb-2025-figure,page=55;figure=Gambar 8.2;series=total;year=2023
+bps_tpb_2025,sdg08_productivity_growth,total,2025-12-30,2024,national,9999,Indonesia,percent,1.55,Badan Pusat Statistik,tpb-2025-figure,page=55;figure=Gambar 8.2;series=total;year=2024
+bps_tpb_2025,sdg15_forest_cover,total,2025-12-30,2020,national,9999,Indonesia,percent,50.90,Kementerian Kehutanan,tpb-2025-table,page=114;figure=Gambar 15.1;series=total;year=2020
+bps_tpb_2025,sdg15_forest_cover,total,2025-12-30,2021,national,9999,Indonesia,percent,50.80,Kementerian Kehutanan,tpb-2025-table,page=114;figure=Gambar 15.1;series=total;year=2021
+bps_tpb_2025,sdg15_forest_cover,total,2025-12-30,2022,national,9999,Indonesia,percent,51.16,Kementerian Kehutanan,tpb-2025-table,page=114;figure=Gambar 15.1;series=total;year=2022
+bps_tpb_2025,sdg15_forest_cover,total,2025-12-30,2023,national,9999,Indonesia,percent,51.20,Kementerian Kehutanan,tpb-2025-table,page=114;figure=Gambar 15.1;series=total;year=2023
+bps_tpb_2025,sdg15_forest_cover,total,2025-12-30,2024,national,9999,Indonesia,percent,51.08,Kementerian Kehutanan,tpb-2025-table,page=114;figure=Gambar 15.1;series=total;year=2024

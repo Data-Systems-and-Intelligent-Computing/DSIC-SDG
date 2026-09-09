@@ -144,7 +144,11 @@ keputusan serta alasan penolakan proksi tersedia di
 
 Volume data pada penelitian ini tergolong kecil, dan hal tersebut tidak menjadi masalah. Pertanyaan yang diajukan menyangkut kebenaran, keterlacakan, dan ongkos pemeliharaan, bukan throughput. Rancangan sengaja disusun agar tidak bergantung pada volume besar, karena indikator SDG pada granularitas nasional sampai provinsi memang tidak akan pernah besar. Karena itu, klaim penelitian tidak boleh diperluas menjadi klaim tentang skalabilitas.
 
-Eksperimen dijalankan pada satu node dengan 8 vCPU, 16 GB RAM, dan penyimpanan 256 GB, sesuai spesifikasi pada proposal.
+Eksperimen utama dirancang untuk satu node dengan 8 vCPU, 16 GB RAM, dan penyimpanan 256 GB,
+sesuai spesifikasi pada proposal. Fondasi H3 telah diuji pada VM `praktikum-sd` yang tersedia,
+dengan 2 vCPU, RAM 7,7 GiB, dan disk 19 GiB. VM tersebut dipakai untuk validasi layanan, bukan
+sebagai bukti performa. Sebelum pengukuran, VM harus dinaikkan ke spesifikasi proposal atau batas
+sumber daya yang lebih kecil harus dinyatakan dan dibekukan sebagai revisi desain eksperimen.
 
 ### 5.3 Aturan provenance
 
@@ -221,9 +225,19 @@ dari bauran energi terbarukan tahun 2018-2020, sedangkan nilai publikasi 2023 ti
 variabel WebAPI terpilih. Jalankan `make h2-run` untuk membentuk ulang hasil. Laporan lengkap ada
 di [`docs/research/h2-source-comparison.md`](docs/research/h2-source-comparison.md).
 
-Hasil H2 belum meloloskan Gate G1 karena perbedaan baru ditemukan pada satu domain. H3 perlu
-memperluas jumlah indikator dan cakupan provinsi sampai penyebab perbedaan dapat dipisahkan menjadi
-versi rilis, metodologi, atau granularitas.
+H3 sudah selesai untuk audit nasional-provinsi dan tambahan antarrilis. Audit utama membandingkan
+1.435 sel dari WebAPI dan lampiran TPB 2024: 1.402 sama dan 33 berbeda, dengan 82 pemeriksaan
+agregat nasional terhadap provinsi. Tambahan TPB 2025 membentuk 4.608 kunci sel dan menemukan
+delapan perbedaan nilai pada tiga domain, yaitu energi, ekonomi, dan ekologi. Dengan demikian,
+kriteria pertama Gate G1 terpenuhi. Klasifikasi delapan sel tersebut masih berupa kandidat dan
+harus diuji pada H4; jejak empat perubahan langsung antara publikasi 2024 dan 2025 dibekukan pada
+H5. Laporan serta perintah reproduksinya ada di
+[`docs/research/h3-national-province-comparison.md`](docs/research/h3-national-province-comparison.md).
+
+Fondasi H3 juga aktif pada VM `sigerciv@34.128.67.92`: MinIO, Iceberg REST, dan Spark/Jupyter
+telah lolos pemeriksaan kesehatan dan Spark berhasil mengakses katalog `kkciv`. Versi serta digest
+image dibekukan di [`infra/docker/`](infra/docker/). Jalankan `make stack-remote-status` untuk
+memeriksa layanan dan `make stack-remote-up` untuk menyinkronkan konfigurasi lalu menaikkannya.
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 

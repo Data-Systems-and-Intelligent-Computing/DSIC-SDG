@@ -1,0 +1,21 @@
+indicator_key,domain,webapi_domain_id,webapi_variable_id,selection_status,coverage,producer,notes
+sdg04_completion_rate,education,0000,1980,selected,national_province,Badan Pusat Statistik,Completion rate by education level and province
+sdg04_completion_rate,education,0000,1981,selected_limited,national_residence,Badan Pusat Statistik,Completion rate by education level and urban-rural residence
+sdg04_completion_rate,education,0000,1982,selected_limited,national_sex,Badan Pusat Statistik,Completion rate by education level and sex
+sdg04_completion_rate,education,0000,1983,selected_limited,national_expenditure_quintile,Badan Pusat Statistik,Completion rate by education level and expenditure quintile
+sdg04_paud,education,0000,1990,selected,national_province,Badan Pusat Statistik,Participation in organized learning one year before primary school
+sdg04_parity_index,education,0000,1455,selected,national_province,Badan Pusat Statistik,Female-to-male participation ratio by education level
+sdg06_handwashing,environment,0000,1273,selected,national_province,Badan Pusat Statistik,Handwashing facility with soap and water by province
+sdg06_handwashing,environment,0000,1274,selected_limited,national_residence,Badan Pusat Statistik,Handwashing facility with soap and water by urban-rural residence
+sdg07_electricity_access,energy,0000,1155,selected_limited,national,ESDM,National electrification ratio
+sdg07_renewable_share,energy,0000,1824,selected_limited,national,ESDM,Renewable share is only available nationally
+sdg07_energy_intensity,energy,0000,1808,selected_limited,national,ESDM,Primary energy intensity is only available nationally
+sdg08_gdp_per_capita_growth,economy,0000,296,selected,national_province,Badan Pusat Statistik,GDP or GRDP per-capita growth at constant 2010 prices
+sdg08_productivity_growth,economy,0000,1161,selected,national_province,Badan Pusat Statistik,Real GDP growth per worker
+sdg08_unemployment,economy,0000,543,selected,national_province,Badan Pusat Statistik,Open unemployment rate
+sdg08_informal_employment,economy,0000,2153,selected,national_province,Badan Pusat Statistik,Informal-employment proportion
+sdg08_hourly_wage,economy,0000,1172,selected,national_province,Badan Pusat Statistik,Average hourly wage by province
+sdg08_hourly_wage,economy,0000,1173,selected_limited,national_residence,Badan Pusat Statistik,Average hourly wage by urban-rural residence
+sdg08_hourly_wage,economy,0000,1174,selected_limited,national_sex,Badan Pusat Statistik,Average hourly wage by sex
+sdg08_neet,economy,0000,1186,selected,national_province,Badan Pusat Statistik,Youth aged 15-24 not in education employment or training
+sdg15_forest_cover,ecology,0000,1304,selected_derived,national_province,KLHK,Retained for coverage audit only because H2 rejected concept equivalence

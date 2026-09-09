@@ -1,0 +1,68 @@
+{
+  "created_at": "2026-09-09T00:26:24.637806+00:00",
+  "inputs": [
+    {
+      "path": "config/h3/province_indicators.csv",
+      "sha256": "e2ba1363aa423c79127c837e421df13673634d1b2e61539cf45acdd92f16fd6b"
+    },
+    {
+      "path": "config/h3/province_columns.csv",
+      "sha256": "3efa8aff8157d01a972120f39bc71ce490e7940fb136246b46885c75ecfaff28"
+    },
+    {
+      "path": "data/manifests/h1-free-webapi-data.json",
+      "sha256": "54f99452eece1a45abad7d11397aa1d3d711f9452503c5a0eecdf3ec899c4d51"
+    },
+    {
+      "path": "data/manifests/h1-free-publications.json",
+      "sha256": "e5370c608458a1d69f054b98200c2949738231cbeef448e93f2196aa455c59bb"
+    },
+    {
+      "path": "data/raw/h1/publications/bps_tpb_2024.pdf",
+      "sha256": "abb977463619a16c5811bab47074452d75807483da5a315e831c1d07aa390cd8",
+      "source_id": "bps_tpb_2024"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h3-webapi-observations.csv",
+      "rows": 1435,
+      "sha256": "9d9443aca6b83cc000ec2747cf061bb49285b49495ee86f3b4ae272560dd0357"
+    },
+    {
+      "path": "results/processed/h3-publication-observations.csv",
+      "rows": 1435,
+      "sha256": "b3d8c61fb3e65763db75e9c07994a958e8aaaec41c4258f591f62991f78b7959"
+    },
+    {
+      "path": "results/processed/h3-cell-comparison.csv",
+      "rows": 1435,
+      "sha256": "03978790b88e2d1560030fc7cbf64577aa170e85b69f6cfe4e70312ea6afecce"
+    },
+    {
+      "path": "results/processed/h3-discrepancies.csv",
+      "rows": 33,
+      "sha256": "db4917cf874520f436d7487cc99f1f395efd2d47dd483861dfd623aabbc855e3"
+    },
+    {
+      "path": "results/processed/h3-granularity.csv",
+      "rows": 82,
+      "sha256": "2ff90a0061d82e706c26f6d8a1478a3c87436cb3d370108d275baec7969c1df4"
+    },
+    {
+      "path": "results/processed/h3-indicator-summary.csv",
+      "rows": 18,
+      "sha256": "95fa4cacdbeeed779ba3ca096b34d0488bd603c7e3eb8826d6cd4f8a55146964"
+    }
+  ],
+  "policy": {
+    "cost_class": "free",
+    "geographies": [
+      "national",
+      "province"
+    ],
+    "publication_release": "2024-12-31",
+    "webapi_snapshot": "2026-09-08"
+  },
+  "stage": "H3"
+}

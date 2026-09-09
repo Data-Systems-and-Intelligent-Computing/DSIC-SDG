@@ -1,0 +1,5 @@
+indicator_key,domain,source_id,locator,classification,reason
+sdg04_parity_index,education,bps_tpb_2024,Gambar 4.13-4.15,methodology_mismatch,WebAPI variable 1455 is APM female-to-male while the publication uses APK for SMP SMA and university; only SD is compared
+sdg06_drinking_water,environment,bps_webapi:var-845,methodology_mismatch,WebAPI reports adequate drinking-water access while the publication reports safely managed drinking water
+sdg06_sanitation,environment,bps_tpb_2024:page-70,coverage_gap,The 2024 figure presents handwashing values and does not expose a sanitation series that matches WebAPI variable 847
+sdg15_forest_cover,ecology,bps_webapi:var-1304,methodology_mismatch,WebAPI reports land-cover area inside or outside designated forest area while the publications report forest-cover proportion; WebAPI is excluded from value comparison
