@@ -14,3 +14,5 @@ data/raw/**
 
 # Local PDF inspection artifacts.
 tmp/
+
+papers/els-cas-templates
