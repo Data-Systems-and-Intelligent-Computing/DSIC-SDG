@@ -1,0 +1,7 @@
+invariant,status,checked_rows,detail
+schema_contract,passed,2,two table definitions match h6.1
+explicit_vintage_fk,passed,38,all rows reference 3 vintage dimension rows
+stable_source_independent_cell_id,passed,14,one cell_id per H5 trace across sources
+lossless_value_lexeme,passed,38,"published lexeme retained beside exact DECIMAL(38,10)"
+unique_observation_identity,passed,38,no duplicate observation_id or logical key
+derived_current_rule,passed,14,current is ordered from vintage_date and is not stored

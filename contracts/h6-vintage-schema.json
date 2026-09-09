@@ -1,0 +1,73 @@
+{
+  "contract_version": "h6.1",
+  "description": "Vintage-aware indicator schema; cell identity is stable while release vintage is explicit.",
+  "identity": {
+    "cell_id_fields": ["indicator_key", "series_key", "observed_period", "geo_level", "geo_code"],
+    "vintage_id_fields": ["source_id", "vintage_date", "source_manifest_sha256"],
+    "observation_id_fields": ["cell_id", "vintage_id", "source_record_id"],
+    "hash": "sha256_utf8_unit_separator_first_20_hex"
+  },
+  "invariants": [
+    "one observation per cell_id, vintage_id, and source_record_id",
+    "every observation references exactly one release_vintages row",
+    "value_decimal is exact and value_lexeme preserves published formatting",
+    "unit and methodology belong to an observation and may change across vintages",
+    "current is derived by ordering vintages and is never stored as a mutable flag"
+  ],
+  "tables": {
+    "release_vintages": {
+      "identifier": "kkciv.research.release_vintages",
+      "partitioning": [],
+      "columns": [
+        ["vintage_id", "STRING", false],
+        ["source_id", "STRING", false],
+        ["source_channel", "STRING", false],
+        ["vintage_date", "DATE", false],
+        ["vintage_basis", "STRING", false],
+        ["retrieved_at", "TIMESTAMP", false],
+        ["release_label", "STRING", false],
+        ["source_manifest_path", "STRING", false],
+        ["source_manifest_sha256", "STRING", false]
+      ]
+    },
+    "indicator_observations": {
+      "identifier": "kkciv.research.indicator_observations",
+      "partitioning": ["domain"],
+      "sort_order": ["indicator_key", "observed_period", "geo_code", "vintage_id"],
+      "columns": [
+        ["observation_id", "STRING", false],
+        ["cell_id", "STRING", false],
+        ["vintage_id", "STRING", false],
+        ["domain", "STRING", false],
+        ["indicator_key", "STRING", false],
+        ["series_key", "STRING", false],
+        ["observed_period", "STRING", false],
+        ["period_granularity", "STRING", false],
+        ["geo_level", "STRING", false],
+        ["geo_code", "STRING", false],
+        ["geo_name", "STRING", false],
+        ["unit", "STRING", false],
+        ["value_decimal", "DECIMAL(38,10)", false],
+        ["value_lexeme", "STRING", false],
+        ["published_decimal_places", "INT", false],
+        ["producer", "STRING", false],
+        ["methodology_version", "STRING", false],
+        ["source_artifact_path", "STRING", false],
+        ["source_artifact_sha256", "STRING", false],
+        ["source_record_id", "STRING", false],
+        ["ingestion_batch_id", "STRING", false],
+        ["transformation_run_id", "STRING", false],
+        ["transformation_version", "STRING", false],
+        ["trace_id", "STRING", true],
+        ["cause_family", "STRING", true],
+        ["evidence_level", "STRING", true]
+      ]
+    }
+  },
+  "current_value_rule": {
+    "partition_by": ["cell_id"],
+    "order_by": ["vintage_date DESC", "retrieved_at DESC", "vintage_id DESC", "observation_id DESC"],
+    "note": "This is a mechanical latest-vintage view, not the source-trust policy used by B2."
+  }
+}
+

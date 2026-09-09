@@ -257,6 +257,14 @@ dijalankan dengan `make h5-run`; laporan, batas klaim, dan uji tulis-baca Iceber
 Uji pada VM menghasilkan marker `H5_VERIFY|38|14|1|3|1`, sehingga 38 baris dapat dibaca kembali
 dari tabel Iceberg beserta data file fisiknya.
 
+H6 Jalur A menetapkan kontrak dua tabel: `release_vintages` sebagai dimensi rilis/snapshot dan
+`indicator_observations` sebagai fakta sel indikator. `cell_id` stabil lintas sumber, sedangkan
+`vintage_id` eksplisit dan diturunkan dari sumber, tanggal vintage, serta checksum manifest. Nilai
+numerik eksak dan bentuk angka yang diterbitkan disimpan terpisah agar perbandingan serta reproduksi
+sama-sama terjaga. Fixture 38 baris H5 berhasil diproyeksikan menjadi tiga vintage, 38 observasi,
+dan 14 sel tanpa kehilangan provenance. Jalankan `make h6-run`; keputusan lengkap ada di
+[`docs/research/h6-explicit-vintage-schema.md`](docs/research/h6-explicit-vintage-schema.md).
+
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
 **Gate G1 — Objek penelitian terbukti ada**

@@ -1,0 +1,4 @@
+vintage_id,source_id,source_channel,vintage_date,vintage_basis,retrieved_at,release_label,source_manifest_path,source_manifest_sha256
+aa7252a58f41161c17c3,bps_tpb_2024,publication_pdf,2024-12-31,published_release,2026-09-08T14:05:34.154058+00:00,Indikator Tujuan Pembangunan Berkelanjutan Indonesia 2024,data/manifests/h1-free-publications.json,e5370c608458a1d69f054b98200c2949738231cbeef448e93f2196aa455c59bb
+9ab2011a3892edfac889,bps_tpb_2025,publication_pdf,2025-12-30,published_release,2026-09-08T14:05:34.154058+00:00,Indikator Tujuan Pembangunan Berkelanjutan Indonesia 2025,data/manifests/h1-free-publications.json,e5370c608458a1d69f054b98200c2949738231cbeef448e93f2196aa455c59bb
+b132d2fab33291e0733e,bps_webapi,webapi,2026-09-08,retrieval_snapshot,2026-09-08T14:04:19.191282+00:00,WebAPI 2026-09-08T14:04:19.191282+00:00,data/manifests/h1-free-webapi-data.json,54f99452eece1a45abad7d11397aa1d3d711f9452503c5a0eecdf3ec899c4d51

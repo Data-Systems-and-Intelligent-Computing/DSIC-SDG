@@ -1,0 +1,60 @@
+{
+  "contract_version": "h6.1",
+  "fixture": {
+    "cell_count": 14,
+    "lossless_projection": true,
+    "observation_rows": 38,
+    "source_stage": "H5",
+    "vintage_rows": 3
+  },
+  "iceberg_targets": {
+    "indicator_observations": "kkciv.research.indicator_observations",
+    "release_vintages": "kkciv.research.release_vintages"
+  },
+  "inputs": [
+    {
+      "path": "contracts/h6-vintage-schema.json",
+      "sha256": "41e887d137eab851d82ba4d217ae6d30c0fe144339700167b45d0e4033aa20d6"
+    },
+    {
+      "path": "infra/spark/h6-vintage-schema.sql",
+      "sha256": "e866ef7b2fee697ebb3f5d8f93847d6d32bd954d8e4477abc19aacf890002130"
+    },
+    {
+      "path": "data/manifests/h5-gate1.json",
+      "sha256": "92f44c68a92632053c85321955c25957c9719ca33913b47757b6319a5d154aa7"
+    },
+    {
+      "path": "results/processed/h5-revision-traces.csv",
+      "rows": 38,
+      "sha256": "2e456eeaa80149323b38fcb590ae49bf39fa2d18661dc79a2778d23b58ad2ca3"
+    },
+    {
+      "path": "data/manifests/h1-free-publications.json",
+      "sha256": "e5370c608458a1d69f054b98200c2949738231cbeef448e93f2196aa455c59bb"
+    },
+    {
+      "path": "data/manifests/h1-free-webapi-data.json",
+      "sha256": "54f99452eece1a45abad7d11397aa1d3d711f9452503c5a0eecdf3ec899c4d51"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h6-release-vintages.csv",
+      "rows": 3,
+      "sha256": "7092d42c678a2c42dc0ea516672d3025cb817232b28adebeba9b627aabd602f2"
+    },
+    {
+      "path": "results/processed/h6-indicator-observations.csv",
+      "rows": 38,
+      "sha256": "80650a40d1fafeb1e3ec0f71eacf88be90efbe4bb5c919df39fd33af06832af2"
+    },
+    {
+      "path": "results/processed/h6-schema-validation.csv",
+      "rows": 6,
+      "sha256": "c3d1ebb110e53d081f3cbeb7f12dae7e69b7b227c27a98408c37e293d303175e"
+    }
+  ],
+  "schema_status": "validated",
+  "stage": "H6"
+}
