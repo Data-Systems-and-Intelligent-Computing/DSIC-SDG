@@ -80,5 +80,9 @@ make h6c-run
 make test
 ```
 
-Status verifikasi VM akan dicatat setelah commit ditarik dan dijalankan pada
-`sigerciv@34.128.67.92`.
+Eksekusi diverifikasi pada 9 September 2026 di `sigerciv@34.128.67.92` setelah VM menarik commit
+`3211bb6` dari `main`. Marker `H6C_VERIFY|101|235|38|14|4|20|1.0000|validated` membuktikan 101
+node, 235 edge, 38 path untuk 14 sel, empat kelompok collision yang memengaruhi 20 observasi,
+kelengkapan `1,0000`, dan status `validated`. Seluruh 48 tes yang dapat dijalankan di VM lulus;
+satu tes ekstraksi PDF H3 dilewati karena payload mentah tidak disimpan di Git. Clone VM tetap
+bersih setelah reproduksi.

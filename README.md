@@ -283,6 +283,7 @@ transformasi. Audit menemukan empat locator PDF yang dipakai ulang oleh 20 obser
 mentah dipertahankan dan node rekaman di-resolve memakai koordinat sel H6 yang eksplisit, tanpa
 fuzzy matching. Jalankan `make h6c-run`; model dan batas kelengkapannya ada di
 [`docs/research/h6c-cell-lineage.md`](docs/research/h6c-cell-lineage.md).
+Uji pada VM lulus dengan marker `H6C_VERIFY|101|235|38|14|4|20|1.0000|validated`.
 
 H7 Jalur A mengimplementasikan B0 sebagai baseline overwrite dengan tepat satu baris terkini per
 `cell_id`. Tiga vintage H6 diterapkan berurutan: 38 observasi masuk menjadi 14 baris current,
