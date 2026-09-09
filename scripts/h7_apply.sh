@@ -167,7 +167,7 @@ SELECT concat(
      OR
      (r.result = 'historical_overwritten' AND
        (c.observation_id IS NULL OR c.observation_id = r.requested_observation_id))
-  ) audit_mismatches
+  )
 );
 "
 
