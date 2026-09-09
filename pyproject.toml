@@ -11,6 +11,7 @@ kkciv-h3 = "kkciv_vintage.h3.cli:main"
 kkciv-h4 = "kkciv_vintage.h4.cli:main"
 kkciv-h5 = "kkciv_vintage.h5.cli:main"
 kkciv-h6 = "kkciv_vintage.h6.cli:main"
+kkciv-h6b = "kkciv_vintage.h6b.cli:main"
 kkciv-h7 = "kkciv_vintage.h7.cli:main"
 
 [build-system]

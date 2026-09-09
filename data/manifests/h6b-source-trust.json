@@ -1,0 +1,66 @@
+{
+  "contract_version": "h6b.1",
+  "inputs": [
+    {
+      "path": "contracts/h6b-source-trust.json",
+      "sha256": "dea3cafc955fb7e69c7ea4f496020957cee8bafad808d33c32e2149569b26b9b"
+    },
+    {
+      "path": "data/manifests/h6-vintage-schema.json",
+      "sha256": "416c6892d04a0a3c0b3c475f8a51d941a88cca9c68a197cf681f9449511f0ff4"
+    },
+    {
+      "path": "config/sources/bps_sources.csv",
+      "sha256": "07418d3c0c4335e52fecae25fe5dd5008d5305b7c28116fc11bed9c3828aa29f"
+    },
+    {
+      "path": "results/processed/h6-release-vintages.csv",
+      "rows": 3,
+      "sha256": "7092d42c678a2c42dc0ea516672d3025cb817232b28adebeba9b627aabd602f2"
+    },
+    {
+      "path": "results/processed/h6-indicator-observations.csv",
+      "rows": 38,
+      "sha256": "80650a40d1fafeb1e3ec0f71eacf88be90efbe4bb5c919df39fd33af06832af2"
+    }
+  ],
+  "interpretation": {
+    "score_is": "a frozen experimental source-fitness heuristic for B2",
+    "score_is_not": "a claim that one official BPS vintage is true and another is false",
+    "tie_break_note": "vintage date resolves equal source-fitness scores but contributes no score points"
+  },
+  "outputs": [
+    {
+      "path": "results/processed/h6b-source-trust-scores.csv",
+      "rows": 3,
+      "sha256": "114b33a9bb9274d0fa8f4cd546afe14d4e64f1fc29fe80ed3d97a5b9dac5006d"
+    },
+    {
+      "path": "results/processed/h6b-selection-preview.csv",
+      "rows": 14,
+      "sha256": "0d4e47a41ac15126da484a197662f7be5a2e8560cb0af2f50e00be490d04fb36"
+    },
+    {
+      "path": "results/processed/h6b-source-trust-validation.csv",
+      "rows": 6,
+      "sha256": "a6d7c072f1a4c22132b68268ad8995a1102415727907d8bbd31b5d99f4d7bf63"
+    }
+  ],
+  "score_status": "frozen",
+  "selection_preview": {
+    "diagnostic_only": true,
+    "latest_vintage_selected": 4,
+    "older_vintage_selected": 10,
+    "selected_rows": 14,
+    "selected_value_differs_from_latest": 10
+  },
+  "stage": "H6",
+  "track": "B",
+  "treatment_id": "B2",
+  "workload": {
+    "candidate_observations": 38,
+    "cell_count": 14,
+    "source_count": 3,
+    "source_stage": "H6 Jalur A"
+  }
+}

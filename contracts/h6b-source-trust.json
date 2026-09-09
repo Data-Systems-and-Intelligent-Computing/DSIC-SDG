@@ -1,0 +1,76 @@
+{
+  "contract_version": "h6b.1",
+  "treatment_id": "B2",
+  "name": "single_source_trust_selection",
+  "description": "Freeze a deterministic source-fitness score for the B2 single-source comparator without treating one official value as truth.",
+  "input": {
+    "manifest": "data/manifests/h6-vintage-schema.json",
+    "source_registry": "config/sources/bps_sources.csv",
+    "score_scope": "the 14 stable cells in the H6 real-revision workload"
+  },
+  "eligibility": {
+    "workflow_status": "active",
+    "verification_status": "verified_channel",
+    "allowed_roles": ["indicator_values", "indicator_values_and_definitions"]
+  },
+  "dimensions": [
+    {
+      "name": "official_authority",
+      "weight": "0.30",
+      "derivation": "1 when the eligible registry publisher is Badan Pusat Statistik"
+    },
+    {
+      "name": "manifested_provenance",
+      "weight": "0.20",
+      "derivation": "share of candidate rows with source manifest, artifact checksum, and source record locator"
+    },
+    {
+      "name": "semantic_context",
+      "weight": "0.20",
+      "derivation": "registry role mapping",
+      "mapping": {
+        "indicator_values_and_definitions": "1.00",
+        "indicator_values": "0.75"
+      }
+    },
+    {
+      "name": "structured_directness",
+      "weight": "0.15",
+      "derivation": "registry format mapping",
+      "mapping": {
+        "json": "1.00",
+        "csv": "1.00",
+        "pdf": "0.75"
+      }
+    },
+    {
+      "name": "workload_cell_coverage",
+      "weight": "0.15",
+      "derivation": "distinct candidate cells divided by all H6 workload cells"
+    }
+  ],
+  "formula": "sum(weight * dimension_value)",
+  "selection": {
+    "partition_by": ["cell_id"],
+    "order_by": [
+      "trust_score DESC",
+      "vintage_date DESC",
+      "source_id ASC",
+      "observation_id ASC"
+    ],
+    "output_rows_per_cell": 1
+  },
+  "forbidden_score_features": [
+    "value_decimal",
+    "value_lexeme",
+    "agreement_with_other_sources",
+    "cause_family",
+    "evidence_level",
+    "whether_the_source_wins"
+  ],
+  "interpretation": {
+    "score_is": "a frozen experimental source-fitness heuristic for B2",
+    "score_is_not": "a claim that one official BPS vintage is true and another is false",
+    "tie_break_note": "vintage date resolves equal source-fitness scores but contributes no score points"
+  }
+}

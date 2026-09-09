@@ -1,0 +1,7 @@
+invariant,status,checked_rows,detail
+weights_sum_to_one,passed,5,five positive weights sum exactly to 1.00
+eligible_official_sources,passed,3,all workload sources are active verified BPS channels
+complete_dimension_mapping,passed,3,"every eligible role and format maps to [0,1]"
+no_outcome_leakage,passed,6,"values, agreement, causes, evidence, and winners contribute no score points"
+one_selection_per_cell,passed,14,deterministic score and tie-break produce one winner for every H6 cell
+selection_is_diagnostic_only,passed,14,preview exposes 10 older-vintage selections without changing the frozen score

@@ -266,6 +266,15 @@ dan 14 sel tanpa kehilangan provenance. Jalankan `make h6-run`; keputusan lengka
 [`docs/research/h6-explicit-vintage-schema.md`](docs/research/h6-explicit-vintage-schema.md).
 Uji dua tabel pada VM lulus dengan marker `H6_VERIFY|3|38|14|2|3|1|3|0|0`.
 
+H6 Jalur B membekukan skor kepercayaan untuk perlakuan B2 tanpa menyatakan satu vintage resmi
+sebagai kebenaran. Lima dimensi berbobot menilai otoritas resmi, provenance, konteks semantik,
+keterstrukturan, dan cakupan sel; nilai observasi serta hasil konflik dilarang masuk skor. Pada 14
+sel H6, TPB 2025 dan TPB 2024 sama-sama memperoleh `0,962500`, sedangkan WebAPI memperoleh
+`0,907143`; tie-break tanggal menempatkan TPB 2025 pertama. Preview diagnostik memilih TPB 2025
+pada seluruh sel, termasuk sepuluh sel yang mempunyai vintage WebAPI lebih baru dan berbeda.
+Jalankan `make h6b-run`; rumus dan batas interpretasinya ada di
+[`docs/research/h6b-source-trust-score.md`](docs/research/h6b-source-trust-score.md).
+
 H7 Jalur A mengimplementasikan B0 sebagai baseline overwrite dengan tepat satu baris terkini per
 `cell_id`. Tiga vintage H6 diterapkan berurutan: 38 observasi masuk menjadi 14 baris current,
 sementara 24 observasi lama ditimpa. Dari overwrite tersebut, 14 mengubah nilai dan 10 mengganti
