@@ -264,6 +264,7 @@ numerik eksak dan bentuk angka yang diterbitkan disimpan terpisah agar perbandin
 sama-sama terjaga. Fixture 38 baris H5 berhasil diproyeksikan menjadi tiga vintage, 38 observasi,
 dan 14 sel tanpa kehilangan provenance. Jalankan `make h6-run`; keputusan lengkap ada di
 [`docs/research/h6-explicit-vintage-schema.md`](docs/research/h6-explicit-vintage-schema.md).
+Uji dua tabel pada VM lulus dengan marker `H6_VERIFY|3|38|14|2|3|1|3|0|0`.
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 

@@ -76,7 +76,12 @@ dengan `INSERT OVERWRITE`, lalu membaca data dan metadata Iceberg kembali. Uji m
 vintage, observasi, sel, cardinality vintage per sel, data file, foreign key, serta kesetaraan
 `value_lexeme` terhadap `value_decimal`.
 
-Status eksekusi VM akan dicatat setelah implementasi H6 di-commit, di-push, dan ditarik oleh VM.
+Eksekusi telah diverifikasi pada 9 September 2026 di `sigerciv@34.128.67.92` setelah VM menarik
+commit `c8d550c` dari `main`. Marker baca-balik
+`H6_VERIFY|3|38|14|2|3|1|3|0|0` membuktikan tiga vintage, 38 observasi, 14 sel, minimum dua dan
+maksimum tiga vintage per sel, minimal satu data file pada dimensi, tiga data file pada fakta
+(satu per partisi domain), nol foreign key yatim, dan nol selisih numerik antara lexeme dengan
+`DECIMAL(38,10)`. Clone VM tetap bersih setelah eksekusi.
 
 ## Artefak dan reproduksi
 
@@ -96,4 +101,3 @@ make h6-run
 make test
 make h6-apply  # membutuhkan stack yang aktif
 ```
-
