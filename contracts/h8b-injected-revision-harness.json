@@ -1,0 +1,74 @@
+{
+  "contract_version": "h8b.1",
+  "stage": "H8",
+  "track": "B",
+  "name": "injected_revision_harness",
+  "description": "Build deterministic nested synthetic revision batches without executing or timing a treatment.",
+  "base_state": {
+    "manifest": "data/manifests/h7-b0-overwrite.json",
+    "output": "results/processed/h7-b0-final-state.csv",
+    "vintage_manifest": "data/manifests/h6-vintage-schema.json",
+    "vintage_output": "results/processed/h6-release-vintages.csv",
+    "primary_key": ["cell_id"],
+    "meaning": "latest-vintage state shared by all treatment inputs"
+  },
+  "scenario_profile": {
+    "config": "config/h8b/injection_scenarios.csv",
+    "status": "validation_only",
+    "final_experiment_freeze": false,
+    "required_fixture_sizes": [1, 2, 4, 7, 14]
+  },
+  "selection": {
+    "algorithm": "sort by sha256(seed + unit-separator + cell_id), then cell_id; take the first selection_count cells",
+    "nested_prefixes": true,
+    "seed_source": "explicit scenario config",
+    "random_runtime_state": false
+  },
+  "mutation": {
+    "rule": "add one published decimal unit; subtract it only when a percentage would exceed 100",
+    "storage_type": "DECIMAL(38,10)",
+    "must_change_numeric_value": true,
+    "protected_dimensions": [
+      "cell_id",
+      "domain",
+      "indicator_key",
+      "series_key",
+      "observed_period",
+      "period_granularity",
+      "geo_level",
+      "geo_code",
+      "geo_name",
+      "unit"
+    ]
+  },
+  "synthetic_provenance": {
+    "source_id": "synthetic_revision_harness",
+    "provenance_class": "synthetic_not_official",
+    "revised_source_id": "inherit the official source_id associated with the base vintage",
+    "b2_score_policy": "look up the frozen score of revised_source_id; never score synthetic_source_id",
+    "must_not_masquerade_as_bps": true,
+    "identifier_algorithm": "first 20 hex characters of sha256 over the frozen scenario and cell payload"
+  },
+  "routing": {
+    "treatments": ["B0", "B1", "B2", "B3"],
+    "canonical_payload": "one shared injected-revisions file filtered by scenario_id",
+    "treatment_specific_mutation": false,
+    "execution_status_at_H8": "prepared_not_run"
+  },
+  "measurement_boundary": {
+    "timing": "not_measured",
+    "storage": "not_measured",
+    "small_scenario_execution": "H9",
+    "four_treatment_execution": "H10",
+    "main_sweep": "H11"
+  },
+  "invariants": [
+    "scenario cell sets are deterministic nested prefixes",
+    "every selected value changes by exactly one published unit",
+    "cell-defining dimensions never change",
+    "synthetic records are explicitly distinguished from official BPS records",
+    "B0, B1, B2, and B3 receive the same canonical payload checksum for a scenario",
+    "H8 produces no runtime or physical-storage result",
+    "the validation profile is not mislabeled as the final experiment freeze"
+  ]
+}

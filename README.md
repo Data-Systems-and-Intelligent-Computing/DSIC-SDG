@@ -325,6 +325,15 @@ interpretasi tersedia di
 dijalankan dengan `make h8-apply` dan memeriksa ketiga state memakai `VERSION AS OF`. Uji VM lulus
 dengan marker `H8_VERIFY|3|42|14|38|0|3|0|0|0|0`.
 
+H8 Jalur B membangun harness revisi tersuntik deterministik di atas 14 sel latest-vintage. Profil
+validasi memakai lima ukuran bertingkat `1-2-4-7-14` dengan seed eksplisit; totalnya 28 baris
+injeksi pada lima run independen. Setiap perubahan bernilai tepat satu unit pada presisi publikasi,
+mempertahankan dimensi sel, dan ditandai `synthetic_not_official`. Dua puluh route memastikan B0,
+B1, B2, dan B3 menerima filter serta checksum payload yang sama untuk setiap skenario. Status route
+masih `prepared_not_run`: eksekusi kecil dimulai H9 dan freeze ukuran eksperimen utama tetap H10.
+Jalankan `make h8b-run`; rincian tersedia di
+[`docs/research/h8b-injected-revision-harness.md`](docs/research/h8b-injected-revision-harness.md).
+
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
 **Gate G1 — Objek penelitian terbukti ada**

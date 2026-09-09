@@ -1,0 +1,10 @@
+metric,value,unit,interpretation
+base_cells,14,cells,manifested B0 latest-vintage validation fixture
+validation_scenarios,5,scenarios,not the final H10 experiment freeze
+scenario_sizes,1-2-4-7-14,cells,nested deterministic validation prefixes
+injected_revision_rows,28,rows,sum across independent validation scenarios
+target_treatments,4,treatments,"B0, B1, B2, and planned B3"
+prepared_routes,20,routes,one route per scenario and treatment
+route_payload_mismatches,0,scenarios,must be zero before treatment execution
+timed_runs,0,runs,small execution starts at H9
+physical_storage_measurements,0,measurements,measurement starts after the experiment freeze

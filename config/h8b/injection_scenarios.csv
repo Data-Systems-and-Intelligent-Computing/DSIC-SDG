@@ -1,0 +1,6 @@
+scenario_order,scenario_id,selection_count,seed,profile_status,description
+1,validation_001,1,20260909,validation_only,single-cell smoke scenario
+2,validation_002,2,20260909,validation_only,two-cell nested scenario
+3,validation_004,4,20260909,validation_only,four-cell nested scenario
+4,validation_007,7,20260909,validation_only,half-fixture nested scenario
+5,validation_014,14,20260909,validation_only,complete H6 fixture scenario

@@ -1,0 +1,10 @@
+invariant,status,checked_rows,detail
+unique_base_cells,passed,14,B0 contributes one latest observation per stable cell
+explicit_validation_profile,passed,5,ordered sizes 1-2-4-7-14 are labeled validation_only
+deterministic_nested_selection,passed,28,one seeded SHA-256 ranking supplies every nested prefix
+exact_value_mutation,passed,28,every target changes by one published decimal unit
+protected_cell_dimensions,passed,28,the synthetic batch identifies cells without changing their dimensions
+explicit_synthetic_provenance,passed,28,no injected record is labeled as an official BPS release
+revised_source_mapping,passed,28,every synthetic record names the official source whose frozen B2 score an adapter must use
+identical_four_treatment_routes,passed,20,B0-B3 share one per-scenario canonical payload checksum
+no_measurement_claim,passed,0,timing and physical storage are not measured at H8

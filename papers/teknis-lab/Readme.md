@@ -1,8 +1,8 @@
-# Rekap Teknis dan Panduan Audit H1–H6C, H7A–H7C, dan H8A
+# Rekap Teknis dan Panduan Audit H1–H6C, H7A–H7C, dan H8A–H8B
 
-Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C, H7 Jalur A, B, dan C, serta H8 Jalur A. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
+Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C, H7 Jalur A, B, dan C, serta H8 Jalur A dan B. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
 
-Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 September 2026, kemudian H7C dan H8A ditambahkan sebagai kelanjutan audit pada tanggal yang sama. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
+Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 September 2026, kemudian H7C, H8A, dan H8B ditambahkan sebagai kelanjutan audit pada tanggal yang sama. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
 
 ## 1. Ringkasan status
 
@@ -20,8 +20,9 @@ Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 Sept
 | H7 Jalur B | Perlakuan B2, single source | 14 dipilih, 24 dibuang | Selesai dan diuji di Iceberg VM |
 | H7 Jalur C | Lineage perlakuan dan verifikasi related work | 207 node, 491 edge, 15 sumber unik | Selesai dan divalidasi di VM |
 | H8 Jalur A | Perlakuan B1, snapshot penuh | 3 state penuh, 42 kemunculan baris, 38/38 dapat dipanggil | Selesai dan diuji di Iceberg VM |
+| H8 Jalur B | Harness revisi tersuntik | 5 ukuran bertingkat, 28 baris, 20 route identik | Selesai dan divalidasi di VM |
 
-Yang **belum** dikerjakan pada batas audit ini adalah harness revisi tersuntik, B3, penutupan lineage sampai metrik/tabel/gambar, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Perlakuan yang sudah berjalan adalah B0, B1, dan B2, yaitu 3 dari 4 perlakuan yang direncanakan. B1 sudah terbukti berfungsi, tetapi pengukuran ruang dan waktu B1 tetap menjadi pekerjaan H10.
+Yang **belum** dikerjakan pada batas audit ini adalah eksekusi harness pada skenario kecil, B3, penutupan lineage sampai metrik/tabel/gambar, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Perlakuan yang sudah berjalan adalah B0, B1, dan B2, yaitu 3 dari 4 perlakuan yang direncanakan. B1 sudah terbukti berfungsi dan H8B sudah menyiapkan input identik, tetapi belum ada perbandingan waktu atau ruang.
 
 ## 2. Cara memahami bukti di repositori
 
@@ -842,11 +843,75 @@ Commit jangkar: `64eb50f` dan `d733799`.
 
 Setujui bahwa istilah “snapshot penuh” berarti semua 14 sel ditulis ulang pada setiap rilis. Periksa pula keputusan membawa maju empat sel TPB 2025 ketika WebAPI 2026 tidak mempunyai pengganti. Drop-and-recreate hanya menyasar tabel eksperimen B1 agar rerun tetap idempoten; bila histori antar-run perlu dipertahankan, kebijakan ini harus diubah sebelum H10. Jangan mengubah 42 baris logis menjadi klaim byte penyimpanan tanpa pengukuran fisik H10.
 
-## 16. Pemeriksaan akhir yang sudah lulus
+## 16. H8 Jalur B — Harness revisi tersuntik
+
+### Tujuan
+
+Membuat input revisi sintetis dengan besaran terkontrol yang dapat diberikan tanpa perubahan kepada B0, B1, B2, dan B3. H8B hanya membangun serta memvalidasi harness; menjalankan skenario kecil adalah tugas H9.
+
+### Langkah yang dieksekusi
+
+1. Menetapkan kontrak [h8b-injected-revision-harness.json](../../contracts/h8b-injected-revision-harness.json).
+2. Mengambil 14 sel latest-vintage B0 sebagai titik awal kanonik. State terakhir B1 sudah dibuktikan sama, sehingga titik awal B0 tidak memberi keuntungan nilai current kepada B0.
+3. Memetakan `vintage_id` setiap baris ke `source_id` H6. Hasilnya disimpan sebagai `revised_source_id` agar adapter B2 kelak memakai skor sumber beku yang benar.
+4. Membekukan profil validasi sementara berukuran 1, 2, 4, 7, dan 14 sel dengan seed `20260909`.
+5. Meranking seluruh `cell_id` memakai SHA-256 atas seed dan ID sel. Setiap ukuran mengambil prefix ranking yang sama sehingga skenario benar-benar bertingkat.
+6. Mengubah nilai target tepat satu unit pada presisi publikasi. Untuk persentase yang akan melampaui 100, delta dibalik menjadi negatif.
+7. Mempertahankan indikator, seri, periode, geografi, dan unit; menyimpan nilai sebelum, delta, nilai sesudah, observasi dasar, serta ID sintetis.
+8. Menandai setiap perubahan sebagai `synthetic_not_official`. `revised_source_id` hanya menyatakan sumber yang disimulasikan, bukan mengklaim record sintetis diterbitkan BPS.
+9. Membuat satu payload kanonik per skenario dan empat route dengan checksum sama untuk B0–B3.
+10. Menjalankan pipeline dua kali dan membandingkan keluaran byte-per-byte, lalu menjalankan seluruh unit test.
+
+Perintah:
+
+```bash
+make h8b-run
+make test
+```
+
+### Hasil
+
+| Ukuran | Proporsi 14 sel | Baris route | Status |
+|---:|---:|---:|---|
+| 1 | 7,1429% | 4 | siap, belum dijalankan |
+| 2 | 14,2857% | 4 | siap, belum dijalankan |
+| 4 | 28,5714% | 4 | siap, belum dijalankan |
+| 7 | 50,0000% | 4 | siap, belum dijalankan |
+| 14 | 100,0000% | 4 | siap, belum dijalankan |
+
+Kelima skenario menghasilkan 28 baris karena setiap skenario adalah run independen (`1+2+4+7+14`). Terdapat 20 route, yaitu lima skenario dikali empat perlakuan, dengan nol mismatch checksum payload. Semua perubahan dapat dibalik dari kolom nilai sebelum dan delta. Sembilan invariant lulus.
+
+Marker validasi:
+
+```text
+H8B_VERIFY|14|5|1-2-4-7-14|28|4|20|0|0|validation_ready
+```
+
+Artinya: 14 sel dasar, 5 skenario, urutan ukuran `1-2-4-7-14`, 28 baris injeksi, 4 perlakuan, 20 route, 0 mismatch payload, 0 validasi gagal, dan harness siap untuk validasi eksekusi H9.
+
+Profil ini **bukan freeze eksperimen utama** dan belum sama dengan sweep satu tahun seluruh provinsi. Tidak ada runtime maupun byte penyimpanan yang diukur pada H8B. B3 juga belum berjalan; route B3 hanya memastikan bentuk inputnya sudah disediakan.
+
+### Bukti yang dapat diaudit
+
+- [kontrak harness](../../contracts/h8b-injected-revision-harness.json)
+- [konfigurasi lima skenario](../../config/h8b/injection_scenarios.csv)
+- [rencana injeksi](../../results/processed/h8b-injection-plan.csv)
+- [28 perubahan sintetis](../../results/processed/h8b-injected-revisions.csv)
+- [20 route perlakuan](../../results/processed/h8b-treatment-routes.csv)
+- [hasil validasi](../../results/processed/h8b-validation.csv)
+- [ringkasan](../../results/processed/h8b-summary.csv)
+- [manifest H8B](../../data/manifests/h8b-injected-revision-harness.json)
+- [laporan H8B](../../docs/research/h8b-injected-revision-harness.md)
+
+### Yang harus dikoreksi manusia bila perlu
+
+Setujui latest-vintage sebagai titik awal injeksi dan aturan perubahan satu unit presisi publikasi. Profil validasi dapat menyentuh lebih dari satu `revised_source_id`; sebelum H11, putuskan apakah eksperimen utama wajib merevisi tepat satu sumber per run. Jangan menyebut ukuran `1-2-4-7-14` sebagai ukuran final atau menganggap route B3 sebagai bukti B3 sudah berjalan.
+
+## 17. Pemeriksaan akhir yang sudah lulus
 
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
-- seluruh 59 unit test lokal lulus;
+- seluruh 63 unit test lokal lulus;
 - di VM, 58 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
@@ -854,6 +919,7 @@ Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 - H6B dan H6C menghasilkan artefak deterministik dan marker validasi di VM;
 - H7C menghasilkan artefak deterministik dan marker validasi yang sama di lokal dan VM.
 - H8A menghasilkan tiga state logis deterministik dan berhasil membaca ketiganya kembali melalui time travel Iceberg di VM.
+- H8B menghasilkan lima workload bertingkat dan 20 route ber-checksum sama secara deterministik.
 
 Urutan pemeriksaan cepat tanpa menarik ulang data mentah:
 
@@ -869,6 +935,7 @@ make h7-run
 make h7b-run
 make h7c-run
 make h8-run
+make h8b-run
 make test
 ```
 
@@ -884,7 +951,7 @@ git log -1 --oneline
 docker compose --env-file infra/docker/versions.env ps
 ```
 
-## 17. Daftar audit manusia yang disarankan
+## 18. Daftar audit manusia yang disarankan
 
 - [ ] Cocokkan 29 pilihan WebAPI H1 dengan definisi indikator, bukan hanya kemiripan nama.
 - [ ] Setujui atau koreksi 14 `verified`, 17 `partial`, dan 4 `unavailable`.
@@ -902,9 +969,11 @@ docker compose --env-file infra/docker/versions.env ps
 - [ ] Setujui bahwa empat komponen opsional belum diperlukan pada protokol saat ini.
 - [ ] Setujui arti snapshot penuh B1, empat baris yang dibawa maju, dan kebijakan rebuild tabel B1.
 - [ ] Pastikan angka 42 tidak dipakai sebagai ukuran byte sebelum pengukuran H10.
+- [ ] Setujui titik awal, seed, aturan delta, dan pemetaan `revised_source_id` pada H8B.
+- [ ] Putuskan apakah sweep utama membatasi tepat satu sumber yang direvisi per run.
 - [ ] Putuskan spesifikasi VM sebelum pengukuran performa dimulai.
 
-## 18. Cara melakukan koreksi tanpa merusak jejak audit
+## 19. Cara melakukan koreksi tanpa merusak jejak audit
 
 Jika audit manusia menemukan kesalahan:
 
@@ -920,7 +989,7 @@ Jika audit manusia menemukan kesalahan:
 
 Dengan prosedur tersebut, koreksi manusia menjadi bagian dari provenance penelitian dan tidak menghapus bukti keputusan sebelumnya dari riwayat Git.
 
-## 19. Batas klaim pada posisi sekarang
+## 20. Batas klaim pada posisi sekarang
 
 Yang sudah dapat diklaim:
 
@@ -930,6 +999,7 @@ Yang sudah dapat diklaim:
 - jejak vintage dapat disimpan, dibaca, dan dilacak sampai rekaman sumber;
 - tiga perlakuan, B0, B1, dan B2, sudah berjalan pada workload 38 observasi/14 sel;
 - B1 secara fungsional dapat memanggil seluruh 38 observasi melalui tiga snapshot penuh;
+- harness dapat membentuk revisi sintetis bertingkat dan mengirim payload identik ke route B0–B3;
 - seluruh keputusan B0/B2 dapat ditelusuri dari rekaman sumber sampai keluaran perlakuan;
 - tidak ada lagi sumber related work yang hanya berstatus `daftar`.
 
@@ -939,7 +1009,8 @@ Yang belum dapat diklaim:
 - bahwa semua perbedaan adalah revisi;
 - bahwa lineage sudah mencakup seluruh 7.666 observasi H4 atau sampai semua tabel/gambar;
 - bahwa salah satu perlakuan lebih cepat, lebih hemat ruang, atau lebih skalabel;
+- bahwa profil validasi H8B adalah ukuran final atau sudah mewakili satu tahun penuh seluruh provinsi;
 - bahwa Gate G2 atau G3 sudah lolos;
 - bahwa hasil 14 sel dapat digeneralisasi ke seluruh indikator BPS.
 
-Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; fondasi tiga jalur H6 dan H7C selesai; B0, B1, dan B2 selesai secara fungsional; B3, perluasan lineage B1, harness revisi tersuntik, dan pengukuran utama belum selesai. Gate G2 belum lolos.**
+Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; fondasi tiga jalur H6 dan H7C selesai; B0, B1, dan B2 selesai secara fungsional; harness revisi tersuntik siap secara logis tetapi belum dieksekusi ke perlakuan. B3, perluasan lineage B1, freeze eksperimen, dan pengukuran utama belum selesai. Gate G2 belum lolos.**
