@@ -31,6 +31,6 @@ done
   set -e
   mc alias set local http://127.0.0.1:9000 "$MINIO_ROOT_USER" "$MINIO_ROOT_PASSWORD" >/dev/null
   mc mb --ignore-existing "local/'"$bucket"'" >/dev/null
-  mc cp --recursive "/tmp/'"$batch_id"'/" "local/'"$bucket"'/'"$object_prefix"'/" >/dev/null
-  mc ls --recursive "local/'"$bucket"'/'"$object_prefix"'/"
+  mc cp --recursive "/tmp/'"$batch_id"'/" "local/'"$bucket"'/'"$object_prefix"'" >/dev/null
+  mc ls --recursive "local/'"$bucket"'/'"$object_prefix"'"
 '
