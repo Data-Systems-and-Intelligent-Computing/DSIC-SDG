@@ -333,6 +333,8 @@ B1, B2, dan B3 menerima filter serta checksum payload yang sama untuk setiap ske
 masih `prepared_not_run`: eksekusi kecil dimulai H9 dan freeze ukuran eksperimen utama tetap H10.
 Jalankan `make h8b-run`; rincian tersedia di
 [`docs/research/h8b-injected-revision-harness.md`](docs/research/h8b-injected-revision-harness.md).
+Uji dua run di VM menghasilkan marker identik
+`H8B_VERIFY|14|5|1-2-4-7-14|28|4|20|0|0|validation_ready`.
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 

@@ -889,6 +889,8 @@ H8B_VERIFY|14|5|1-2-4-7-14|28|4|20|0|0|validation_ready
 
 Artinya: 14 sel dasar, 5 skenario, urutan ukuran `1-2-4-7-14`, 28 baris injeksi, 4 perlakuan, 20 route, 0 mismatch payload, 0 validasi gagal, dan harness siap untuk validasi eksekusi H9.
 
+VM menarik commit `5c3969c`, menjalankan `make h8b-run` dua kali, dan menghasilkan marker serta enam checksum artefak yang identik. Sebanyak 62 test VM lulus dan satu test ekstraksi PDF dilewati karena PDF mentah tidak disimpan di Git. Working tree VM tetap bersih.
+
 Profil ini **bukan freeze eksperimen utama** dan belum sama dengan sweep satu tahun seluruh provinsi. Tidak ada runtime maupun byte penyimpanan yang diukur pada H8B. B3 juga belum berjalan; route B3 hanya memastikan bentuk inputnya sudah disediakan.
 
 ### Bukti yang dapat diaudit
@@ -903,6 +905,8 @@ Profil ini **bukan freeze eksperimen utama** dan belum sama dengan sweep satu ta
 - [manifest H8B](../../data/manifests/h8b-injected-revision-harness.json)
 - [laporan H8B](../../docs/research/h8b-injected-revision-harness.md)
 
+Commit jangkar: `5c3969c`.
+
 ### Yang harus dikoreksi manusia bila perlu
 
 Setujui latest-vintage sebagai titik awal injeksi dan aturan perubahan satu unit presisi publikasi. Profil validasi dapat menyentuh lebih dari satu `revised_source_id`; sebelum H11, putuskan apakah eksperimen utama wajib merevisi tepat satu sumber per run. Jangan menyebut ukuran `1-2-4-7-14` sebagai ukuran final atau menganggap route B3 sebagai bukti B3 sudah berjalan.
@@ -912,7 +916,7 @@ Setujui latest-vintage sebagai titik awal injeksi dan aturan perubahan satu unit
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
 - seluruh 63 unit test lokal lulus;
-- di VM, 58 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
+- di VM, 62 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
 - H5, H6A, H7A, dan H7B berhasil menulis serta membaca tabel Iceberg;
