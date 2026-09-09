@@ -58,8 +58,12 @@ menghapus snapshot lama, lalu membaca state dan metadata Iceberg kembali. Uji fi
 jumlah baris/sel, satu sumber terpilih, sepuluh pilihan non-latest, hasil audit 14/24, tepat satu
 snapshot, keberadaan data file, serta nol duplikasi dan mismatch.
 
-Status verifikasi VM akan dicatat setelah commit implementasi ditarik dan dijalankan pada
-`sigerciv@34.128.67.92`.
+Eksekusi diverifikasi dua kali pada 9 September 2026 di `sigerciv@34.128.67.92` setelah VM
+menarik commit `93b2f2e` dari `main`. Marker
+`H7B_VERIFY|14|14|1|10|14|24|1|3|0|0|0` membuktikan 14 baris, 14 `cell_id`, satu sumber terpilih,
+sepuluh pilihan non-latest, 14 permintaan terpilih berhasil, 24 permintaan discarded gagal, tepat
+satu snapshot tersisa, tiga data file aktif, serta nol duplikasi, perbedaan state, dan perbedaan
+audit. Marker yang identik pada run kedua membuktikan script idempoten; clone VM tetap bersih.
 
 ## Artefak dan reproduksi
 
