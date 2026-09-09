@@ -247,6 +247,14 @@ vintage, metodologi, atau granularitas bila bukti kandidat ikut dihitung. Bukti 
 aturan, serta batas interpretasinya tersedia di
 [`docs/research/h4-classification-and-ingestion.md`](docs/research/h4-classification-and-ingestion.md).
 
+H5 sudah selesai dan **Gate G1 dinyatakan lolos**. Sepuluh kandidat revisi tahun 2022-2023
+dikonfirmasi melalui urutan TPB 2024, TPB 2025, dan snapshot WebAPI 2026; satu kandidat tutupan
+hutan dikonfirmasi sebagai perubahan metodologi. Bukti terkonfirmasi karena itu naik dari 85
+menjadi 96 dari 123 kejadian, atau 78,05 persen. Empat perubahan langsung antarpublikasi dan
+sepuluh jejak tiga-vintage dibekukan menjadi 14 jejak dengan 38 baris vintage. Pipeline dapat
+dijalankan dengan `make h5-run`; laporan, batas klaim, dan uji tulis-baca Iceberg ada di
+[`docs/research/h5-revision-trace-and-gate1.md`](docs/research/h5-revision-trace-and-gate1.md).
+
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
 **Gate G1 — Objek penelitian terbukti ada**

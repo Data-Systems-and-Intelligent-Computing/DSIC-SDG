@@ -9,6 +9,7 @@ kkciv-h1 = "kkciv_vintage.h1.cli:main"
 kkciv-h2 = "kkciv_vintage.h2.cli:main"
 kkciv-h3 = "kkciv_vintage.h3.cli:main"
 kkciv-h4 = "kkciv_vintage.h4.cli:main"
+kkciv-h5 = "kkciv_vintage.h5.cli:main"
 
 [build-system]
 requires = ["setuptools>=68"]

@@ -1,0 +1,4 @@
+criterion,status,value,threshold,evidence
+G1.1_mismatch_in_at_least_three_domains,passed,3,3,ecology;economy;energy
+G1.2_confirmed_core_cause_share,passed,0.7805,0.70,96/123 confirmed events
+G1.3_observable_intertemporal_revision_trace,passed,4,1,14 total frozen traces; 38 vintage rows

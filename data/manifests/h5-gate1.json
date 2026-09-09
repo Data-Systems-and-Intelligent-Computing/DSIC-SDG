@@ -1,0 +1,65 @@
+{
+  "batch_id": "h5-45c2e7688b929a92",
+  "gate_g1": {
+    "criterion_1_mismatch_domains": [
+      "ecology",
+      "economy",
+      "energy"
+    ],
+    "criterion_1_passed": true,
+    "criterion_2_confirmed_core_events": 96,
+    "criterion_2_confirmed_passed": true,
+    "criterion_2_confirmed_rate": "0.7805",
+    "criterion_2_total_events": 123,
+    "criterion_3_direct_publication_traces": 4,
+    "criterion_3_passed": true,
+    "criterion_3_total_frozen_traces": 14,
+    "overall_gate_status": "passed"
+  },
+  "generated_from_snapshot_at": "2026-09-09T00:26:24.886207+00:00",
+  "iceberg_target": {
+    "catalog": "kkciv",
+    "namespace": "gate1",
+    "table": "h5_revision_trace",
+    "verification_command": "make h5-iceberg"
+  },
+  "inputs": [
+    {
+      "path": "data/manifests/h4-ingestion-classification.json",
+      "sha256": "f190b19123af1751be915d27aea195bc48784dad0c371d0f7850f3bb76514c7d"
+    },
+    {
+      "path": "data/manifests/h1-free-publications.json",
+      "sha256": "e5370c608458a1d69f054b98200c2949738231cbeef448e93f2196aa455c59bb"
+    },
+    {
+      "path": "config/h5/evidence_decisions.csv",
+      "rows": 11,
+      "sha256": "322a0d234ca24c4151ca8464e0b673aca09c5fc92e8f13e92ff866cad478dc60"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h5-confirmed-events.csv",
+      "rows": 123,
+      "sha256": "85cf6b612f138ab5c0a60b382ab886c8c2e3d2ace64b544b5b549a08a28f4583"
+    },
+    {
+      "path": "results/processed/h5-revision-traces.csv",
+      "rows": 38,
+      "sha256": "766299f853de9f2d4ba0ed0e501d2454e0bbd169c25ebb1e679d6f9952535289"
+    },
+    {
+      "path": "results/processed/h5-gate-g1-summary.csv",
+      "rows": 3,
+      "sha256": "37c2601a59dbdb3208cead5571fe52697d5f55f0d5e56672177414ce61e1de96"
+    }
+  ],
+  "policy": {
+    "cost_class": "free",
+    "gate_g1_explanation_threshold": "0.70",
+    "pdf_payloads_are_reproducible_from_h1_manifest": true,
+    "promotion_requires_dated_corroboration": true
+  },
+  "stage": "H5"
+}
