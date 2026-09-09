@@ -1,0 +1,45 @@
+{
+  "contract_version": "b1.1",
+  "treatment_id": "B1",
+  "name": "full_snapshot",
+  "description": "Materialize one complete 14-cell table state for every ordered release and retain every Iceberg snapshot.",
+  "input": {
+    "manifest": "data/manifests/h6-vintage-schema.json",
+    "control_manifest": "data/manifests/h7-b0-overwrite.json",
+    "vintage_order": ["vintage_date ASC", "retrieved_at ASC", "vintage_id ASC"],
+    "workload": "the same 38-observation real-revision workload used by B0"
+  },
+  "state": {
+    "table": "kkciv.experiments.b1_indicator_full_snapshots",
+    "primary_key_within_snapshot": ["cell_id"],
+    "write_action": "INSERT OVERWRITE the complete accumulated state once per release",
+    "history_policy": "retain every committed release snapshot",
+    "partitioning": ["domain"],
+    "rebuild_policy": "drop and recreate only the B1 experiment table before a complete run"
+  },
+  "schema": {
+    "base_columns": "h6_indicator_observations",
+    "additional_columns": [
+      ["snapshot_order", "INT", false],
+      ["state_snapshot_key", "STRING", false],
+      ["applied_vintage_id", "STRING", false]
+    ]
+  },
+  "reproducibility": {
+    "addressable_key": ["Iceberg snapshot_id", "observation_id"],
+    "vintage_key_supported": true,
+    "expected_success_rate": "1.0000"
+  },
+  "measurement_boundary": {
+    "logical_full_copy_rows_recorded_now": true,
+    "physical_bytes_and_runtime": "deferred_to_H10"
+  },
+  "invariants": [
+    "one complete state is committed for every ordered release",
+    "every committed state contains exactly one row per cell_id",
+    "the final B1 state equals the B0 latest-vintage state on all H6 observation columns",
+    "every one of the 38 H6 observations is addressable in at least one retained snapshot",
+    "no Iceberg snapshot expiration is executed for B1",
+    "the same ordered H6 input produces the same logical snapshot states"
+  ]
+}

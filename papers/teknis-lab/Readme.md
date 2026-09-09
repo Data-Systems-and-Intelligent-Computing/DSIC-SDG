@@ -1,8 +1,8 @@
-# Rekap Teknis dan Panduan Audit H1–H6C dan H7A–H7C
+# Rekap Teknis dan Panduan Audit H1–H6C, H7A–H7C, dan H8A
 
-Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C serta H7 Jalur A, B, dan C. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
+Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C, H7 Jalur A, B, dan C, serta H8 Jalur A. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
 
-Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 September 2026, lalu H7C ditambahkan sebagai kelanjutan audit pada tanggal yang sama. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
+Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 September 2026, kemudian H7C dan H8A ditambahkan sebagai kelanjutan audit pada tanggal yang sama. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
 
 ## 1. Ringkasan status
 
@@ -19,8 +19,9 @@ Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 Sept
 | H7 Jalur A | Perlakuan B0, overwrite | 38 masukan menjadi 14 current | Selesai dan diuji di Iceberg VM |
 | H7 Jalur B | Perlakuan B2, single source | 14 dipilih, 24 dibuang | Selesai dan diuji di Iceberg VM |
 | H7 Jalur C | Lineage perlakuan dan verifikasi related work | 207 node, 491 edge, 15 sumber unik | Selesai dan divalidasi di VM |
+| H8 Jalur A | Perlakuan B1, snapshot penuh | 3 state penuh, 42 kemunculan baris, 38/38 dapat dipanggil | Selesai dan diuji di Iceberg VM |
 
-Yang **belum** dikerjakan pada batas audit ini adalah B1, harness revisi tersuntik, B3, penutupan lineage sampai metrik/tabel/gambar, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Perlakuan yang baru berjalan adalah B0 dan B2, yaitu 2 dari 4 perlakuan yang direncanakan.
+Yang **belum** dikerjakan pada batas audit ini adalah harness revisi tersuntik, B3, penutupan lineage sampai metrik/tabel/gambar, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Perlakuan yang sudah berjalan adalah B0, B1, dan B2, yaitu 3 dari 4 perlakuan yang direncanakan. B1 sudah terbukti berfungsi, tetapi pengukuran ruang dan waktu B1 tetap menjadi pekerjaan H10.
 
 ## 2. Cara memahami bukti di repositori
 
@@ -768,19 +769,85 @@ Keputusan ini bukan larangan permanen. Pemicu pemasangan masing-masing komponen 
 
 ### Yang harus dikoreksi manusia bila perlu
 
-Status `metadata` bukan berarti semua paper sudah dibaca penuh. Audit manusia perlu menilai relevansi 15 sumber, enam koreksi tahun utama, dan posisi dokumentasi produk sebagai related work. Kelengkapan lineage 1,0000 hanya berlaku pada 76 keputusan B0/B2; B1, B3, metrik, tabel, dan gambar belum tercakup.
+Status `metadata` bukan berarti semua paper sudah dibaca penuh. Audit manusia perlu menilai relevansi 15 sumber, enam koreksi tahun utama, dan posisi dokumentasi produk sebagai related work. Kelengkapan lineage 1,0000 hanya berlaku pada 76 keputusan B0/B2; implementasi B1 yang baru dibuat belum dimasukkan ke graf H7C, sedangkan B3, metrik, tabel, dan gambar juga belum tercakup.
 
-## 15. Pemeriksaan akhir yang sudah lulus
+## 15. H8 Jalur A — Perlakuan B1 snapshot penuh
+
+### Tujuan
+
+Membuat batas atas penyimpanan yang menjamin seluruh angka lama tetap dapat dipanggil: setiap rilis disimpan sebagai satu keadaan tabel lengkap dan semua snapshot Iceberg dipertahankan.
+
+### Langkah yang dieksekusi
+
+1. Menetapkan kontrak [h8-b1-full-snapshot.json](../../contracts/h8-b1-full-snapshot.json) dan DDL [h8-b1.sql](../../infra/spark/h8-b1.sql).
+2. Menggunakan tepat workload H6 yang juga dipakai B0: 38 observasi, 14 sel, dan urutan TPB 2024 → TPB 2025 → WebAPI 2026.
+3. Menerapkan observasi setiap rilis ke state berjalan, kemudian menyalin seluruh state 14 sel ke artefak snapshot.
+4. Memberi setiap state `snapshot_order`, kunci logis deterministik, dan `applied_vintage_id`.
+5. Membandingkan seluruh kolom observasi pada state B1 terakhir dengan state B0; keduanya harus sama persis.
+6. Mencari ulang semua 38 `observation_id` pada ketiga state. Observasi boleh muncul pada lebih dari satu snapshot bila sel dibawa maju tanpa pengganti baru.
+7. Di VM, membuat ulang hanya tabel eksperimen B1 lalu melakukan tiga `INSERT OVERWRITE` keadaan penuh tanpa memanggil `expire_snapshots`.
+8. Mengambil tiga `snapshot_id` aktual dan membaca masing-masing dengan `VERSION AS OF` untuk membandingkannya dengan CSV bermanifest.
+9. Menjalankan pipeline dua kali pada pengujian determinisme dan menjalankan seluruh unit test.
+
+Perintah:
+
+```bash
+make h8-run
+make test
+make h8-apply
+```
+
+### Hasil
+
+| Snapshot | Rilis masuk | Baris masukan | Baris state penuh | Keterangan |
+|---:|---|---:|---:|---|
+| 1 | TPB 2024 | 14 | 14 | keadaan awal seluruh sel |
+| 2 | TPB 2025 | 14 | 14 | seluruh sel memperoleh vintage TPB 2025 |
+| 3 | WebAPI 2026 | 10 | 14 | 10 sel diganti dan 4 sel TPB 2025 dibawa maju |
+
+Totalnya adalah 42 kemunculan baris logis pada tiga state penuh. Terdapat 38 identitas observasi unik; empat kemunculan tambahan berasal dari empat observasi TPB 2025 yang tetap berlaku pada snapshot ketiga. Audit baca ulang berhasil untuk 14 observasi current dan 24 observasi historis, sehingga seluruh `38/38` permintaan berhasil (`1,0000`) dan tidak ada kegagalan.
+
+State B1 terakhir sama dengan state latest-vintage B0 pada seluruh kolom H6. Jadi perbedaan hasil reproducibility bukan disebabkan jawaban current yang berbeda, melainkan oleh kebijakan histori: B0 menghapus snapshot lama, sedangkan B1 mempertahankannya.
+
+Marker VM:
+
+```text
+H8_VERIFY|3|42|14|38|0|3|0|0|0|0
+```
+
+Artinya: 3 snapshot aktual, 42 baris saat ketiganya dibaca dengan time travel, 14 baris current, 38 permintaan berhasil, 0 gagal, 3 snapshot tercatat, 0 duplikasi sel, 0 perbedaan state historis, 0 perbedaan state current, dan 0 kesalahan pemetaan permintaan-ke-snapshot.
+
+Angka 42 adalah **jumlah kemunculan baris logis**, bukan jumlah byte di disk. H8A sengaja belum mengukur durasi atau ruang fisik karena eksperimen performa dan ruang dijadwalkan pada H10 setelah spesifikasi sumber daya dibekukan.
+
+### Bukti yang dapat diaudit
+
+- [kontrak B1](../../contracts/h8-b1-full-snapshot.json)
+- [DDL B1](../../infra/spark/h8-b1.sql)
+- [katalog tiga snapshot](../../results/processed/h8-b1-snapshot-catalog.csv)
+- [42 baris state snapshot](../../results/processed/h8-b1-snapshot-states.csv)
+- [state current 14 sel](../../results/processed/h8-b1-current-state.csv)
+- [audit 38 alamat](../../results/processed/h8-b1-reproducibility.csv)
+- [hasil validasi](../../results/processed/h8-b1-validation.csv)
+- [ringkasan B1](../../results/processed/h8-b1-summary.csv)
+- [manifest B1](../../data/manifests/h8-b1-full-snapshot.json)
+- [laporan H8A](../../docs/research/h8-b1-full-snapshot.md)
+
+### Yang harus dikoreksi manusia bila perlu
+
+Setujui bahwa istilah “snapshot penuh” berarti semua 14 sel ditulis ulang pada setiap rilis. Periksa pula keputusan membawa maju empat sel TPB 2025 ketika WebAPI 2026 tidak mempunyai pengganti. Drop-and-recreate hanya menyasar tabel eksperimen B1 agar rerun tetap idempoten; bila histori antar-run perlu dipertahankan, kebijakan ini harus diubah sebelum H10. Jangan mengubah 42 baris logis menjadi klaim byte penyimpanan tanpa pengukuran fisik H10.
+
+## 16. Pemeriksaan akhir yang sudah lulus
 
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
-- seluruh 55 unit test lokal lulus;
+- seluruh 59 unit test lokal lulus;
 - di VM, 54 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
 - H5, H6A, H7A, dan H7B berhasil menulis serta membaca tabel Iceberg;
 - H6B dan H6C menghasilkan artefak deterministik dan marker validasi di VM;
 - H7C menghasilkan artefak deterministik dan marker validasi yang sama di lokal dan VM.
+- H8A menghasilkan tiga state logis deterministik dan berhasil membaca ketiganya kembali melalui time travel Iceberg di VM.
 
 Urutan pemeriksaan cepat tanpa menarik ulang data mentah:
 
@@ -795,6 +862,7 @@ make h6c-run
 make h7-run
 make h7b-run
 make h7c-run
+make h8-run
 make test
 ```
 
@@ -810,7 +878,7 @@ git log -1 --oneline
 docker compose --env-file infra/docker/versions.env ps
 ```
 
-## 16. Daftar audit manusia yang disarankan
+## 17. Daftar audit manusia yang disarankan
 
 - [ ] Cocokkan 29 pilihan WebAPI H1 dengan definisi indikator, bukan hanya kemiripan nama.
 - [ ] Setujui atau koreksi 14 `verified`, 17 `partial`, dan 4 `unavailable`.
@@ -826,9 +894,11 @@ docker compose --env-file infra/docker/versions.env ps
 - [ ] Periksa 15 rekaman metadata H7C dan enam koreksi tahun utama sebelum memakai klaim rinci.
 - [ ] Pastikan 76 path H7C menunjuk keputusan serta output B0/B2 yang tepat.
 - [ ] Setujui bahwa empat komponen opsional belum diperlukan pada protokol saat ini.
+- [ ] Setujui arti snapshot penuh B1, empat baris yang dibawa maju, dan kebijakan rebuild tabel B1.
+- [ ] Pastikan angka 42 tidak dipakai sebagai ukuran byte sebelum pengukuran H10.
 - [ ] Putuskan spesifikasi VM sebelum pengukuran performa dimulai.
 
-## 17. Cara melakukan koreksi tanpa merusak jejak audit
+## 18. Cara melakukan koreksi tanpa merusak jejak audit
 
 Jika audit manusia menemukan kesalahan:
 
@@ -844,7 +914,7 @@ Jika audit manusia menemukan kesalahan:
 
 Dengan prosedur tersebut, koreksi manusia menjadi bagian dari provenance penelitian dan tidak menghapus bukti keputusan sebelumnya dari riwayat Git.
 
-## 18. Batas klaim pada posisi sekarang
+## 19. Batas klaim pada posisi sekarang
 
 Yang sudah dapat diklaim:
 
@@ -852,7 +922,8 @@ Yang sudah dapat diklaim:
 - perbedaan teramati pada sedikitnya tiga domain;
 - lebih dari 70% event sudah mempunyai sebab inti terkonfirmasi menurut aturan yang dibekukan;
 - jejak vintage dapat disimpan, dibaca, dan dilacak sampai rekaman sumber;
-- dua baseline, B0 dan B2, sudah berjalan pada workload 38 observasi/14 sel.
+- tiga perlakuan, B0, B1, dan B2, sudah berjalan pada workload 38 observasi/14 sel;
+- B1 secara fungsional dapat memanggil seluruh 38 observasi melalui tiga snapshot penuh;
 - seluruh keputusan B0/B2 dapat ditelusuri dari rekaman sumber sampai keluaran perlakuan;
 - tidak ada lagi sumber related work yang hanya berstatus `daftar`.
 
@@ -865,4 +936,4 @@ Yang belum dapat diklaim:
 - bahwa Gate G2 atau G3 sudah lolos;
 - bahwa hasil 14 sel dapat digeneralisasi ke seluruh indikator BPS.
 
-Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; fondasi tiga jalur H6 dan H7C selesai; B0 dan B2 selesai; B1, B3, penutupan lineage, dan pengukuran utama belum dimulai.**
+Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; fondasi tiga jalur H6 dan H7C selesai; B0, B1, dan B2 selesai secara fungsional; B3, perluasan lineage B1, harness revisi tersuntik, dan pengukuran utama belum selesai. Gate G2 belum lolos.**

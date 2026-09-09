@@ -1,0 +1,9 @@
+check_id,status,observed,expected,detail
+contract,passed,b1.1,b1.1,B1 contract and DDL agree
+ordered_releases,passed,3,3,one logical snapshot per release
+complete_states,passed,42,42,every release materializes the complete state
+unique_cells,passed,14,14,one row per stable cell in every snapshot
+current_equals_b0,passed,true,true,same workload produces the same latest state
+historical_reads,passed,38,38,all requested observations occur in a retained state
+read_failures,passed,0,0,no requested vintage is lost
+measurement_boundary,passed,logical_rows_only,physical_measurement_at_H10,no premature runtime or byte claim

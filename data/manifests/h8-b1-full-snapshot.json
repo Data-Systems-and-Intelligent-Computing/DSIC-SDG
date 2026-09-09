@@ -1,0 +1,100 @@
+{
+  "contract_version": "b1.1",
+  "history_policy": "retain every committed release snapshot",
+  "iceberg_target": "kkciv.experiments.b1_indicator_full_snapshots",
+  "implementation_status": "implemented",
+  "inputs": [
+    {
+      "path": "contracts/h8-b1-full-snapshot.json",
+      "sha256": "c4d5f659e5b25be6684e64ac6d56cc76e1945fd317e7adb8e9ee1a280a5d8ec3"
+    },
+    {
+      "path": "infra/spark/h8-b1.sql",
+      "sha256": "6faf5f72b2730cbaa62df0c0ec78794cdac94d10f19ffe9d2e8f0a8535399417"
+    },
+    {
+      "path": "data/manifests/h6-vintage-schema.json",
+      "sha256": "416c6892d04a0a3c0b3c475f8a51d941a88cca9c68a197cf681f9449511f0ff4"
+    },
+    {
+      "path": "results/processed/h6-release-vintages.csv",
+      "rows": 3,
+      "sha256": "7092d42c678a2c42dc0ea516672d3025cb817232b28adebeba9b627aabd602f2"
+    },
+    {
+      "path": "results/processed/h6-indicator-observations.csv",
+      "rows": 38,
+      "sha256": "80650a40d1fafeb1e3ec0f71eacf88be90efbe4bb5c919df39fd33af06832af2"
+    },
+    {
+      "path": "data/manifests/h7-b0-overwrite.json",
+      "sha256": "3a58c69db80ff66d43f965b24ab770a7c03a99a554d2ac36d9b0e239e29c99ff"
+    },
+    {
+      "path": "results/processed/h7-b0-final-state.csv",
+      "rows": 14,
+      "sha256": "61e7ba1a44256d5dc832ab4f488336fb16c02b784942cc65d54f3100fb8ef284"
+    }
+  ],
+  "measurement": {
+    "logical_full_copy_rows_recorded": 42,
+    "physical_bytes_and_runtime": "deferred_to_H10"
+  },
+  "outputs": [
+    {
+      "path": "results/processed/h8-b1-snapshot-catalog.csv",
+      "rows": 3,
+      "sha256": "046965bf5e94462658aaef0eb41f5d2f5b3d34ebab73a2d2fcae62ca7b21bb84"
+    },
+    {
+      "path": "results/processed/h8-b1-snapshot-states.csv",
+      "rows": 42,
+      "sha256": "c9014928bd3c35798dfd2194864e0dae3651fa092a6e5486168c5772f457ad72"
+    },
+    {
+      "path": "results/processed/h8-b1-current-state.csv",
+      "rows": 14,
+      "sha256": "8f5b0088784f77361085a5d145293b1c0a0ccab680d83f5341eda81341b26aed"
+    },
+    {
+      "path": "results/processed/h8-b1-reproducibility.csv",
+      "rows": 38,
+      "sha256": "14792005cf054ef2e7948cb71593d0035b0a09237189fbcc0bcce1bde27dd141"
+    },
+    {
+      "path": "results/processed/h8-b1-validation.csv",
+      "rows": 8,
+      "sha256": "ef181f5bae90d9e65cba33b33313ca4c7797f864ae6b7d899365fed1ac4fe708"
+    },
+    {
+      "path": "results/processed/h8-b1-summary.csv",
+      "rows": 10,
+      "sha256": "af5ba618aba3b7633b9a3a4f3279902330d69e01878386c67e0b02c777b443a4"
+    }
+  ],
+  "reproducibility": {
+    "historical_read_expected": "success",
+    "historical_reproduction_capable": true,
+    "snapshot_key_supported": true
+  },
+  "stage": "H8",
+  "track": "A",
+  "treatment_id": "B1",
+  "workload": {
+    "carried_forward_row_appearances": 4,
+    "control_treatment": "B0",
+    "distinct_observations_stored": 38,
+    "final_rows": 14,
+    "input_rows": 38,
+    "logical_full_copy_rows": 42,
+    "overwritten_rows": 24,
+    "reproduction_failures": 0,
+    "reproduction_successes": 38,
+    "same_value_overwrites": 10,
+    "snapshot_count": 3,
+    "source_stage": "H6",
+    "value_changed_rows": 14,
+    "vintage_batches": 3,
+    "vintage_read_success_rate": "1.0000"
+  }
+}

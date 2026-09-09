@@ -314,6 +314,16 @@ Jalankan `make h7c-run`; kontrak, koreksi bibliografi, dan batas interpretasinya
 Uji pada VM lulus dengan marker
 `H7C_VERIFY|15|18|0|207|491|76|28|48|1.0000|4|validated`.
 
+H8 Jalur A mengimplementasikan B1 sebagai tiga snapshot keadaan penuh pada workload yang sama
+dengan B0. Setiap rilis membentuk state lengkap 14 sel, sehingga tiga snapshot memuat 42
+kemunculan baris logis dan mempertahankan seluruh 38 identitas observasi. State terakhir sama
+persis dengan latest-vintage B0, tetapi 24 observasi historis tetap dapat dipanggil melalui
+snapshot lama; audit logis berhasil `38/38` (`1,0000`). Angka 42 belum merupakan ukuran byte dan
+pengukuran ruang/waktu tetap dijadwalkan pada H10. Jalankan `make h8-run`; kontrak dan batas
+interpretasi tersedia di
+[`docs/research/h8-b1-full-snapshot.md`](docs/research/h8-b1-full-snapshot.md). Integrasi Iceberg
+dijalankan dengan `make h8-apply` dan memeriksa ketiga state memakai `VERSION AS OF`.
+
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
 **Gate G1 — Objek penelitian terbukti ada**

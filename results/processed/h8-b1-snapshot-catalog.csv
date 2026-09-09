@@ -1,0 +1,4 @@
+snapshot_order,state_snapshot_key,applied_vintage_id,source_id,vintage_date,input_rows,inserted_rows,overwritten_rows,value_changed_rows,same_value_overwrites,state_rows,state_sha256
+1,070779f7ea7351071e7b,aa7252a58f41161c17c3,bps_tpb_2024,2024-12-31,14,14,0,0,0,14,bcc7eeb4d7f0982c0b231676ab21b45fa848dcef7a25e4657c5c82153548e34e
+2,593ecf20dd679bc33979,9ab2011a3892edfac889,bps_tpb_2025,2025-12-30,14,0,14,4,10,14,b0bbf1312c2d8d704900056d348a263d568643f2d974bfce1c50c7ff4d666635
+3,43c914e0de8d61111db6,b132d2fab33291e0733e,bps_webapi,2026-09-08,10,0,10,10,0,14,a4206f8f26adfeaf0a2c8b7c55143b490a0e315c6bd5b7f9f86caee81d365ae4
