@@ -102,6 +102,11 @@ Marker yang diharapkan:
 H7C_VERIFY|15|18|0|207|491|76|28|48|1.0000|4|validated
 ```
 
+Eksekusi diverifikasi pada 9 September 2026 di `sigerciv@34.128.67.92` setelah VM menarik commit
+implementasi `01ed667` dari `main`. Marker yang dihasilkan sama persis dengan marker di atas.
+Sebanyak 54 test lulus dan satu test ekstraksi PDF H3 dilewati karena payload mentah tidak berada
+di Git. Working tree VM tetap bersih setelah pipeline dan test dijalankan.
+
 ## 6. Batas interpretasi dan audit manusia
 
 Verifikasi bibliografi masih berada pada tingkat metadata. Sebelum sebuah paper dipakai untuk

@@ -18,7 +18,7 @@ Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 Sept
 | H6 Jalur C | Lineage tingkat sel | 101 node, 235 edge, 38 path | Selesai dan divalidasi |
 | H7 Jalur A | Perlakuan B0, overwrite | 38 masukan menjadi 14 current | Selesai dan diuji di Iceberg VM |
 | H7 Jalur B | Perlakuan B2, single source | 14 dipilih, 24 dibuang | Selesai dan diuji di Iceberg VM |
-| H7 Jalur C | Lineage perlakuan dan verifikasi related work | 207 node, 491 edge, 15 sumber unik | Selesai dan divalidasi lokal |
+| H7 Jalur C | Lineage perlakuan dan verifikasi related work | 207 node, 491 edge, 15 sumber unik | Selesai dan divalidasi di VM |
 
 Yang **belum** dikerjakan pada batas audit ini adalah B1, harness revisi tersuntik, B3, penutupan lineage sampai metrik/tabel/gambar, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Perlakuan yang baru berjalan adalah B0 dan B2, yaitu 2 dari 4 perlakuan yang direncanakan.
 
@@ -59,7 +59,7 @@ pipeline/test/integrasi dijalankan di /home/sigerciv/DSIC-SDG
 bukti marker dicatat kembali dalam dokumentasi/manifest, lalu commit dan push
 ```
 
-Repo di VM menggunakan SSH untuk origin. Pull selalu memakai `--ff-only` agar VM tidak membuat merge commit diam-diam. Tahap yang mempunyai marker VM eksplisit pada catatan ini adalah H5, H6A, H6B, H6C, H7A, dan H7B; H7C mempunyai marker lokal dan akan dicatat sebagai marker VM setelah commit implementasinya ditarik. H3 mempunyai bukti kesehatan stack. Tidak ada marker VM khusus H1 atau H2, sehingga keduanya jangan disebut sudah diverifikasi terpisah di VM.
+Repo di VM menggunakan SSH untuk origin. Pull selalu memakai `--ff-only` agar VM tidak membuat merge commit diam-diam. Tahap yang mempunyai marker VM eksplisit pada catatan ini adalah H5, H6A, H6B, H6C, H7A, H7B, dan H7C. H3 mempunyai bukti kesehatan stack. Tidak ada marker VM khusus H1 atau H2, sehingga keduanya jangan disebut sudah diverifikasi terpisah di VM.
 
 Stack yang sudah dinaikkan dan diperiksa di VM:
 
@@ -731,13 +731,15 @@ make test
 - semua 76 path mempunyai hubungan sumber-ke-output lengkap (`1,0000`);
 - empat komponen opsional dinilai dan seluruhnya berstatus `not_used`.
 
-Marker pipeline:
+Marker VM:
 
 ```text
 H7C_VERIFY|15|18|0|207|491|76|28|48|1.0000|4|validated
 ```
 
 Artinya: 15 sumber unik, 18 kemunculan lama, 0 `daftar` tersisa, 207 node, 491 edge, 76 path perlakuan, 28 alamat tersedia, 48 tidak tersedia, kelengkapan 1,0000, empat komponen opsional tidak dipakai, dan status tervalidasi.
+
+VM menghasilkan marker tersebut setelah menarik commit implementasi `01ed667`. Sebanyak 54 test lulus dan satu test ekstraksi PDF H3 dilewati karena PDF mentah tidak disimpan di Git. Working tree VM tetap bersih.
 
 ### Apakah komponen opsional digunakan?
 
@@ -773,12 +775,12 @@ Status `metadata` bukan berarti semua paper sudah dibaca penuh. Audit manusia pe
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
 - seluruh 55 unit test lokal lulus;
-- di VM, 48 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
+- di VM, 54 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
 - H5, H6A, H7A, dan H7B berhasil menulis serta membaca tabel Iceberg;
 - H6B dan H6C menghasilkan artefak deterministik dan marker validasi di VM;
-- H7C menghasilkan artefak deterministik dan marker lokal; bukti VM dicatat setelah pull commit implementasi.
+- H7C menghasilkan artefak deterministik dan marker validasi yang sama di lokal dan VM.
 
 Urutan pemeriksaan cepat tanpa menarik ulang data mentah:
 

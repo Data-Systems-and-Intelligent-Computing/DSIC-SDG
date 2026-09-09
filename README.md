@@ -311,7 +311,8 @@ perlakuan. H7C juga menutup 18 kemunculan status `daftar` yang mewakili 15 sumbe
 related work. Seluruhnya kini mempunyai metadata primer dan tidak ada baris `daftar` tersisa.
 Jalankan `make h7c-run`; kontrak, koreksi bibliografi, dan batas interpretasinya ada di
 [`docs/research/h7c-evidence-lineage.md`](docs/research/h7c-evidence-lineage.md).
-Marker pipeline adalah `H7C_VERIFY|15|18|0|207|491|76|28|48|1.0000|4|validated`.
+Uji pada VM lulus dengan marker
+`H7C_VERIFY|15|18|0|207|491|76|28|48|1.0000|4|validated`.
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
