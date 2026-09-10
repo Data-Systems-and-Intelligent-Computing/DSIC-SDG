@@ -346,6 +346,9 @@ H7C 207 node/491 edge diperluas menjadi 294 node/810 edge dengan 114 path lengka
 tabel bukti, dan data gambar (`1,0000`). B3 tetap deferred dan data gambar belum dianggap sebagai
 gambar manuskrip. Jalankan `make h8c-run`; rincian tersedia di
 [`docs/research/h8c-reproducibility-lineage.md`](docs/research/h8c-reproducibility-lineage.md).
+Commit implementasi `c123402` ditarik ke VM dengan fast-forward. Dua run VM menghasilkan marker
+dan checksum artefak yang identik; 68 test lulus, satu test ekstraksi PDF dilewati karena PDF mentah
+tidak disimpan di Git, dan working tree VM tetap bersih.
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 

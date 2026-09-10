@@ -961,6 +961,14 @@ H8C_VERIFY|207|491|294|810|114|66|48|1.0000|3|10|7|3|validated
 
 Artinya: graf dasar 207/491, graf tertutup 294/810, 114 permintaan, 66 sukses, 48 tidak tersedia, completeness 1,0000, 3 perlakuan, 10 langkah audit, 7 langkah pipeline, 3 langkah adapter, dan status tervalidasi.
 
+Commit implementasi `c123402` didorong ke `main`, lalu ditarik ke VM
+`sigerciv@34.128.67.92:/home/sigerciv/DSIC-SDG` memakai `git pull --ff-only`. Di VM,
+`make h8c-run` dijalankan dua kali. Marker di atas dan sebelas checksum keluaran—sepuluh CSV serta
+satu manifest—identik pada kedua run. `make test` menjalankan 69 test: 68 lulus dan satu test
+ekstraksi PDF dilewati karena berkas PDF mentah tidak disimpan di Git. Sesudah eksekusi, `git
+status --short` di VM tidak menghasilkan keluaran, sehingga tidak ada artefak yang berubah dari
+versi commit.
+
 ### Bukti yang dapat diaudit
 
 - [kontrak H8C](../../contracts/h8c-reproducibility-lineage.json)
@@ -985,7 +993,7 @@ Periksa pembagian tujuh langkah pipeline dan tiga langkah adapter. Setujui bahwa
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
 - seluruh 69 unit test lokal lulus;
-- di VM, 63 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
+- di VM, 68 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
 - H5, H6A, H7A, dan H7B berhasil menulis serta membaca tabel Iceberg;

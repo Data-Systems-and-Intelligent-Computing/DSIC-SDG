@@ -84,11 +84,15 @@ make h8c-run
 make test
 ```
 
-Marker yang diharapkan:
+Marker yang diperoleh dua kali, baik lokal maupun di VM:
 
 ```text
 H8C_VERIFY|207|491|294|810|114|66|48|1.0000|3|10|7|3|validated
 ```
+
+Implementasi pada commit `c123402` ditarik ke VM dengan `git pull --ff-only`. Sebelas checksum
+keluaran identik pada dua run VM. Test penuh menjalankan 69 test: 68 lulus dan satu test ekstraksi
+PDF dilewati karena PDF mentah tidak tersedia di checkout Git. Working tree VM tetap bersih.
 
 ## Artefak audit
 
