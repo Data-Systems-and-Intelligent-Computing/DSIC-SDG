@@ -339,6 +339,14 @@ Uji dua run di VM menghasilkan marker identik
 publikasi, serta batas sweep utama tepat satu sumber yang direvisi per run. Ketiga keputusan
 disimpan di [`config/h8b/human_decisions.csv`](config/h8b/human_decisions.csv).
 
+H8 Jalur C membekukan prosedur audit reproducibility sepuluh langkah dan menerapkannya pada B0,
+B1, serta B2. Addressability 114 permintaan dihitung ulang dari state perlakuan, bukan dipercaya
+dari label sebelumnya: 66 dapat dipanggil dan 48 tidak tersedia, seluruhnya sesuai kontrak. Graf
+H7C 207 node/491 edge diperluas menjadi 294 node/810 edge dengan 114 path lengkap sampai metrik,
+tabel bukti, dan data gambar (`1,0000`). B3 tetap deferred dan data gambar belum dianggap sebagai
+gambar manuskrip. Jalankan `make h8c-run`; rincian tersedia di
+[`docs/research/h8c-reproducibility-lineage.md`](docs/research/h8c-reproducibility-lineage.md).
+
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
 **Gate G1 — Objek penelitian terbukti ada**

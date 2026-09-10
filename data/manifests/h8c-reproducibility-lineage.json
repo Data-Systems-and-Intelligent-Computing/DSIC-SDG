@@ -1,0 +1,130 @@
+{
+  "audit": {
+    "adapter_steps": 3,
+    "addressable": 66,
+    "pipeline_steps": 7,
+    "row_failures": 0,
+    "steps": 10,
+    "total_requests": 114,
+    "unavailable": 48
+  },
+  "contract_version": "h8c.1",
+  "evidence_status": "validated",
+  "inputs": [
+    {
+      "path": "contracts/h8c-reproducibility-lineage.json",
+      "sha256": "7574d9da2561bc1e25c7b5cdce375f3a893e325f3a251221e4477810eb735409"
+    },
+    {
+      "path": "config/h8c/reproducibility_audit_steps.csv",
+      "sha256": "29223460d62485916efc07629882d992c431c67bb5bc931aaf27cd3ff16b201f"
+    },
+    {
+      "path": "data/manifests/h6-vintage-schema.json",
+      "sha256": "416c6892d04a0a3c0b3c475f8a51d941a88cca9c68a197cf681f9449511f0ff4"
+    },
+    {
+      "path": "data/manifests/h6c-cell-lineage.json",
+      "sha256": "d9f3d571c7886ad60f1195b9fcbad4899a54fe5ce5b6f023cca62a0505a452b6"
+    },
+    {
+      "path": "data/manifests/h7c-evidence-lineage.json",
+      "sha256": "006d6454213e16c18194b252576a2f9706e1c266753eec1c63302c74d87bc90c"
+    },
+    {
+      "path": "data/manifests/h7-b0-overwrite.json",
+      "sha256": "3a58c69db80ff66d43f965b24ab770a7c03a99a554d2ac36d9b0e239e29c99ff"
+    },
+    {
+      "path": "data/manifests/h8-b1-full-snapshot.json",
+      "sha256": "d76c3dbdab2d1a19a5fae41f4af364a46f55ed657409764b35814465357ab66e"
+    },
+    {
+      "path": "data/manifests/h7b-b2-single-source.json",
+      "sha256": "9f7330f0c0c80e3feefd308bd8642b6ee36ac2107c853e18b2374e379f57648f"
+    },
+    {
+      "path": "data/manifests/h8b-injected-revision-harness.json",
+      "sha256": "b86afcb1198ab99fdb3d5cb7f6405046a47dd6b27874e0294ed0ce48b69eedfb"
+    }
+  ],
+  "lineage": {
+    "base_edges": 491,
+    "base_nodes": 207,
+    "closed_edges": 810,
+    "closed_nodes": 294,
+    "closure_completeness": "1.0000",
+    "closure_paths": 114
+  },
+  "outputs": [
+    {
+      "path": "results/processed/h8c-reproducibility-audit.csv",
+      "rows": 114,
+      "sha256": "636a9b3671a1dbcab45fd2fe48e6106221b7907f738e65fd4404e691bdc7acad"
+    },
+    {
+      "path": "results/processed/h8c-reproducibility-metrics.csv",
+      "rows": 3,
+      "sha256": "d44cf601e1bf69dd8e019f1fe089bdbbc82982e79ddf31e7c6509b824e28cabe"
+    },
+    {
+      "path": "results/processed/h8c-reproducibility-table.csv",
+      "rows": 3,
+      "sha256": "8c798287cb912c10ad916259880b1aaa66789c2cf391b4b0da28407ce9c8e9d8"
+    },
+    {
+      "path": "results/processed/h8c-reproducibility-figure-data.csv",
+      "rows": 6,
+      "sha256": "749c17e5f7fcf56cef9315172a91409d6e612407f035b5085c1831463a2ff61f"
+    },
+    {
+      "path": "results/processed/h8c-lineage-nodes.csv",
+      "rows": 294,
+      "sha256": "c7da5bc4105b45088bb35cae1db028b96afcc0cebb4147252b3013ec6deec4d1"
+    },
+    {
+      "path": "results/processed/h8c-lineage-edges.csv",
+      "rows": 810,
+      "sha256": "83ed5ca3a5f431af4a51452c112427b38720ba8fa06f56f3f01dc3049a5a127a"
+    },
+    {
+      "path": "results/processed/h8c-evidence-closure.csv",
+      "rows": 114,
+      "sha256": "e0cab87f3a858cf122110ed55bde5e48586d2534a28978a5adc0af73918da553"
+    },
+    {
+      "path": "results/processed/h8c-audit-procedure.csv",
+      "rows": 10,
+      "sha256": "29223460d62485916efc07629882d992c431c67bb5bc931aaf27cd3ff16b201f"
+    },
+    {
+      "path": "results/processed/h8c-validation.csv",
+      "rows": 13,
+      "sha256": "bb389ff01ed30df22f78795b139a6266c9086350c0b23cb57d54f89e062dae26"
+    },
+    {
+      "path": "results/processed/h8c-summary.csv",
+      "rows": 12,
+      "sha256": "7e4b3d85809a771ec76dd9491ae665cc3c2b7bc17e0c15114bc5598093574f2b"
+    }
+  ],
+  "presentation": {
+    "figure_data_rows": 6,
+    "figure_status": "figure_data_ready_not_rendered",
+    "manuscript_figure_claimed": false,
+    "metric_rows": 3,
+    "table_rows": 3,
+    "table_status": "audit_table_ready"
+  },
+  "scope": {
+    "deferred_treatment": "B3",
+    "implemented_treatments": [
+      "B0",
+      "B1",
+      "B2"
+    ],
+    "requests_per_treatment": 38
+  },
+  "stage": "H8",
+  "track": "C"
+}

@@ -1,0 +1,14 @@
+invariant,status,checked_rows,detail
+h8c_contract,passed,8,scope audit lineage presentation and claim boundaries match h8c.1
+ordered_audit_procedure,passed,10,pipeline=7 and treatment_adapter=3
+manifested_inputs,passed,7,H6 H6C H7C B0 B1 B2 and H8B outputs pass checksum and row-count checks
+same_request_set,passed,114,B0 B1 and B2 each audit the same 38 H6 observation IDs
+independent_addressability,passed,114,reported outcomes agree with independent state and snapshot recomputation
+exact_successful_reads,passed,66,every successful read matches identity decimal value and published lexeme
+explicit_unavailability,passed,48,all unavailable reads are expected consequences of B0 or B2 policy
+base_h7c_graph_immutable,passed,698,207 H7C nodes and 491 edges retain their exact identities and fields
+source_to_presentation_closure,passed,114,every request reaches one metric evidence table and figure-input node
+closure_completeness,passed,114,completeness=1.0000
+h8b_procedure_link,passed,1,future injected workloads are governed by the same audit procedure
+b3_deferred,passed,0,B3 has no result row node or metric before its H9 implementation
+figure_claim_boundary,passed,6,figure data are ready but no rendered manuscript figure is claimed

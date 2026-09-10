@@ -1,4 +1,4 @@
-.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
+.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run h8c-run stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
 
 PYTHON ?= python3
 H1 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h1.cli
@@ -14,6 +14,7 @@ H7B = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h7b.cli
 H7C = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h7c.cli
 H8 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h8.cli
 H8B = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h8b.cli
+H8C = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h8c.cli
 COMPOSE ?= docker-compose --env-file infra/docker/versions.env
 STACK_HOST ?= sigerciv@34.128.67.92
 STACK_DIR ?= /home/sigerciv/DSIC-SDG
@@ -50,6 +51,7 @@ help:
 	@echo "make h8-run       Materialize the B1 full-snapshot workload logically"
 	@echo "make h8-apply     Create and verify three retained B1 Iceberg snapshots"
 	@echo "make h8b-run      Build deterministic nested injected-revision workloads"
+	@echo "make h8c-run      Close implemented-treatment lineage and audit reproducibility"
 	@echo "make stack-up     Bring up MinIO, the Iceberg REST catalog, and Spark"
 	@echo "make stack-remote-up  Sync and start the stack on STACK_HOST"
 	@echo "make stack-remote-status  Show the remote stack status"
@@ -153,6 +155,9 @@ h8-apply: h8-run
 
 h8b-run:
 	$(H8B)
+
+h8c-run:
+	$(H8C)
 
 stack-up:
 	$(COMPOSE) up -d

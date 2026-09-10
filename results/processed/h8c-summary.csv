@@ -1,0 +1,13 @@
+metric,value,unit,interpretation
+implemented_treatments_audited,3,treatments,B0 B1 and B2 only
+requests_per_treatment,38,requests,same H6 observation IDs
+total_audit_requests,114,requests,three treatments times 38 observations
+addressable_requests,66,requests,B0=14 B1=38 B2=14
+unavailable_requests,48,requests,B0=24 B1=0 B2=24
+closed_lineage_paths,114,paths,source through treatment and presentation evidence
+closure_completeness,1.0000,ratio,all in-scope implemented-treatment requests
+closed_graph_nodes,294,nodes,H7C graph plus B1 and presentation evidence
+closed_graph_edges,810,edges,exact identifier and aggregation relationships
+audit_procedure_steps,10,steps,seven pipeline and three treatment-adapter steps
+figure_data_rows,6,rows,not a rendered manuscript figure
+deferred_treatments,1,treatments,B3 must be added after implementation

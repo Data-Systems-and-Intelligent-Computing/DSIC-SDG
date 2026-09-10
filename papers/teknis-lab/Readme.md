@@ -1,8 +1,8 @@
-# Rekap Teknis dan Panduan Audit H1–H6C, H7A–H7C, dan H8A–H8B
+# Rekap Teknis dan Panduan Audit H1–H6C, H7A–H7C, dan H8A–H8C
 
-Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C, H7 Jalur A, B, dan C, serta H8 Jalur A dan B. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
+Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C, H7 Jalur A, B, dan C, serta H8 Jalur A, B, dan C. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
 
-Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 September 2026, kemudian H7C, H8A, dan H8B ditambahkan sebagai kelanjutan audit pada tanggal yang sama. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
+Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 September 2026, kemudian H7C dan H8A–H8C ditambahkan sebagai kelanjutan audit. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
 
 ## 1. Ringkasan status
 
@@ -21,8 +21,9 @@ Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 Sept
 | H7 Jalur C | Lineage perlakuan dan verifikasi related work | 207 node, 491 edge, 15 sumber unik | Selesai dan divalidasi di VM |
 | H8 Jalur A | Perlakuan B1, snapshot penuh | 3 state penuh, 42 kemunculan baris, 38/38 dapat dipanggil | Selesai dan diuji di Iceberg VM |
 | H8 Jalur B | Harness revisi tersuntik | 5 ukuran bertingkat, 28 baris, 20 route identik | Selesai dan divalidasi di VM |
+| H8 Jalur C | Audit reproducibility dan penutupan lineage | 114 audit, 294 node, 810 edge | Selesai dan divalidasi di VM |
 
-Yang **belum** dikerjakan pada batas audit ini adalah eksekusi harness pada skenario kecil, B3, penutupan lineage sampai metrik/tabel/gambar, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Perlakuan yang sudah berjalan adalah B0, B1, dan B2, yaitu 3 dari 4 perlakuan yang direncanakan. B1 sudah terbukti berfungsi dan H8B sudah menyiapkan input identik, tetapi belum ada perbandingan waktu atau ruang.
+Yang **belum** dikerjakan pada batas audit ini adalah eksekusi harness pada skenario kecil, B3 beserta lineage-nya, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Perlakuan yang sudah berjalan adalah B0, B1, dan B2, yaitu 3 dari 4 perlakuan yang direncanakan. Lineage ketiganya sudah mencapai metrik, tabel bukti, dan data gambar, tetapi belum ada perbandingan waktu atau ruang dan belum ada gambar manuskrip final.
 
 ## 2. Cara memahami bukti di repositori
 
@@ -914,11 +915,76 @@ Commit jangkar: `5c3969c` dan `8846d7c`.
 
 Latest-vintage, aturan satu unit, dan tepat satu sumber per run utama sudah disetujui manusia. Yang masih perlu diperiksa adalah seed, pemetaan setiap `revised_source_id`, serta implementasi constraint satu sumber ketika konfigurasi utama dibuat. Jangan menyebut ukuran `1-2-4-7-14` sebagai ukuran final atau menganggap route B3 sebagai bukti B3 sudah berjalan.
 
-## 17. Pemeriksaan akhir yang sudah lulus
+## 17. H8 Jalur C — Audit reproducibility dan penutupan lineage
+
+### Tujuan
+
+Menghitung ulang hasil reproducibility B0, B1, dan B2 dari state masing-masing, membekukan satu prosedur audit bersama, lalu menghubungkan bukti sumber sampai metrik, tabel, dan data gambar. B3 sengaja dikeluarkan dari hasil karena belum diimplementasikan.
+
+### Langkah yang dieksekusi
+
+1. Menetapkan kontrak [h8c-reproducibility-lineage.json](../../contracts/h8c-reproducibility-lineage.json).
+2. Menyusun sepuluh langkah dalam [reproducibility_audit_steps.csv](../../config/h8c/reproducibility_audit_steps.csv): tujuh pemeriksaan pipeline dan tiga kewajiban adapter perlakuan.
+3. Memverifikasi checksum serta jumlah baris output H6, H6C, H7C, B0, B1, B2, dan H8B.
+4. Mengunci set 38 `observation_id` yang sama untuk ketiga perlakuan.
+5. Menghitung ulang addressability B0 dari state current, B1 dari tiga state snapshot, dan B2 dari state hasil pemilihan.
+6. Untuk setiap hasil sukses, membandingkan ID observasi, `value_decimal`, dan `value_lexeme` secara eksak.
+7. Menghubungkan seluruh 114 permintaan ke `source_lineage_path_id` H6C.
+8. Menambahkan run, keputusan, output, tiga snapshot, metrik, tabel, data gambar, prosedur, dan harness ke graf tanpa mengubah 207 node/491 edge H7C.
+9. Membentuk tabel tiga perlakuan dan enam baris data gambar addressable/unavailable.
+10. Menjalankan pipeline dua kali untuk determinisme dan seluruh unit test.
+
+Perintah:
+
+```bash
+make h8c-run
+make test
+```
+
+### Hasil
+
+| Perlakuan | Permintaan | Serving sukses | Historis sukses | Tidak tersedia | Tingkat sukses |
+|---|---:|---:|---:|---:|---:|
+| B0 | 38 | 14 | 0 | 24 | 0,3684 |
+| B1 | 38 | 14 | 24 | 0 | 1,0000 |
+| B2 | 38 | 14 | 0 | 24 | 0,3684 |
+
+Totalnya 114 permintaan: 66 dapat dipanggil dan 48 tidak tersedia. Semua hasil sukses cocok pada identitas, desimal, dan lexeme. Nilai tidak tersedia pada B0/B2 tetap dihitung sebagai kegagalan reproducibility meskipun perilakunya sesuai kontrak; “audit lulus” tidak sama dengan “permintaan berhasil”.
+
+Graf akhir memiliki 294 node dan 810 edge. Seluruh 114 path mencapai metrik, tabel bukti, data gambar, serta prosedur audit dengan completeness `1,0000`. Terdapat tiga node snapshot dan 42 edge kemunculan observasi B1. Data gambar baru enam baris sumber grafik; belum ada gambar manuskrip yang dirender.
+
+Marker validasi:
+
+```text
+H8C_VERIFY|207|491|294|810|114|66|48|1.0000|3|10|7|3|validated
+```
+
+Artinya: graf dasar 207/491, graf tertutup 294/810, 114 permintaan, 66 sukses, 48 tidak tersedia, completeness 1,0000, 3 perlakuan, 10 langkah audit, 7 langkah pipeline, 3 langkah adapter, dan status tervalidasi.
+
+### Bukti yang dapat diaudit
+
+- [kontrak H8C](../../contracts/h8c-reproducibility-lineage.json)
+- [prosedur audit](../../config/h8c/reproducibility_audit_steps.csv)
+- [114 audit baris](../../results/processed/h8c-reproducibility-audit.csv)
+- [metrik tiga perlakuan](../../results/processed/h8c-reproducibility-metrics.csv)
+- [tabel bukti](../../results/processed/h8c-reproducibility-table.csv)
+- [data gambar](../../results/processed/h8c-reproducibility-figure-data.csv)
+- [294 node](../../results/processed/h8c-lineage-nodes.csv)
+- [810 edge](../../results/processed/h8c-lineage-edges.csv)
+- [114 path tertutup](../../results/processed/h8c-evidence-closure.csv)
+- [hasil validasi](../../results/processed/h8c-validation.csv)
+- [manifest H8C](../../data/manifests/h8c-reproducibility-lineage.json)
+- [laporan H8C](../../docs/research/h8c-reproducibility-lineage.md)
+
+### Yang harus dikoreksi manusia bila perlu
+
+Periksa pembagian tujuh langkah pipeline dan tiga langkah adapter. Setujui bahwa ketidaktersediaan sesuai kebijakan tetap merupakan kegagalan reproducibility. Data gambar enam baris hanya endpoint lineage sementara. Setelah B3 berjalan, 38 audit B3 wajib ditambahkan; completeness 1,0000 saat ini tidak mencakup B3.
+
+## 18. Pemeriksaan akhir yang sudah lulus
 
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
-- seluruh 64 unit test lokal lulus;
+- seluruh 69 unit test lokal lulus;
 - di VM, 63 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
@@ -927,6 +993,7 @@ Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 - H7C menghasilkan artefak deterministik dan marker validasi yang sama di lokal dan VM.
 - H8A menghasilkan tiga state logis deterministik dan berhasil membaca ketiganya kembali melalui time travel Iceberg di VM.
 - H8B menghasilkan lima workload bertingkat dan 20 route ber-checksum sama secara deterministik.
+- H8C menghitung ulang 114 hasil dan menutup seluruh path bukti tiga perlakuan yang sudah berjalan.
 
 Urutan pemeriksaan cepat tanpa menarik ulang data mentah:
 
@@ -943,6 +1010,7 @@ make h7b-run
 make h7c-run
 make h8-run
 make h8b-run
+make h8c-run
 make test
 ```
 
@@ -958,7 +1026,7 @@ git log -1 --oneline
 docker compose --env-file infra/docker/versions.env ps
 ```
 
-## 18. Daftar audit manusia yang disarankan
+## 19. Daftar audit manusia yang disarankan
 
 - [ ] Cocokkan 29 pilihan WebAPI H1 dengan definisi indikator, bukan hanya kemiripan nama.
 - [ ] Setujui atau koreksi 14 `verified`, 17 `partial`, dan 4 `unavailable`.
@@ -979,9 +1047,11 @@ docker compose --env-file infra/docker/versions.env ps
 - [x] Setujui latest-vintage sebagai titik awal dan satu unit presisi publikasi sebagai aturan delta H8B (disetujui 2026-09-10).
 - [x] Putuskan sweep utama membatasi tepat satu sumber yang direvisi per run (disetujui 2026-09-10).
 - [ ] Periksa seed dan pemetaan setiap `revised_source_id` pada H8B.
+- [ ] Setujui prosedur H8C, klasifikasi kegagalan, dan batas data gambar yang belum dirender.
+- [ ] Ulangi penutupan lineage dan audit untuk B3 setelah implementasinya tersedia.
 - [ ] Putuskan spesifikasi VM sebelum pengukuran performa dimulai.
 
-## 19. Cara melakukan koreksi tanpa merusak jejak audit
+## 20. Cara melakukan koreksi tanpa merusak jejak audit
 
 Jika audit manusia menemukan kesalahan:
 
@@ -997,7 +1067,7 @@ Jika audit manusia menemukan kesalahan:
 
 Dengan prosedur tersebut, koreksi manusia menjadi bagian dari provenance penelitian dan tidak menghapus bukti keputusan sebelumnya dari riwayat Git.
 
-## 20. Batas klaim pada posisi sekarang
+## 21. Batas klaim pada posisi sekarang
 
 Yang sudah dapat diklaim:
 
@@ -1008,6 +1078,7 @@ Yang sudah dapat diklaim:
 - tiga perlakuan, B0, B1, dan B2, sudah berjalan pada workload 38 observasi/14 sel;
 - B1 secara fungsional dapat memanggil seluruh 38 observasi melalui tiga snapshot penuh;
 - harness dapat membentuk revisi sintetis bertingkat dan mengirim payload identik ke route B0–B3;
+- lineage B0/B1/B2 mencapai metrik, tabel bukti, dan data gambar dengan 114 path lengkap;
 - seluruh keputusan B0/B2 dapat ditelusuri dari rekaman sumber sampai keluaran perlakuan;
 - tidak ada lagi sumber related work yang hanya berstatus `daftar`.
 
@@ -1016,9 +1087,10 @@ Yang belum dapat diklaim:
 - bahwa satu sumber selalu paling benar;
 - bahwa semua perbedaan adalah revisi;
 - bahwa lineage sudah mencakup seluruh 7.666 observasi H4 atau sampai semua tabel/gambar;
+- bahwa lineage H8C sudah mencakup B3 atau gambar manuskrip final;
 - bahwa salah satu perlakuan lebih cepat, lebih hemat ruang, atau lebih skalabel;
 - bahwa profil validasi H8B adalah ukuran final atau sudah mewakili satu tahun penuh seluruh provinsi;
 - bahwa Gate G2 atau G3 sudah lolos;
 - bahwa hasil 14 sel dapat digeneralisasi ke seluruh indikator BPS.
 
-Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; fondasi tiga jalur H6 dan H7C selesai; B0, B1, dan B2 selesai secara fungsional; harness revisi tersuntik siap secara logis tetapi belum dieksekusi ke perlakuan. B3, perluasan lineage B1, freeze eksperimen, dan pengukuran utama belum selesai. Gate G2 belum lolos.**
+Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; H8 seluruh jalur selesai; B0, B1, dan B2 selesai secara fungsional serta lineage-nya tertutup sampai bukti presentasi sementara. Harness revisi tersuntik siap secara logis tetapi belum dieksekusi ke perlakuan. B3, audit B3, freeze eksperimen, dan pengukuran utama belum selesai. Gate G2 belum lolos.**

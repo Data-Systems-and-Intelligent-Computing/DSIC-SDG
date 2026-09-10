@@ -1,0 +1,11 @@
+step_order,step_id,phase,action,required_evidence,pass_condition,failure_action,automation_owner
+1,verify_inputs,preflight,Verify every manifest and output checksum,manifest plus files,All required paths exist and hashes and row counts match,Stop the run and report the first invalid artifact,pipeline
+2,lock_request_set,preflight,Compare exact requested observation IDs across treatments,H6C source paths plus treatment audits,Each treatment receives the same 38 observation IDs,Stop and report missing or extra IDs,pipeline
+3,reset_isolated_state,execution,Rebuild only the target treatment state,versioned DDL and clean treatment namespace,No state from an earlier run remains,Stop before applying the workload,treatment_adapter
+4,execute_serially,execution,Run one treatment at a time under the frozen resource limit,operator log plus run ID,No overlapping treatment execution is present,Invalidate overlapping runs and repeat,treatment_adapter
+5,capture_read_locator,execution,Capture the exact current selected or snapshot locator,treatment output plus snapshot metadata,Every successful read has one deterministic locator,Mark the request failed and retain diagnostics,treatment_adapter
+6,verify_identity,audit,Compare requested and returned observation IDs,request row plus returned row,IDs match exactly for every successful read,Classify as wrong-identity failure,pipeline
+7,verify_value,audit,Compare decimal and published lexeme,request row plus returned row,Both exact decimal and lexeme match,Classify as wrong-value failure,pipeline
+8,verify_provenance,audit,Resolve the request to its frozen source path,H6C lineage path,Every request reaches one exact source record,Classify as incomplete-lineage failure,pipeline
+9,classify_unavailable,audit,Distinguish expected unavailability from query errors,treatment contract plus execution log,Every failed read has one explicit failure class,Reject unclassified failures,pipeline
+10,aggregate_and_preserve,report,Aggregate only after row-level checks and preserve evidence,audit rows metrics table figure data and manifest,Counts reconcile and all outputs are checksummed,Stop publication until reconciliation passes,pipeline

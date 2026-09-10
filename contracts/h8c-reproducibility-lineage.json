@@ -1,0 +1,72 @@
+{
+  "contract_version": "h8c.1",
+  "stage": "H8",
+  "track": "C",
+  "name": "reproducibility_audit_and_evidence_closure",
+  "scope": {
+    "implemented_treatments": ["B0", "B1", "B2"],
+    "deferred_treatment": "B3",
+    "requests_per_treatment": 38,
+    "stable_cells": 14,
+    "claim_boundary": "close current evidence only; rerun the same procedure after B3 exists"
+  },
+  "expected_results": {
+    "B0": {"successes": 14, "failures": 24, "success_rate": "0.3684"},
+    "B1": {"successes": 38, "failures": 0, "success_rate": "1.0000"},
+    "B2": {"successes": 14, "failures": 24, "success_rate": "0.3684"}
+  },
+  "audit_procedure": {
+    "path": "config/h8c/reproducibility_audit_steps.csv",
+    "required_steps": 10,
+    "pipeline_steps": 7,
+    "treatment_adapter_steps": 3,
+    "identity_matching": "exact_observation_id",
+    "value_matching": ["value_decimal", "value_lexeme"],
+    "lineage_matching": "exact_h6c_source_lineage_path_id",
+    "unclassified_failure_allowed": false
+  },
+  "lineage": {
+    "base_graph": "data/manifests/h7c-evidence-lineage.json",
+    "base_contract_version": "h7c.1",
+    "base_nodes": 207,
+    "base_edges": 491,
+    "matching": "exact_identifiers_only",
+    "new_node_types": [
+      "snapshot_state",
+      "audit_procedure",
+      "workload_harness",
+      "reproducibility_metric",
+      "evidence_table",
+      "figure_input"
+    ],
+    "new_relationships": [
+      "treatment_run_commits_snapshot",
+      "output_available_in_snapshot",
+      "audit_decision_contributes_to_metric",
+      "metric_published_in_table",
+      "table_supplies_figure_input",
+      "procedure_governs_treatment_run",
+      "workload_harness_uses_audit_procedure"
+    ],
+    "closure_endpoints": ["reproducibility_metric", "evidence_table", "figure_input"],
+    "fuzzy_matching_allowed": false
+  },
+  "presentation": {
+    "metric_rows": 3,
+    "table_rows": 3,
+    "figure_data_rows": 6,
+    "table_status": "audit_table_ready",
+    "figure_status": "figure_data_ready_not_rendered",
+    "manuscript_figure_claimed": false
+  },
+  "invariants": [
+    "the H7C base graph is copied without changing node or edge identities",
+    "B0 B1 and B2 audit exactly the same 38 observation IDs",
+    "addressability is recomputed independently from each treatment state",
+    "all successful requests match identity decimal value and published lexeme",
+    "every request inherits one exact H6C source path",
+    "every request contributes to one treatment metric and the evidence table and figure input",
+    "B3 is explicitly deferred rather than represented as implemented",
+    "the procedure separates pipeline checks from treatment-adapter execution steps"
+  ]
+}

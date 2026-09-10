@@ -1,0 +1,4 @@
+treatment_id,requests,serving_state_successes,historical_snapshot_successes,failures,success_rate,row_audit_failures,contract_result
+B0,38,14,0,24,0.3684,0,matched
+B1,38,14,24,0,1.0000,0,matched
+B2,38,14,0,24,0.3684,0,matched
