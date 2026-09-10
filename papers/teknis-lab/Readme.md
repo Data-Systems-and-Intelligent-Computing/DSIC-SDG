@@ -965,9 +965,9 @@ Commit implementasi `c123402` didorong ke `main`, lalu ditarik ke VM
 `sigerciv@34.128.67.92:/home/sigerciv/DSIC-SDG` memakai `git pull --ff-only`. Di VM,
 `make h8c-run` dijalankan dua kali. Marker di atas dan sebelas checksum keluaran—sepuluh CSV serta
 satu manifest—identik pada kedua run. `make test` menjalankan 69 test: 68 lulus dan satu test
-ekstraksi PDF dilewati karena berkas PDF mentah tidak disimpan di Git. Sesudah eksekusi, `git
-status --short` di VM tidak menghasilkan keluaran, sehingga tidak ada artefak yang berubah dari
-versi commit.
+ekstraksi PDF dilewati karena berkas PDF mentah tidak disimpan di Git. Sesudah eksekusi, perintah
+`git status --short` di VM tidak menghasilkan keluaran, sehingga tidak ada artefak yang berubah
+dari versi commit.
 
 ### Bukti yang dapat diaudit
 
