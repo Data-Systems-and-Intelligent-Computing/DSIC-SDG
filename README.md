@@ -377,7 +377,8 @@ lebih rendah. B0 kehilangan ke-28 nilai yang direvisi, sedangkan B1 dan B3 tetap
 seluruh observasi resmi dan sintetis. B3 menghitung ulang tepat 1, 2, 4, 7, dan 14 sel. Belum ada
 waktu atau byte yang diukur. Jalankan `make h9b-run`; rincian ada di
 [`docs/research/h9b-small-revision-execution.md`](docs/research/h9b-small-revision-execution.md).
-Marker: `H9B_VERIFY|5|20|20|0|28|28|70|28|8|0|0|executed_logical`.
+Marker: `H9B_VERIFY|5|20|20|0|28|28|70|28|8|0|0|executed_logical`; dua run di VM identik dengan lokal, dan
+83 test VM lulus dengan satu test PDF dilewati.
 
 H9 Jalur C mengaudit 38 permintaan B3 dengan prosedur H8C yang dikunci checksum-nya, lalu
 menurunkan ulang sel kotor B3 dari graf secara independen. Hasilnya, 38 baris impact cocok tanpa

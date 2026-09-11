@@ -19,6 +19,10 @@ injeksi, 28 sel dihitung ulang oleh B3, 70 baris ditulis B1, 28 nilai lama yang 
 revisi yang disajikan B2, 0 permintaan gagal pada B1/B3, 0 selisih replay baseline, dan status
 `executed_logical`.
 
+Commit implementasi `ea6efe1` ditarik ke VM `praktikum-sd` (`sigerciv@34.101.84.199`). Dua run
+`make h9b-run` di VM menghasilkan marker yang sama dan checksum keluaran yang identik, termasuk dengan
+keluaran lokal. Di VM, 83 test lulus, satu test PDF dilewati, dan working tree tetap bersih.
+
 ## Keputusan manusia yang dipakai
 
 Pada 11 September 2026, peninjau manusia menyetujui empat keputusan. Keempatnya dicatat di

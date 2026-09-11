@@ -23,7 +23,7 @@ Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 Sept
 | H8 Jalur B | Harness revisi tersuntik | 5 ukuran bertingkat, 28 baris, 20 route identik | Selesai dan divalidasi di VM |
 | H8 Jalur C | Audit reproducibility dan penutupan lineage | 114 audit, 294 node, 810 edge | Selesai dan divalidasi di VM |
 | H9 Jalur A | Perlakuan B3 vintage-aware inkremental | 38 baris store, 14 serving, 38/42 sel dihitung ulang, 38/38 dapat dipanggil | Selesai dan diuji di Iceberg VM |
-| H9 Jalur B | Eksekusi harness pada revisi kecil | 20 route logis, 28 injeksi, B2 menyajikan 8/28 revisi | Selesai secara logis; verifikasi VM dicatat setelah commit ditarik |
+| H9 Jalur B | Eksekusi harness pada revisi kecil | 20 route logis, 28 injeksi, B2 menyajikan 8/28 revisi | Selesai secara logis dan divalidasi di VM |
 | H9 Jalur C | Audit B3, impact lineage, dan penutupan empat perlakuan | 152 audit, 38 impact tanpa selisih, 377 node, 1.088 edge | Selesai dan divalidasi di VM |
 
 Keempat perlakuan kini sudah diimplementasikan pada workload nyata H6. Keempatnya sudah diuji di Iceberg VM; B3 lulus pada H9A di alamat VM baru (lihat §3). Lineage keempat perlakuan sudah mencapai metrik, tabel bukti, dan data gambar.
@@ -1136,7 +1136,7 @@ H9B_VERIFY|5|20|20|0|28|28|70|28|8|0|0|executed_logical
 
 Artinya: 5 skenario, 20 route, 20 payload terverifikasi, 0 selisih payload, 28 baris injeksi, 28 sel dihitung ulang B3, 70 baris ditulis B1, 28 nilai hilang di B0, 8 revisi disajikan B2, 0 permintaan gagal pada B1/B3, 0 selisih baseline, dan status `executed_logical`.
 
-Verifikasi dua run di VM dijalankan setelah commit ditarik; hasilnya dicatat pada commit berikutnya.
+Commit implementasi `ea6efe1` ditarik ke VM `praktikum-sd` (`sigerciv@34.101.84.199`) memakai `git pull --ff-only`. `make h9b-run` dijalankan dua kali; marker di atas dan checksum gabungan enam CSV serta manifest identik pada kedua run dan juga identik dengan lokal. `make test` di VM menjalankan 84 test: 83 lulus dan satu test ekstraksi PDF dilewati. Working tree VM tetap bersih. Karena H9B murni logis, tidak ada tabel Iceberg yang ditulis.
 
 ### Bukti yang dapat diaudit
 
@@ -1228,7 +1228,7 @@ Setujui kelas akses `vintage_key` yang terpisah dari `historical_snapshot`. Setu
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
 - seluruh 84 unit test lokal lulus, termasuk 5 test masing-masing untuk H9A, H9B, dan H9C;
-- di VM, 78 test lulus dan 1 test dilewati pada verifikasi H9A/H9C; verifikasi H9B dicatat setelah commit ditarik;
+- di VM, 83 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
 - H5, H6A, H7A, dan H7B berhasil menulis serta membaca tabel Iceberg;
