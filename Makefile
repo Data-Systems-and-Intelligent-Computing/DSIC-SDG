@@ -1,4 +1,4 @@
-.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run h8c-run h9-run h9-apply h9b-run h9c-run stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
+.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run h8c-run h9-run h9-apply h9b-run h9c-run h10-measure h10-run stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
 
 PYTHON ?= python3
 H1 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h1.cli
@@ -18,6 +18,8 @@ H8C = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h8c.cli
 H9 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h9.cli
 H9B = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h9b.cli
 H9C = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h9c.cli
+H10 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h10.cli
+H10_RUN ?= h10a-20260911
 COMPOSE ?= docker-compose --env-file infra/docker/versions.env
 STACK_HOST ?= sigerciv@34.101.84.199
 STACK_DIR ?= /home/sigerciv/DSIC-SDG
@@ -59,6 +61,8 @@ help:
 	@echo "make h9-apply     Create and verify the B3 Iceberg store and serving tables"
 	@echo "make h9b-run      Execute the H8B validation routes on all four treatments logically"
 	@echo "make h9c-run      Audit B3 impact and reproducibility and close four-treatment lineage"
+	@echo "make h10-measure  Purge, rebuild, and measure treatment storage and recall on the stack host"
+	@echo "make h10-run      Validate and aggregate the committed H10 raw measurement"
 	@echo "make stack-up     Bring up MinIO, the Iceberg REST catalog, and Spark"
 	@echo "make stack-remote-up  Sync and start the stack on STACK_HOST"
 	@echo "make stack-remote-status  Show the remote stack status"
@@ -177,6 +181,12 @@ h9b-run:
 
 h9c-run:
 	$(H9C)
+
+h10-measure:
+	bash scripts/h10_measure.sh . $(H10_RUN)
+
+h10-run:
+	$(H10) --raw-dir results/raw/h10/$(H10_RUN)
 
 stack-up:
 	$(COMPOSE) up -d

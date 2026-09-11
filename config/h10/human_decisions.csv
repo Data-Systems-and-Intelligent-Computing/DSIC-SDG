@@ -1,0 +1,3 @@
+decision_id,decided_at,decided_by,status,scope,decision,rationale
+h10_catalog_persistence,2026-09-11,human_reviewer,approved,stack,persist_iceberg_rest_catalog_in_sqlite_volume,"Approved explicitly after the 2026-09-11 reboot showed that the in-memory fixture catalog loses every table registration"
+h10_storage_environment,2026-09-11,human_reviewer,approved,measurement,declare_current_vm_for_storage_and_defer_timing_spec,"Approved explicitly; bytes are measured on the declared 2 vCPU 7.7 GiB VM with the file layout recorded, and the VM decision for timing is deferred to before H10B/H11 timing"
