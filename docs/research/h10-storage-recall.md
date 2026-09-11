@@ -116,7 +116,7 @@ duplikasi tersembunyi di tingkat file.
    ini.
 2. **Metadata sebanding dengan data, bahkan melampauinya.** B0 menyimpan 63.242 B metadata untuk
    32.656 B data. `expire_snapshots` menghapus snapshot dan file data lama, tetapi keenam metadata
-   JSON dari riwayat tulis tabel (CREATE, DELETE, tiga MERGE, dan expire) tetap tersimpan. Pada tabel sekecil ini, ongkos tetap Iceberg
+   JSON dari riwayat tulis tabel tetap tersimpan. Pada tabel sekecil ini, ongkos tetap Iceberg
    mendominasi. Perbandingan ruang karena itu harus melaporkan data dan metadata secara terpisah.
 3. **Ongkos ruang B1 tumbuh per rilis, bukan per revisi.** Setiap snapshot menulis ulang ketiga
    partisi domain (9 file data untuk 3 snapshot). Pada tabel yang jauh lebih besar, pola ini yang
