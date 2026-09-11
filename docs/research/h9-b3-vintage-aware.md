@@ -15,9 +15,21 @@ Artinya: 38 baris store, 14 baris serving, 3 kedatangan rilis, 38 evaluasi sel i
 evaluasi bila dihitung ulang penuh, 38 pembacaan vintage berhasil, 0 gagal, 42 baris rekonstruksi
 as-of, dan status implemented.
 
-Integrasi Iceberg melalui `make h9-apply` dijalankan pada VM eksperimen `praktikum-sd`, yang sejak
-11 September 2026 beralamat `sigerciv@34.101.84.199`, setelah commit implementasi ditarik ke VM.
-Marker yang harus muncul dicatat pada bagian Reproduksi.
+Integrasi Iceberg melalui `make h9-apply` lulus pada VM eksperimen `praktikum-sd`, yang sejak
+11 September 2026 beralamat `sigerciv@34.101.84.199`. VM menarik commit implementasi `c2a249d` dengan
+`git pull --ff-only`. Dua run `make h9-run` menghasilkan checksum keluaran yang sama dengan lokal.
+`make h9-apply` dijalankan dua kali untuk menguji idempotensi drop-and-recreate, dan kedua run
+mencetak marker yang sama:
+
+```text
+H9_ARRIVAL|1|14|14|14|14|0
+H9_ARRIVAL|2|28|14|14|14|0
+H9_ARRIVAL|3|38|14|10|10|0
+H9_VERIFY|38|38|14|14|38|0|1|1|0|0|42|0
+```
+
+Di VM, 78 test lulus dan satu test ekstraksi PDF dilewati karena PDF mentah tidak disimpan di Git.
+Working tree VM tetap bersih. Arti setiap field marker dijelaskan pada bagian Reproduksi.
 
 ## Kontrak perlakuan
 

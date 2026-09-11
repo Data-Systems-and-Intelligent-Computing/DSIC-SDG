@@ -362,8 +362,8 @@ melalui kunci vintage tanpa bergantung pada snapshot tabel. Pada workload ini pe
 inkremental kecil karena hampir semua sel direvisi. B3 juga menyimpan 52 baris logis (store dan
 serving), lebih banyak daripada 42 pada B1. Angka ini bukan ukuran byte, dan pengukuran fisik tetap
 dijadwalkan pada H10. Jalankan `make h9-run`; rincian ada di
-[`docs/research/h9-b3-vintage-aware.md`](docs/research/h9-b3-vintage-aware.md). Integrasi Iceberg
-`make h9-apply` pada VM eksperimen dijalankan setelah commit implementasi ditarik ke VM.
+[`docs/research/h9-b3-vintage-aware.md`](docs/research/h9-b3-vintage-aware.md).
+Integrasi Iceberg `make h9-apply` lulus di VM. Commit `c2a249d` ditarik ke VM `praktikum-sd` (`sigerciv@34.101.84.199`). Dua run `make h9-run` menghasilkan checksum yang sama dengan lokal, dan dua run `make h9-apply` lulus dengan marker `H9_VERIFY|38|38|14|14|38|0|1|1|0|0|42|0`. Marker itu berarti 38/38 observasi tetap terbaca melalui kunci vintage setelah snapshot kedua tabel B3 dihapus sampai tersisa satu, dan ketiga state as-of sama dengan snapshot B1.
 
 H9 Jalur C mengaudit 38 permintaan B3 dengan prosedur H8C yang dikunci checksum-nya, lalu
 menurunkan ulang sel kotor B3 dari graf secara independen. Hasilnya, 38 baris impact cocok tanpa
@@ -373,8 +373,9 @@ dan B3 `1,0000` melalui kunci vintage. Graf H8C diperluas menjadi 377 node dan 1
 152 path lengkap (`1,0000`). Jalankan `make h9c-run`; rincian ada di
 [`docs/research/h9c-b3-lineage-audit.md`](docs/research/h9c-b3-lineage-audit.md). Marker lokal:
 `H9C_VERIFY|294|810|377|1088|152|104|48|1.0000|4|38|38|0|validated`. Seluruh 79 test lokal lulus.
-Gate G2 belum lolos karena B3 belum diverifikasi di Iceberg dan keempat perlakuan belum dijalankan
-pada workload tersuntik yang identik.
+Marker yang sama dan checksum identik juga muncul pada dua run di VM, dengan 78 test lulus dan satu
+test PDF dilewati. Gate G2 belum lolos karena keempat perlakuan belum dijalankan pada workload
+tersuntik yang identik dan berkas freeze H10 belum ditulis.
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 

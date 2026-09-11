@@ -19,9 +19,10 @@ Artinya: graf dasar 294 node dan 810 edge, graf tertutup 377 node dan 1.088 edge
 104 sukses, 48 tidak tersedia, completeness 1,0000, empat perlakuan, 38 permintaan B3 sukses, 38
 baris impact diaudit, 0 selisih impact, dan status tervalidasi.
 
-H9C merupakan pipeline Python murni yang deterministik. Verifikasi dua kali di VM belum dilakukan
-karena alamat VM eksperimen tidak lagi mengarah ke mesin penelitian (lihat laporan H9A). Dua run
-lokal pada unit test menghasilkan keluaran yang sama byte demi byte.
+H9C merupakan pipeline Python murni yang deterministik. Setelah VM `praktikum-sd`
+(`sigerciv@34.101.84.199`) menarik commit `c2a249d`, `make h9c-run` dijalankan dua kali. Kedua run
+menghasilkan marker di atas dan checksum keluaran yang identik, termasuk dengan keluaran lokal. Di VM,
+78 test lulus, satu test PDF dilewati, dan working tree tetap bersih.
 
 ## Prosedur audit yang dibekukan
 
@@ -106,7 +107,7 @@ kedatangan dan edge penghitungan ulang yang dilaluinya. Completeness mencapai `1
 - Tidak ada waktu, byte, maupun hasil workload tersuntik yang diukur atau diklaim.
 - Completeness 1,0000 berlaku pada 152 permintaan workload H6, bukan pada seluruh 7.666 observasi H4.
 - Gate G2 belum lolos: keempat perlakuan belum dijalankan pada beban revisi tersuntik yang identik,
-  B3 belum diverifikasi di Iceberg VM, dan berkas freeze H10 belum ditulis.
+  dan berkas freeze H10 belum ditulis. B3 sudah lulus integrasi Iceberg pada H9A.
 
 ## Reproduksi
 
@@ -143,5 +144,5 @@ berubah, H9C juga harus dijalankan ulang.
    dicocokkan kembali.
 3. Periksa bahwa `arrival_recomputes_cell` merupakan representasi yang tepat untuk "sel yang
    benar-benar terpengaruh" pada klaim B3.
-4. Setelah H9A lulus di Iceberg VM, pastikan marker `H9_VERIFY` dicatat. Setelah itu H9C tidak perlu
-   diubah selama keluaran H9A tetap sama.
+4. Bila H9A diubah dan dijalankan ulang, jalankan kembali `make h9-apply` dan `make h9c-run`, lalu
+   catat marker baru. Selama keluaran H9A tetap sama, H9C tidak perlu diubah.

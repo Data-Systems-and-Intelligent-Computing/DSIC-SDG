@@ -22,12 +22,12 @@ Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 Sept
 | H8 Jalur A | Perlakuan B1, snapshot penuh | 3 state penuh, 42 kemunculan baris, 38/38 dapat dipanggil | Selesai dan diuji di Iceberg VM |
 | H8 Jalur B | Harness revisi tersuntik | 5 ukuran bertingkat, 28 baris, 20 route identik | Selesai dan divalidasi di VM |
 | H8 Jalur C | Audit reproducibility dan penutupan lineage | 114 audit, 294 node, 810 edge | Selesai dan divalidasi di VM |
-| H9 Jalur A | Perlakuan B3 vintage-aware inkremental | 38 baris store, 14 serving, 38/42 sel dihitung ulang, 38/38 dapat dipanggil | Selesai secara logis; integrasi Iceberg VM **tertunda** |
-| H9 Jalur C | Audit B3, impact lineage, dan penutupan empat perlakuan | 152 audit, 38 impact tanpa selisih, 377 node, 1.088 edge | Selesai dan divalidasi lokal; verifikasi VM tertunda |
+| H9 Jalur A | Perlakuan B3 vintage-aware inkremental | 38 baris store, 14 serving, 38/42 sel dihitung ulang, 38/38 dapat dipanggil | Selesai dan diuji di Iceberg VM |
+| H9 Jalur C | Audit B3, impact lineage, dan penutupan empat perlakuan | 152 audit, 38 impact tanpa selisih, 377 node, 1.088 edge | Selesai dan divalidasi di VM |
 
-Keempat perlakuan kini sudah diimplementasikan pada workload nyata H6. B0, B1, dan B2 sudah diuji di Iceberg VM. B3 baru lulus secara logis dan melalui unit test, karena integrasi Iceberg-nya belum dapat dijalankan (lihat §3). Lineage keempat perlakuan sudah mencapai metrik, tabel bukti, dan data gambar.
+Keempat perlakuan kini sudah diimplementasikan pada workload nyata H6. Keempatnya sudah diuji di Iceberg VM; B3 lulus pada H9A di alamat VM baru (lihat §3). Lineage keempat perlakuan sudah mencapai metrik, tabel bukti, dan data gambar.
 
-Yang **belum** dikerjakan pada batas audit ini adalah verifikasi B3 di Iceberg VM, eksekusi harness pada skenario kecil (H9 Jalur B), keputusan urutan vintage sintetis untuk route B3, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Belum ada perbandingan waktu atau ruang, dan belum ada gambar manuskrip final.
+Yang **belum** dikerjakan pada batas audit ini adalah eksekusi harness pada skenario kecil (H9 Jalur B), keputusan urutan vintage sintetis untuk route B3, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Belum ada perbandingan waktu atau ruang, dan belum ada gambar manuskrip final.
 
 ## 2. Cara memahami bukti di repositori
 
@@ -66,7 +66,7 @@ pipeline/test/integrasi dijalankan di /home/sigerciv/DSIC-SDG
 bukti marker dicatat kembali dalam dokumentasi/manifest, lalu commit dan push
 ```
 
-Repo di VM menggunakan SSH untuk origin. Pull selalu memakai `--ff-only` agar VM tidak membuat merge commit diam-diam. Tahap yang mempunyai marker VM eksplisit pada catatan ini adalah H5, H6A, H6B, H6C, H7A, H7B, dan H7C. H3 mempunyai bukti kesehatan stack. Tidak ada marker VM khusus H1 atau H2, sehingga keduanya jangan disebut sudah diverifikasi terpisah di VM.
+Repo di VM menggunakan SSH untuk origin. Pull selalu memakai `--ff-only` agar VM tidak membuat merge commit diam-diam. Tahap yang mempunyai marker VM eksplisit pada catatan ini adalah H5, H6A, H6B, H6C, H7A, H7B, H7C, H8A, H8B, H8C, H9A, dan H9C. H3 mempunyai bukti kesehatan stack. Tidak ada marker VM khusus H1 atau H2, sehingga keduanya jangan disebut sudah diverifikasi terpisah di VM.
 
 Stack yang sudah dinaikkan dan diperiksa di VM:
 
@@ -1056,7 +1056,7 @@ H9_VERIFY|38|38|14|14|38|0|1|1|0|0|42|0
 
 `H9_ARRIVAL` berisi urutan kedatangan, baris store, baris serving, sel yang dihitung ulang, sel kotor dari berkas impact, dan selisih terhadap penghitungan ulang penuh. `H9_VERIFY` berisi baris store, kunci unik, baris serving, sel unik, baca sukses, gagal, snapshot store dan serving setelah expire, selisih serving terhadap CSV, selisih terhadap penghitungan ulang penuh, baris as-of, dan selisih as-of terhadap B1.
 
-Integrasi Iceberg dijalankan pada VM `praktikum-sd` (`sigerciv@34.101.84.199`) setelah commit implementasi ditarik; hasilnya dicatat pada commit berikutnya.
+Commit implementasi `c2a249d` ditarik ke VM `praktikum-sd` (`sigerciv@34.101.84.199`) memakai `git pull --ff-only`. `make h9-run` dijalankan dua kali, dan checksum gabungan delapan CSV serta manifest identik dengan lokal. `make h9-apply` juga dijalankan dua kali. Kedua run lulus dengan tiga marker `H9_ARRIVAL` dan marker `H9_VERIFY` persis seperti di atas, sehingga drop-and-recreate kedua tabel B3 terbukti idempoten. Marker tersebut juga membuktikan bahwa 38/38 observasi tetap terbaca melalui kunci vintage setelah snapshot kedua tabel dihapus sampai tersisa satu. SQL integrasi lulus pada percobaan pertama, sehingga tidak ada perbaikan integrasi yang perlu dicatat.
 
 ### Sifat tambahan yang diuji
 
@@ -1129,7 +1129,7 @@ H9C_VERIFY|294|810|377|1088|152|104|48|1.0000|4|38|38|0|validated
 
 Artinya: graf dasar 294/810, graf tertutup 377/1.088, 152 permintaan, 104 sukses, 48 tidak tersedia, completeness 1,0000, 4 perlakuan, 38 permintaan B3 sukses, 38 baris impact, 0 selisih impact, dan status tervalidasi.
 
-Verifikasi dua run di VM dijalankan setelah commit implementasi ditarik; hasilnya dicatat pada commit berikutnya.
+Di VM, `make h9c-run` dijalankan dua kali setelah `c2a249d` ditarik. Marker dan checksum gabungan sepuluh CSV serta manifest identik pada kedua run, dan juga identik dengan lokal. `make test` di VM menjalankan 79 test: 78 lulus dan satu test ekstraksi PDF dilewati. `git status --short` tidak menghasilkan keluaran.
 
 ### Bukti yang dapat diaudit
 
@@ -1155,7 +1155,7 @@ Setujui kelas akses `vintage_key` yang terpisah dari `historical_snapshot`. Setu
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
 - seluruh 79 unit test lokal lulus, termasuk 5 test H9A dan 5 test H9C;
-- di VM, 68 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
+- di VM, 78 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
 - H5, H6A, H7A, dan H7B berhasil menulis serta membaca tabel Iceberg;
@@ -1164,7 +1164,7 @@ Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 - H8A menghasilkan tiga state logis deterministik dan berhasil membaca ketiganya kembali melalui time travel Iceberg di VM.
 - H8B menghasilkan lima workload bertingkat dan 20 route ber-checksum sama secara deterministik.
 - H8C menghitung ulang 114 hasil dan menutup seluruh path bukti tiga perlakuan yang sudah berjalan.
-- H9A menghasilkan store append-only dan state serving inkremental yang sama dengan penghitungan ulang penuh, B0, dan B1, serta 38/38 pembacaan melalui kunci vintage.
+- H9A menghasilkan store append-only dan state serving inkremental yang sama dengan penghitungan ulang penuh, B0, dan B1, serta 38/38 pembacaan melalui kunci vintage; hasil ini diulang di Iceberg VM setelah snapshot dihapus.
 - H9C mengaudit B3 dengan prosedur H8C yang terkunci checksum, menurunkan ulang 38 baris impact tanpa selisih, dan menutup 152 path empat perlakuan.
 
 Urutan pemeriksaan cepat tanpa menarik ulang data mentah:
@@ -1275,4 +1275,4 @@ Yang belum dapat diklaim:
 - bahwa Gate G2 atau G3 sudah lolos;
 - bahwa hasil 14 sel dapat digeneralisasi ke seluruh indikator BPS.
 
-Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; H8 seluruh jalur serta H9 Jalur A dan C selesai. Keempat perlakuan berjalan secara fungsional pada workload nyata, dan lineage keempatnya tertutup sampai bukti presentasi sementara. Verifikasi B3 di Iceberg VM dicatat setelah commit implementasi ditarik ke VM. Harness revisi tersuntik belum dieksekusi ke perlakuan (H9 Jalur B), dan freeze eksperimen serta pengukuran utama belum dilakukan. Gate G2 belum lolos.**
+Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; H8 seluruh jalur serta H9 Jalur A dan C selesai. Keempat perlakuan berjalan secara fungsional pada workload nyata, dan lineage keempatnya tertutup sampai bukti presentasi sementara. B3 juga lulus di Iceberg VM tanpa bergantung pada snapshot tabel. Harness revisi tersuntik belum dieksekusi ke perlakuan (H9 Jalur B), dan freeze eksperimen serta pengukuran utama belum dilakukan. Gate G2 belum lolos.**
