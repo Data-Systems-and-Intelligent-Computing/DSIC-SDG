@@ -1,0 +1,11 @@
+invariant,status,checked_rows,detail
+h10a_contract,passed,6,decisions tables protocol footprint recall and boundary match h10a.1
+human_decisions,passed,2,persistent catalog and declared storage environment approved on 2026-09-11
+persistent_catalog,passed,1,jdbc:sqlite:/home/iceberg/iceberg_catalog.db
+clean_start,passed,1,git commit c84e77ace6774a63ae6aca47b900f2ec605345a6 with no local changes
+recorded_markers,passed,12,every repetition reproduces the recorded B0 B1 B2 and B3 verification markers
+objects_exist_with_metadata_size,passed,201,every referenced object exists in MinIO; data delete and manifest sizes equal their metadata
+unreferenced_excluded,passed,15,1067008 unreferenced bytes in the final table locations are reported and excluded
+stable_physical_layout,passed,4,physical rows and retained snapshots are identical across repetitions
+recall_after_restart,passed,152,B0=14 B1=38 B2=14 B3=38 requests recalled exactly after the catalog restart
+no_timing_claim,passed,0,no runtime is measured; bytes are reported for the declared environment

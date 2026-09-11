@@ -97,7 +97,10 @@ Metrik pendukung:
 
 - kelengkapan lineage dari angka terbit sampai ke rekaman sumber;
 - jumlah byte yang dibaca saat penghitungan ulang;
-- proporsi ketidaksesuaian yang dapat dijelaskan otomatis sebagai vintage, metodologi, atau granularitas.
+- proporsi ketidaksesuaian yang dapat dijelaskan otomatis sebagai vintage, metodologi, atau granularitas;
+- tingkat propagasi revisi, yaitu revisi yang tampil di state serving dibagi revisi yang masuk. Metrik
+  ini diusulkan pada 11 September 2026 setelah profil validasi H9B dan wajib dibekukan pada freeze H10,
+  sebelum eksperimen utama.
 
 ### 4.3 Beban kerja revisi
 
@@ -149,6 +152,9 @@ sesuai spesifikasi pada proposal. Fondasi H3 telah diuji pada VM `praktikum-sd` 
 dengan 2 vCPU, RAM 7,7 GiB, dan disk 19 GiB. VM tersebut dipakai untuk validasi layanan, bukan
 sebagai bukti performa. Sebelum pengukuran, VM harus dinaikkan ke spesifikasi proposal atau batas
 sumber daya yang lebih kecil harus dinyatakan dan dibekukan sebagai revisi desain eksperimen.
+Pada 11 September 2026, VM 2 vCPU tersebut dinyatakan dan dibekukan **hanya untuk pengukuran byte**
+(`h10_storage_environment` di [`config/h10/human_decisions.csv`](config/h10/human_decisions.csv)).
+Keputusan spesifikasi untuk pengukuran waktu masih terbuka dan wajib diambil sebelum timing H10B/H11.
 
 ### 5.3 Aturan provenance
 
@@ -239,6 +245,9 @@ Fondasi H3 juga aktif pada VM `praktikum-sd`, yang sejak 11 September 2026 beral
 telah lolos pemeriksaan kesehatan dan Spark berhasil mengakses katalog `kkciv`. Versi serta digest
 image dibekukan di [`infra/docker/`](infra/docker/). Jalankan `make stack-remote-status` untuk
 memeriksa layanan dan `make stack-remote-up` untuk menyinkronkan konfigurasi lalu menaikkannya.
+Sejak 11 September 2026, katalog Iceberg REST disimpan pada berkas SQLite di volume `iceberg-catalog`.
+Sebelumnya image fixture memakai SQLite in-memory, sehingga reboot VM menghapus seluruh registrasi
+tabel (lihat H10 Jalur A).
 
 H4 menerapkan delapan aturan klasifikasi yang sama pada kelima domain dan membentuk batch ingestion
 ber-manifest berisi 7.666 observasi. Dari 123 kejadian, 104 atau 84,55 persen masuk keluarga
@@ -391,6 +400,20 @@ dan B3 `1,0000` melalui kunci vintage. Graf H8C diperluas menjadi 377 node dan 1
 Marker yang sama dan checksum identik juga muncul pada dua run di VM, dengan 78 test lulus dan satu
 test PDF dilewati. Gate G2 belum lolos karena keempat perlakuan belum dijalankan pada workload
 tersuntik yang identik dan berkas freeze H10 belum ditulis.
+
+H10 Jalur A mengukur ruang fisik keempat perlakuan pada workload nyata H6, dalam tiga repetisi
+purge-rebuild-ukur berurutan di VM 2 vCPU yang dinyatakan untuk pengukuran byte. Waktu belum diukur.
+Pengukuran didahului satu perbaikan: katalog Iceberg REST ternyata in-memory sehingga hilang saat VM
+reboot. Katalog dipindahkan ke SQLite persisten, dan semua tabel H5–H9 dibangun ulang dengan marker
+yang identik dengan catatan lama. Footprint dihitung dari objek yang dirujuk metadata snapshot yang
+dipertahankan, dengan ukuran dari MinIO. Median totalnya: B0 95.898 B, B1 190.261 B, B2 64.077 B,
+dan B3 240.884 B. Pada fixture 14 sel, B3 terbesar karena tabel serving yang dimaterialisasi. Store
+B3 saja (146.352 B) 23% lebih kecil daripada B1. Metadata Iceberg sebanding dengan data, bahkan
+melampauinya pada B0 dan B3. Setelah katalog di-restart, B1 dan B3 tetap memanggil ulang 38/38
+observasi secara persis, sedangkan B0 dan B2 14/38. Jalankan `make h10-run`; rincian ada di
+[`docs/research/h10-storage-recall.md`](docs/research/h10-storage-recall.md). Marker:
+`H10_VERIFY|3|95898|190261|64077|240884|14|38|14|38|variable|measured`. Label `variable` berasal dari
+selisih 4–18 byte pada metadata antarrepetisi.
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 

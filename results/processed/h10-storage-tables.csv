@@ -1,0 +1,16 @@
+repetition,treatment_id,table,snapshots,current_rows,reachable_objects,reachable_bytes,location_objects,location_bytes,unreferenced_objects,unreferenced_bytes
+1,B0,kkciv.experiments.b0_indicator_current,1,14,12,95899,38,344375,26,248476
+1,B1,kkciv.experiments.b1_indicator_full_snapshots,3,14,21,190265,49,438450,28,248185
+1,B2,kkciv.experiments.b2_indicator_selected,1,14,7,64079,17,152679,10,88600
+1,B3,kkciv.experiments.b3_indicator_current,1,14,11,94535,33,283586,22,189051
+1,B3,kkciv.experiments.b3_observation_vintages,1,38,16,146353,48,439049,32,292696
+2,B0,kkciv.experiments.b0_indicator_current,1,14,12,95898,38,344374,26,248476
+2,B1,kkciv.experiments.b1_indicator_full_snapshots,3,14,21,190261,49,438446,28,248185
+2,B2,kkciv.experiments.b2_indicator_selected,1,14,7,64077,17,152677,10,88600
+2,B3,kkciv.experiments.b3_indicator_current,1,14,11,94522,33,283573,22,189051
+2,B3,kkciv.experiments.b3_observation_vintages,1,38,16,146348,48,439044,32,292696
+3,B0,kkciv.experiments.b0_indicator_current,1,14,12,95890,38,344366,26,248476
+3,B1,kkciv.experiments.b1_indicator_full_snapshots,3,14,21,190258,49,438443,28,248185
+3,B2,kkciv.experiments.b2_indicator_selected,1,14,7,64075,17,152675,10,88600
+3,B3,kkciv.experiments.b3_indicator_current,1,14,11,94532,33,283583,22,189051
+3,B3,kkciv.experiments.b3_observation_vintages,1,38,16,146352,48,439048,32,292696

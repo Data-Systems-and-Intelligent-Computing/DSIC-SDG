@@ -1,0 +1,13 @@
+metric,value,unit,interpretation
+repetitions,3,runs,serial purge-rebuild-measure cycles
+host_nproc,2,vCPU,"declared environment, not the proposal specification"
+host_mem_total_bytes,8318799872,bytes,declared environment
+b0_reachable_bytes_median,95898,bytes,range 95890-95899; data 32656; metadata 63242; physical rows 14
+b1_reachable_bytes_median,190261,bytes,range 190258-190265; data 101486; metadata 88775; physical rows 42
+b2_reachable_bytes_median,64077,bytes,range 64075-64079; data 38311; metadata 25766; physical rows 14
+b3_reachable_bytes_median,240884,bytes,range 240870-240888; data 117603; metadata 123281; physical rows 52
+b0_recalled_after_restart,14,requests,exact observation and lexeme after restarting the persistent catalog
+b1_recalled_after_restart,38,requests,exact observation and lexeme after restarting the persistent catalog
+b2_recalled_after_restart,14,requests,exact observation and lexeme after restarting the persistent catalog
+b3_recalled_after_restart,38,requests,exact observation and lexeme after restarting the persistent catalog
+timed_runs,0,runs,timing waits for the VM decision before H10B/H11

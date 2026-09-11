@@ -1,0 +1,178 @@
+{
+  "contract_version": "h10a.1",
+  "environment": {
+    "catalog_uri": "jdbc:sqlite:/home/iceberg/iceberg_catalog.db",
+    "compose_sha256": "c8318b63c1855de3330eeefa0bf91492eefa332290f878b70c0d47bccd5965aa",
+    "finished_at_utc": "2026-09-11T11:33:34Z",
+    "git_commit": "c84e77ace6774a63ae6aca47b900f2ec605345a6",
+    "git_dirty_entries": "0",
+    "host_disk_free_bytes_after": "3511259136",
+    "host_disk_free_bytes_before": "3513434112",
+    "host_disk_total_bytes": "19594608640",
+    "host_mem_total_bytes": "8318799872",
+    "host_nproc": "2",
+    "hostname": "praktikum-sd",
+    "image_iceberg-rest": "sha256:8921def9ab4e42df83972ee9d228d3d2c275100b55e6127cdf811b1f6bc53f72",
+    "image_minio": "sha256:c7175077d39a8cc10c9fd611cdcc68b6a5b365793e9ac6f4198ffff1ef0fe555",
+    "image_spark": "sha256:790a72e744e0d09f161e1b4c7c2f79625cc598cf0476da4703e62f1f4e023460",
+    "repetitions": "3",
+    "run_label": "h10a-20260911",
+    "spark_container_nproc": "2",
+    "spark_defaults_sha256": "77c1f777f4a29b6cc69c14fb4b9b7fdbc5b603a9fd4f68173a0e6aa02d2a5339",
+    "started_at_utc": "2026-09-11T11:05:52Z",
+    "versions_env_sha256": "af5f61ea78a765d43158d19f115fa5567d22e0d2e2530db3df8a21effaa8f81b"
+  },
+  "inputs": [
+    {
+      "path": "contracts/h10-storage-recall.json",
+      "sha256": "609708bbff9797bd8df6d606a0b05c7385cd10d267eda3aab408d0d2570096d0"
+    },
+    {
+      "path": "config/h10/human_decisions.csv",
+      "sha256": "f4b06a33649b6cc58a079813cc67cd2dacb1fc4cb781312a10b6399e3d82cb01"
+    },
+    {
+      "path": "data/manifests/h6-vintage-schema.json",
+      "sha256": "416c6892d04a0a3c0b3c475f8a51d941a88cca9c68a197cf681f9449511f0ff4"
+    },
+    {
+      "path": "data/manifests/h8-b1-full-snapshot.json",
+      "sha256": "d76c3dbdab2d1a19a5fae41f4af364a46f55ed657409764b35814465357ab66e"
+    },
+    {
+      "path": "data/manifests/h9c-b3-lineage-audit.json",
+      "sha256": "d3c7f1bf93cf4c9ea15f357cd208cc2c346bdf0ae5cff84cc942c662f0b6b8c6"
+    }
+  ],
+  "measurement": {
+    "environment_decision_for_timing": "deferred_to_before_H10B_or_H11_timing",
+    "storage": "measured_on_declared_environment",
+    "timing": "not_measured"
+  },
+  "measurement_status": "measured",
+  "outputs": [
+    {
+      "path": "results/processed/h10-storage-objects.csv",
+      "rows": 201,
+      "sha256": "30f44ba05e04053881ed1273ec9e22b08947e02c894144906340c1eadb56354e"
+    },
+    {
+      "path": "results/processed/h10-storage-footprint.csv",
+      "rows": 75,
+      "sha256": "28465ea2cd59b8b5b68cad91a15063c4699599b7685d2f0a43b277adbab0654e"
+    },
+    {
+      "path": "results/processed/h10-storage-tables.csv",
+      "rows": 15,
+      "sha256": "18af9312ab1dcd047f01daab45017ce788ae8816e7d463165a931d05e6286856"
+    },
+    {
+      "path": "results/processed/h10-storage-by-treatment.csv",
+      "rows": 4,
+      "sha256": "e4c137ca77c90a094b2f3e61eb90edf52c6e81910d471aeff796fad6068284f1"
+    },
+    {
+      "path": "results/processed/h10-recall-after-restart.csv",
+      "rows": 152,
+      "sha256": "d32e6945d7e41382629e70526921fee7e150de2507714bed918ad234a22a9406"
+    },
+    {
+      "path": "results/processed/h10-validation.csv",
+      "rows": 10,
+      "sha256": "ae238167f70ff403b716c6a2da3cb8a37a794ace5a6ae044d00cb3d231acddd2"
+    },
+    {
+      "path": "results/processed/h10-summary.csv",
+      "rows": 12,
+      "sha256": "e9c1e50720b7977ba5eb0b223fa0c8303ddb610a5a53293603298bda6a95643e"
+    }
+  ],
+  "raw_inputs": [
+    {
+      "path": "results/raw/h10/h10a-20260911/apply-markers.txt",
+      "sha256": "0588d2e45e6aa5715ad30c74b2a79a858a4e1041e16fa3997131f3759f60d1d8"
+    },
+    {
+      "path": "results/raw/h10/h10a-20260911/environment.txt",
+      "sha256": "902d0461b5cd5824fc4a7b4eb6ed632d75b63b7e0d95d32bf84f3a60cc07a7e3"
+    },
+    {
+      "path": "results/raw/h10/h10a-20260911/footprint.txt",
+      "sha256": "8c8a35898f2e215a9b864306de4e9f7c8cca66ed40538dbbb50e306b7b9bc4ed"
+    },
+    {
+      "path": "results/raw/h10/h10a-20260911/listing.txt",
+      "sha256": "5ab0ce5d923c389fac1557982aa5436517ad929b2c277b74903fc0950c7760bf"
+    },
+    {
+      "path": "results/raw/h10/h10a-20260911/recall.txt",
+      "sha256": "0f5ab76d45d72cc98cd0363f18622cb433f3eb90f8298a9913602ad88acaf6c8"
+    }
+  ],
+  "recall_after_restart": {
+    "B0": 14,
+    "B1": 38,
+    "B2": 14,
+    "B3": 38
+  },
+  "stage": "H10",
+  "storage": {
+    "B0": {
+      "bytes_identical_across_repetitions": "no",
+      "data_bytes_median": "32656",
+      "data_files_median": "3",
+      "logical_rows": "14",
+      "metadata_bytes_median": "63242",
+      "physical_rows": "14",
+      "repetitions": "3",
+      "retained_snapshots": "1",
+      "tables": "kkciv.experiments.b0_indicator_current",
+      "total_bytes_max": "95899",
+      "total_bytes_median": "95898",
+      "total_bytes_min": "95890"
+    },
+    "B1": {
+      "bytes_identical_across_repetitions": "no",
+      "data_bytes_median": "101486",
+      "data_files_median": "9",
+      "logical_rows": "42",
+      "metadata_bytes_median": "88775",
+      "physical_rows": "42",
+      "repetitions": "3",
+      "retained_snapshots": "3",
+      "tables": "kkciv.experiments.b1_indicator_full_snapshots",
+      "total_bytes_max": "190265",
+      "total_bytes_median": "190261",
+      "total_bytes_min": "190258"
+    },
+    "B2": {
+      "bytes_identical_across_repetitions": "no",
+      "data_bytes_median": "38311",
+      "data_files_median": "3",
+      "logical_rows": "14",
+      "metadata_bytes_median": "25766",
+      "physical_rows": "14",
+      "repetitions": "3",
+      "retained_snapshots": "1",
+      "tables": "kkciv.experiments.b2_indicator_selected",
+      "total_bytes_max": "64079",
+      "total_bytes_median": "64077",
+      "total_bytes_min": "64075"
+    },
+    "B3": {
+      "bytes_identical_across_repetitions": "no",
+      "data_bytes_median": "117603",
+      "data_files_median": "10",
+      "logical_rows": "52",
+      "metadata_bytes_median": "123281",
+      "physical_rows": "52",
+      "repetitions": "3",
+      "retained_snapshots": "1+1",
+      "tables": "kkciv.experiments.b3_observation_vintages;kkciv.experiments.b3_indicator_current",
+      "total_bytes_max": "240888",
+      "total_bytes_median": "240884",
+      "total_bytes_min": "240870"
+    }
+  },
+  "track": "A"
+}

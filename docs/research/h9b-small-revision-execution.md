@@ -137,11 +137,23 @@ dijalankan ulang di atas keluaran baru.
 
 ## Hal yang memerlukan audit manusia
 
-1. Periksa bahwa perilaku B2 yang mengabaikan 20 revisi WebAPI memang merupakan konsekuensi yang
-   diinginkan dari kebijakan skor beku, lalu putuskan cara naskah membahasnya.
+1. Setujui cara naskah membahas B2 yang mengabaikan 20 revisi WebAPI. Rekomendasi per
+   2026-09-11:
+   - bahas sebagai sifat kelas kebijakan pemilihan satu sumber, bukan kesalahan implementasi B2
+     atau SDG-KG;
+   - ukur dengan metrik pendukung *tingkat propagasi revisi* (revisi yang tampil ÷ revisi yang
+     masuk). Pada profil validasi nilainya B0 = B1 = B3 = 1,000 dan B2 = 8/28 = 0,286. Metrik ini
+     dibekukan pada freeze H10, sebelum eksperimen utama, dan dicatat sebagai tambahan setelah profil
+     validasi;
+   - gabungkan dengan bukti nyata H7B, yaitu 10 dari 14 sel B2 yang menyajikan nilai bukan vintage
+     terbaru;
+   - nyatakan batas validitas: hasil bergantung pada bobot H6B yang dibekukan. Varian B2 yang
+     mempertimbangkan kebaruan hanya boleh menjadi versi eksperimen baru.
 2. **Disetujui 2026-09-11:** adapter B2 menilai baris sintetis memakai skor `revised_source_id`
    (`h9b_b2_synthetic_scoring`).
 3. **Disetujui 2026-09-11:** observasi sintetis mewarisi edge sel dari observasi dasar yang
    direvisinya (`h9b_synthetic_cell_lineage`).
-4. Pilih satu skenario kecil satu sumber untuk eksekusi fisik H10. `validation_001` (1 sel, WebAPI)
-   adalah satu-satunya skenario validasi yang sudah memenuhi syarat satu sumber.
+4. Tetapkan skenario kecil satu sumber untuk eksekusi fisik H10 Jalur B. Rekomendasi: bekukan dua
+   skenario smoke 1-sel, yaitu `validation_001` (WebAPI, jalur B2 yang menahan revisi) dan satu sel
+   TPB 2025 dengan seed yang sama (jalur B2 yang mempropagasikan revisi). Dengan begitu kedua
+   perilaku B2 teruji secara fisik, dan setiap run tetap memakai satu sumber.

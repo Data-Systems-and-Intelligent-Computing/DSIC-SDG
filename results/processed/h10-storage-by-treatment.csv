@@ -1,0 +1,5 @@
+treatment_id,tables,repetitions,total_bytes_min,total_bytes_median,total_bytes_max,data_bytes_median,metadata_bytes_median,data_files_median,physical_rows,logical_rows,retained_snapshots,bytes_identical_across_repetitions
+B0,kkciv.experiments.b0_indicator_current,3,95890,95898,95899,32656,63242,3,14,14,1,no
+B1,kkciv.experiments.b1_indicator_full_snapshots,3,190258,190261,190265,101486,88775,9,42,42,3,no
+B2,kkciv.experiments.b2_indicator_selected,3,64075,64077,64079,38311,25766,3,14,14,1,no
+B3,kkciv.experiments.b3_observation_vintages;kkciv.experiments.b3_indicator_current,3,240870,240884,240888,117603,123281,10,52,52,1+1,no
