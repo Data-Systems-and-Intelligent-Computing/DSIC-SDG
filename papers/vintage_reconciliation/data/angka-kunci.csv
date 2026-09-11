@@ -1,0 +1,71 @@
+metric_id,research_question,stage,description,value,unit,source_file,derivation
+p1_indicator_candidates,P1,H1,Kandidat indikator yang dinilai,35,indikator,results/processed/h1-indicator-coverage.csv,jumlah baris
+p1_indicator_verified,P1,H1,Indikator berstatus verified,14,indikator,results/processed/h1-indicator-coverage.csv,derived_status = verified
+p1_indicator_partial,P1,H1,Indikator berstatus partial,17,indikator,results/processed/h1-indicator-coverage.csv,derived_status = partial
+p1_indicator_unavailable,P1,H1,Indikator berstatus unavailable,4,indikator,results/processed/h1-indicator-coverage.csv,derived_status = unavailable
+p1_pilot_overlap_cells,P1,H2,Sel beririsan pada pilot dua kanal,19,sel,results/processed/h2-indicator-summary.csv,jumlah overlap_cells
+p1_pilot_value_mismatches,P1,H2,Sel beririsan yang nilainya berbeda,3,sel,results/processed/h2-indicator-summary.csv,jumlah value_mismatches
+p1_main_compared_cells,P1,H3,Sel nasional-provinsi yang dibandingkan WebAPI vs TPB 2024,1435,sel,results/processed/h3-cell-comparison.csv,jumlah baris
+p1_main_discrepant_cells,P1,H3,Sel yang nilainya berbeda,33,sel,results/processed/h3-discrepancies.csv,jumlah baris
+p1_granularity_checks,P1,H3,Pemeriksaan nilai nasional terhadap provinsi,82,pemeriksaan,results/processed/h3-granularity.csv,jumlah baris
+p1_national_within_province_range,P1,H3,Nilai nasional yang berada dalam rentang provinsi,82,pemeriksaan,results/processed/h3-granularity.csv,national_within_province_range = yes
+p1_release_cell_keys,P1,H3,Kunci sel pada perbandingan antarrilis,4608,kunci sel,results/processed/h3-release-cell-comparison.csv,jumlah baris
+p1_release_discrepancies,P1,H3,Perbedaan nilai antarrilis,8,sel,results/processed/h3-release-discrepancies.csv,jumlah baris
+p1_release_discrepancy_domains,P1,H3,Domain yang mempunyai perbedaan antarrilis,3,domain,results/processed/h3-release-discrepancies.csv,jumlah domain unik
+p1_classified_events,P1,H4-H5,Kejadian ketidaksesuaian yang diklasifikasikan,123,kejadian,results/processed/h5-confirmed-events.csv,jumlah baris
+p1_confirmed_core_events,P1,H5,"Kejadian dengan sebab inti terkonfirmasi (vintage, metodologi, granularitas)",96,kejadian,results/processed/h5-confirmed-events.csv,evidence_level = observed dan cause_family inti
+p1_confirmed_core_share,P1,H5,Proporsi sebab inti terkonfirmasi,0.7805,rasio,results/processed/h5-confirmed-events.csv,p1_confirmed_core_events / p1_classified_events
+p1_core_share_incl_candidates,P1,H5,Proporsi sebab inti bila kandidat ikut dihitung,0.8455,rasio,results/processed/h5-confirmed-events.csv,counts_toward_g1 = yes / jumlah kejadian
+p1_granularity_observed,P1,H5,Kejadian granularity terkonfirmasi,82,kejadian,results/processed/h5-confirmed-events.csv,"cause_family = granularity, evidence_level = observed"
+p1_vintage_observed,P1,H5,Kejadian vintage terkonfirmasi,13,kejadian,results/processed/h5-confirmed-events.csv,"cause_family = vintage, evidence_level = observed"
+p1_methodology_observed,P1,H5,Kejadian methodology terkonfirmasi,1,kejadian,results/processed/h5-confirmed-events.csv,"cause_family = methodology, evidence_level = observed"
+p1_rounding_or_presentation_observed,P1,H5,Kejadian rounding_or_presentation terkonfirmasi,19,kejadian,results/processed/h5-confirmed-events.csv,"cause_family = rounding_or_presentation, evidence_level = observed"
+p1_revision_traces,P1,H5,Jejak revisi antarrilis yang dibekukan,14,jejak,results/processed/h5-revision-traces.csv,jumlah trace_id unik
+p1_trace_vintage_rows,P1,H5,Baris vintage pada jejak revisi,38,baris,results/processed/h5-revision-traces.csv,jumlah baris
+p2_vintages,P2,H6,Vintage (rilis) pada workload nyata,3,vintage,results/processed/h6-release-vintages.csv,jumlah baris
+p2_observations,P2,H6,Observasi sel indikator dengan vintage eksplisit,38,observasi,results/processed/h6-indicator-observations.csv,jumlah baris
+p2_stable_cells,P2,H6,Sel indikator stabil lintas rilis,14,sel,results/processed/h6-indicator-observations.csv,jumlah cell_id unik
+p2_b3_asof_rows,P2,H9A,Baris state per rilis yang direkonstruksi B3 dari kunci vintage,42,baris,results/processed/h9-b3-asof-states.csv,jumlah baris; sama dengan snapshot B1
+p3_b3_recomputed_cells,P3,H9A,Evaluasi sel inkremental B3 pada tiga rilis nyata,38,evaluasi sel,results/processed/h9-b3-summary.csv,metric recomputed_cells
+p3_full_recompute_cells,P3,H9A,Evaluasi sel bila dihitung ulang penuh setiap rilis,42,evaluasi sel,results/processed/h9-b3-summary.csv,metric full_recompute_cells
+p3_recompute_ratio,P3,H9A,Rasio kerja logis inkremental / penuh,0.9048,rasio,results/processed/h9-b3-summary.csv,metric recompute_ratio
+p3_b3_logical_rows,P3,H9A,Baris logis B3 (store + serving),52,baris,results/processed/h9-b3-summary.csv,metric logical_materialized_rows
+p3_b1_logical_rows,P3,H8A,Kemunculan baris logis B1 (3 snapshot penuh),42,baris,results/processed/h8-b1-summary.csv,metric logical_full_copy_rows
+p3_injected_rows,P3,H9B,Revisi tersuntik pada lima skenario validasi,28,revisi,results/processed/h9b-route-executions.csv,jumlah input_rows B0
+p3_b3_injected_recomputed,P3,H9B,Sel yang dihitung ulang B3 pada revisi tersuntik,28,evaluasi sel,results/processed/h9b-route-executions.csv,jumlah cells_evaluated B3
+p3_b1_injected_rows_written,P3,H9B,Baris logis yang ditulis B1 pada revisi tersuntik,70,baris,results/processed/h9b-route-executions.csv,jumlah rows_written_logical B1
+p3_b3_injected_rows_written,P3,H9B,Baris logis yang ditulis B3 pada revisi tersuntik,56,baris,results/processed/h9b-route-executions.csv,jumlah rows_written_logical B3
+p3_b0_bytes_median,P3,H10A,Ruang fisik B0 (median 3 repetisi),95898,byte,results/processed/h10-storage-by-treatment.csv,total_bytes_median; rentang 95890-95899
+p3_b0_data_bytes_median,P3,H10A,Ruang data Parquet B0,32656,byte,results/processed/h10-storage-by-treatment.csv,data_bytes_median
+p3_b0_metadata_bytes_median,P3,H10A,Ruang metadata Iceberg B0,63242,byte,results/processed/h10-storage-by-treatment.csv,metadata_bytes_median
+p3_b1_bytes_median,P3,H10A,Ruang fisik B1 (median 3 repetisi),190261,byte,results/processed/h10-storage-by-treatment.csv,total_bytes_median; rentang 190258-190265
+p3_b1_data_bytes_median,P3,H10A,Ruang data Parquet B1,101486,byte,results/processed/h10-storage-by-treatment.csv,data_bytes_median
+p3_b1_metadata_bytes_median,P3,H10A,Ruang metadata Iceberg B1,88775,byte,results/processed/h10-storage-by-treatment.csv,metadata_bytes_median
+p3_b2_bytes_median,P3,H10A,Ruang fisik B2 (median 3 repetisi),64077,byte,results/processed/h10-storage-by-treatment.csv,total_bytes_median; rentang 64075-64079
+p3_b2_data_bytes_median,P3,H10A,Ruang data Parquet B2,38311,byte,results/processed/h10-storage-by-treatment.csv,data_bytes_median
+p3_b2_metadata_bytes_median,P3,H10A,Ruang metadata Iceberg B2,25766,byte,results/processed/h10-storage-by-treatment.csv,metadata_bytes_median
+p3_b3_bytes_median,P3,H10A,Ruang fisik B3 (median 3 repetisi),240884,byte,results/processed/h10-storage-by-treatment.csv,total_bytes_median; rentang 240870-240888
+p3_b3_data_bytes_median,P3,H10A,Ruang data Parquet B3,117603,byte,results/processed/h10-storage-by-treatment.csv,data_bytes_median
+p3_b3_metadata_bytes_median,P3,H10A,Ruang metadata Iceberg B3,123281,byte,results/processed/h10-storage-by-treatment.csv,metadata_bytes_median
+p3_b3_store_bytes_median,P3,H10A,Ruang fisik store B3 saja,146352,byte,results/processed/h10-storage-tables.csv,median reachable_bytes b3_observation_vintages
+p3_b3_serving_bytes_median,P3,H10A,Ruang fisik tabel serving B3,94532,byte,results/processed/h10-storage-tables.csv,median reachable_bytes b3_indicator_current
+p3_b3_over_b1_bytes,P3,H10A,Rasio ruang B3 total / B1,1.2661,rasio,results/processed/h10-storage-by-treatment.csv,p3_b3_bytes_median / p3_b1_bytes_median
+p3_b3_store_over_b1_bytes,P3,H10A,Rasio ruang store B3 / B1,0.7692,rasio,results/processed/h10-storage-tables.csv,p3_b3_store_bytes_median / p3_b1_bytes_median
+p4_b0_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B0",0.3684,rasio,results/processed/h9c-reproducibility-table.csv,success_rate
+p4_b0_recalled_after_restart,P4,H10A,"Angka terbit yang dipanggil ulang fisik setelah restart katalog, B0",14,permintaan dari 38,results/processed/h10-recall-after-restart.csv,addressable = yes
+p4_b1_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B1",1.0000,rasio,results/processed/h9c-reproducibility-table.csv,success_rate
+p4_b1_recalled_after_restart,P4,H10A,"Angka terbit yang dipanggil ulang fisik setelah restart katalog, B1",38,permintaan dari 38,results/processed/h10-recall-after-restart.csv,addressable = yes
+p4_b2_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B2",0.3684,rasio,results/processed/h9c-reproducibility-table.csv,success_rate
+p4_b2_recalled_after_restart,P4,H10A,"Angka terbit yang dipanggil ulang fisik setelah restart katalog, B2",14,permintaan dari 38,results/processed/h10-recall-after-restart.csv,addressable = yes
+p4_b3_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B3",1.0000,rasio,results/processed/h9c-reproducibility-table.csv,success_rate
+p4_b3_recalled_after_restart,P4,H10A,"Angka terbit yang dipanggil ulang fisik setelah restart katalog, B3",38,permintaan dari 38,results/processed/h10-recall-after-restart.csv,addressable = yes
+p4_lineage_paths,P4,H9C,Path lineage sumber-sampai-tabel empat perlakuan,152,path,results/processed/h9c-summary.csv,metric closed_lineage_paths
+p4_lineage_completeness,P4,H9C,Kelengkapan lineage,1.0000,rasio,results/processed/h9c-summary.csv,metric closure_completeness
+b2_trust_score_bps_tpb_2025,B2,H6B,Skor kepercayaan beku bps_tpb_2025,0.962500,skor,results/processed/h6b-source-trust-scores.csv,trust_score
+b2_trust_score_bps_tpb_2024,B2,H6B,Skor kepercayaan beku bps_tpb_2024,0.962500,skor,results/processed/h6b-source-trust-scores.csv,trust_score
+b2_trust_score_bps_webapi,B2,H6B,Skor kepercayaan beku bps_webapi,0.907143,skor,results/processed/h6b-source-trust-scores.csv,trust_score
+b2_selected_non_latest,B2,H7B,Sel B2 yang menyajikan nilai bukan vintage terbaru (data nyata),10,sel dari 14,results/processed/h7b-b2-summary.csv,metric older_vintage_selected
+b2_propagation_b0,B2,H9B,"Tingkat propagasi revisi tersuntik, B0",1.0000,rasio,results/processed/h9b-route-executions.csv,28/28 synthetic_observations_served / input_rows
+b2_propagation_b1,B2,H9B,"Tingkat propagasi revisi tersuntik, B1",1.0000,rasio,results/processed/h9b-route-executions.csv,28/28 synthetic_observations_served / input_rows
+b2_propagation_b2,B2,H9B,"Tingkat propagasi revisi tersuntik, B2",0.2857,rasio,results/processed/h9b-route-executions.csv,8/28 synthetic_observations_served / input_rows
+b2_propagation_b3,B2,H9B,"Tingkat propagasi revisi tersuntik, B3",1.0000,rasio,results/processed/h9b-route-executions.csv,28/28 synthetic_observations_served / input_rows

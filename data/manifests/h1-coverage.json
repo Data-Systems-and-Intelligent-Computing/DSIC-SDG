@@ -1,0 +1,57 @@
+{
+  "coverage_status": "profiled",
+  "inputs": [
+    {
+      "path": "data/manifests/h1-free-webapi-data.json",
+      "sha256": "54f99452eece1a45abad7d11397aa1d3d711f9452503c5a0eecdf3ec899c4d51"
+    },
+    {
+      "path": "config/sources/free_webapi_selection.csv",
+      "sha256": "fd9562a5e02ee7de173946b7bc36bab0f44b454c24daa10975e03b0fcbabbfa7"
+    },
+    {
+      "path": "config/sources/free_publication_selection.csv",
+      "sha256": "e9e205264bb76d1e1b42b518638e3e8a046535eab6338b8b05d1ebf6fa7ea53b"
+    },
+    {
+      "path": "config/indicators/sdg04_education.csv",
+      "sha256": "8b1f2d4499cfba92a8efe17fb764884dccd895434302a73c924c6c61ab2e28d5"
+    },
+    {
+      "path": "config/indicators/sdg06_environment.csv",
+      "sha256": "6d0912086f1e20291dc6db41ac4979a90893f85d0764fd6c6e86dedd223ad6a7"
+    },
+    {
+      "path": "config/indicators/sdg07_energy.csv",
+      "sha256": "a06aaeff78ffe570e920cd972209b07d8c110a78534f5e397045e7a367d77bd8"
+    },
+    {
+      "path": "config/indicators/sdg08_economy.csv",
+      "sha256": "a9de31e6a11158cbbd37c4c88d19da8ad82efbca9c4ca7dd52216aa18710fc75"
+    },
+    {
+      "path": "config/indicators/sdg15_ecology.csv",
+      "sha256": "bb381b4d20d3a0a5190b3e2d83b1b8460b1624eb7f84b7093086dab2a84ad396"
+    }
+  ],
+  "minimum_span": 8,
+  "outputs": [
+    {
+      "path": "results/processed/h1-webapi-coverage.csv",
+      "rows": 29,
+      "sha256": "05e0b704765f980b67cb116fd3221db846ab683b84e54c9514611ff39721f0e2"
+    },
+    {
+      "path": "results/processed/h1-indicator-coverage.csv",
+      "rows": 35,
+      "sha256": "268c47012309a03cfd256cd558f92bbf3bb35ab8e45506c6a930e91565b6cefe"
+    }
+  ],
+  "stage": "H1",
+  "statuses": {
+    "partial": 17,
+    "unavailable": 4,
+    "verified": 14
+  },
+  "track": "coverage"
+}

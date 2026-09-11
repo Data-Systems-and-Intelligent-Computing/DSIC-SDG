@@ -415,6 +415,13 @@ observasi secara persis, sedangkan B0 dan B2 14/38. Jalankan `make h10-run`; rin
 `H10_VERIFY|3|95898|190261|64077|240884|14|38|14|38|variable|measured`. Label `variable` berasal dari
 selisih 4–18 byte pada metadata antarrepetisi.
 
+Semua angka dan tabel untuk naskah dikumpulkan di
+[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 27 tabel per pertanyaan
+penelitian, 3 tabel turunan, dan 70 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
+dengan `make article-bundle`, yang memverifikasi checksum setiap sumber terhadap manifest tahapnya.
+Bahan mentah sumber di `data/raw/` hanya ada di laptop peneliti. `make raw-backup` membuat arsip
+beserta daftar checksum di `backups/`, dan arsip itu wajib disalin ke lokasi kedua.
+
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 
 **Gate G1 — Objek penelitian terbukti ada**

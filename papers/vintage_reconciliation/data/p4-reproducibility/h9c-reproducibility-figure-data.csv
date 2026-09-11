@@ -1,0 +1,9 @@
+figure_order,treatment_id,series,request_count,proportion,label
+1,B0,addressable,14,0.3684,14/38
+2,B0,unavailable,24,0.6316,24/38
+3,B1,addressable,38,1.0000,38/38
+4,B1,unavailable,0,0.0000,0/38
+5,B2,addressable,14,0.3684,14/38
+6,B2,unavailable,24,0.6316,24/38
+7,B3,addressable,38,1.0000,38/38
+8,B3,unavailable,0,0.0000,0/38

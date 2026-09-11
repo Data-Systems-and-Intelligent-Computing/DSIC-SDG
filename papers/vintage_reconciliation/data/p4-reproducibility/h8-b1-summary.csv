@@ -1,0 +1,11 @@
+metric,value,unit,interpretation
+input_observations,38,rows,same H6 real-revision workload as B0
+vintage_batches,3,batches,"TPB 2024, TPB 2025, WebAPI 2026"
+retained_release_snapshots,3,snapshots,one complete table state per release
+rows_per_complete_state,14,rows,one row per stable cell
+logical_full_copy_rows,42,row_appearances,logical upper-bound footprint before H10 byte measurement
+distinct_observations_stored,38,observations,all input observation identities remain present
+carried_forward_row_appearances,4,row_appearances,unchanged cells copied into a later full state
+vintage_read_successes,38,requests,found in at least one retained release snapshot
+vintage_read_failures,0,requests,must remain zero for B1
+vintage_read_success_rate,1.0000,ratio,functional result; runtime and bytes are deferred to H10

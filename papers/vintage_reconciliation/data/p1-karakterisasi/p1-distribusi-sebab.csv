@@ -1,0 +1,7 @@
+cause_family,evidence_level,counts_toward_g1,events,share_of_events
+granularity,observed,yes,82,0.6667
+rounding_or_presentation,observed,no,19,0.1545
+vintage,observed,yes,13,0.1057
+vintage,candidate,yes,7,0.0569
+methodology,candidate,yes,1,0.0081
+methodology,observed,yes,1,0.0081

@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import argparse
+import csv
+import hashlib
+import json
 from collections import Counter
 from pathlib import Path
 
@@ -12,6 +15,32 @@ from .inventory import indicator_paths, load_indicators, validate_inventory
 
 DEFAULT_SOURCE_REGISTRY = Path("config/sources/bps_sources.csv")
 DEFAULT_INDICATOR_DIR = Path("config/indicators")
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def write_coverage_manifest(args: argparse.Namespace, result: dict) -> None:
+    inputs = [args.manifest, args.selection, args.publication_selection, *indicator_paths(args.indicator_dir)]
+    outputs = []
+    for path in (args.variable_output, args.indicator_output):
+        with path.open(newline="", encoding="utf-8") as handle:
+            rows = sum(1 for _ in csv.DictReader(handle))
+        outputs.append({"path": str(path), "rows": rows, "sha256": _sha256(path)})
+    manifest = {
+        "stage": "H1",
+        "track": "coverage",
+        "coverage_status": "profiled",
+        "minimum_span": args.minimum_span,
+        "statuses": dict(sorted(result["statuses"].items())),
+        "inputs": [{"path": str(path), "sha256": _sha256(path)} for path in inputs],
+        "outputs": outputs,
+    }
+    args.coverage_manifest_output.parent.mkdir(parents=True, exist_ok=True)
+    args.coverage_manifest_output.write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -99,6 +128,11 @@ def build_parser() -> argparse.ArgumentParser:
         default=Path("results/processed/h1-indicator-coverage.csv"),
     )
     profile.add_argument("--minimum-span", type=int, default=8)
+    profile.add_argument(
+        "--coverage-manifest-output",
+        type=Path,
+        default=Path("data/manifests/h1-coverage.json"),
+    )
 
     apply_command = subparsers.add_parser("apply-coverage")
     apply_command.add_argument(
@@ -200,6 +234,8 @@ def main() -> int:
             print(f"  {status:14} {count:2}")
         print(f"Variable coverage: {args.variable_output}")
         print(f"Indicator coverage: {args.indicator_output}")
+        write_coverage_manifest(args, result)
+        print(f"Manifest: {args.coverage_manifest_output}")
         return 0
 
     if args.command == "apply-coverage":

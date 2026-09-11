@@ -1,0 +1,422 @@
+{
+  "bundle": "vintage_reconciliation_article_data",
+  "bundle_status": "verified",
+  "copied_tables": [
+    {
+      "description": "Cakupan 35 kandidat indikator dan status verified/partial/unavailable (H1)",
+      "group": "p1-karakterisasi",
+      "path": "p1-karakterisasi/h1-indicator-coverage.csv",
+      "rows": 35,
+      "sha256": "268c47012309a03cfd256cd558f92bbf3bb35ab8e45506c6a930e91565b6cefe",
+      "source_manifest": "data/manifests/h1-coverage.json",
+      "source_path": "results/processed/h1-indicator-coverage.csv"
+    },
+    {
+      "description": "Pilot perbandingan dua kanal per indikator (H2)",
+      "group": "p1-karakterisasi",
+      "path": "p1-karakterisasi/h2-indicator-summary.csv",
+      "rows": 5,
+      "sha256": "e54f1cc280d043f93174b9640ddeb32b3f5628f0fa374451f97b4f55787215ee",
+      "source_manifest": "data/manifests/h2-normalization.json",
+      "source_path": "results/processed/h2-indicator-summary.csv"
+    },
+    {
+      "description": "33 sel yang berbeda antara WebAPI dan TPB 2024 (H3)",
+      "group": "p1-karakterisasi",
+      "path": "p1-karakterisasi/h3-discrepancies.csv",
+      "rows": 33,
+      "sha256": "db4917cf874520f436d7487cc99f1f395efd2d47dd483861dfd623aabbc855e3",
+      "source_manifest": "data/manifests/h3-comparison.json",
+      "source_path": "results/processed/h3-discrepancies.csv"
+    },
+    {
+      "description": "82 pemeriksaan nilai nasional terhadap rentang provinsi (H3)",
+      "group": "p1-karakterisasi",
+      "path": "p1-karakterisasi/h3-granularity.csv",
+      "rows": 82,
+      "sha256": "2ff90a0061d82e706c26f6d8a1478a3c87436cb3d370108d275baec7969c1df4",
+      "source_manifest": "data/manifests/h3-comparison.json",
+      "source_path": "results/processed/h3-granularity.csv"
+    },
+    {
+      "description": "8 perbedaan nilai antarrilis TPB 2024 / TPB 2025 / WebAPI (H3)",
+      "group": "p1-karakterisasi",
+      "path": "p1-karakterisasi/h3-release-discrepancies.csv",
+      "rows": 8,
+      "sha256": "2ba7db6c691904346e055a456a0d2e1d426626dabba5079cbfb37b545f5106b5",
+      "source_manifest": "data/manifests/h3-release-reconciliation.json",
+      "source_path": "results/processed/h3-release-discrepancies.csv"
+    },
+    {
+      "description": "123 kejadian ketidaksesuaian dengan sebab dan tingkat bukti setelah konfirmasi (H5)",
+      "group": "p1-karakterisasi",
+      "path": "p1-karakterisasi/h5-confirmed-events.csv",
+      "rows": 123,
+      "sha256": "da4249f220667182934b564052109a250e639f84790f1ee96f9b89027c4dfcf2",
+      "source_manifest": "data/manifests/h5-gate1.json",
+      "source_path": "results/processed/h5-confirmed-events.csv"
+    },
+    {
+      "description": "Tiga kriteria Gate G1 dan hasilnya (H5)",
+      "group": "p1-karakterisasi",
+      "path": "p1-karakterisasi/h5-gate-g1-summary.csv",
+      "rows": 3,
+      "sha256": "37c2601a59dbdb3208cead5571fe52697d5f55f0d5e56672177414ce61e1de96",
+      "source_manifest": "data/manifests/h5-gate1.json",
+      "source_path": "results/processed/h5-gate-g1-summary.csv"
+    },
+    {
+      "description": "14 jejak revisi dengan 38 baris vintage (H5)",
+      "group": "p1-karakterisasi",
+      "path": "p1-karakterisasi/h5-revision-traces.csv",
+      "rows": 38,
+      "sha256": "2e456eeaa80149323b38fcb590ae49bf39fa2d18661dc79a2778d23b58ad2ca3",
+      "source_manifest": "data/manifests/h5-gate1.json",
+      "source_path": "results/processed/h5-revision-traces.csv"
+    },
+    {
+      "description": "Dimensi vintage: 3 rilis (H6)",
+      "group": "p2-representasi",
+      "path": "p2-representasi/h6-release-vintages.csv",
+      "rows": 3,
+      "sha256": "7092d42c678a2c42dc0ea516672d3025cb817232b28adebeba9b627aabd602f2",
+      "source_manifest": "data/manifests/h6-vintage-schema.json",
+      "source_path": "results/processed/h6-release-vintages.csv"
+    },
+    {
+      "description": "38 observasi sel indikator dengan vintage eksplisit (H6)",
+      "group": "p2-representasi",
+      "path": "p2-representasi/h6-indicator-observations.csv",
+      "rows": 38,
+      "sha256": "80650a40d1fafeb1e3ec0f71eacf88be90efbe4bb5c919df39fd33af06832af2",
+      "source_manifest": "data/manifests/h6-vintage-schema.json",
+      "source_path": "results/processed/h6-indicator-observations.csv"
+    },
+    {
+      "description": "42 baris state per rilis yang direkonstruksi B3 dan sama dengan snapshot B1 (H9A)",
+      "group": "p2-representasi",
+      "path": "p2-representasi/h9-b3-asof-states.csv",
+      "rows": 42,
+      "sha256": "b891ce118fca7c00cee07eb9d1850847ccd8c6f0d673f8db6cb32db9e94d89c2",
+      "source_manifest": "data/manifests/h9-b3-vintage-aware.json",
+      "source_path": "results/processed/h9-b3-asof-states.csv"
+    },
+    {
+      "description": "Sel yang dihitung ulang B3 per kedatangan rilis nyata (H9A)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h9-b3-arrival-catalog.csv",
+      "rows": 3,
+      "sha256": "e2ca1a31a075ef44a1a87e4af5da8a4fd61e748ea2347070e3a8fb62b35a6205",
+      "source_manifest": "data/manifests/h9-b3-vintage-aware.json",
+      "source_path": "results/processed/h9-b3-arrival-catalog.csv"
+    },
+    {
+      "description": "Ringkasan B3: store serving evaluasi sel dan rasio kerja logis (H9A)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h9-b3-summary.csv",
+      "rows": 14,
+      "sha256": "61f6322c87277d03b6ef7d50b142ab5c809ca488c6cbf2f3720626fdab0f4f96",
+      "source_manifest": "data/manifests/h9-b3-vintage-aware.json",
+      "source_path": "results/processed/h9-b3-summary.csv"
+    },
+    {
+      "description": "20 eksekusi logis revisi tersuntik: 5 skenario x 4 perlakuan (H9B)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h9b-route-executions.csv",
+      "rows": 20,
+      "sha256": "d222c63aa54a3878d2e1d616210ec0251647cd96788259bfc9bed5b08f2da340",
+      "source_manifest": "data/manifests/h9b-small-revision-execution.json",
+      "source_path": "results/processed/h9b-route-executions.csv"
+    },
+    {
+      "description": "Ruang fisik per perlakuan: median dan rentang 3 repetisi (H10A)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h10-storage-by-treatment.csv",
+      "rows": 4,
+      "sha256": "e4c137ca77c90a094b2f3e61eb90edf52c6e81910d471aeff796fad6068284f1",
+      "source_manifest": "data/manifests/h10-storage-recall.json",
+      "source_path": "results/processed/h10-storage-by-treatment.csv"
+    },
+    {
+      "description": "Ruang fisik per tabel dan per repetisi termasuk objek tidak dirujuk (H10A)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h10-storage-tables.csv",
+      "rows": 15,
+      "sha256": "18af9312ab1dcd047f01daab45017ce788ae8816e7d463165a931d05e6286856",
+      "source_manifest": "data/manifests/h10-storage-recall.json",
+      "source_path": "results/processed/h10-storage-tables.csv"
+    },
+    {
+      "description": "Ruang fisik per kelas objek Iceberg per repetisi (H10A)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h10-storage-footprint.csv",
+      "rows": 75,
+      "sha256": "28465ea2cd59b8b5b68cad91a15063c4699599b7685d2f0a43b277adbab0654e",
+      "source_manifest": "data/manifests/h10-storage-recall.json",
+      "source_path": "results/processed/h10-storage-footprint.csv"
+    },
+    {
+      "description": "Tabel reproducibility empat perlakuan (H9C)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h9c-reproducibility-table.csv",
+      "rows": 4,
+      "sha256": "2498ffbf3fa5cea35f46c302b242148ce1a9bfabb540afec6a294a3126759703",
+      "source_manifest": "data/manifests/h9c-b3-lineage-audit.json",
+      "source_path": "results/processed/h9c-reproducibility-table.csv"
+    },
+    {
+      "description": "Data gambar addressable/unavailable empat perlakuan (H9C)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h9c-reproducibility-figure-data.csv",
+      "rows": 8,
+      "sha256": "f07c8806e2f9b300220686bf0b39344860725e5c5fcdefdb952244611c86305d",
+      "source_manifest": "data/manifests/h9c-b3-lineage-audit.json",
+      "source_path": "results/processed/h9c-reproducibility-figure-data.csv"
+    },
+    {
+      "description": "152 baris audit permintaan empat perlakuan (H9C)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h9c-reproducibility-audit.csv",
+      "rows": 152,
+      "sha256": "934a0eed9776ee672f6bc06e2506ffdfe9bdefb3f20fa3fcf6a0ef9a289bda4f",
+      "source_manifest": "data/manifests/h9c-b3-lineage-audit.json",
+      "source_path": "results/processed/h9c-reproducibility-audit.csv"
+    },
+    {
+      "description": "152 pemanggilan ulang fisik setelah restart katalog (H10A)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h10-recall-after-restart.csv",
+      "rows": 152,
+      "sha256": "d32e6945d7e41382629e70526921fee7e150de2507714bed918ad234a22a9406",
+      "source_manifest": "data/manifests/h10-storage-recall.json",
+      "source_path": "results/processed/h10-recall-after-restart.csv"
+    },
+    {
+      "description": "Ringkasan lineage bukti: node edge path dan completeness (H9C)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h9c-summary.csv",
+      "rows": 12,
+      "sha256": "f66aa0dd3cb82a86399980246d1aa03f3023c27b19592df8163fdd6b065977e9",
+      "source_manifest": "data/manifests/h9c-b3-lineage-audit.json",
+      "source_path": "results/processed/h9c-summary.csv"
+    },
+    {
+      "description": "Ringkasan perlakuan B0 overwrite (H7A)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h7-b0-summary.csv",
+      "rows": 9,
+      "sha256": "d463413d617f4a3414e4e669ea2d90a74f0954a071a4876c021e0aff373d5762",
+      "source_manifest": "data/manifests/h7-b0-overwrite.json",
+      "source_path": "results/processed/h7-b0-summary.csv"
+    },
+    {
+      "description": "Ringkasan perlakuan B1 snapshot penuh (H8A)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h8-b1-summary.csv",
+      "rows": 10,
+      "sha256": "af5ba618aba3b7633b9a3a4f3279902330d69e01878386c67e0b02c777b443a4",
+      "source_manifest": "data/manifests/h8-b1-full-snapshot.json",
+      "source_path": "results/processed/h8-b1-summary.csv"
+    },
+    {
+      "description": "Skor kepercayaan beku tiga sumber untuk B2 (H6B)",
+      "group": "pembahasan-b2",
+      "path": "pembahasan-b2/h6b-source-trust-scores.csv",
+      "rows": 3,
+      "sha256": "114b33a9bb9274d0fa8f4cd546afe14d4e64f1fc29fe80ed3d97a5b9dac5006d",
+      "source_manifest": "data/manifests/h6b-source-trust.json",
+      "source_path": "results/processed/h6b-source-trust-scores.csv"
+    },
+    {
+      "description": "Ringkasan perlakuan B2 single source (H7B)",
+      "group": "pembahasan-b2",
+      "path": "pembahasan-b2/h7b-b2-summary.csv",
+      "rows": 11,
+      "sha256": "cf6a84273f9e1d58626e9e5e878250d0ccce8b653c40e76764040f1e8519c8be",
+      "source_manifest": "data/manifests/h7b-b2-single-source.json",
+      "source_path": "results/processed/h7b-b2-summary.csv"
+    },
+    {
+      "description": "24 kandidat yang dibuang B2 beserta alasannya (H7B)",
+      "group": "pembahasan-b2",
+      "path": "pembahasan-b2/h7b-b2-discarded-candidates.csv",
+      "rows": 24,
+      "sha256": "35b9560520ed07c0da060528cc093b9a474ed03bf76f469a3c2854812d782e7f",
+      "source_manifest": "data/manifests/h7b-b2-single-source.json",
+      "source_path": "results/processed/h7b-b2-discarded-candidates.csv"
+    }
+  ],
+  "derived_tables": [
+    {
+      "description": "Distribusi 123 kejadian menurut sebab dan tingkat bukti setelah H5",
+      "path": "p1-karakterisasi/p1-distribusi-sebab.csv",
+      "rows": 6,
+      "sha256": "861382b0d085396309a7921ca75b0578ba3c69b571be2a8570e7a25c331005c8"
+    },
+    {
+      "description": "Revisi tersuntik yang tampil di state serving per skenario dan perlakuan",
+      "path": "p3-ongkos/p3-propagasi-revisi.csv",
+      "rows": 5,
+      "sha256": "de023ca9dfda61731c2b30481d494aba768df81d473c4882a82ad31d91aa7060"
+    },
+    {
+      "description": "Angka kunci naskah beserta sumber dan cara penurunannya",
+      "path": "angka-kunci.csv",
+      "rows": 70,
+      "sha256": "266f7311165217ce7d091244326ba55c2907ba7a6e64d1351fc9ae06a57959a5"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "config/article/bundle_tables.csv",
+      "sha256": "faf2a788f01e28f11168f8ad0903858728bc183a2e1015cce4f3e62d4731c522"
+    }
+  ],
+  "verified_sources": [
+    {
+      "path": "results/processed/h1-indicator-coverage.csv",
+      "sha256": "268c47012309a03cfd256cd558f92bbf3bb35ab8e45506c6a930e91565b6cefe",
+      "source_manifest": "data/manifests/h1-coverage.json"
+    },
+    {
+      "path": "results/processed/h10-recall-after-restart.csv",
+      "sha256": "d32e6945d7e41382629e70526921fee7e150de2507714bed918ad234a22a9406",
+      "source_manifest": "data/manifests/h10-storage-recall.json"
+    },
+    {
+      "path": "results/processed/h10-storage-by-treatment.csv",
+      "sha256": "e4c137ca77c90a094b2f3e61eb90edf52c6e81910d471aeff796fad6068284f1",
+      "source_manifest": "data/manifests/h10-storage-recall.json"
+    },
+    {
+      "path": "results/processed/h10-storage-footprint.csv",
+      "sha256": "28465ea2cd59b8b5b68cad91a15063c4699599b7685d2f0a43b277adbab0654e",
+      "source_manifest": "data/manifests/h10-storage-recall.json"
+    },
+    {
+      "path": "results/processed/h10-storage-tables.csv",
+      "sha256": "18af9312ab1dcd047f01daab45017ce788ae8816e7d463165a931d05e6286856",
+      "source_manifest": "data/manifests/h10-storage-recall.json"
+    },
+    {
+      "path": "results/processed/h2-indicator-summary.csv",
+      "sha256": "e54f1cc280d043f93174b9640ddeb32b3f5628f0fa374451f97b4f55787215ee",
+      "source_manifest": "data/manifests/h2-normalization.json"
+    },
+    {
+      "path": "results/processed/h3-cell-comparison.csv",
+      "sha256": "03978790b88e2d1560030fc7cbf64577aa170e85b69f6cfe4e70312ea6afecce",
+      "source_manifest": "data/manifests/h3-comparison.json"
+    },
+    {
+      "path": "results/processed/h3-discrepancies.csv",
+      "sha256": "db4917cf874520f436d7487cc99f1f395efd2d47dd483861dfd623aabbc855e3",
+      "source_manifest": "data/manifests/h3-comparison.json"
+    },
+    {
+      "path": "results/processed/h3-granularity.csv",
+      "sha256": "2ff90a0061d82e706c26f6d8a1478a3c87436cb3d370108d275baec7969c1df4",
+      "source_manifest": "data/manifests/h3-comparison.json"
+    },
+    {
+      "path": "results/processed/h3-release-cell-comparison.csv",
+      "sha256": "ffae4fddd5807d87173160544909f7d5a8e8a87566106f15406dd3896279f63b",
+      "source_manifest": "data/manifests/h3-release-reconciliation.json"
+    },
+    {
+      "path": "results/processed/h3-release-discrepancies.csv",
+      "sha256": "2ba7db6c691904346e055a456a0d2e1d426626dabba5079cbfb37b545f5106b5",
+      "source_manifest": "data/manifests/h3-release-reconciliation.json"
+    },
+    {
+      "path": "results/processed/h5-confirmed-events.csv",
+      "sha256": "da4249f220667182934b564052109a250e639f84790f1ee96f9b89027c4dfcf2",
+      "source_manifest": "data/manifests/h5-gate1.json"
+    },
+    {
+      "path": "results/processed/h5-gate-g1-summary.csv",
+      "sha256": "37c2601a59dbdb3208cead5571fe52697d5f55f0d5e56672177414ce61e1de96",
+      "source_manifest": "data/manifests/h5-gate1.json"
+    },
+    {
+      "path": "results/processed/h5-revision-traces.csv",
+      "sha256": "2e456eeaa80149323b38fcb590ae49bf39fa2d18661dc79a2778d23b58ad2ca3",
+      "source_manifest": "data/manifests/h5-gate1.json"
+    },
+    {
+      "path": "results/processed/h6-indicator-observations.csv",
+      "sha256": "80650a40d1fafeb1e3ec0f71eacf88be90efbe4bb5c919df39fd33af06832af2",
+      "source_manifest": "data/manifests/h6-vintage-schema.json"
+    },
+    {
+      "path": "results/processed/h6-release-vintages.csv",
+      "sha256": "7092d42c678a2c42dc0ea516672d3025cb817232b28adebeba9b627aabd602f2",
+      "source_manifest": "data/manifests/h6-vintage-schema.json"
+    },
+    {
+      "path": "results/processed/h6b-source-trust-scores.csv",
+      "sha256": "114b33a9bb9274d0fa8f4cd546afe14d4e64f1fc29fe80ed3d97a5b9dac5006d",
+      "source_manifest": "data/manifests/h6b-source-trust.json"
+    },
+    {
+      "path": "results/processed/h7-b0-summary.csv",
+      "sha256": "d463413d617f4a3414e4e669ea2d90a74f0954a071a4876c021e0aff373d5762",
+      "source_manifest": "data/manifests/h7-b0-overwrite.json"
+    },
+    {
+      "path": "results/processed/h7b-b2-discarded-candidates.csv",
+      "sha256": "35b9560520ed07c0da060528cc093b9a474ed03bf76f469a3c2854812d782e7f",
+      "source_manifest": "data/manifests/h7b-b2-single-source.json"
+    },
+    {
+      "path": "results/processed/h7b-b2-summary.csv",
+      "sha256": "cf6a84273f9e1d58626e9e5e878250d0ccce8b653c40e76764040f1e8519c8be",
+      "source_manifest": "data/manifests/h7b-b2-single-source.json"
+    },
+    {
+      "path": "results/processed/h8-b1-summary.csv",
+      "sha256": "af5ba618aba3b7633b9a3a4f3279902330d69e01878386c67e0b02c777b443a4",
+      "source_manifest": "data/manifests/h8-b1-full-snapshot.json"
+    },
+    {
+      "path": "results/processed/h9-b3-arrival-catalog.csv",
+      "sha256": "e2ca1a31a075ef44a1a87e4af5da8a4fd61e748ea2347070e3a8fb62b35a6205",
+      "source_manifest": "data/manifests/h9-b3-vintage-aware.json"
+    },
+    {
+      "path": "results/processed/h9-b3-asof-states.csv",
+      "sha256": "b891ce118fca7c00cee07eb9d1850847ccd8c6f0d673f8db6cb32db9e94d89c2",
+      "source_manifest": "data/manifests/h9-b3-vintage-aware.json"
+    },
+    {
+      "path": "results/processed/h9-b3-summary.csv",
+      "sha256": "61f6322c87277d03b6ef7d50b142ab5c809ca488c6cbf2f3720626fdab0f4f96",
+      "source_manifest": "data/manifests/h9-b3-vintage-aware.json"
+    },
+    {
+      "path": "results/processed/h9b-route-executions.csv",
+      "sha256": "d222c63aa54a3878d2e1d616210ec0251647cd96788259bfc9bed5b08f2da340",
+      "source_manifest": "data/manifests/h9b-small-revision-execution.json"
+    },
+    {
+      "path": "results/processed/h9c-reproducibility-audit.csv",
+      "sha256": "934a0eed9776ee672f6bc06e2506ffdfe9bdefb3f20fa3fcf6a0ef9a289bda4f",
+      "source_manifest": "data/manifests/h9c-b3-lineage-audit.json"
+    },
+    {
+      "path": "results/processed/h9c-reproducibility-figure-data.csv",
+      "sha256": "f07c8806e2f9b300220686bf0b39344860725e5c5fcdefdb952244611c86305d",
+      "source_manifest": "data/manifests/h9c-b3-lineage-audit.json"
+    },
+    {
+      "path": "results/processed/h9c-reproducibility-table.csv",
+      "sha256": "2498ffbf3fa5cea35f46c302b242148ce1a9bfabb540afec6a294a3126759703",
+      "source_manifest": "data/manifests/h9c-b3-lineage-audit.json"
+    },
+    {
+      "path": "results/processed/h9c-summary.csv",
+      "sha256": "f66aa0dd3cb82a86399980246d1aa03f3023c27b19592df8163fdd6b065977e9",
+      "source_manifest": "data/manifests/h9c-b3-lineage-audit.json"
+    }
+  ]
+}

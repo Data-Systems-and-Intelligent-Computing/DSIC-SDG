@@ -1317,7 +1317,7 @@ Setujui definisi footprint sebagai objek yang dapat dicapai dari metadata snapsh
 
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
-- seluruh 89 unit test lokal lulus, termasuk 5 test masing-masing untuk H9A, H9B, H9C, dan H10A;
+- seluruh 93 unit test lokal lulus, termasuk 5 test masing-masing untuk H9A, H9B, H9C, dan H10A serta 4 test paket artikel;
 - di VM, 83 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
@@ -1329,6 +1329,7 @@ Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 - H8C menghitung ulang 114 hasil dan menutup seluruh path bukti tiga perlakuan yang sudah berjalan.
 - H9A menghasilkan store append-only dan state serving inkremental yang sama dengan penghitungan ulang penuh, B0, dan B1, serta 38/38 pembacaan melalui kunci vintage; hasil ini diulang di Iceberg VM setelah snapshot dihapus.
 - H9B mengeksekusi 20 route harness secara logis dengan checksum payload yang cocok dan replay baseline tanpa selisih.
+- `make article-bundle` mengumpulkan 27 tabel dan 70 angka kunci di `papers/vintage_reconciliation/data/`; setiap sumber diverifikasi terhadap manifest tahapnya.
 - H10A membangun ulang semua tabel di katalog persisten dengan marker identik, mengukur 201 objek yang dirujuk dalam tiga repetisi, dan memanggil ulang 152 permintaan setelah restart katalog.
 - H9C mengaudit B3 dengan prosedur H8C yang terkunci checksum, menurunkan ulang 38 baris impact tanpa selisih, dan menutup 152 path empat perlakuan.
 
@@ -1352,6 +1353,7 @@ make h9-run
 make h9b-run
 make h9c-run
 make h10-run
+make article-bundle
 make test
 ```
 
@@ -1366,6 +1368,10 @@ git status --short
 git log -1 --oneline
 docker compose --env-file infra/docker/versions.env ps
 ```
+
+### Paket data artikel dan manifest H1
+
+Untuk penulisan naskah, `make article-bundle` mengumpulkan tabel per pertanyaan penelitian dan `angka-kunci.csv` (70 angka) di [papers/vintage_reconciliation/](../vintage_reconciliation/README.md). Pipeline paket menolak sumber yang tidak tercatat atau tidak cocok dengan manifest tahapnya. Pemeriksaan ini menemukan bahwa `h1-webapi-coverage.csv` dan `h1-indicator-coverage.csv` dibuat sebelum setiap output wajib tercatat di manifest. `profile-coverage` H1 kini menulis [h1-coverage.json](../../data/manifests/h1-coverage.json). Sebelum manifest itu dibuat, kedua CSV dibentuk ulang dari `data/raw` lokal ke folder sementara, dan hasilnya identik byte demi byte dengan versi yang tersimpan. Menjalankan `make h1-profile-coverage` tidak mengubah kedua CSV.
 
 ## 23. Daftar audit manusia yang disarankan
 
@@ -1406,7 +1412,7 @@ docker compose --env-file infra/docker/versions.env ps
 - [ ] Setujui definisi footprint H10A dan putuskan apakah B3 dilaporkan dengan dan tanpa tabel serving.
 - [ ] Putuskan pembersihan orphan (1,07 MB) di lokasi tabel eksperimen sebelum sweep utama.
 - [ ] Setujui metrik tingkat propagasi revisi untuk dibekukan pada freeze H10.
-- [ ] Buat cadangan `data/raw` di luar laptop; snapshot WebAPI 8 September tidak dapat ditarik ulang persis.
+- [ ] Salin `backups/data-raw-20260911.tar.gz` dan `.SHA256SUMS` ke lokasi kedua (Drive/disk eksternal). Arsip lokal sudah dibuat dan terverifikasi pada 2026-09-11, tetapi masih berada di laptop yang sama.
 
 ## 24. Cara melakukan koreksi tanpa merusak jejak audit
 

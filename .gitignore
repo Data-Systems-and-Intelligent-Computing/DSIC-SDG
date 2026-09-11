@@ -16,3 +16,5 @@ data/raw/**
 tmp/
 
 papers/els-cas-templates
+# Local archives of data/raw; copy them to a second location, never commit them.
+backups/

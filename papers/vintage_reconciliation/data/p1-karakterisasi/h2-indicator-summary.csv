@@ -1,0 +1,6 @@
+domain,indicator_key,alignment_status,comparison_result,publication_cells,webapi_cells,overlap_cells,exact_matches,value_mismatches,missing_snapshots,mismatch_rate_overlapping,max_absolute_spread,alignment_reason
+education,sdg04_completion_rate,comparable,exact_match,6,6,6,6,0,0,0.0000,0.00,Same Susenas completion-rate concept level year national geography and percent unit
+environment,sdg06_handwashing,comparable,exact_match,3,3,3,3,0,0,0.0000,0.00,Same Susenas handwashing-facility concept year national geography and percent unit
+energy,sdg07_renewable_share,comparable,value_mismatch_detected,6,5,5,2,3,1,0.6000,0.40,Same ESDM renewable-energy-mix label year national geography and percent unit
+economy,sdg08_hourly_wage,comparable,exact_match,5,5,5,5,0,0,0.0000,0,Same Sakernas national hourly-wage series and rupiah-per-hour unit
+ecology,sdg15_forest_cover,methodology_mismatch,methodology_mismatch,0,0,0,0,0,0,,,WebAPI reports area inside or outside designated forest area in thousand hectares while publication reports forest-cover proportion of total land

@@ -1,0 +1,6 @@
+scenario_id,injected_cells,revised_source_mix,b0_served,b1_served,b2_served,b3_served,b2_propagation_rate
+validation_001,1,bps_webapi=1,1,1,0,1,0.0000
+validation_002,2,bps_tpb_2025=1;bps_webapi=1,2,2,1,2,0.5000
+validation_004,4,bps_tpb_2025=1;bps_webapi=3,4,4,1,4,0.2500
+validation_007,7,bps_tpb_2025=2;bps_webapi=5,7,7,2,7,0.2857
+validation_014,14,bps_tpb_2025=4;bps_webapi=10,14,14,4,14,0.2857
