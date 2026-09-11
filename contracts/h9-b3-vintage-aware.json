@@ -1,0 +1,84 @@
+{
+  "contract_version": "b3.1",
+  "stage": "H9",
+  "tracks": ["A", "C"],
+  "treatment_id": "B3",
+  "name": "vintage_aware_incremental",
+  "description": "Store every observation under an explicit vintage key in an append-only table and maintain the serving state incrementally for only the cells that the H6C lineage marks as affected by each arriving release.",
+  "input": {
+    "manifest": "data/manifests/h6-vintage-schema.json",
+    "lineage_manifest": "data/manifests/h6c-cell-lineage.json",
+    "control_manifests": [
+      "data/manifests/h7-b0-overwrite.json",
+      "data/manifests/h8-b1-full-snapshot.json"
+    ],
+    "arrival_order": ["vintage_date ASC", "retrieved_at ASC", "vintage_id ASC"],
+    "workload": "the same 38-observation real-revision workload used by B0, B1, and B2"
+  },
+  "store": {
+    "table": "kkciv.experiments.b3_observation_vintages",
+    "primary_key": ["cell_id", "vintage_id"],
+    "write_action": "INSERT the arriving release rows only",
+    "mutation_policy": "append_only_no_update_no_delete",
+    "partitioning": ["domain"],
+    "additional_columns": [
+      ["source_id", "STRING", false],
+      ["vintage_date", "DATE", false],
+      ["vintage_retrieved_at", "TIMESTAMP", false],
+      ["arrival_order", "INT", false]
+    ]
+  },
+  "serving": {
+    "table": "kkciv.experiments.b3_indicator_current",
+    "primary_key": ["cell_id"],
+    "resolution_order": ["vintage_date DESC", "vintage_retrieved_at DESC", "vintage_id DESC"],
+    "resolution_independent_of_arrival_order": true,
+    "derived_columns": [
+      ["vintage_count", "INT", false],
+      ["value_revision_count", "INT", false],
+      ["recomputed_at_arrival", "INT", false]
+    ],
+    "maintenance": "MERGE only the resolved rows of dirty cells after each arrival",
+    "partitioning": ["domain"]
+  },
+  "impact_analysis": {
+    "lineage_relationship": "observation_materializes_cell",
+    "dirty_cell_rule": "cells reached from the arriving observation nodes through exact H6C lineage edges",
+    "must_equal_observation_cell_id": true,
+    "fuzzy_matching_allowed": false
+  },
+  "equivalence": {
+    "check": "incremental serving state equals a full recomputation from the store after every arrival",
+    "compared_columns": "h6_indicator_observations plus vintage_count and value_revision_count"
+  },
+  "reproducibility": {
+    "addressable_key": ["cell_id", "vintage_id"],
+    "vintage_key_supported": true,
+    "depends_on_table_snapshots": false,
+    "snapshot_policy": "expire both B3 tables to their latest snapshot after the run; historical reads use the vintage key only",
+    "as_of_reconstruction": "latest stored vintage per cell whose resolution key is not later than the requested release",
+    "as_of_must_equal": "B1 logical snapshot states on every H6 observation column",
+    "expected_success_rate": "1.0000"
+  },
+  "rebuild_policy": "drop and recreate only the two B3 experiment tables before a complete run",
+  "measurement_boundary": {
+    "logical_rows_and_recomputed_cells_recorded_now": true,
+    "physical_bytes_and_runtime": "deferred_to_H10"
+  },
+  "injected_workload": {
+    "h8b_route_status": "prepared_not_run",
+    "execution_owner": "H9 track B and H10",
+    "synthetic_vintage_ordering": "pending_human_decision"
+  },
+  "invariants": [
+    "the store never updates or deletes a committed observation row",
+    "each (cell_id, vintage_id) pair and each observation_id occurs once in the store",
+    "dirty cells are derived from exact H6C lineage edges and equal the arriving observations' cell_id values",
+    "only dirty cells are recomputed; untouched cells keep their earlier resolved row",
+    "after every arrival the incremental serving state equals a full recomputation from the store",
+    "the final serving state equals the B0 and B1 latest-vintage states on all H6 observation columns",
+    "the as-of reconstruction for every release equals the corresponding B1 snapshot state",
+    "all 38 H6 observations are addressable by (cell_id, vintage_id) after table snapshots are expired",
+    "the resolved serving state does not depend on the arrival order of releases"
+  ]
+}

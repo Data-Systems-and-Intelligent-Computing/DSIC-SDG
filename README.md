@@ -234,7 +234,8 @@ harus diuji pada H4; jejak empat perubahan langsung antara publikasi 2024 dan 20
 H5. Laporan serta perintah reproduksinya ada di
 [`docs/research/h3-national-province-comparison.md`](docs/research/h3-national-province-comparison.md).
 
-Fondasi H3 juga aktif pada VM `sigerciv@34.128.67.92`: MinIO, Iceberg REST, dan Spark/Jupyter
+Fondasi H3 juga aktif pada VM `praktikum-sd`, yang sejak 11 September 2026 beralamat
+`sigerciv@34.101.84.199` (sebelumnya `34.128.67.92`): MinIO, Iceberg REST, dan Spark/Jupyter
 telah lolos pemeriksaan kesehatan dan Spark berhasil mengakses katalog `kkciv`. Versi serta digest
 image dibekukan di [`infra/docker/`](infra/docker/). Jalankan `make stack-remote-status` untuk
 memeriksa layanan dan `make stack-remote-up` untuk menyinkronkan konfigurasi lalu menaikkannya.
@@ -349,6 +350,31 @@ gambar manuskrip. Jalankan `make h8c-run`; rincian tersedia di
 Commit implementasi `c123402` ditarik ke VM dengan fast-forward. Dua run VM menghasilkan marker
 dan checksum artefak yang identik; 68 test lulus, satu test ekstraksi PDF dilewati karena PDF mentah
 tidak disimpan di Git, dan working tree VM tetap bersih.
+
+H9 Jalur A mengimplementasikan B3, perlakuan usulan. Setiap observasi disimpan di tabel append-only
+dengan kunci eksplisit `(cell_id, vintage_id)`, sedangkan tabel serving hanya diperbarui untuk sel
+yang ditandai kotor oleh edge lineage H6C. Pada tiga rilis nyata, 38 observasi masuk ke store dan
+membentuk 14 baris serving. Sel yang dihitung ulang berjumlah 14, 14, lalu 10, sehingga totalnya
+38 evaluasi dibanding 42 bila dihitung ulang penuh (`0,9048`). Setelah setiap kedatangan, hasil
+inkremental sama persis dengan penghitungan ulang penuh. State akhir sama dengan B0/B1, dan ketiga
+state as-of hasil rekonstruksi sama dengan snapshot B1. Semua `38/38` observasi dapat dipanggil
+melalui kunci vintage tanpa bergantung pada snapshot tabel. Pada workload ini penghematan
+inkremental kecil karena hampir semua sel direvisi. B3 juga menyimpan 52 baris logis (store dan
+serving), lebih banyak daripada 42 pada B1. Angka ini bukan ukuran byte, dan pengukuran fisik tetap
+dijadwalkan pada H10. Jalankan `make h9-run`; rincian ada di
+[`docs/research/h9-b3-vintage-aware.md`](docs/research/h9-b3-vintage-aware.md). Integrasi Iceberg
+`make h9-apply` pada VM eksperimen dijalankan setelah commit implementasi ditarik ke VM.
+
+H9 Jalur C mengaudit 38 permintaan B3 dengan prosedur H8C yang dikunci checksum-nya, lalu
+menurunkan ulang sel kotor B3 dari graf secara independen. Hasilnya, 38 baris impact cocok tanpa
+selisih dan setiap baris serving terakhir dihitung ulang pada kedatangan terakhir yang menyentuh
+selnya. Tabel empat perlakuan menunjukkan B0 `0,3684`, B1 `1,0000` melalui snapshot, B2 `0,3684`,
+dan B3 `1,0000` melalui kunci vintage. Graf H8C diperluas menjadi 377 node dan 1.088 edge dengan
+152 path lengkap (`1,0000`). Jalankan `make h9c-run`; rincian ada di
+[`docs/research/h9c-b3-lineage-audit.md`](docs/research/h9c-b3-lineage-audit.md). Marker lokal:
+`H9C_VERIFY|294|810|377|1088|152|104|48|1.0000|4|38|38|0|validated`. Seluruh 79 test lokal lulus.
+Gate G2 belum lolos karena B3 belum diverifikasi di Iceberg dan keempat perlakuan belum dijalankan
+pada workload tersuntik yang identik.
 
 Menaikkan fondasi sebelum G1 diputuskan adalah taruhan yang disengaja. Bila G1 gagal, yang hangus satu orang-minggu, bukan pekerjaan seluruh tim. Pada rencana peneliti tunggal, taruhan ini tidak diambil karena ongkos gagalnya menjadi seluruh minggu.
 

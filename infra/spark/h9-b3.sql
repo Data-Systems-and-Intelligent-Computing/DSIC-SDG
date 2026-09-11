@@ -1,0 +1,83 @@
+CREATE NAMESPACE IF NOT EXISTS kkciv.experiments;
+
+DROP TABLE IF EXISTS kkciv.experiments.b3_observation_vintages;
+DROP TABLE IF EXISTS kkciv.experiments.b3_indicator_current;
+
+CREATE TABLE kkciv.experiments.b3_observation_vintages (
+  observation_id STRING NOT NULL,
+  cell_id STRING NOT NULL,
+  vintage_id STRING NOT NULL,
+  domain STRING NOT NULL,
+  indicator_key STRING NOT NULL,
+  series_key STRING NOT NULL,
+  observed_period STRING NOT NULL,
+  period_granularity STRING NOT NULL,
+  geo_level STRING NOT NULL,
+  geo_code STRING NOT NULL,
+  geo_name STRING NOT NULL,
+  unit STRING NOT NULL,
+  value_decimal DECIMAL(38,10) NOT NULL,
+  value_lexeme STRING NOT NULL,
+  published_decimal_places INT NOT NULL,
+  producer STRING NOT NULL,
+  methodology_version STRING NOT NULL,
+  source_artifact_path STRING NOT NULL,
+  source_artifact_sha256 STRING NOT NULL,
+  source_record_id STRING NOT NULL,
+  ingestion_batch_id STRING NOT NULL,
+  transformation_run_id STRING NOT NULL,
+  transformation_version STRING NOT NULL,
+  trace_id STRING,
+  cause_family STRING,
+  evidence_level STRING,
+  source_id STRING NOT NULL,
+  vintage_date DATE NOT NULL,
+  vintage_retrieved_at TIMESTAMP NOT NULL,
+  arrival_order INT NOT NULL
+) USING iceberg
+PARTITIONED BY (domain)
+TBLPROPERTIES (
+  'format-version'='2',
+  'write.format.default'='parquet'
+);
+
+CREATE TABLE kkciv.experiments.b3_indicator_current (
+  observation_id STRING NOT NULL,
+  cell_id STRING NOT NULL,
+  vintage_id STRING NOT NULL,
+  domain STRING NOT NULL,
+  indicator_key STRING NOT NULL,
+  series_key STRING NOT NULL,
+  observed_period STRING NOT NULL,
+  period_granularity STRING NOT NULL,
+  geo_level STRING NOT NULL,
+  geo_code STRING NOT NULL,
+  geo_name STRING NOT NULL,
+  unit STRING NOT NULL,
+  value_decimal DECIMAL(38,10) NOT NULL,
+  value_lexeme STRING NOT NULL,
+  published_decimal_places INT NOT NULL,
+  producer STRING NOT NULL,
+  methodology_version STRING NOT NULL,
+  source_artifact_path STRING NOT NULL,
+  source_artifact_sha256 STRING NOT NULL,
+  source_record_id STRING NOT NULL,
+  ingestion_batch_id STRING NOT NULL,
+  transformation_run_id STRING NOT NULL,
+  transformation_version STRING NOT NULL,
+  trace_id STRING,
+  cause_family STRING,
+  evidence_level STRING,
+  source_id STRING NOT NULL,
+  vintage_date DATE NOT NULL,
+  vintage_retrieved_at TIMESTAMP NOT NULL,
+  arrival_order INT NOT NULL,
+  vintage_count INT NOT NULL,
+  value_revision_count INT NOT NULL,
+  recomputed_at_arrival INT NOT NULL
+) USING iceberg
+PARTITIONED BY (domain)
+TBLPROPERTIES (
+  'format-version'='2',
+  'write.format.default'='parquet'
+);

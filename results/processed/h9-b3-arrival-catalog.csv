@@ -1,0 +1,4 @@
+arrival_order,vintage_id,source_id,vintage_date,input_rows,dirty_cells,recomputed_cells,untouched_cells,full_recompute_cells,inserted_cells,resolved_changed_cells,value_changed_cells,provenance_only_cells,unchanged_resolution_cells,store_rows_after,current_rows_after,current_sha256,incremental_equals_full
+1,aa7252a58f41161c17c3,bps_tpb_2024,2024-12-31,14,14,14,0,14,14,0,0,0,0,14,14,0f47fa5078563a1bf9420c9c3507bc3459b65038427259367293bd6408bac749,yes
+2,9ab2011a3892edfac889,bps_tpb_2025,2025-12-30,14,14,14,0,14,0,14,4,10,0,28,14,f39a03d8c5f90fe55443dbe44b1f10f267d2477c43fd88086661fab8e7882798,yes
+3,b132d2fab33291e0733e,bps_webapi,2026-09-08,10,10,10,4,14,0,10,10,0,0,38,14,170fcbaa67323153115b621a435bec1ea4a71d95c2cd45043fe5f14806f07e53,yes

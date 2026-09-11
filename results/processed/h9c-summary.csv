@@ -1,0 +1,13 @@
+metric,value,unit,interpretation
+treatments_audited,4,treatments,B0 B1 B2 inherited from H8C plus B3
+total_audit_requests,152,requests,four treatments times 38 observations
+addressable_requests,104,requests,B0=14 B1=38 B2=14 B3=38
+unavailable_requests,48,requests,B0=24 B1=0 B2=24 B3=0
+b3_vintage_key_successes,24,requests,historical B3 reads served by the vintage key
+impact_rows_audited,38,observations,arriving observations traced to their dirty cell
+impact_mismatches,0,observations,must remain zero
+closed_lineage_paths,152,paths,source through treatment and presentation evidence
+closure_completeness,1.0000,ratio,all four treatments
+closed_graph_nodes,377,nodes,H8C graph plus 83 B3 and presentation nodes
+closed_graph_edges,1088,edges,H8C graph plus 278 exact identifier relationships
+figure_data_rows,8,rows,not a rendered manuscript figure

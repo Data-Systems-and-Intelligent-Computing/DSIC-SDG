@@ -1,0 +1,69 @@
+{
+  "contract_version": "h9c.1",
+  "stage": "H9",
+  "track": "C",
+  "name": "b3_lineage_impact_audit_and_four_treatment_closure",
+  "scope": {
+    "treatments": ["B0", "B1", "B2", "B3"],
+    "new_treatment": "B3",
+    "inherited_treatments": ["B0", "B1", "B2"],
+    "requests_per_treatment": 38,
+    "stable_cells": 14,
+    "claim_boundary": "functional reproducibility and lineage on the real H6 workload; no runtime, byte, or injected-workload result"
+  },
+  "expected_results": {
+    "B0": {"successes": 14, "failures": 24, "success_rate": "0.3684"},
+    "B1": {"successes": 38, "failures": 0, "success_rate": "1.0000"},
+    "B2": {"successes": 14, "failures": 24, "success_rate": "0.3684"},
+    "B3": {"successes": 38, "failures": 0, "success_rate": "1.0000"}
+  },
+  "audit_procedure": {
+    "path": "config/h8c/reproducibility_audit_steps.csv",
+    "must_equal_h8c_procedure_checksum": true,
+    "identity_matching": "exact_observation_id",
+    "value_matching": ["value_decimal", "value_lexeme"],
+    "lineage_matching": "exact_h6c_source_lineage_path_id",
+    "inherited_rows": "copy the checksummed H8C B0 B1 and B2 audit rows without recomputing their results",
+    "unclassified_failure_allowed": false
+  },
+  "impact_audit": {
+    "lineage_relationship": "observation_materializes_cell",
+    "recomputed_from": "H8C closed graph",
+    "must_equal_h9a_dirty_cells": true,
+    "final_recompute_arrival_must_equal_last_dirty_arrival": true
+  },
+  "lineage": {
+    "base_graph": "data/manifests/h8c-reproducibility-lineage.json",
+    "base_contract_version": "h8c.1",
+    "base_nodes": 294,
+    "base_edges": 810,
+    "matching": "exact_identifiers_only",
+    "new_node_types": ["arrival_batch"],
+    "new_relationships": [
+      "treatment_run_applies_arrival",
+      "vintage_defines_arrival",
+      "observation_arrives_in_batch",
+      "arrival_recomputes_cell"
+    ],
+    "closure_endpoints": ["reproducibility_metric", "evidence_table", "figure_input"],
+    "fuzzy_matching_allowed": false
+  },
+  "presentation": {
+    "metric_rows": 4,
+    "table_rows": 4,
+    "figure_data_rows": 8,
+    "table_status": "audit_table_ready",
+    "figure_status": "figure_data_ready_not_rendered",
+    "manuscript_figure_claimed": false
+  },
+  "invariants": [
+    "the H8C closed graph is copied without changing node or edge identities",
+    "B3 audits exactly the same 38 observation IDs as B0 B1 and B2",
+    "the audit procedure file is byte-identical to the one frozen by H8C",
+    "B3 addressability is recomputed independently from its append-only store and serving state",
+    "every B3 dirty cell is re-derived from exact lineage edges and matches the H9A impact rows",
+    "every serving row was last recomputed at the last arrival that marked its cell dirty",
+    "every request of all four treatments reaches one metric the four-treatment table and figure input",
+    "no rendered manuscript figure and no runtime or byte measurement is claimed"
+  ]
+}

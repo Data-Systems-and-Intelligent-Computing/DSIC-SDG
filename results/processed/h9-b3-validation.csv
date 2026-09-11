@@ -1,0 +1,11 @@
+check_id,status,observed,expected,detail
+contract,passed,b3.1,b3.1,B3 contract and two-table DDL agree
+append_only_store,passed,38,38,"each (cell_id, vintage_id) is inserted once and never rewritten"
+lineage_dirty_cells,passed,38,38,every arriving observation reaches exactly one cell through an H6C lineage edge
+incremental_equals_full,passed,3,3,serving state equals full recomputation after every arrival
+recompute_scope,passed,38,<= 42,4 cell evaluations skipped because no lineage edge touched them
+current_equals_b0_b1,passed,true,true,same latest-vintage answer as B0 and B1
+asof_equals_b1_snapshots,passed,42,42,every release state is reconstructed from vintage keys without table snapshots
+vintage_key_reads,passed,38,38,"all requests return the exact observation, decimal, and lexeme"
+read_failures,passed,0,0,no requested vintage is lost
+measurement_boundary,passed,logical_rows_and_cells_only,physical_measurement_at_H10,no runtime or byte claim

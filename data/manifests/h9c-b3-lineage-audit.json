@@ -1,0 +1,146 @@
+{
+  "audit": {
+    "addressable": 104,
+    "b3_addressable": 38,
+    "b3_requests": 38,
+    "procedure_sha256": "29223460d62485916efc07629882d992c431c67bb5bc931aaf27cd3ff16b201f",
+    "row_failures": 0,
+    "total_requests": 152,
+    "unavailable": 48
+  },
+  "contract_version": "h9c.1",
+  "evidence_status": "validated",
+  "impact": {
+    "mismatches": 0,
+    "rows": 38
+  },
+  "inputs": [
+    {
+      "path": "contracts/h9c-b3-lineage-audit.json",
+      "sha256": "d04cfd600a2a29d1f3f500acf95b3872dab5a46155dc84bb72b5b697eb85b19c"
+    },
+    {
+      "path": "config/h8c/reproducibility_audit_steps.csv",
+      "sha256": "29223460d62485916efc07629882d992c431c67bb5bc931aaf27cd3ff16b201f"
+    },
+    {
+      "path": "data/manifests/h6-vintage-schema.json",
+      "sha256": "416c6892d04a0a3c0b3c475f8a51d941a88cca9c68a197cf681f9449511f0ff4"
+    },
+    {
+      "path": "data/manifests/h6c-cell-lineage.json",
+      "sha256": "d9f3d571c7886ad60f1195b9fcbad4899a54fe5ce5b6f023cca62a0505a452b6"
+    },
+    {
+      "path": "data/manifests/h8c-reproducibility-lineage.json",
+      "sha256": "7f8dbd91277f68f3484d2b89dcf3da2ca79dd5ef1c7e4f54b4b717a08fff077e"
+    },
+    {
+      "path": "data/manifests/h9-b3-vintage-aware.json",
+      "sha256": "6ac4ff1bcdc49fc81029cbc03beae132c7e1a211c20dce7df933a003c126e9bd"
+    }
+  ],
+  "lineage": {
+    "base_edges": 810,
+    "base_nodes": 294,
+    "closed_edges": 1088,
+    "closed_nodes": 377,
+    "closure_completeness": "1.0000",
+    "closure_paths": 152,
+    "new_node_types": {
+      "arrival_batch": 3,
+      "evidence_table": 1,
+      "figure_input": 1,
+      "reproducibility_metric": 1,
+      "treatment_decision": 38,
+      "treatment_output": 38,
+      "treatment_run": 1
+    },
+    "new_relationships": {
+      "arrival_recomputes_cell": 38,
+      "audit_decision_contributes_to_metric": 38,
+      "decision_resolves_to_output": 38,
+      "metric_published_in_table": 4,
+      "observation_arrives_in_batch": 38,
+      "observation_enters_treatment": 38,
+      "output_serves_cell": 38,
+      "procedure_governs_treatment_run": 1,
+      "table_supplies_figure_input": 1,
+      "treatment_run_applies_arrival": 3,
+      "treatment_run_evaluates_candidate": 38,
+      "vintage_defines_arrival": 3
+    }
+  },
+  "outputs": [
+    {
+      "path": "results/processed/h9c-reproducibility-audit.csv",
+      "rows": 152,
+      "sha256": "934a0eed9776ee672f6bc06e2506ffdfe9bdefb3f20fa3fcf6a0ef9a289bda4f"
+    },
+    {
+      "path": "results/processed/h9c-impact-audit.csv",
+      "rows": 38,
+      "sha256": "439e3ef18b52d5d64eee09ebd300813b8c422449f91ea1f1ee5e642fc96fa02b"
+    },
+    {
+      "path": "results/processed/h9c-reproducibility-metrics.csv",
+      "rows": 4,
+      "sha256": "5e5dacd6d856cabaf3ce4783ac54019d11303c20b41526a5d5c633ed35b752d6"
+    },
+    {
+      "path": "results/processed/h9c-reproducibility-table.csv",
+      "rows": 4,
+      "sha256": "2498ffbf3fa5cea35f46c302b242148ce1a9bfabb540afec6a294a3126759703"
+    },
+    {
+      "path": "results/processed/h9c-reproducibility-figure-data.csv",
+      "rows": 8,
+      "sha256": "f07c8806e2f9b300220686bf0b39344860725e5c5fcdefdb952244611c86305d"
+    },
+    {
+      "path": "results/processed/h9c-lineage-nodes.csv",
+      "rows": 377,
+      "sha256": "6c908b07a3b4c057f899266cb99c95e4b9acd0774f2b55e8375e17f5426d4070"
+    },
+    {
+      "path": "results/processed/h9c-lineage-edges.csv",
+      "rows": 1088,
+      "sha256": "bb0c93a7faf9366e7ba2b3558664306f2c2b89658970bbe43f3c54b2d0cf983d"
+    },
+    {
+      "path": "results/processed/h9c-evidence-closure.csv",
+      "rows": 152,
+      "sha256": "e5c0115658206e52d63df5480e0b66ff2c2071d6c4a5e1ebb464c2187ad39023"
+    },
+    {
+      "path": "results/processed/h9c-validation.csv",
+      "rows": 13,
+      "sha256": "9933d8fc5cee8c102fa05f8cfa9be5c73462795689dc4dbfbfc91c36450c5e09"
+    },
+    {
+      "path": "results/processed/h9c-summary.csv",
+      "rows": 12,
+      "sha256": "f66aa0dd3cb82a86399980246d1aa03f3023c27b19592df8163fdd6b065977e9"
+    }
+  ],
+  "presentation": {
+    "figure_data_rows": 8,
+    "figure_status": "figure_data_ready_not_rendered",
+    "manuscript_figure_claimed": false,
+    "metric_rows": 4,
+    "table_rows": 4,
+    "table_status": "audit_table_ready"
+  },
+  "scope": {
+    "new_treatment": "B3",
+    "requests_per_treatment": 38,
+    "treatments": [
+      "B0",
+      "B1",
+      "B2",
+      "B3"
+    ]
+  },
+  "stage": "H9",
+  "track": "C"
+}

@@ -1,0 +1,14 @@
+invariant,status,checked_rows,detail
+h9c_contract,passed,7,scope audit impact lineage presentation and claim boundaries match h9c.1
+frozen_audit_procedure,passed,10,byte-identical to H8C; pipeline=7 treatment_adapter=3
+manifested_inputs,passed,4,H6 H6C H8C and H9A outputs pass checksum and row-count checks
+same_request_set,passed,152,B0 B1 B2 and B3 each audit the same 38 H6 observation IDs
+inherited_rows_unchanged,passed,114,114 checksummed H8C audit rows are copied without recomputing their results
+independent_b3_addressability,passed,38,B3 reported outcomes agree with store and serving-state recomputation
+exact_b3_reads,passed,38,every B3 read matches identity decimal value and published lexeme
+independent_impact_audit,passed,38,dirty cells re-derived from the H8C graph equal H9A impact rows and arrival counts
+last_dirty_arrival,passed,14,each serving row was last recomputed at the last arrival that touched its cell
+base_h8c_graph_immutable,passed,1104,294 H8C nodes and 810 edges retain their exact identities and fields
+four_treatment_closure,passed,152,every request reaches its metric the four-treatment table and figure input; completeness=1.0000
+figure_claim_boundary,passed,8,figure data are ready but no rendered manuscript figure is claimed
+measurement_boundary,passed,0,no runtime byte or injected-workload result is claimed

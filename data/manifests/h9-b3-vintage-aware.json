@@ -1,0 +1,150 @@
+{
+  "contract_version": "b3.1",
+  "iceberg_targets": {
+    "serving": "kkciv.experiments.b3_indicator_current",
+    "store": "kkciv.experiments.b3_observation_vintages"
+  },
+  "implementation_status": "implemented",
+  "injected_workload": {
+    "execution_owner": "H9 track B and H10",
+    "h8b_route_status": "prepared_not_run",
+    "synthetic_vintage_ordering": "pending_human_decision"
+  },
+  "inputs": [
+    {
+      "path": "contracts/h9-b3-vintage-aware.json",
+      "sha256": "58f9b76c8bb45286dbe5a1ffb3e1e01d6340ea1895d06c969341de661c4974d9"
+    },
+    {
+      "path": "infra/spark/h9-b3.sql",
+      "sha256": "7688eb884163536b2fc4bfa0d3fdf734405e56ecda390c31678e6d868b4fb97d"
+    },
+    {
+      "path": "data/manifests/h6-vintage-schema.json",
+      "sha256": "416c6892d04a0a3c0b3c475f8a51d941a88cca9c68a197cf681f9449511f0ff4"
+    },
+    {
+      "path": "results/processed/h6-release-vintages.csv",
+      "rows": 3,
+      "sha256": "7092d42c678a2c42dc0ea516672d3025cb817232b28adebeba9b627aabd602f2"
+    },
+    {
+      "path": "results/processed/h6-indicator-observations.csv",
+      "rows": 38,
+      "sha256": "80650a40d1fafeb1e3ec0f71eacf88be90efbe4bb5c919df39fd33af06832af2"
+    },
+    {
+      "path": "data/manifests/h6c-cell-lineage.json",
+      "sha256": "d9f3d571c7886ad60f1195b9fcbad4899a54fe5ce5b6f023cca62a0505a452b6"
+    },
+    {
+      "path": "results/processed/h6c-lineage-nodes.csv",
+      "rows": 101,
+      "sha256": "3ef2b1271c7099bbcb86ba48de41d600055ecf1046129189c4428bd6acd7a374"
+    },
+    {
+      "path": "results/processed/h6c-lineage-edges.csv",
+      "rows": 235,
+      "sha256": "6f083e662893e9e968bbc782a52114d8fca154e70245a5ef559fc652e5956d44"
+    },
+    {
+      "path": "data/manifests/h7-b0-overwrite.json",
+      "sha256": "3a58c69db80ff66d43f965b24ab770a7c03a99a554d2ac36d9b0e239e29c99ff"
+    },
+    {
+      "path": "results/processed/h7-b0-final-state.csv",
+      "rows": 14,
+      "sha256": "61e7ba1a44256d5dc832ab4f488336fb16c02b784942cc65d54f3100fb8ef284"
+    },
+    {
+      "path": "data/manifests/h8-b1-full-snapshot.json",
+      "sha256": "d76c3dbdab2d1a19a5fae41f4af364a46f55ed657409764b35814465357ab66e"
+    },
+    {
+      "path": "results/processed/h8-b1-snapshot-states.csv",
+      "rows": 42,
+      "sha256": "c9014928bd3c35798dfd2194864e0dae3651fa092a6e5486168c5772f457ad72"
+    }
+  ],
+  "measurement": {
+    "logical_rows_and_recomputed_cells_recorded": true,
+    "physical_bytes_and_runtime": "deferred_to_H10"
+  },
+  "outputs": [
+    {
+      "path": "results/processed/h9-b3-arrival-catalog.csv",
+      "rows": 3,
+      "sha256": "e2ca1a31a075ef44a1a87e4af5da8a4fd61e748ea2347070e3a8fb62b35a6205"
+    },
+    {
+      "path": "results/processed/h9-b3-observation-store.csv",
+      "rows": 38,
+      "sha256": "fe2f116cefd737dbaeaa45d73a7f3b3ef14fc39ded512716929c98916aad4000"
+    },
+    {
+      "path": "results/processed/h9-b3-impact.csv",
+      "rows": 38,
+      "sha256": "693fd11d1723bb496b5c5aba96ef4aca77cf275dfa0f99c9e0f811fcb83f94b4"
+    },
+    {
+      "path": "results/processed/h9-b3-current-state.csv",
+      "rows": 14,
+      "sha256": "30c0f62ef7f1a6ef1a8d31db00572190af3cac32bcfc66c4cd4b267fb16fed45"
+    },
+    {
+      "path": "results/processed/h9-b3-asof-states.csv",
+      "rows": 42,
+      "sha256": "b891ce118fca7c00cee07eb9d1850847ccd8c6f0d673f8db6cb32db9e94d89c2"
+    },
+    {
+      "path": "results/processed/h9-b3-reproducibility.csv",
+      "rows": 38,
+      "sha256": "ac04449804adeb90cce8fcf2a27f70a53850804bd5df6b72ad293c97d74d624b"
+    },
+    {
+      "path": "results/processed/h9-b3-validation.csv",
+      "rows": 10,
+      "sha256": "b44d9239c89ba069d6adb3973634fa3748695f44349af180e212201986e94969"
+    },
+    {
+      "path": "results/processed/h9-b3-summary.csv",
+      "rows": 14,
+      "sha256": "61f6322c87277d03b6ef7d50b142ab5c809ca488c6cbf2f3720626fdab0f4f96"
+    }
+  ],
+  "reproducibility": {
+    "depends_on_table_snapshots": false,
+    "historical_reproduction_capable": true,
+    "vintage_key_supported": true
+  },
+  "stage": "H9",
+  "track": "A",
+  "treatment_id": "B3",
+  "workload": {
+    "arrival_batches": 3,
+    "asof_rows": 42,
+    "b1_logical_row_appearances": 42,
+    "control_treatments": [
+      "B0",
+      "B1"
+    ],
+    "final_rows": 14,
+    "full_recompute_cells": 42,
+    "input_rows": 38,
+    "inserted_cells": 14,
+    "logical_materialized_rows": 52,
+    "provenance_only_cells": 10,
+    "recompute_ratio": "0.9048",
+    "recomputed_cells": 38,
+    "reproduction_failures": 0,
+    "reproduction_successes": 38,
+    "resolved_changed_cells": 24,
+    "source_stage": "H6",
+    "store_rows": 38,
+    "unchanged_resolution_cells": 0,
+    "untouched_cells": 4,
+    "value_changed_cells": 14,
+    "value_revisions_in_history": 14,
+    "vintage_read_success_rate": "1.0000"
+  }
+}
