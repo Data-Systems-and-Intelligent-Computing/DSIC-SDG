@@ -1,0 +1,65 @@
+{
+  "contract_version": "h9b.1",
+  "stage": "H9",
+  "track": "B",
+  "name": "small_revision_harness_execution",
+  "description": "Route every H8B validation scenario unchanged to B0, B1, B2, and B3 and execute the four treatment adapters logically, without timing or storage measurement.",
+  "input": {
+    "harness_manifest": "data/manifests/h8b-injected-revision-harness.json",
+    "harness_contract_version": "h8b.2",
+    "profile_status": "validation_only",
+    "scenario_sizes": [1, 2, 4, 7, 14],
+    "treatments": ["B0", "B1", "B2", "B3"],
+    "baseline_workload": "the 38-observation H6 real-revision workload"
+  },
+  "human_decisions": {
+    "registry": "config/h9/human_decisions.csv",
+    "approved_at": "2026-09-11",
+    "decision_ids": [
+      "h9_b3_history_as_rows",
+      "h9_b3_resolution_key",
+      "h9_b3_materialized_serving",
+      "h9_synthetic_vintage_ordering"
+    ]
+  },
+  "synthetic_vintage": {
+    "vintage_date_rule": "latest_official_vintage_date_plus_one_day",
+    "retrieved_at_time": "00:00:00+00:00",
+    "tie_break": "vintage_id",
+    "source_id": "synthetic_revision_harness",
+    "source_channel": "synthetic",
+    "vintage_basis": "synthetic_injected_revision",
+    "one_synthetic_vintage_per_independent_run": true
+  },
+  "synthetic_provenance": {
+    "producer": "synthetic_revision_harness",
+    "evidence_level": "synthetic_not_official",
+    "must_not_masquerade_as_bps": true,
+    "methodology_version": "inherit from the base observation"
+  },
+  "adapters": {
+    "B0": "append the synthetic vintage to the H6 workload and replay the B0 overwrite",
+    "B1": "append the synthetic vintage to the H6 workload and replay the B1 full snapshots",
+    "B2": "rank every candidate with the frozen H6B score of revised_source_id for synthetic rows; ties by vintage_date DESC, then source_id, then observation_id",
+    "B3": "append the synthetic vintage; each synthetic observation reaches its cell through the H6C edge of the base observation it revises"
+  },
+  "baseline_check": "replaying the H6 workload without injection must reproduce every manifested treatment state",
+  "execution": {
+    "mode": "logical",
+    "route_status": "executed_logical",
+    "physical_execution": "H10",
+    "timing": "not_measured",
+    "storage": "not_measured"
+  },
+  "invariants": [
+    "each route recomputes its scenario payload checksum and matches the H8B route",
+    "all four treatments consume the same synthetic observation IDs for a scenario",
+    "the synthetic vintage is strictly later than every official vintage",
+    "no synthetic row carries BPS as producer or an official evidence level",
+    "baseline replay reproduces the manifested B0 B1 B2 and B3 states",
+    "B0 B1 and B3 serve the revised value in every injected cell",
+    "B3 recomputes exactly the injected cells and equals a full recomputation",
+    "B1 and B3 keep every official and synthetic observation addressable",
+    "no runtime or storage result is produced"
+  ]
+}

@@ -1,0 +1,12 @@
+metric,value,unit,interpretation
+validation_scenarios,5,scenarios,H8B validation profile 1-2-4-7-14; not the H10 freeze
+executed_routes,20,routes,"five scenarios times four treatments, executed logically"
+payload_verified_routes,20,routes,canonical payload digest recomputed per route
+injected_rows,28,rows,per treatment across independent scenarios
+b3_cells_recomputed,28,cell_evaluations,equals the injected cells; untouched cells are skipped
+b1_rows_written,70,rows,one complete 14-row state per scenario regardless of revision size
+b0_revised_base_lost,28,observations,revised latest values that B0 can no longer recall
+b2_synthetic_served,8,observations,injected revisions that win under the frozen source score
+b1_b3_unavailable,0,requests,must remain zero
+mixed_source_scenarios,4,scenarios,allowed in validation only: validation_002;validation_004;validation_007;validation_014
+timed_runs,0,runs,physical and timed execution starts at H10

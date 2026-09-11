@@ -365,6 +365,20 @@ dijadwalkan pada H10. Jalankan `make h9-run`; rincian ada di
 [`docs/research/h9-b3-vintage-aware.md`](docs/research/h9-b3-vintage-aware.md).
 Integrasi Iceberg `make h9-apply` lulus di VM. Commit `c2a249d` ditarik ke VM `praktikum-sd` (`sigerciv@34.101.84.199`). Dua run `make h9-run` menghasilkan checksum yang sama dengan lokal, dan dua run `make h9-apply` lulus dengan marker `H9_VERIFY|38|38|14|14|38|0|1|1|0|0|42|0`. Marker itu berarti 38/38 observasi tetap terbaca melalui kunci vintage setelah snapshot kedua tabel B3 dihapus sampai tersisa satu, dan ketiga state as-of sama dengan snapshot B1.
 
+H9 Jalur B menjalankan harness H8B untuk pertama kalinya. Kelima skenario validasi `1-2-4-7-14`
+dikirim tanpa perubahan ke B0–B3, sehingga ada 20 route yang dieksekusi secara logis. Checksum
+payload setiap route cocok, dan replay tanpa injeksi menghasilkan kembali state manifest keempat
+perlakuan. Vintage sintetis diberi tanggal sehari setelah rilis resmi terakhir (2026-09-09), sesuai
+keputusan manusia 11 September 2026 yang juga menyetujui histori B3 sebagai baris, kunci resolusinya,
+dan tabel serving yang dimaterialisasi (lihat
+[`config/h9/human_decisions.csv`](config/h9/human_decisions.csv)). B0, B1, dan B3 menyajikan semua 28
+revisi. B2 hanya menyajikan 8 revisi dan mengabaikan 20 revisi atas sel WebAPI karena skor sumbernya
+lebih rendah. B0 kehilangan ke-28 nilai yang direvisi, sedangkan B1 dan B3 tetap dapat memanggil
+seluruh observasi resmi dan sintetis. B3 menghitung ulang tepat 1, 2, 4, 7, dan 14 sel. Belum ada
+waktu atau byte yang diukur. Jalankan `make h9b-run`; rincian ada di
+[`docs/research/h9b-small-revision-execution.md`](docs/research/h9b-small-revision-execution.md).
+Marker: `H9B_VERIFY|5|20|20|0|28|28|70|28|8|0|0|executed_logical`.
+
 H9 Jalur C mengaudit 38 permintaan B3 dengan prosedur H8C yang dikunci checksum-nya, lalu
 menurunkan ulang sel kotor B3 dari graf secara independen. Hasilnya, 38 baris impact cocok tanpa
 selisih dan setiap baris serving terakhir dihitung ulang pada kedatangan terakhir yang menyentuh
@@ -372,7 +386,7 @@ selnya. Tabel empat perlakuan menunjukkan B0 `0,3684`, B1 `1,0000` melalui snaps
 dan B3 `1,0000` melalui kunci vintage. Graf H8C diperluas menjadi 377 node dan 1.088 edge dengan
 152 path lengkap (`1,0000`). Jalankan `make h9c-run`; rincian ada di
 [`docs/research/h9c-b3-lineage-audit.md`](docs/research/h9c-b3-lineage-audit.md). Marker lokal:
-`H9C_VERIFY|294|810|377|1088|152|104|48|1.0000|4|38|38|0|validated`. Seluruh 79 test lokal lulus.
+`H9C_VERIFY|294|810|377|1088|152|104|48|1.0000|4|38|38|0|validated`.
 Marker yang sama dan checksum identik juga muncul pada dua run di VM, dengan 78 test lulus dan satu
 test PDF dilewati. Gate G2 belum lolos karena keempat perlakuan belum dijalankan pada workload
 tersuntik yang identik dan berkas freeze H10 belum ditulis.

@@ -20,6 +20,7 @@ kkciv-h8 = "kkciv_vintage.h8.cli:main"
 kkciv-h8b = "kkciv_vintage.h8b.cli:main"
 kkciv-h8c = "kkciv_vintage.h8c.cli:main"
 kkciv-h9 = "kkciv_vintage.h9.cli:main"
+kkciv-h9b = "kkciv_vintage.h9b.cli:main"
 kkciv-h9c = "kkciv_vintage.h9c.cli:main"
 
 [build-system]

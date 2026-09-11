@@ -1,8 +1,8 @@
-# Rekap Teknis dan Panduan Audit H1–H6C, H7A–H7C, H8A–H8C, H9A, dan H9C
+# Rekap Teknis dan Panduan Audit H1–H6C, H7A–H7C, H8A–H8C, dan H9A–H9C
 
-Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C, H7 Jalur A, B, dan C, H8 Jalur A, B, dan C, serta H9 Jalur A dan C. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
+Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C, H7 Jalur A, B, dan C, H8 Jalur A, B, dan C, serta H9 Jalur A, B, dan C. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
 
-Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 September 2026, kemudian H7C, H8A–H8C, H9A, dan H9C ditambahkan sebagai kelanjutan audit. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
+Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 September 2026, kemudian H7C, H8A–H8C, dan H9A–H9C ditambahkan sebagai kelanjutan audit. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
 
 ## 1. Ringkasan status
 
@@ -23,11 +23,14 @@ Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 Sept
 | H8 Jalur B | Harness revisi tersuntik | 5 ukuran bertingkat, 28 baris, 20 route identik | Selesai dan divalidasi di VM |
 | H8 Jalur C | Audit reproducibility dan penutupan lineage | 114 audit, 294 node, 810 edge | Selesai dan divalidasi di VM |
 | H9 Jalur A | Perlakuan B3 vintage-aware inkremental | 38 baris store, 14 serving, 38/42 sel dihitung ulang, 38/38 dapat dipanggil | Selesai dan diuji di Iceberg VM |
+| H9 Jalur B | Eksekusi harness pada revisi kecil | 20 route logis, 28 injeksi, B2 menyajikan 8/28 revisi | Selesai secara logis; verifikasi VM dicatat setelah commit ditarik |
 | H9 Jalur C | Audit B3, impact lineage, dan penutupan empat perlakuan | 152 audit, 38 impact tanpa selisih, 377 node, 1.088 edge | Selesai dan divalidasi di VM |
 
 Keempat perlakuan kini sudah diimplementasikan pada workload nyata H6. Keempatnya sudah diuji di Iceberg VM; B3 lulus pada H9A di alamat VM baru (lihat §3). Lineage keempat perlakuan sudah mencapai metrik, tabel bukti, dan data gambar.
 
-Yang **belum** dikerjakan pada batas audit ini adalah eksekusi harness pada skenario kecil (H9 Jalur B), keputusan urutan vintage sintetis untuk route B3, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Belum ada perbandingan waktu atau ruang, dan belum ada gambar manuskrip final.
+Harness revisi tersuntik juga sudah dieksekusi secara logis ke keempat perlakuan pada lima skenario validasi (H9 Jalur B). Empat keputusan desain B3 dan urutan vintage sintetis disetujui pada 11 September 2026.
+
+Yang **belum** dikerjakan pada batas audit ini adalah eksekusi fisik keempat perlakuan pada satu skenario kecil dengan pengukuran (H10), pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Belum ada perbandingan waktu atau ruang, dan belum ada gambar manuskrip final.
 
 ## 2. Cara memahami bukti di repositori
 
@@ -66,7 +69,7 @@ pipeline/test/integrasi dijalankan di /home/sigerciv/DSIC-SDG
 bukti marker dicatat kembali dalam dokumentasi/manifest, lalu commit dan push
 ```
 
-Repo di VM menggunakan SSH untuk origin. Pull selalu memakai `--ff-only` agar VM tidak membuat merge commit diam-diam. Tahap yang mempunyai marker VM eksplisit pada catatan ini adalah H5, H6A, H6B, H6C, H7A, H7B, H7C, H8A, H8B, H8C, H9A, dan H9C. H3 mempunyai bukti kesehatan stack. Tidak ada marker VM khusus H1 atau H2, sehingga keduanya jangan disebut sudah diverifikasi terpisah di VM.
+Repo di VM menggunakan SSH untuk origin. Pull selalu memakai `--ff-only` agar VM tidak membuat merge commit diam-diam. Tahap yang mempunyai marker VM eksplisit pada catatan ini adalah H5, H6A, H6B, H6C, H7A, H7B, H7C, H8A, H8B, H8C, H9A, H9B, dan H9C. H3 mempunyai bukti kesehatan stack. Tidak ada marker VM khusus H1 atau H2, sehingga keduanya jangan disebut sudah diverifikasi terpisah di VM.
 
 Stack yang sudah dinaikkan dan diperiksa di VM:
 
@@ -1080,9 +1083,79 @@ Unit test menguji tiga sifat yang tidak muncul pada workload berurutan. Pertama,
 
 ### Yang harus dikoreksi manusia bila perlu
 
-Setujui bahwa histori B3 disimpan sebagai baris append-only dan snapshot tabel boleh dihapus. Periksa pula kunci resolusi, definisi sel kotor berbasis lineage (bukan berbasis perubahan nilai), dan keputusan memelihara tabel serving sebagai tabel materialisasi. Route B3 pada H8B tetap `prepared_not_run`. Sebelum route itu dijalankan, manusia harus memutuskan bagaimana vintage sintetis diberi `vintage_date` dan `retrieved_at`.
+Histori B3 sebagai baris append-only, kunci resolusi, tabel serving yang dimaterialisasi, dan urutan vintage sintetis sudah disetujui pada 11 September 2026 (lihat [human_decisions.csv](../../config/h9/human_decisions.csv)). Yang masih perlu diperiksa adalah definisi sel kotor yang berbasis lineage, bukan berbasis perubahan nilai. Route B3 pada H8B sudah dieksekusi secara logis pada H9 Jalur B (§19).
 
-## 19. H9 Jalur C — Audit B3, impact lineage, dan penutupan empat perlakuan
+## 19. H9 Jalur B — Eksekusi harness pada revisi kecil
+
+### Tujuan
+
+Menjalankan harness H8B untuk pertama kalinya dan membuktikan bahwa payload revisi tersuntik yang sama dapat diproses oleh keempat perlakuan, dengan perilaku yang sesuai kontrak masing-masing. Eksekusi fisik, waktu, dan byte tetap berada pada H10.
+
+### Langkah yang dieksekusi
+
+1. Mencatat empat keputusan manusia tanggal 11 September 2026 di [human_decisions.csv](../../config/h9/human_decisions.csv): histori B3 sebagai baris, kunci resolusi B3, tabel serving B3 yang dimaterialisasi, dan urutan vintage sintetis.
+2. Menetapkan kontrak [h9b-small-revision-execution.json](../../contracts/h9b-small-revision-execution.json) (`h9b.1`).
+3. Membaca lima skenario, 28 baris injeksi, dan 20 route H8B yang masih `prepared_not_run`, lalu menghitung ulang checksum payload setiap route.
+4. Mengubah payload setiap skenario menjadi satu vintage sintetis bertanggal 2026-09-09 (sehari setelah WebAPI 2026-09-08), berlabel "not BPS", dengan producer `synthetic_revision_harness` dan `evidence_level = synthetic_not_official`.
+5. Menjalankan replay tanpa injeksi melalui keempat adapter, lalu memastikan hasilnya sama dengan state manifest B0, B1, B2, dan B3.
+6. Menambahkan vintage sintetis ke workload H6 dan menjalankan logika perlakuan yang sudah ada: overwrite B0, snapshot penuh B1, peringkat skor beku B2 memakai skor `revised_source_id`, dan B3 inkremental. Pada B3, observasi sintetis mewarisi edge sel dari observasi dasar yang direvisinya.
+7. Mencatat per route: sel yang dievaluasi, baris logis yang ditulis, perubahan state serving, revisi yang disajikan, permintaan yang dapat dipanggil, dan nilai dasar yang masih dapat dipanggil.
+8. Menjalankan pipeline dua kali untuk determinisme dan menjalankan seluruh unit test.
+
+Perintah:
+
+```bash
+make h9b-run
+make test
+```
+
+### Hasil
+
+| Skenario | Sel | Campuran sumber | B0 tulis | B1 tulis | B2 revisi disajikan | B3 dihitung ulang | B3 tulis |
+|---|---:|---|---:|---:|---:|---:|---:|
+| validation_001 | 1 | WebAPI 1 | 1 | 14 | 0 | 1 | 2 |
+| validation_002 | 2 | TPB 2025 1, WebAPI 1 | 2 | 14 | 1 | 2 | 4 |
+| validation_004 | 4 | TPB 2025 1, WebAPI 3 | 4 | 14 | 1 | 4 | 8 |
+| validation_007 | 7 | TPB 2025 2, WebAPI 5 | 7 | 14 | 2 | 7 | 14 |
+| validation_014 | 14 | TPB 2025 4, WebAPI 10 | 14 | 14 | 4 | 14 | 28 |
+
+- 20/20 route cocok checksum payload-nya, dan replay baseline menghasilkan 0 selisih pada 56 sel;
+- B0, B1, dan B3 menyajikan setiap revisi serta vintage terbaru di seluruh 14 sel;
+- B2 hanya menyajikan 8 dari 28 revisi dan mengabaikan 20 revisi atas sel WebAPI karena skor WebAPI lebih rendah daripada TPB 2025 yang sudah terpilih;
+- B0 kehilangan ke-28 nilai dasar yang direvisi;
+- B1 dan B3 tetap dapat memanggil seluruh 38 observasi resmi ditambah observasi sintetis (39–52 permintaan per skenario);
+- B3 menghitung ulang tepat sel yang direvisi dan selalu sama dengan penghitungan ulang penuh.
+
+Kolom "tulis" berisi baris logis, bukan byte. B1 selalu menulis 14 baris, sedangkan B3 menulis `2n`. Pola ini baru menunjukkan arah titik impas P3, bukan hasilnya, karena ukuran file, metadata, biaya `MERGE`, dan pembacaan belum diukur.
+
+Marker validasi:
+
+```text
+H9B_VERIFY|5|20|20|0|28|28|70|28|8|0|0|executed_logical
+```
+
+Artinya: 5 skenario, 20 route, 20 payload terverifikasi, 0 selisih payload, 28 baris injeksi, 28 sel dihitung ulang B3, 70 baris ditulis B1, 28 nilai hilang di B0, 8 revisi disajikan B2, 0 permintaan gagal pada B1/B3, 0 selisih baseline, dan status `executed_logical`.
+
+Verifikasi dua run di VM dijalankan setelah commit ditarik; hasilnya dicatat pada commit berikutnya.
+
+### Bukti yang dapat diaudit
+
+- [kontrak H9B](../../contracts/h9b-small-revision-execution.json)
+- [empat keputusan manusia](../../config/h9/human_decisions.csv)
+- [20 eksekusi route](../../results/processed/h9b-route-executions.csv)
+- [280 baris state setelah revisi](../../results/processed/h9b-post-revision-states.csv)
+- [872 baris audit pemanggilan](../../results/processed/h9b-recall-audit.csv)
+- [5 vintage sintetis](../../results/processed/h9b-synthetic-vintages.csv)
+- [hasil validasi](../../results/processed/h9b-validation.csv)
+- [ringkasan](../../results/processed/h9b-summary.csv)
+- [manifest H9B](../../data/manifests/h9b-small-revision-execution.json)
+- [laporan H9B](../../docs/research/h9b-small-revision-execution.md)
+
+### Yang harus dikoreksi manusia bila perlu
+
+Periksa apakah perilaku B2 yang mengabaikan revisi atas sumber berskor lebih rendah memang ingin disajikan sebagai temuan di naskah. Setujui adapter B2 yang memakai skor `revised_source_id` dan aturan pewarisan edge sel untuk observasi sintetis. Profil `1-2-4-7-14` masih validasi: empat dari lima skenario bercampur sumber, dan hanya `validation_001` yang memenuhi syarat satu sumber untuk eksekusi fisik H10.
+
+## 20. H9 Jalur C — Audit B3, impact lineage, dan penutupan empat perlakuan
 
 ### Tujuan
 
@@ -1150,12 +1223,12 @@ Di VM, `make h9c-run` dijalankan dua kali setelah `c2a249d` ditarik. Marker dan 
 
 Setujui kelas akses `vintage_key` yang terpisah dari `historical_snapshot`. Setujui juga bahwa baris B0–B2 disalin dari H8C tanpa dihitung ulang, serta bahwa edge `arrival_recomputes_cell` sudah cukup mewakili "sel yang benar-benar terpengaruh". Tabel dan data gambar H8C yang lama tetap berada di graf sebagai bukti historis. Tabel dan data gambar yang berlaku sekarang adalah versi empat perlakuan.
 
-## 20. Pemeriksaan akhir yang sudah lulus
+## 21. Pemeriksaan akhir yang sudah lulus
 
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
-- seluruh 79 unit test lokal lulus, termasuk 5 test H9A dan 5 test H9C;
-- di VM, 78 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
+- seluruh 84 unit test lokal lulus, termasuk 5 test masing-masing untuk H9A, H9B, dan H9C;
+- di VM, 78 test lulus dan 1 test dilewati pada verifikasi H9A/H9C; verifikasi H9B dicatat setelah commit ditarik;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
 - H5, H6A, H7A, dan H7B berhasil menulis serta membaca tabel Iceberg;
@@ -1165,6 +1238,7 @@ Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 - H8B menghasilkan lima workload bertingkat dan 20 route ber-checksum sama secara deterministik.
 - H8C menghitung ulang 114 hasil dan menutup seluruh path bukti tiga perlakuan yang sudah berjalan.
 - H9A menghasilkan store append-only dan state serving inkremental yang sama dengan penghitungan ulang penuh, B0, dan B1, serta 38/38 pembacaan melalui kunci vintage; hasil ini diulang di Iceberg VM setelah snapshot dihapus.
+- H9B mengeksekusi 20 route harness secara logis dengan checksum payload yang cocok dan replay baseline tanpa selisih.
 - H9C mengaudit B3 dengan prosedur H8C yang terkunci checksum, menurunkan ulang 38 baris impact tanpa selisih, dan menutup 152 path empat perlakuan.
 
 Urutan pemeriksaan cepat tanpa menarik ulang data mentah:
@@ -1184,6 +1258,7 @@ make h8-run
 make h8b-run
 make h8c-run
 make h9-run
+make h9b-run
 make h9c-run
 make test
 ```
@@ -1200,7 +1275,7 @@ git log -1 --oneline
 docker compose --env-file infra/docker/versions.env ps
 ```
 
-## 21. Daftar audit manusia yang disarankan
+## 22. Daftar audit manusia yang disarankan
 
 - [ ] Cocokkan 29 pilihan WebAPI H1 dengan definisi indikator, bukan hanya kemiripan nama.
 - [ ] Setujui atau koreksi 14 `verified`, 17 `partial`, dan 4 `unavailable`.
@@ -1223,14 +1298,19 @@ docker compose --env-file infra/docker/versions.env ps
 - [ ] Periksa seed dan pemetaan setiap `revised_source_id` pada H8B.
 - [ ] Setujui prosedur H8C, klasifikasi kegagalan, dan batas data gambar yang belum dirender.
 - [ ] Periksa audit B3 dan penutupan lineage empat perlakuan pada H9C (152 path, 38 impact).
-- [ ] Setujui histori B3 sebagai baris append-only dengan snapshot tabel yang boleh dihapus.
-- [ ] Setujui kunci resolusi B3 (`vintage_date`, `vintage_retrieved_at`, `vintage_id`) dan definisi sel kotor berbasis lineage.
-- [ ] Setujui materialisasi tabel serving B3 dan jangan memakai 52 baris logis atau rasio 0,9048 sebagai klaim byte/waktu.
-- [ ] Putuskan cara memberi `vintage_date` dan `retrieved_at` pada vintage sintetis sebelum route B3 H8B dijalankan.
+- [x] Setujui histori B3 sebagai baris append-only dengan snapshot tabel yang boleh dihapus (disetujui 2026-09-11).
+- [x] Setujui kunci resolusi B3 `vintage_date`, `vintage_retrieved_at`, `vintage_id` (disetujui 2026-09-11).
+- [ ] Setujui definisi sel kotor B3 yang berbasis lineage, bukan berbasis perubahan nilai.
+- [x] Setujui materialisasi tabel serving B3; 52 baris logis dilaporkan sebagai ongkos (disetujui 2026-09-11).
+- [ ] Jangan memakai 52 baris logis, rasio 0,9048, atau pola `2n` versus 14 pada H9B sebagai klaim byte/waktu.
+- [x] Tetapkan urutan vintage sintetis: sehari setelah vintage resmi terbaru (disetujui 2026-09-11).
+- [ ] Putuskan cara naskah membahas B2 yang mengabaikan 20 dari 28 revisi tersuntik.
+- [ ] Setujui adapter B2 berbasis skor `revised_source_id` dan pewarisan edge sel untuk observasi sintetis.
+- [ ] Pilih skenario kecil satu sumber untuk eksekusi fisik H10; kandidat saat ini adalah `validation_001`.
 - [ ] Setujui kelas akses `vintage_key` yang terpisah dari `historical_snapshot`.
 - [ ] Putuskan spesifikasi VM sebelum pengukuran performa dimulai.
 
-## 22. Cara melakukan koreksi tanpa merusak jejak audit
+## 23. Cara melakukan koreksi tanpa merusak jejak audit
 
 Jika audit manusia menemukan kesalahan:
 
@@ -1246,7 +1326,7 @@ Jika audit manusia menemukan kesalahan:
 
 Dengan prosedur tersebut, koreksi manusia menjadi bagian dari provenance penelitian dan tidak menghapus bukti keputusan sebelumnya dari riwayat Git.
 
-## 23. Batas klaim pada posisi sekarang
+## 24. Batas klaim pada posisi sekarang
 
 Yang sudah dapat diklaim:
 
@@ -1258,7 +1338,8 @@ Yang sudah dapat diklaim:
 - B1 secara fungsional dapat memanggil seluruh 38 observasi melalui tiga snapshot penuh;
 - B3 secara fungsional dapat memanggil seluruh 38 observasi melalui kunci `(cell_id, vintage_id)` tanpa snapshot tabel, dan state as-of-nya sama dengan snapshot B1;
 - penghitungan ulang inkremental B3 yang dibatasi pada sel kotor menurut lineage menghasilkan state yang sama dengan penghitungan ulang penuh setelah setiap rilis;
-- harness dapat membentuk revisi sintetis bertingkat dan mengirim payload identik ke route B0–B3;
+- harness dapat membentuk revisi sintetis bertingkat, dan payload identik sudah dieksekusi secara logis oleh B0–B3 pada lima skenario validasi;
+- pada revisi tersuntik, B2 mengabaikan revisi atas sumber berskor lebih rendah (20 dari 28), sedangkan B0, B1, dan B3 menyajikan semuanya;
 - lineage B0/B1/B2/B3 mencapai metrik, tabel bukti, dan data gambar dengan 152 path lengkap;
 - seluruh keputusan B0/B2 dapat ditelusuri dari rekaman sumber sampai keluaran perlakuan;
 - tidak ada lagi sumber related work yang hanya berstatus `daftar`.
@@ -1275,4 +1356,4 @@ Yang belum dapat diklaim:
 - bahwa Gate G2 atau G3 sudah lolos;
 - bahwa hasil 14 sel dapat digeneralisasi ke seluruh indikator BPS.
 
-Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; H8 seluruh jalur serta H9 Jalur A dan C selesai. Keempat perlakuan berjalan secara fungsional pada workload nyata, dan lineage keempatnya tertutup sampai bukti presentasi sementara. B3 juga lulus di Iceberg VM tanpa bergantung pada snapshot tabel. Harness revisi tersuntik belum dieksekusi ke perlakuan (H9 Jalur B), dan freeze eksperimen serta pengukuran utama belum dilakukan. Gate G2 belum lolos.**
+Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; H8 dan H9 seluruh jalur selesai. Keempat perlakuan berjalan secara fungsional pada workload nyata, dan lineage keempatnya tertutup sampai bukti presentasi sementara. B3 juga lulus di Iceberg VM tanpa bergantung pada snapshot tabel. Harness revisi tersuntik sudah dieksekusi secara logis ke keempat perlakuan (H9 Jalur B), tetapi eksekusi fisik terukur, freeze eksperimen, dan pengukuran utama belum dilakukan. Gate G2 belum lolos.**

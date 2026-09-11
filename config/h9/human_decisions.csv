@@ -1,0 +1,5 @@
+decision_id,decided_at,decided_by,status,scope,decision,rationale
+h9_b3_history_as_rows,2026-09-11,human_reviewer,approved,b3_history,store_history_as_append_only_rows_and_allow_snapshot_expiry,"Approved explicitly by the human reviewer; B3 recall must rely on the (cell_id, vintage_id) key rather than Iceberg time travel"
+h9_b3_resolution_key,2026-09-11,human_reviewer,approved,b3_resolution,vintage_date_then_retrieved_at_then_vintage_id,"Approved explicitly; the same release order as B0 and B1 and independent of arrival order"
+h9_b3_materialized_serving,2026-09-11,human_reviewer,approved,b3_serving,materialize_serving_table,"Approved explicitly; the 52 logical rows on the H6 fixture are accepted as a reported cost, not hidden"
+h9_synthetic_vintage_ordering,2026-09-11,human_reviewer,approved,synthetic_vintage,one_day_after_latest_official_vintage,"Approved explicitly; vintage_date is the latest official vintage_date plus one day, retrieved_at is that date at 00:00:00+00:00, and vintage_id breaks ties"

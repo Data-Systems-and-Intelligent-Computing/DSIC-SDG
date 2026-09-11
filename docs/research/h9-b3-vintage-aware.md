@@ -138,11 +138,13 @@ H9 tidak mengklaim B3 lebih cepat atau lebih hemat ruang.
 
 ## Batas terhadap harness H8B
 
-Route B3 pada harness H8B tetap berstatus `prepared_not_run`. Eksekusinya merupakan tugas H9
-Jalur B dan H10. Sebelum payload sintetis dapat masuk B3, satu keputusan manusia masih diperlukan:
-bagaimana `synthetic_vintage_id` diberi `vintage_date` dan `retrieved_at` agar urutannya terhadap
-vintage resmi tidak ambigu. Kontrak mencatatnya sebagai `synthetic_vintage_ordering =
-pending_human_decision`.
+Pada saat H9A dibekukan, route B3 pada harness H8B masih berstatus `prepared_not_run`, dan kontrak
+mencatat urutan vintage sintetis sebagai `pending_human_decision`. Pada 11 September 2026, keputusan
+itu disetujui: vintage sintetis bertanggal sehari setelah vintage resmi terbaru, dengan `retrieved_at`
+pukul `00:00:00+00:00` dan `vintage_id` sebagai pemecah seri. Keputusan tersimpan di
+`config/h9/human_decisions.csv`. Route B3 kemudian dieksekusi secara logis oleh H9 Jalur B (lihat
+`docs/research/h9b-small-revision-execution.md`). Kontrak `b3.1` tidak diubah karena perilaku B3
+sendiri tidak berubah.
 
 ## Reproduksi
 
@@ -191,13 +193,13 @@ penghitungan ulang penuh, baris as-of, dan selisih as-of terhadap snapshot B1.
 
 ## Hal yang memerlukan audit manusia
 
-1. Setujui bahwa B3 menyimpan histori sebagai baris append-only dan boleh menghapus snapshot tabel.
-   Keputusan ini membuat B3 berbeda secara prinsip dari B1.
-2. Setujui kunci resolusi `vintage_date`, `vintage_retrieved_at`, `vintage_id`. Pada dua rilis
-   bertanggal sama, `retrieved_at` menjadi penentu.
+1. **Disetujui 2026-09-11:** B3 menyimpan histori sebagai baris append-only dan boleh menghapus
+   snapshot tabel. Keputusan ini membuat B3 berbeda secara prinsip dari B1.
+2. **Disetujui 2026-09-11:** kunci resolusi `vintage_date`, `vintage_retrieved_at`, `vintage_id`.
+   Pada dua rilis bertanggal sama, `retrieved_at` menjadi penentu.
 3. Setujui definisi sel kotor sebagai sel yang dicapai dari observasi yang datang melalui edge lineage
    H6C, bukan sel yang nilainya berubah. Rilis lama yang datang terlambat tetap membuat sel kotor.
-4. Setujui bahwa tabel serving dimaterialisasi. Tanpa materialisasi, jumlah baris logis turun menjadi
-   38, tetapi tidak ada lagi view yang dipelihara secara inkremental.
+4. **Disetujui 2026-09-11:** tabel serving dimaterialisasi. Tanpa materialisasi, jumlah baris logis
+   turun menjadi 38, tetapi tidak ada lagi view yang dipelihara secara inkremental.
 5. Jangan memakai rasio 0,9048 atau angka 52 baris sebagai klaim performa atau ruang.
-6. Putuskan urutan vintage sintetis sebelum route B3 H8B dijalankan.
+6. **Disetujui 2026-09-11:** urutan vintage sintetis adalah sehari setelah vintage resmi terbaru.
