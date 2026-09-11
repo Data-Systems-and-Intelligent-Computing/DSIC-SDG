@@ -1,6 +1,6 @@
 invariant,status,checked_rows,detail
-h9b_contract,passed,6,input decisions synthetic ordering provenance adapters and execution boundary match h9b.1
-human_decisions,passed,4,B3 history resolution serving and synthetic ordering were approved on 2026-09-11
+h9b_contract,passed,6,input decisions synthetic ordering provenance adapters and execution boundary match h9b.2
+human_decisions,passed,6,B3 history resolution serving synthetic ordering and both adapter rules were approved on 2026-09-11
 route_payload_checksums,passed,20,every route recomputes the canonical H8B scenario payload digest
 baseline_replay,passed,56,replay without injection reproduces the manifested B0 B1 B2 and B3 serving states
 synthetic_vintage_order,passed,5,each synthetic vintage is dated one day after the latest official vintage

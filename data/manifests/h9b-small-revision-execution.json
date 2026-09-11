@@ -1,19 +1,19 @@
 {
-  "contract_version": "h9b.1",
+  "contract_version": "h9b.2",
   "execution_status": "executed_logical",
   "human_decisions": {
-    "approved": 4,
+    "approved": 6,
     "approved_at": "2026-09-11",
     "synthetic_vintage_ordering": "latest_official_vintage_date_plus_one_day"
   },
   "inputs": [
     {
       "path": "contracts/h9b-small-revision-execution.json",
-      "sha256": "2281e7c439931a7afeec1fdd726119d2ddf2328b2deff1dd352ae319fccd1ea6"
+      "sha256": "e15d986b9dc230f5af47705772e1abfde2c3f9eec2f18da347de9c7f25eb497b"
     },
     {
       "path": "config/h9/human_decisions.csv",
-      "sha256": "0cc8d500395998d03ee9625183c54f9de26c7696d8421bc71552ab85a9c1218f"
+      "sha256": "b915f5b72f6552e47edb75f623093842d50cf0cf8504937786986c7343c89fd9"
     },
     {
       "path": "data/manifests/h6-vintage-schema.json",
@@ -77,7 +77,7 @@
     {
       "path": "results/processed/h9b-validation.csv",
       "rows": 11,
-      "sha256": "6d21787c416357b5f707c493dcfc137ad479d9a993ab9218526906eee07a2807"
+      "sha256": "af90aa0142e63a3b32f9d4500944435289e91f3562ac945a91b6bdbba956409d"
     },
     {
       "path": "results/processed/h9b-summary.csv",

@@ -1,5 +1,5 @@
 {
-  "contract_version": "h9b.1",
+  "contract_version": "h9b.2",
   "stage": "H9",
   "track": "B",
   "name": "small_revision_harness_execution",
@@ -8,8 +8,19 @@
     "harness_manifest": "data/manifests/h8b-injected-revision-harness.json",
     "harness_contract_version": "h8b.2",
     "profile_status": "validation_only",
-    "scenario_sizes": [1, 2, 4, 7, 14],
-    "treatments": ["B0", "B1", "B2", "B3"],
+    "scenario_sizes": [
+      1,
+      2,
+      4,
+      7,
+      14
+    ],
+    "treatments": [
+      "B0",
+      "B1",
+      "B2",
+      "B3"
+    ],
     "baseline_workload": "the 38-observation H6 real-revision workload"
   },
   "human_decisions": {
@@ -19,7 +30,9 @@
       "h9_b3_history_as_rows",
       "h9_b3_resolution_key",
       "h9_b3_materialized_serving",
-      "h9_synthetic_vintage_ordering"
+      "h9_synthetic_vintage_ordering",
+      "h9b_b2_synthetic_scoring",
+      "h9b_synthetic_cell_lineage"
     ]
   },
   "synthetic_vintage": {

@@ -23,6 +23,8 @@ REQUIRED_DECISIONS = {
     "h9_b3_resolution_key": ("b3_resolution", "vintage_date_then_retrieved_at_then_vintage_id"),
     "h9_b3_materialized_serving": ("b3_serving", "materialize_serving_table"),
     "h9_synthetic_vintage_ordering": ("synthetic_vintage", "one_day_after_latest_official_vintage"),
+    "h9b_b2_synthetic_scoring": ("b2_adapter", "score_synthetic_rows_with_revised_source_id"),
+    "h9b_synthetic_cell_lineage": ("b3_adapter", "inherit_base_observation_cell_edge"),
 }
 SYNTHETIC_VINTAGE_COLUMNS = ["scenario_order", "scenario_id", *VINTAGE_COLUMNS]
 ROUTE_COLUMNS = [
@@ -142,7 +144,7 @@ def _payload_hash(rows: list[dict[str, str]]) -> str:
 
 def validate_contract(contract: dict[str, Any]) -> None:
     if (
-        contract.get("contract_version") != "h9b.1"
+        contract.get("contract_version") != "h9b.2"
         or contract.get("stage") != "H9"
         or contract.get("track") != "B"
     ):
@@ -184,7 +186,7 @@ def validate_contract(contract: dict[str, Any]) -> None:
 def validate_human_decisions(rows: list[dict[str, str]]) -> None:
     by_id = {row["decision_id"]: row for row in rows}
     if len(rows) != len(REQUIRED_DECISIONS) or set(by_id) != set(REQUIRED_DECISIONS):
-        raise ValueError("H9B requires exactly the four H9 human decisions")
+        raise ValueError("H9B requires exactly the six H9 human decisions")
     for decision_id, (scope, decision) in REQUIRED_DECISIONS.items():
         row = by_id[decision_id]
         if (
@@ -682,8 +684,8 @@ def run_h9b(
         "mixed_source_scenarios": len(mixed),
     }
     validation = [
-        {"invariant": "h9b_contract", "status": "passed", "checked_rows": "6", "detail": "input decisions synthetic ordering provenance adapters and execution boundary match h9b.1"},
-        {"invariant": "human_decisions", "status": "passed", "checked_rows": str(len(decisions)), "detail": "B3 history resolution serving and synthetic ordering were approved on 2026-09-11"},
+        {"invariant": "h9b_contract", "status": "passed", "checked_rows": "6", "detail": "input decisions synthetic ordering provenance adapters and execution boundary match h9b.2"},
+        {"invariant": "human_decisions", "status": "passed", "checked_rows": str(len(decisions)), "detail": "B3 history resolution serving synthetic ordering and both adapter rules were approved on 2026-09-11"},
         {"invariant": "route_payload_checksums", "status": "passed", "checked_rows": str(metrics["routes"]), "detail": "every route recomputes the canonical H8B scenario payload digest"},
         {"invariant": "baseline_replay", "status": "passed", "checked_rows": "56", "detail": "replay without injection reproduces the manifested B0 B1 B2 and B3 serving states"},
         {"invariant": "synthetic_vintage_order", "status": "passed", "checked_rows": str(len(synthetic_vintages)), "detail": "each synthetic vintage is dated one day after the latest official vintage"},

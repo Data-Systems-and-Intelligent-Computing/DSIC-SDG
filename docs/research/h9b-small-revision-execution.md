@@ -25,8 +25,10 @@ keluaran lokal. Di VM, 83 test lulus, satu test PDF dilewati, dan working tree t
 
 ## Keputusan manusia yang dipakai
 
-Pada 11 September 2026, peninjau manusia menyetujui empat keputusan. Keempatnya dicatat di
-`config/h9/human_decisions.csv` dan diperiksa oleh pipeline:
+Pada 11 September 2026, peninjau manusia menyetujui empat keputusan sebelum H9B dijalankan, lalu
+dua aturan adapter setelah hasil H9B ditinjau. Keenamnya dicatat di `config/h9/human_decisions.csv`
+dan diperiksa oleh pipeline. Karena ada dua keputusan tambahan, kontrak naik dari `h9b.1` ke `h9b.2`.
+Keluaran route tidak berubah; yang berubah hanya baris validasi dan manifest.
 
 | ID | Keputusan |
 |---|---|
@@ -34,6 +36,8 @@ Pada 11 September 2026, peninjau manusia menyetujui empat keputusan. Keempatnya 
 | `h9_b3_resolution_key` | versi terbaru dipilih berdasarkan `vintage_date`, lalu `retrieved_at`, lalu `vintage_id` |
 | `h9_b3_materialized_serving` | tabel serving B3 dimaterialisasi; 52 baris logis pada fixture H6 dilaporkan sebagai ongkos |
 | `h9_synthetic_vintage_ordering` | vintage sintetis bertanggal sehari setelah vintage resmi terbaru (2026-09-09), `retrieved_at` pukul `00:00:00+00:00`, dan `vintage_id` sebagai pemecah seri |
+| `h9b_b2_synthetic_scoring` | B2 menilai baris sintetis memakai skor beku `revised_source_id` |
+| `h9b_synthetic_cell_lineage` | observasi sintetis mencapai sel melalui edge H6C milik observasi dasarnya |
 
 Tiga keputusan pertama menyetujui desain B3 yang sudah berjalan pada H9A, sehingga kontrak dan
 keluaran H9A tidak berubah. Keputusan keempat menutup status `pending_human_decision` pada kontrak
@@ -135,7 +139,9 @@ dijalankan ulang di atas keluaran baru.
 
 1. Periksa bahwa perilaku B2 yang mengabaikan 20 revisi WebAPI memang merupakan konsekuensi yang
    diinginkan dari kebijakan skor beku, lalu putuskan cara naskah membahasnya.
-2. Setujui adapter B2 yang menilai baris sintetis memakai skor `revised_source_id`.
-3. Setujui aturan bahwa observasi sintetis mewarisi edge sel dari observasi dasar yang direvisinya.
+2. **Disetujui 2026-09-11:** adapter B2 menilai baris sintetis memakai skor `revised_source_id`
+   (`h9b_b2_synthetic_scoring`).
+3. **Disetujui 2026-09-11:** observasi sintetis mewarisi edge sel dari observasi dasar yang
+   direvisinya (`h9b_synthetic_cell_lineage`).
 4. Pilih satu skenario kecil satu sumber untuk eksekusi fisik H10. `validation_001` (1 sel, WebAPI)
    adalah satu-satunya skenario validasi yang sudah memenuhi syarat satu sumber.
