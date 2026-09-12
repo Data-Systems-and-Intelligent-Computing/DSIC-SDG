@@ -186,7 +186,11 @@ for name in sorted(os.listdir(directory)):
 ' "$rep" "$scenario" "$treatment" "${container_raw}/eventlogs/${tag}" </dev/null \
     | grep -E '^H14R\|' >> "$raw_dir/read-statistics.txt"
   # The event log is the evidence for those numbers, so it is preserved, compressed.
-  gzip -f "${raw_dir}/eventlogs/${tag}"/* 2>/dev/null || true
+  # Spark writes it as root inside the container with no group read, so the compression
+  # and the permission fix both have to happen in there.
+  "${compose[@]}" exec -T spark bash -lc \
+    "gzip -f ${container_raw}/eventlogs/${tag}/* 2>/dev/null; chmod -R a+r ${container_raw}/eventlogs/${tag}" \
+    </dev/null
 }
 
 for rep in $(seq 1 "$repetitions"); do
