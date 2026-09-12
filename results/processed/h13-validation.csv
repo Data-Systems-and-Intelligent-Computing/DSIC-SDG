@@ -1,0 +1,7 @@
+invariant,status,checked_rows,detail
+the doubt rule was applied to every measured point,pass,40,threshold 0.2 on write_spread_ratio
+every doubtful point was measured again,pass,6,6 doubtful points in 2 rerun units
+every rerun passed the state verification of its own stage,pass,72,H11=12;H12=60
+"every rerun ran on the frozen node, from one commit, with nothing uncommitted but the raw output of the batch",pass,2,h11_rerun:62ff25a:dirty=0;h12_rerun:62ff25a:dirty=1
+"the reported medians are published next to the pooled ones, not replaced",pass,40,h13-stability.csv keeps both columns for every point
+every pooled median outside the stability band is recorded for correction,pass,20,shifted: H12|2|B2|2.064->2.250|0.0901;H12|3|B0|3.497->3.319|-0.0509

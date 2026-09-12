@@ -289,6 +289,18 @@ def key_numbers(src: Sources) -> list[dict[str, str]]:
             row = real_cost[(arrival, treatment)]
             add(f"p3_{treatment.lower()}_release_{arrival}_write_seconds", "P3", "H12", f"Waktu tulis rilis nyata ke-{arrival}, {treatment}", row["write_seconds_median"], "detik", "h12-arrival-cost.csv", f"write_seconds_median; {row['arriving_rows']} baris masuk, {row['overwritten_rows']} tertimpa")
 
+    doubt = src.rows("h13-doubtful-points.csv")
+    stability = src.rows("h13-stability.csv")
+    rerun = [r for r in stability if r["verdict"] != "not_rerun"]
+    add("p3_points_checked", "P3", "H13", "Titik pengukuran yang diperiksa sebarannya", len(doubt), "titik", "h13-doubtful-points.csv", "jumlah baris")
+    add("p3_points_doubtful", "P3", "H13", "Titik yang sebaran fase tulisnya melebihi ambang 0,20", sum(1 for r in doubt if r["doubtful"] == "yes"), "titik", "h13-doubtful-points.csv", "doubtful = yes")
+    add("p3_points_rerun", "P3", "H13", "Titik yang menerima repetisi tambahan", len(rerun), "titik", "h13-stability.csv", "verdict != not_rerun")
+    add("p3_points_stable", "P3", "H13", "Titik yang median gabungannya tetap dalam pita 5 persen", sum(1 for r in rerun if r["verdict"] == "stable"), "titik", "h13-stability.csv", "verdict = stable")
+    add("p3_points_shifted", "P3", "H13", "Titik yang median gabungannya keluar dari pita 5 persen", sum(1 for r in rerun if r["verdict"] == "shifted"), "titik", "h13-stability.csv", "verdict = shifted")
+    if rerun:
+        largest = max(rerun, key=lambda r: abs(Decimal(r["shift_ratio"])))
+        add("p3_largest_median_shift", "P3", "H13", "Pergeseran median terbesar setelah repetisi tambahan", largest["shift_ratio"], "rasio", "h13-stability.csv", f"{largest['stage']} {largest['point']} {largest['treatment_id']}: {largest['write_median_reported']} s menjadi {largest['write_median_pooled']} s")
+
     repro = {r["treatment_id"]: r for r in src.rows("h9c-reproducibility-table.csv")}
     recall = src.rows("h10-recall-after-restart.csv")
     for treatment in TREATMENTS:

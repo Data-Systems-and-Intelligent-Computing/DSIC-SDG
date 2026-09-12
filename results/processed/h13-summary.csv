@@ -1,0 +1,14 @@
+metric,value,unit,interpretation
+points_checked,40,points,"every measurement point of H11 and H12, treatment by treatment"
+points_doubtful,6,points,write-phase repetitions disagreeing by more than the frozen threshold
+points_rerun,20,points,"points that received additional repetitions, including those measured in the same cycle"
+points_stable,18,points,pooled median within the stability band of the reported median
+points_shifted,2,points,pooled median outside the band; the article must correct these
+shift_h12_2_b2,0.0901,ratio,"reported 2.064 s over 3 runs, pooled 2.250 s over 6 runs, spread 0.2185 to 0.2004"
+shift_h12_3_b0,-0.0509,ratio,"reported 3.497 s over 3 runs, pooled 3.319 s over 6 runs, spread 0.2122 to 0.2235"
+shift_h12_2_b3,-0.0436,ratio,"reported 6.467 s over 3 runs, pooled 6.185 s over 6 runs, spread 0.1022 to 0.1759"
+shift_h12_4_b1,-0.0410,ratio,"reported 2.269 s over 3 runs, pooled 2.176 s over 6 runs, spread 0.1379 to 0.1438"
+shift_h12_2_b0,0.0397,ratio,"reported 3.929 s over 3 runs, pooled 4.085 s over 6 runs, spread 0.0255 to 0.1226"
+shift_h11_sweep_001_b0,-0.0371,ratio,"reported 11.324 s over 3 runs, pooled 10.904 s over 6 runs, spread 0.0632 to 0.0657"
+shift_h12_4_b2,0.0301,ratio,"reported 1.830 s over 3 runs, pooled 1.885 s over 6 runs, spread 0.1661 to 0.2493"
+shift_h12_2_b1,0.0259,ratio,"reported 2.315 s over 3 runs, pooled 2.375 s over 6 runs, spread 0.1598 to 0.2535"

@@ -1,0 +1,167 @@
+{
+  "contract_version": "h13.1",
+  "doubt_rule": {
+    "applies_to": [
+      "results/processed/h11-statement-timing.csv",
+      "results/processed/h12-statement-timing.csv"
+    ],
+    "definition": "(max - min) / median of the per-repetition write-phase seconds of one measurement point",
+    "rule_fixed_before_selection": true,
+    "statistic": "write_spread_ratio",
+    "threshold": 0.2,
+    "why_the_write_phase": "the write statement is the treatment cost the article reports; maintenance is reported separately and its spread is carried along for the record"
+  },
+  "environments": {
+    "h11_rerun": {
+      "catalog_uri": "jdbc:sqlite:/home/iceberg/iceberg_catalog.db",
+      "compose_sha256": "c8318b63c1855de3330eeefa0bf91492eefa332290f878b70c0d47bccd5965aa",
+      "finished_at_utc": "2026-09-12T22:54:10Z",
+      "git_commit": "62ff25a2c9fe86b79b3317e71ece2d12ced80f4a",
+      "git_dirty_entries": "0",
+      "host_disk_free_bytes_after": "3438530560",
+      "host_disk_free_bytes_before": "3442634752",
+      "host_disk_total_bytes": "19594608640",
+      "host_mem_total_bytes": "8318799872",
+      "host_nproc": "2",
+      "hostname": "praktikum-sd",
+      "image_iceberg-rest": "sha256:8921def9ab4e42df83972ee9d228d3d2c275100b55e6127cdf811b1f6bc53f72",
+      "image_minio": "sha256:c7175077d39a8cc10c9fd611cdcc68b6a5b365793e9ac6f4198ffff1ef0fe555",
+      "image_spark": "sha256:790a72e744e0d09f161e1b4c7c2f79625cc598cf0476da4703e62f1f4e023460",
+      "limited_run": "yes",
+      "payload_manifest_sha256": "f15b439b77c79dc670b81638b359ef2489bda16eb319d24093377b53f04bdc88",
+      "repetitions": "3",
+      "run_label": "h13-h11-sweep001",
+      "scenarios": "sweep_001",
+      "spark_container_nproc": "2",
+      "spark_defaults_sha256": "77c1f777f4a29b6cc69c14fb4b9b7fdbc5b603a9fd4f68173a0e6aa02d2a5339",
+      "spark_driver_memory": "2g",
+      "started_at_utc": "2026-09-12T22:32:22Z",
+      "versions_env_sha256": "af5f61ea78a765d43158d19f115fa5567d22e0d2e2530db3df8a21effaa8f81b"
+    },
+    "h12_rerun": {
+      "arrivals": "4",
+      "catalog_uri": "jdbc:sqlite:/home/iceberg/iceberg_catalog.db",
+      "compose_sha256": "c8318b63c1855de3330eeefa0bf91492eefa332290f878b70c0d47bccd5965aa",
+      "finished_at_utc": "2026-09-12T23:13:59Z",
+      "git_commit": "62ff25a2c9fe86b79b3317e71ece2d12ced80f4a",
+      "git_dirty_entries": "1",
+      "host_disk_free_bytes_after": "3434708992",
+      "host_disk_free_bytes_before": "3438522368",
+      "host_mem_total_bytes": "8318799872",
+      "host_nproc": "2",
+      "hostname": "praktikum-sd",
+      "image_iceberg-rest": "sha256:8921def9ab4e42df83972ee9d228d3d2c275100b55e6127cdf811b1f6bc53f72",
+      "image_minio": "sha256:c7175077d39a8cc10c9fd611cdcc68b6a5b365793e9ac6f4198ffff1ef0fe555",
+      "image_spark": "sha256:790a72e744e0d09f161e1b4c7c2f79625cc598cf0476da4703e62f1f4e023460",
+      "limited_run": "yes",
+      "payload_manifest_sha256": "f15b439b77c79dc670b81638b359ef2489bda16eb319d24093377b53f04bdc88",
+      "repetitions": "3",
+      "run_label": "h13-h12",
+      "spark_defaults_sha256": "77c1f777f4a29b6cc69c14fb4b9b7fdbc5b603a9fd4f68173a0e6aa02d2a5339",
+      "spark_driver_memory": "2g",
+      "started_at_utc": "2026-09-12T22:54:11Z",
+      "versions_env_sha256": "af5f61ea78a765d43158d19f115fa5567d22e0d2e2530db3df8a21effaa8f81b"
+    }
+  },
+  "execution_status": "rerun_completed",
+  "inputs": [
+    {
+      "path": "contracts/h13-rerun-stability.json",
+      "sha256": "9d29361aa788bc216e1a5a1c52a06daa1a01406215519681a4bc83b4d5b3102f"
+    },
+    {
+      "path": "results/processed/h11-statement-timing.csv",
+      "sha256": "ef3321772b9b0418975f5968472d26ad36dd10aca7550e551e0a36442b1bbb69"
+    },
+    {
+      "path": "results/processed/h12-statement-timing.csv",
+      "sha256": "6d9422b563a4d512004bbf8fd97ebd1fddadded7f42b999cc262bd6b817f2448"
+    },
+    {
+      "path": "data/manifests/h11-main-sweep-payload.json",
+      "sha256": "f15b439b77c79dc670b81638b359ef2489bda16eb319d24093377b53f04bdc88"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h13-doubtful-points.csv",
+      "rows": 40,
+      "sha256": "4f22458e4902b0b59a370565223fb7ee31967dd9442c162b8df51b8fc9e285e5"
+    },
+    {
+      "path": "results/processed/h13-stability.csv",
+      "rows": 40,
+      "sha256": "d0a4d5a4beccbc37a64ba8ed5bde300b8591218c8ff7482cccd9e97484a38f6c"
+    },
+    {
+      "path": "results/processed/h13-validation.csv",
+      "rows": 6,
+      "sha256": "2e5217dd78a0d51cc308243abc98e5a440077b96659b2726cf771d1eeae527b4"
+    },
+    {
+      "path": "results/processed/h13-summary.csv",
+      "rows": 13,
+      "sha256": "9a0327707c8e4e3a0a119dd7af96faa038502ee56412dcafeda3a4952bf5865a"
+    }
+  ],
+  "raw_inputs": [
+    {
+      "path": "results/raw/h11/h13-h11-sweep001/baseline-markers.txt",
+      "sha256": "7b5aebe457bc5401192d6ab2024ce132502b99092a3b235aabe99b873941a4b6"
+    },
+    {
+      "path": "results/raw/h11/h13-h11-sweep001/cycles.txt",
+      "sha256": "4d76190ac1993f6572e99d66a6f51af86824be18af066dd8dbe9ce130bb2ce7f"
+    },
+    {
+      "path": "results/raw/h11/h13-h11-sweep001/environment.txt",
+      "sha256": "848ede74ae5f2b7594f824fe0ada8a71f545503bcc0ac51d7be870629496d6b9"
+    },
+    {
+      "path": "results/raw/h11/h13-h11-sweep001/footprint.txt",
+      "sha256": "f8715cdfbbebf5174a33bb0e704918c8fa3b577413e2b53d4eb573e3b75835af"
+    },
+    {
+      "path": "results/raw/h11/h13-h11-sweep001/injection.txt",
+      "sha256": "f019a4c64afe8a0489856f3bfb721c1ebcbd8d2cf7fd8fdb2598fbf0c65f8af5"
+    },
+    {
+      "path": "results/raw/h11/h13-h11-sweep001/listing.txt",
+      "sha256": "98ff83d1f0b5679336aae0b3cd693823566f3542c948563db8f0bd8fd076bd9f"
+    },
+    {
+      "path": "results/raw/h11/h13-h11-sweep001/recall.txt",
+      "sha256": "b49fc1e5fc09f5245fdf9bce579d152205c5a7615379fa440f59a90fae2fdaea"
+    },
+    {
+      "path": "results/raw/h11/h13-h11-sweep001/timing.txt",
+      "sha256": "1be5a141aa56ca6d7f02526ebaf33d1cb7e80dfa39f479932067bec89cecdc91"
+    },
+    {
+      "path": "results/raw/h12/h13-h12/arrivals.txt",
+      "sha256": "c27ada02874442fffaa427d9f302ca8abd006e170120aee0f999e27833476786"
+    },
+    {
+      "path": "results/raw/h12/h13-h12/cycles.txt",
+      "sha256": "38a81255af4b153aa84a4646dd06976d6f66095293b7405b62fceea6696bb78c"
+    },
+    {
+      "path": "results/raw/h12/h13-h12/environment.txt",
+      "sha256": "bcea8061fc899b3e56d651b1c1dac49780ba5d3e7f3939f5857133979c546464"
+    },
+    {
+      "path": "results/raw/h12/h13-h12/footprint.txt",
+      "sha256": "2e0d095793f2a909b0858a38e72086ca715cc9d9827d865284cc56bed83b5a76"
+    },
+    {
+      "path": "results/raw/h12/h13-h12/listing.txt",
+      "sha256": "18cb011874b57a76944d817701b233335e008d298cdcebae5ffd646cb7b2c199"
+    },
+    {
+      "path": "results/raw/h12/h13-h12/timing.txt",
+      "sha256": "ae1e273072bd02cf4e6899f749fff747f4bcc894a44790b49dfbb3cccd22ffb5"
+    }
+  ],
+  "stage": "H13",
+  "track": "B"
+}

@@ -38,3 +38,5 @@ p4-reproducibility,results/processed/h11-recall.csv,Recall permintaan panel dan 
 pembahasan-b2,results/processed/h11-propagation.csv,Propagasi revisi per perlakuan pada semesta sweep sumber tunggal (H11)
 p3-ongkos,results/processed/h12-arrival-cost.csv,"Waktu, keadaan dan byte tiap perlakuan setelah setiap rilis nyata panel (H12)"
 p3-ongkos,results/processed/h12-final-footprint.csv,Footprint akhir tiap tabel setelah keempat rilis nyata diterapkan (H12)
+p3-ongkos,results/processed/h13-doubtful-points.csv,Sebaran repetisi setiap titik pengukuran H11 dan H12 beserta penandaan meragukan (H13)
+p3-ongkos,results/processed/h13-stability.csv,Median terbitan dan median gabungan setelah repetisi tambahan pada titik yang diulang (H13)

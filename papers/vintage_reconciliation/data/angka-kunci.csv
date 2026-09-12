@@ -117,6 +117,12 @@ p3_b0_release_2_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-2, B0",3.929,de
 p3_b0_release_4_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-4, B0",3.197,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 4591 baris masuk, 797 tertimpa"
 p3_b1_release_2_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-2, B1",2.315,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 62 baris masuk, 38 tertimpa"
 p3_b1_release_4_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-4, B1",2.269,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 4591 baris masuk, 797 tertimpa"
+p3_points_checked,P3,H13,Titik pengukuran yang diperiksa sebarannya,40,titik,results/processed/h13-doubtful-points.csv,jumlah baris
+p3_points_doubtful,P3,H13,"Titik yang sebaran fase tulisnya melebihi ambang 0,20",6,titik,results/processed/h13-doubtful-points.csv,doubtful = yes
+p3_points_rerun,P3,H13,Titik yang menerima repetisi tambahan,20,titik,results/processed/h13-stability.csv,verdict != not_rerun
+p3_points_stable,P3,H13,Titik yang median gabungannya tetap dalam pita 5 persen,18,titik,results/processed/h13-stability.csv,verdict = stable
+p3_points_shifted,P3,H13,Titik yang median gabungannya keluar dari pita 5 persen,2,titik,results/processed/h13-stability.csv,verdict = shifted
+p3_largest_median_shift,P3,H13,Pergeseran median terbesar setelah repetisi tambahan,0.0901,rasio,results/processed/h13-stability.csv,H12 2 B2: 2.064 s menjadi 2.250 s
 p4_b0_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B0",0.3684,rasio,results/processed/h9c-reproducibility-table.csv,success_rate
 p4_b0_recalled_after_restart,P4,H10A,"Angka terbit yang dipanggil ulang fisik setelah restart katalog, B0",14,permintaan dari 38,results/processed/h10-recall-after-restart.csv,addressable = yes
 p4_b1_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B1",1.0000,rasio,results/processed/h9c-reproducibility-table.csv,success_rate

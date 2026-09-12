@@ -145,6 +145,23 @@ Datanya identik; selisihnya berupa metadata, karena menerapkan empat rilis satu 
 lebih banyak catatan metadata daripada membangun keadaan yang sama dalam satu jalan. Ini sekali lagi
 menunjukkan bahwa pada beban sekecil ini metadata bukan komponen yang dapat diabaikan.
 
+### Koreksi dari H13
+
+H13 menerapkan aturan keraguan pada seluruh titik pengukuran dan menjalankan ulang keempat kedatangan
+H12 dengan tiga repetisi tambahan. Empat belas dari enam belas titik tetap berada dalam pita 5
+persen, dan dua bergeser di luarnya:
+
+| Kedatangan | Perlakuan | Median tulis 3 repetisi | Median tulis 6 repetisi | Pergeseran |
+|---:|---|---:|---:|---:|
+| 2 | B2 | 2,064 s | 2,250 s | +9,01% |
+| 3 | B0 | 3,497 s | 3,319 s | −5,09% |
+
+Kedua angka tersebut wajib dibaca sebagai median gabungan enam repetisi. Selisih absolutnya 0,186 dan
+0,178 detik, dan tidak satu pun pernyataan pada bagian ini berubah: pada kedatangan kedua `MERGE` B0
+tetap jauh lebih mahal daripada `INSERT OVERWRITE` B1, yaitu 4,085 berbanding 2,375 detik pada median
+gabungan, dan urutan biaya keempat perlakuan tidak bergeser. Rinciannya ada di
+[`h13-rerun-stability.md`](h13-rerun-stability.md).
+
 ### Apa yang ditambahkan H12 terhadap H11
 
 Tiga hal. Pertama, urutan biaya antarperlakuan terbukti sama pada revisi nyata dan revisi tersuntik,

@@ -516,9 +516,25 @@ ditulis Jalur A dan C pada hari yang sama di
 [`papers/vintage_reconciliation/draft/04-metode.md`](papers/vintage_reconciliation/draft/04-metode.md),
 lengkap dengan bagian ancaman terhadap validitas.
 
+H13 sisi operator menguji apakah angka yang sudah dilaporkan cukup stabil untuk dipakai. Aturan
+keraguan ditetapkan lebih dahulu, yaitu sebaran fase tulis melebihi 20 persen mediannya, lalu
+diterapkan secara mekanis pada seluruh 40 titik pengukuran H11 dan H12. Enam titik melewati ambang,
+dan repetisi yang melar tidak berkumpul pada satu repetisi tertentu, sehingga penyebabnya derau node
+bersama dan bukan efek pemanasan yang dapat dibuang. Kedua unit yang memuatnya dijalankan ulang
+dengan tiga repetisi tambahan, sehingga 20 titik memperoleh enam repetisi: 18 stabil dan 2 bergeser.
+Keempat titik paling meragukan justru bertahan, misalnya B2 pada `sweep_001` bergerak hanya dari
+9,998 menjadi 9,956 detik. Dua yang bergeser berada pada H12, yaitu kedatangan 2 perlakuan B2 dari
+2,064 menjadi 2,250 detik dan kedatangan 3 perlakuan B0 dari 3,497 menjadi 3,319 detik; keduanya
+dikoreksi di laporan H12 dan dicatat di
+[`docs/research/decision-log.md`](docs/research/decision-log.md) sebagai `dl-06`, dan tidak satu pun
+kesimpulan berubah karenanya. Median terbitan tidak pernah diganti, melainkan dilaporkan berdampingan
+dengan median gabungan. Jalankan `make h13-rerun` lalu `make h13-run`; rincian ada di
+[`docs/research/h13-rerun-stability.md`](docs/research/h13-rerun-stability.md). Marker:
+`H13_VERIFY|40|6|20|3|18|2|0.0901|verified`.
+
 Semua angka dan tabel untuk naskah dikumpulkan di
-[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 39 tabel per pertanyaan
-penelitian, 3 tabel turunan, dan 140 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
+[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 41 tabel per pertanyaan
+penelitian, 3 tabel turunan, dan 146 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
 dengan `make article-bundle`, yang memverifikasi checksum setiap sumber terhadap manifest tahapnya.
 Bahan mentah sumber di `data/raw/` hanya ada di laptop peneliti. `make raw-backup` membuat arsip
 beserta daftar checksum di `backups/`, dan arsip itu wajib disalin ke lokasi kedua.

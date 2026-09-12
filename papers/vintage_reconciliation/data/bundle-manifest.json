@@ -352,6 +352,24 @@
       "sha256": "9a3985b4245ac68984ec40e1cdd3e94addb7da94892d7a2f7fe66cf5a8f9c69b",
       "source_manifest": "data/manifests/h12-real-revision-cost.json",
       "source_path": "results/processed/h12-final-footprint.csv"
+    },
+    {
+      "description": "Sebaran repetisi setiap titik pengukuran H11 dan H12 beserta penandaan meragukan (H13)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h13-doubtful-points.csv",
+      "rows": 40,
+      "sha256": "4f22458e4902b0b59a370565223fb7ee31967dd9442c162b8df51b8fc9e285e5",
+      "source_manifest": "data/manifests/h13-rerun-stability.json",
+      "source_path": "results/processed/h13-doubtful-points.csv"
+    },
+    {
+      "description": "Median terbitan dan median gabungan setelah repetisi tambahan pada titik yang diulang (H13)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h13-stability.csv",
+      "rows": 40,
+      "sha256": "d0a4d5a4beccbc37a64ba8ed5bde300b8591218c8ff7482cccd9e97484a38f6c",
+      "source_manifest": "data/manifests/h13-rerun-stability.json",
+      "source_path": "results/processed/h13-stability.csv"
     }
   ],
   "derived_tables": [
@@ -370,14 +388,14 @@
     {
       "description": "Angka kunci naskah beserta sumber dan cara penurunannya",
       "path": "angka-kunci.csv",
-      "rows": 140,
-      "sha256": "206580cfb547da17231d6fc90e573ea8e8717c0ba0003347909048fcc1189421"
+      "rows": 146,
+      "sha256": "a81b7ad9990d004fae00b0a039cb09f83bb90f9d4643da07dd8b979e954f83eb"
     }
   ],
   "inputs": [
     {
       "path": "config/article/bundle_tables.csv",
-      "sha256": "1fcf0c8e921203e2658f8138f76d0781498558c9d1a1a01a80465e64a6de0fe8"
+      "sha256": "dab1d77f027d567f1211cb43a7ad32296c8021cd7d4409b175b0e860d78c51cd"
     }
   ],
   "verified_sources": [
@@ -465,6 +483,16 @@
       "path": "results/processed/h12-final-footprint.csv",
       "sha256": "9a3985b4245ac68984ec40e1cdd3e94addb7da94892d7a2f7fe66cf5a8f9c69b",
       "source_manifest": "data/manifests/h12-real-revision-cost.json"
+    },
+    {
+      "path": "results/processed/h13-doubtful-points.csv",
+      "sha256": "4f22458e4902b0b59a370565223fb7ee31967dd9442c162b8df51b8fc9e285e5",
+      "source_manifest": "data/manifests/h13-rerun-stability.json"
+    },
+    {
+      "path": "results/processed/h13-stability.csv",
+      "sha256": "d0a4d5a4beccbc37a64ba8ed5bde300b8591218c8ff7482cccd9e97484a38f6c",
+      "source_manifest": "data/manifests/h13-rerun-stability.json"
     },
     {
       "path": "results/processed/h2-indicator-summary.csv",

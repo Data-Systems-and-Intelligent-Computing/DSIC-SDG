@@ -1,0 +1,69 @@
+{
+  "contract_version": "h13.1",
+  "stage": "H13",
+  "track": "B",
+  "name": "rerun_of_doubtful_measurements",
+  "description": "Find the measurement points whose repetitions disagree too much to be trusted, run them again with additional repetitions, and report whether the medians already published survive the extra evidence.",
+  "human_decisions": {
+    "registry": "config/h10c/human_decisions.csv",
+    "approved_at": "2026-09-12",
+    "decision_ids": [
+      "h10c_resource_limit"
+    ],
+    "note": "H13 adds repetitions to points that were already measured under the frozen configuration; it changes no frozen parameter, so it needs no new experiment version. The freeze leaves the number of extra repetitions open and requires the reason for every rerun to be recorded."
+  },
+  "doubt_rule": {
+    "statistic": "write_spread_ratio",
+    "definition": "(max - min) / median of the per-repetition write-phase seconds of one measurement point",
+    "threshold": 0.20,
+    "applies_to": [
+      "results/processed/h11-statement-timing.csv",
+      "results/processed/h12-statement-timing.csv"
+    ],
+    "rule_fixed_before_selection": true,
+    "why_the_write_phase": "the write statement is the treatment cost the article reports; maintenance is reported separately and its spread is carried along for the record"
+  },
+  "rerun": {
+    "unit": "whatever the measuring script executes as one cycle: a sweep scenario for H11, the four arrivals for H12",
+    "additional_repetitions": 3,
+    "execution": "serial, one operator, the same frozen scripts with only the repetition and scenario limits set",
+    "runs": [
+      {
+        "stage": "H11",
+        "raw_dir": "results/raw/h11/h13-h11-sweep001",
+        "scenarios": [
+          "sweep_001"
+        ],
+        "command": "H11_LIMIT_SCENARIOS=sweep_001 H11_LIMIT_REPETITIONS=3 bash scripts/h11_measure.sh . h13-h11-sweep001"
+      },
+      {
+        "stage": "H12",
+        "raw_dir": "results/raw/h12/h13-h12",
+        "arrivals": 4,
+        "command": "H12_LIMIT_REPETITIONS=3 bash scripts/h12_measure.sh . h13-h12"
+      }
+    ]
+  },
+  "verdict": {
+    "statistic": "shift_ratio",
+    "definition": "(pooled median - reported median) / reported median of the write-phase seconds",
+    "stable_within": 0.05,
+    "consequence_if_shifted": "the reported number is corrected in the article and the correction is recorded in the decision log; H13 never silently replaces a published median",
+    "reported_medians_stay": "the H11 and H12 tables keep the medians of their own repetitions; the pooled median is reported next to them, never in place of them"
+  },
+  "verification": {
+    "state_checks": "every rerun repeats the state checks of its own stage, and a rerun with a single mismatch is discarded instead of pooled",
+    "environment": "the rerun must report the same frozen node, the same stack checksums and a clean working tree"
+  },
+  "measurement_boundary": {
+    "timing": "measured_on_declared_environment",
+    "claim_limit": "comparative between treatments on the declared 2 vCPU VM; never a performance or scalability claim",
+    "statistics": "medians with minimum and maximum only; the repetition counts do not support significance testing"
+  },
+  "invariants": [
+    "the doubt rule is applied mechanically to every measured point, not to a chosen subset",
+    "every rerun passes the state verification of its own stage",
+    "reported medians and pooled medians are both published",
+    "every rerun is recorded in the decision log with the reason that triggered it"
+  ]
+}
