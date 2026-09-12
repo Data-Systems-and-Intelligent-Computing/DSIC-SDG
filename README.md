@@ -494,7 +494,8 @@ sumber, sehingga perilaku menahan B2 pada H9B tidak dapat muncul di sini. Jalank
 SQL yang ditemukan serta diperbaiki sebelum run utama ada di
 [`docs/research/h11-main-sweep.md`](docs/research/h11-main-sweep.md). Marker:
 `H11_VERIFY|3|6|72|6983|5378|24.652|10.056|24.616|38.007|24.861|10.068|23.052|35.626|14459|469682|26363|52873|0.7660|1.0000|0.7660|1.0000|none|none|measured`.
-Seluruh 133 test lulus.
+Agregasi yang dijalankan ulang di VM menghasilkan marker dan checksum seluruh keluaran yang identik
+dengan laptop, dan 133 test lulus dengan satu test PDF dilewati.
 
 Semua angka dan tabel untuk naskah dikumpulkan di
 [`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 37 tabel per pertanyaan

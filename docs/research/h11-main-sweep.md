@@ -277,6 +277,26 @@ Waktu hanya boleh dibaca sebagai perbandingan antarperlakuan pada perangkat kera
 provinsi berukuran 5.378 sel tetap kecil, dan titik impas yang ditemukan atau tidak ditemukan hanya
 berlaku untuk rentang ukuran yang benar-benar disapu, tanpa interpolasi maupun ekstrapolasi.
 
+## Reproduksi
+
+```bash
+make h11-prepare                       # panel, payload, dan prediksi
+bash scripts/h11_measure.sh . <label>  # di host stack, satu operator, berurutan
+make h11-run H11_RUN=<label>           # audit dan agregasi
+```
+
+Tahap `prepare` tidak memerlukan stack dan dapat dijalankan di mana saja; ia menolak berjalan bila
+satu saja berkas bukti beku tidak lagi cocok dengan checksum pada
+[`config/experiments/experiment_freeze.csv`](../../config/experiments/experiment_freeze.csv).
+Tahap agregasi menolak run yang ditandai `limited_run=yes` maupun run yang tidak mencakup ketiga
+repetisi dan keenam titik beku.
+
+Agregasi diulang di VM `praktikum-sd` dari commit yang sama, dan seluruh keluaran `results/processed/h11-*.csv`
+beserta kedua manifestnya menghasilkan checksum yang identik dengan hasil di laptop peneliti. Kedelapan
+berkas mentah yang masuk Git juga identik byte per byte dengan yang ditulis mesin pengukur. Seluruh
+133 test lulus pada kedua mesin, dengan satu test ekstraksi PDF dilewati karena PDF mentah tidak
+disimpan di Git.
+
 ## Artefak audit
 
 - kontrak: `contracts/h11-main-sweep.json`;
