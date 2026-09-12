@@ -1,0 +1,18 @@
+file_path,last_modified
+s3://kkciv-warehouse/experiments/b2_indicator_selected/data/domain=ecology/00000-3-97623e2b-1094-4920-b5b3-76f1ef123a03-0-00003.parquet,2026-09-11 11:27:56
+s3://kkciv-warehouse/experiments/b2_indicator_selected/data/domain=ecology/00000-3-d846acb5-8340-401b-a077-fb800aec3bea-0-00003.parquet,2026-09-09 07:58:00
+s3://kkciv-warehouse/experiments/b2_indicator_selected/data/domain=economy/00000-3-97623e2b-1094-4920-b5b3-76f1ef123a03-0-00001.parquet,2026-09-11 11:27:56
+s3://kkciv-warehouse/experiments/b2_indicator_selected/data/domain=economy/00000-3-d846acb5-8340-401b-a077-fb800aec3bea-0-00001.parquet,2026-09-09 07:58:00
+s3://kkciv-warehouse/experiments/b2_indicator_selected/data/domain=energy/00000-3-97623e2b-1094-4920-b5b3-76f1ef123a03-0-00002.parquet,2026-09-11 11:27:56
+s3://kkciv-warehouse/experiments/b2_indicator_selected/data/domain=energy/00000-3-d846acb5-8340-401b-a077-fb800aec3bea-0-00002.parquet,2026-09-09 07:58:00
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/00000-eecc1972-6a1b-49ec-90f2-66aa3a1e5dc1.metadata.json,2026-09-09 07:56:34
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/00000-fae12035-3c04-45f7-b535-c2a37bec727b.metadata.json,2026-09-11 11:27:36
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/00001-3fad06c2-952f-4d32-b30c-639215922317.metadata.json,2026-09-09 07:56:55
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/00001-d321c8a4-8153-4bde-8d17-84624678ada0.metadata.json,2026-09-11 11:27:57
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/00002-6da62e64-ee29-4774-bbc1-d8f8a808cf1c.metadata.json,2026-09-09 07:58:01
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/00003-48d8cf4b-7510-4df6-9ac5-5458e2c859a3.metadata.json,2026-09-09 07:58:02
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/3b55ab70-ab78-4619-ac26-48ea158bd484-m0.avro,2026-09-11 11:27:56
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/f8aadc60-dc64-4a9e-a658-054e02f02e6e-m0.avro,2026-09-09 07:58:01
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/f8aadc60-dc64-4a9e-a658-054e02f02e6e-m1.avro,2026-09-09 07:58:01
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/snap-3573121250119357232-1-3b55ab70-ab78-4619-ac26-48ea158bd484.avro,2026-09-11 11:27:57
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/snap-4726098966496889026-1-f8aadc60-dc64-4a9e-a658-054e02f02e6e.avro,2026-09-09 07:58:01
