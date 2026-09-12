@@ -18,3 +18,13 @@ tmp/
 papers/els-cas-templates
 # Local archives of data/raw; copy them to a second location, never commit them.
 backups/
+
+# LaTeX build artifacts; the manuscript is rebuilt from main.tex and refs.bib.
+papers/vintage_reconciliation/manuscript/main.pdf
+papers/vintage_reconciliation/manuscript/*.aux
+papers/vintage_reconciliation/manuscript/*.abs
+papers/vintage_reconciliation/manuscript/*.bbl
+papers/vintage_reconciliation/manuscript/*.blg
+papers/vintage_reconciliation/manuscript/*.log
+papers/vintage_reconciliation/manuscript/*.out
+papers/vintage_reconciliation/manuscript/*.spl

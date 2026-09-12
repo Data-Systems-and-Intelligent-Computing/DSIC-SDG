@@ -1,0 +1,39 @@
+selection_rank,cell_id,indicator_key,series_key,observed_period,geo_level,geo_code,geo_name,unit,base_source_id,base_value_lexeme
+1,f655daf9c7189ef53b78,sdg08_productivity_growth,total,2025,province,1300,Sumatera Barat,percent,bps_webapi,0.16
+2,518cb2dbc96b03a7ef6c,sdg08_productivity_growth,total,2025,province,1500,Jambi,percent,bps_webapi,3.87
+3,f7ecb1883aa83de08505,sdg08_productivity_growth,total,2025,province,3200,Jawa Barat,percent,bps_webapi,4.93
+4,fdaaa3c1bdc22fbe7d62,sdg08_productivity_growth,total,2025,province,1400,Riau,percent,bps_webapi,3.11
+5,84b30c24eace1e1a6dc5,sdg08_productivity_growth,total,2025,province,3300,Jawa Tengah,percent,bps_webapi,3.22
+6,c1b8bcff725f214a9466,sdg08_productivity_growth,total,2025,province,7300,Sulawesi Selatan,percent,bps_webapi,3.69
+7,cbe519449e41300a4184,sdg08_productivity_growth,total,2025,province,1600,Sumatera Selatan,percent,bps_webapi,5.05
+8,042fd0148d20a8caa19a,sdg08_productivity_growth,total,2025,province,2100,Kep. Riau,percent,bps_webapi,6.64
+9,3444568b44a846c2053e,sdg08_productivity_growth,total,2025,province,3600,Banten,percent,bps_webapi,6.14
+10,15b32a8759c7403b435e,sdg08_productivity_growth,total,2025,province,3500,Jawa Timur,percent,bps_webapi,3.38
+11,d9e326095a3f240bfa4b,sdg08_productivity_growth,total,2025,province,3400,Di Yogyakarta,percent,bps_webapi,4.66
+12,775bc5ede0b28b080f98,sdg08_productivity_growth,total,2025,province,6400,Kalimantan Timur,percent,bps_webapi,4.88
+13,90a3159b8a7b4bd4e061,sdg08_productivity_growth,total,2025,province,7400,Sulawesi Tenggara,percent,bps_webapi,5.56
+14,91d71a779a47db1c23e2,sdg08_productivity_growth,total,2025,province,7100,Sulawesi Utara,percent,bps_webapi,3.01
+15,8788e4198f43d007511b,sdg08_productivity_growth,total,2025,province,1900,Kep. Bangka Belitung,percent,bps_webapi,1.49
+16,3b659c42075a31bc828b,sdg08_productivity_growth,total,2025,province,7200,Sulawesi Tengah,percent,bps_webapi,4.92
+17,29c43c170df0383b5802,sdg08_productivity_growth,total,2025,province,5200,Nusa Tenggara Barat,percent,bps_webapi,3.18
+18,55e90861aacfe1af1cf9,sdg08_productivity_growth,total,2025,province,7500,Gorontalo,percent,bps_webapi,5.53
+19,b6c8750e3fcf63d75190,sdg08_productivity_growth,total,2025,province,8200,Maluku Utara,percent,bps_webapi,31.79
+20,473d3f8b67ccd5db5a86,sdg08_productivity_growth,total,2025,province,1200,Sumatera Utara,percent,bps_webapi,1.22
+21,0f162523fe74d1b2090c,sdg08_productivity_growth,total,2025,province,9100,Papua Barat,percent,bps_webapi,7.11
+22,4492f58c2bbce2a2d5f9,sdg08_productivity_growth,total,2025,province,7600,Sulawesi Barat,percent,bps_webapi,-0.29
+23,ebe21ab8cd07f32503b4,sdg08_productivity_growth,total,2025,province,1700,Bengkulu,percent,bps_webapi,3.47
+24,de51e35566585c57d7af,sdg08_productivity_growth,total,2025,province,8100,Maluku,percent,bps_webapi,2.88
+25,edc6a80da9b6ea8f7c1c,sdg08_productivity_growth,total,2025,province,6200,Kalimantan Tengah,percent,bps_webapi,3.66
+26,ac26da15f37e794a1959,sdg08_productivity_growth,total,2025,province,9600,Papua Tengah,percent,bps_webapi,-22.96
+27,49d6563bb2811eb71d8e,sdg08_productivity_growth,total,2025,province,1100,Aceh,percent,bps_webapi,0.84
+28,9eb560de8e683bc912e4,sdg08_productivity_growth,total,2025,province,1800,Lampung,percent,bps_webapi,3.85
+29,7d042823ae6be8d4a8c3,sdg08_productivity_growth,total,2025,province,6300,Kalimantan Selatan,percent,bps_webapi,4.06
+30,e4e0a2467bb328d2ae47,sdg08_productivity_growth,total,2025,province,9200,Papua Barat Daya,percent,bps_webapi,2.61
+31,bc73b93a22e680ac17ab,sdg08_productivity_growth,total,2025,province,9700,Papua Pegunungan,percent,bps_webapi,0.59
+32,c2a1a9ac151304cd246a,sdg08_productivity_growth,total,2025,province,9500,Papua Selatan,percent,bps_webapi,7.61
+33,036d1c973ea85251e9a6,sdg08_productivity_growth,total,2025,province,6500,Kalimantan Utara,percent,bps_webapi,3.95
+34,88766631e03a967c1ead,sdg08_productivity_growth,total,2025,province,5100,Bali,percent,bps_webapi,4.4
+35,4166b79514eeade8b707,sdg08_productivity_growth,total,2025,province,9400,Papua,percent,bps_webapi,9.9
+36,cb3058c1431b9559a7b8,sdg08_productivity_growth,total,2025,province,5300,Nusa Tenggara Timur,percent,bps_webapi,6.38
+37,1edba888e2c21aa52529,sdg08_productivity_growth,total,2025,province,6100,Kalimantan Barat,percent,bps_webapi,2.98
+38,3c4b1f42bcb9b851d450,sdg08_productivity_growth,total,2025,province,3100,Dki Jakarta,percent,bps_webapi,4.78

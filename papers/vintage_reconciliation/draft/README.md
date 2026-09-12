@@ -1,0 +1,41 @@
+# Draf Naskah — Vintage-Aware Reconciliation of Official SDG Indicators
+
+Folder ini menampung draf bagian naskah yang ditulis Jalur C. Draf ditulis dalam bahasa Indonesia
+lebih dahulu agar alur argumennya dapat diperiksa bersama, lalu diterjemahkan ke bahasa Inggris
+menjelang submit. Target venue tetap jurnal Q1 Scopus sesuai §7 README utama.
+
+## Isi
+
+| Berkas | Bagian naskah | Ditulis |
+|---|---|---|
+| `01-pendahuluan.md` | Pendahuluan | H10 Jalur C, 12 September 2026 |
+| `02-kedudukan-terhadap-literatur.md` | Kedudukan terhadap Literatur | H10 Jalur C, 12 September 2026 |
+
+Versi bahasa Inggris kedua bagian tersebut, dalam format Elsevier CAS kolom ganda, ada di
+[`../manuscript/`](../manuscript/README.md) dan dapat dikompilasi dengan `make manuscript`.
+
+Metode, Hasil, Pembahasan, dan Kesimpulan belum ditulis. Metode dijadwalkan pada H12 dan Hasil pada
+H15 sesuai §6.5 README utama.
+
+## Aturan penulisan yang dipakai
+
+1. **Angka tidak diketik ulang.** Setiap angka pada draf diambil dari
+   `papers/vintage_reconciliation/data/angka-kunci.csv` melalui `metric_id`. Setiap berkas draf
+   ditutup tabel pemetaan dari kalimat ke `metric_id` agar angkanya dapat diperiksa tanpa membuka
+   pipeline.
+2. **Klaim yang belum ada buktinya ditandai, bukan ditulis halus.** Penanda
+   `[Sumber belum mendukung klaim ...]` dipakai pada tempat yang masih menunggu hasil, misalnya
+   titik impas P3 yang baru tersedia setelah sweep H11.
+3. **Sitasi hanya untuk sumber yang sudah diverifikasi.** Status verifikasi diambil dari
+   `docs/research/related-work.md`. Sumber berstatus `metadata` boleh disitasi, tetapi statusnya
+   dicatat di tabel sumber pada akhir berkas. Sumber yang nama penulisnya belum tercatat disitasi
+   memakai venue, dan daftar yang perlu dilengkapi ada di bagian akhir
+   `02-kedudukan-terhadap-literatur.md`.
+4. **Batas klaim mengikuti §8 README utama.** Tidak ada klaim skalabilitas, performa, kebaruan
+   algoritma truth discovery atau incremental view maintenance, maupun generalisasi ke seluruh 17
+   SDG.
+
+## Bila angka berubah
+
+Angka pada draf sah selama `angka-kunci.csv` tidak berubah. Setelah `make article-bundle` dijalankan
+ulang, periksa kembali tabel pemetaan di akhir setiap berkas draf sebelum memakai draf tersebut.

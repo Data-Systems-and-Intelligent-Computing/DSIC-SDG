@@ -99,8 +99,11 @@ Metrik pendukung:
 - jumlah byte yang dibaca saat penghitungan ulang;
 - proporsi ketidaksesuaian yang dapat dijelaskan otomatis sebagai vintage, metodologi, atau granularitas;
 - tingkat propagasi revisi, yaitu revisi yang tampil di state serving dibagi revisi yang masuk. Metrik
-  ini diusulkan pada 11 September 2026 setelah profil validasi H9B dan wajib dibekukan pada freeze H10,
-  sebelum eksperimen utama.
+  ini diusulkan pada 11 September 2026 setelah profil validasi H9B, dan pada 12 September 2026
+  dibekukan sebagai metrik pendukung pada freeze H10, sebelum eksperimen utama.
+
+Definisi operasional kedelapan metrik ada di
+[`config/experiments/metric_definitions.csv`](config/experiments/metric_definitions.csv).
 
 ### 4.3 Beban kerja revisi
 
@@ -109,6 +112,12 @@ Revisi yang diuji berasal dari dua sumber, dan keduanya diperlukan untuk alasan 
 Revisi nyata diambil dari perbedaan antarsumber dan antarrilis BPS yang benar-benar terjadi pada rentang yang ditarik. Inilah yang menjadi bukti utama untuk P1.
 
 Revisi tersuntik diperlukan karena besaran revisi nyata tidak dapat dikendalikan. Revisi sintetis dengan besaran terkontrol, mulai dari satu sel sampai satu tahun penuh untuk seluruh provinsi, disuntikkan agar titik impas pada P3 dapat dicari secara sistematis. Prosedur penyuntikannya dicatat dan dapat dijalankan ulang.
+
+Keduanya berjalan pada dua workload yang berbeda, dan pembagiannya dibekukan pada H10 Jalur C. Revisi
+nyata diuji pada fixture 14 sel yang mempunyai jejak revisi terkonfirmasi dari H5. Revisi tersuntik
+untuk sweep P3 dijalankan di atas panel provinsi berisi 5.378 sel, karena pada fixture 14 sel ongkos
+tetap satu pernyataan Spark lebih besar daripada pekerjaan datanya sehingga titik impas tidak mungkin
+teramati.
 
 ### 4.4 Yang dibekukan sebelum eksperimen utama
 
@@ -121,6 +130,10 @@ Revisi tersuntik diperlukan karena besaran revisi nyata tidak dapat dikendalikan
 7. batas sumber daya.
 
 Konfigurasi tidak boleh diubah setelah melihat hasil tanpa membuat versi eksperimen baru.
+
+Ketujuh butir tersebut dibekukan pada 12 September 2026 dan tercatat di
+[`docs/research/experiment-freeze.md`](docs/research/experiment-freeze.md), dengan nilai yang dapat
+dibaca mesin pada [`config/experiments/experiment_freeze.csv`](config/experiments/experiment_freeze.csv).
 
 ---
 
@@ -157,7 +170,9 @@ Pada 11 September 2026, VM 2 vCPU tersebut dinyatakan dan dibekukan **hanya untu
 Pada 12 September 2026, VM yang sama juga dibekukan sebagai lingkungan pengukuran waktu H10B dan H11
 (`h10b_timing_environment`), karena tidak ada node yang lebih besar. Konsekuensinya dinyatakan di
 muka: waktu hanya boleh dibaca sebagai perbandingan antarperlakuan pada perangkat keras yang sama,
-tidak pernah sebagai klaim performa atau skalabilitas.
+tidak pernah sebagai klaim performa atau skalabilitas. Pada 12 September 2026, VM yang sama
+dibekukan sebagai batas sumber daya seluruh eksperimen (`h10c_resource_limit`), menggantikan
+spesifikasi proposal 8 vCPU dan 16 GB.
 
 ### 5.3 Aturan provenance
 
@@ -401,8 +416,9 @@ dan B3 `1,0000` melalui kunci vintage. Graf H8C diperluas menjadi 377 node dan 1
 [`docs/research/h9c-b3-lineage-audit.md`](docs/research/h9c-b3-lineage-audit.md). Marker lokal:
 `H9C_VERIFY|294|810|377|1088|152|104|48|1.0000|4|38|38|0|validated`.
 Marker yang sama dan checksum identik juga muncul pada dua run di VM, dengan 78 test lulus dan satu
-test PDF dilewati. Gate G2 belum lolos karena keempat perlakuan belum dijalankan pada workload
-tersuntik yang identik dan berkas freeze H10 belum ditulis.
+test PDF dilewati. Pada saat H9C ditutup, Gate G2 belum lolos karena keempat perlakuan belum
+dijalankan pada workload tersuntik yang identik dan berkas freeze H10 belum ditulis. Keduanya
+diselesaikan pada H10 Jalur B dan H10 Jalur C.
 
 H10 Jalur A mengukur ruang fisik keempat perlakuan pada workload nyata H6, dalam tiga repetisi
 purge-rebuild-ukur berurutan di VM 2 vCPU yang dinyatakan untuk pengukuran byte. Waktu belum diukur.
@@ -438,6 +454,22 @@ Sebelum pengukuran, 64 objek sisa run 9 September (585.261 byte) dibersihkan den
 Marker:
 `H10B_VERIFY|3|2|8|64|585261|9.818|5.442|5.308|13.388|24076|68447|24564|60156|14|39|14|39|measured`.
 
+H10 Jalur C menutup H10 dengan membekukan konfigurasi eksperimen sesuai daftar §4.4 dan mencatat
+definisi kedelapan metrik §4.2. Lima keputusan disetujui peninjau pada 12 September 2026. Fixture 14
+sel dipertahankan sebagai basis bukti P1, P2, dan P4, sedangkan sweep P3 dipindahkan ke panel
+provinsi berisi 6.983 observasi pada 5.378 sel setelah 683 baris duplikat `(cell_id, source_id)`
+yang nilainya terbukti identik dibuang. Alasannya diambil dari H10B: pada fixture 14 sel ongkos
+tetap satu pernyataan mengalahkan pekerjaan datanya, sehingga titik impas tidak mungkin teramati.
+Semesta sweep adalah `sdg08_productivity_growth` 2025 pada seluruh 38 provinsi dengan sumber tunggal
+`bps_webapi`, dengan titik `1-2-4-8-16-38` dan seed `20260912`, sehingga titik terbesarnya benar-benar
+satu tahun penuh seluruh provinsi dan aturan satu sumber per run terpenuhi di setiap titik. Tingkat
+propagasi revisi dibekukan sebagai metrik pendukung, dan VM 2 vCPU dibekukan sebagai batas sumber
+daya seluruh eksperimen. Freeze, alasan setiap nilai, dan cara verifikasinya ada di
+[`docs/research/experiment-freeze.md`](docs/research/experiment-freeze.md); nilainya tersimpan di
+[`config/experiments/`](config/experiments/) dan keputusannya di
+[`config/h10c/human_decisions.csv`](config/h10c/human_decisions.csv). Dengan berkas freeze ini
+kriteria keempat terpenuhi dan **Gate G2 dinyatakan lolos**. Seluruh 105 test lulus.
+
 Semua angka dan tabel untuk naskah dikumpulkan di
 [`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 30 tabel per pertanyaan
 penelitian, 3 tabel turunan, dan 86 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
@@ -469,13 +501,21 @@ Ketiga jalur berjalan serentak. Pembanding diselesaikan lebih dahulu daripada us
 | H7 | Mengimplementasikan B0 | Mengimplementasikan B2 | Melanjutkan lineage dan memverifikasi sumber bertanda `daftar` pada related-work |
 | H8 | Mengimplementasikan B1 | Membangun harness revisi tersuntik | Menutup lineage dan menyusun prosedur audit reproducibility |
 | H9 | Bersama Jalur C mengimplementasikan B3 | Menguji harness pada besaran revisi kecil | Bersama Jalur A mengimplementasikan B3 |
-| H10 | Menguji pemanggilan ulang angka lama pada B1 dan mengukur ruang | Menjalankan keempat perlakuan pada satu skenario revisi kecil | Menulis draf Pendahuluan dan Kedudukan terhadap Literatur |
+| H10 | Menguji pemanggilan ulang angka lama pada B1 dan mengukur ruang | Menjalankan keempat perlakuan pada satu skenario revisi kecil | Membekukan konfigurasi eksperimen, lalu menulis draf Pendahuluan dan Kedudukan terhadap Literatur |
 
 Pada akhir H10 seluruh konfigurasi eksperimen dibekukan sesuai daftar pada §4.4.
 
 **Gate G2 — Keempat perlakuan berjalan pada beban yang sama**
 
 Lolos bila keempat perlakuan dapat dijalankan pada beban revisi yang identik, angka lama benar-benar dapat dipanggil ulang pada B1, seluruh harness dapat diulang dari script tanpa langkah manual, dan berkas freeze sudah ditulis.
+
+**Gate G2 dinyatakan lolos pada 12 September 2026.** Keempat perlakuan dieksekusi pada beban yang
+identik secara logis di H9B (20 route, checksum payload sama) dan secara fisik di H10B (8 route, tiga
+repetisi, hasil sama persis dengan audit logis). B1 memanggil ulang 38/38 observasi setelah katalog
+di-restart pada H10A, serta 39/39 dan 40/40 setelah revisi disuntikkan pada H10B. Seluruh harness
+berjalan dari Makefile dengan marker dan checksum identik pada satu run lokal dan dua run VM. Berkas
+freeze ditulis pada H10 Jalur C. Pemeriksaan per kriteria beserta buktinya ada di
+[`docs/research/experiment-freeze.md`](docs/research/experiment-freeze.md).
 
 Bila B3 gagal berjalan, turunkan cakupan alih-alih memaksakannya. Jalankan B0, B1, dan B2 saja, lalu laporkan B3 sebagai rancangan yang belum tervalidasi. Artikel berubah bentuk menjadi karakterisasi empiris ditambah perbandingan pembanding, dan itu tetap kontribusi yang sah.
 

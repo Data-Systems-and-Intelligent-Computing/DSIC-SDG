@@ -1,0 +1,7 @@
+scenario_order,scenario_id,selection_count,selection_share,seed,revised_source_id,profile_status,description
+1,sweep_001,1,0.0263,20260912,bps_webapi,main_sweep,single cell of the frozen province-year universe
+2,sweep_002,2,0.0526,20260912,bps_webapi,main_sweep,two cells nested in sweep_004
+3,sweep_004,4,0.1053,20260912,bps_webapi,main_sweep,four cells nested in sweep_008
+4,sweep_008,8,0.2105,20260912,bps_webapi,main_sweep,eight cells nested in sweep_016
+5,sweep_016,16,0.4211,20260912,bps_webapi,main_sweep,sixteen cells nested in sweep_038
+6,sweep_038,38,1.0000,20260912,bps_webapi,main_sweep,one full year for every province in the frozen universe

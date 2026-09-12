@@ -1,0 +1,454 @@
+%% Vintage-aware reconciliation of official SDG indicators.
+%% Elsevier CAS double-column class (cas-dc), compiled with pdflatex + bibtex.
+%%
+%% Working draft written at H10 track C, 12 September 2026. Sections 1-4 report
+%% work that is already measured; the injected-revision sweep that answers RQ3
+%% is frozen but not yet executed, and Section 5 says so explicitly.
+%%
+%% EVERY NUMBER in this file comes from papers/vintage_reconciliation/data/
+%% angka-kunci.csv through its metric_id. Do not retype numbers by hand.
+
+\documentclass[a4paper,fleqn]{cas-dc}
+
+\usepackage[authoryear,longnamesfirst]{natbib}
+
+\begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
+
+\shorttitle{Vintage-aware reconciliation of official SDG indicators}
+\shortauthors{A. Satria et al.}
+
+\title[mode = title]{Vintage-aware reconciliation of official SDG indicators:
+measuring the cost of reproducible recomputation on an open table format}
+
+\author[1]{Ardika Satria}
+\cormark[1]
+\ead{ardika.satria@sd.itera.ac.id}
+\credit{Conceptualization, Methodology, Software, Investigation, Writing -- original draft}
+
+\affiliation[1]{organization={Institut Teknologi Sumatera},
+            addressline={Jl. Terusan Ryacudu, Way Huwi},
+            city={Lampung Selatan},
+            postcode={35365},
+            state={Lampung},
+            country={Indonesia}}
+
+%% TODO: add the five co-authors, their affiliations and CRediT roles before
+%% submission. The author block below is a placeholder and must not be left in.
+\author[1]{[Co-author names pending]}
+\credit{Investigation, Data curation, Validation}
+
+\cortext[1]{Corresponding author}
+
+\begin{abstract}
+Official SDG indicators for Indonesia are published through several legitimate
+channels of the national statistical office, and those channels disagree. The
+disagreement is not an error: it follows from how official statistics are
+produced, through release vintages, methodological change and differences in
+granularity. Current practice overwrites the older figure with the newer one, so
+a number that was once published can no longer be reproduced, even though
+revision guidelines for official statistics require exactly that capability.
+This paper treats the indicator vintage as a first-class dimension of an open
+table format and measures what keeping it costs. Four storage treatments are
+compared on an identical revision workload: overwrite, full snapshot, single
+source selection under a frozen trust score, and the proposed vintage-aware
+design with lineage-driven incremental recomputation. On 1,435 cells compared
+across two official channels, 33 differ; across two publication releases, 4,608
+cell keys yield eight value differences in three domains. Of 123 classified
+discrepancy events, 96 (78.05 per cent) are confirmed to arise from vintage,
+methodology or granularity. On the frozen evidence workload the two treatments
+that keep history recall all 38 published figures exactly, while overwrite and
+single-source selection recall 14 of 38; the same result holds after a catalogue
+restart and after a physically applied injected revision. Physical measurement
+shows that at this size one revision costs one Iceberg commit rather than its
+data: a single-value revision under overwrite changes 161 bytes of data but adds
+23,915 bytes of metadata. The break-even point between incremental and full
+recomputation is the subject of a frozen sweep that has not yet been executed.
+\end{abstract}
+
+\begin{highlights}
+\item Differences between official SDG channels are characterised and attributed
+to vintage, methodology or granularity by rules fixed in advance.
+\item Indicator vintage is stored as an explicit dimension on an open table
+format, keyed independently of table snapshots.
+\item Four treatments are executed on an identical revision workload, logically
+and physically, on the same hardware.
+\item Recall of published figures, storage footprint and per-revision cost are
+measured rather than asserted.
+\item At indicator scale the cost of a revision is dominated by table metadata,
+not by the revised value.
+\end{highlights}
+
+\begin{keywords}
+official statistics \sep data vintage \sep reproducibility \sep data lineage
+\sep lakehouse \sep SDG indicators
+\end{keywords}
+
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+
+Indonesian SDG indicators are released by Badan Pusat Statistik (BPS) through
+channels that run side by side. A web API serves dynamic table values that
+follow database updates, while the annual SDG indicator compilation is published
+as a document whose content is fixed on its release date
+\citep{bps_tpb2024,bps_tpb2025}. Both are official, both are produced by the
+same agency, and both are cited by the same users.
+
+The two channels do not always agree. Comparing them cell by cell over the
+snapshot taken for this study, 33 of 1,435 overlapping cells carry different
+values. Comparing two consecutive editions of the published compilation, 4,608
+aligned cell keys yield eight value differences spread over three domains,
+namely energy, economy and ecology. Neither observation can be resolved by
+declaring one channel wrong, because both are official products of the same
+producer.
+
+The causes can be separated. Applying eight classification rules fixed before
+the data were inspected, 96 of 123 discrepancy events, or 78.05 per cent, are
+confirmed to arise from one of three causes: a release vintage, a methodological
+change, or a difference in granularity. The confirmed breakdown is 82
+granularity events, 13 vintage events and one methodology event, while a further
+19 events are rounding differences that the rules deliberately exclude from the
+count. The remaining events stop at candidate status because the historical
+snapshot needed to confirm them no longer exists.
+
+That last sentence is the problem this paper addresses. Older values in the web
+API are overwritten by newer ones, so a figure that was once published can no
+longer be produced from its source. Revision policy for official statistics asks
+for the opposite, namely the ability to show how an estimate changed from one
+release to the next \citep{oecd_eurostat_revisions}. As long as that history
+survives only inside a yearly document, the capability rests on a document
+archive rather than on the system that produces the numbers.
+
+Mechanisms for keeping history exist one layer down. Open table formats provide
+snapshots and time travel \citep{iceberg_spec}, and incremental view maintenance
+is a mature capability \citep{fabric_mlv}. The difficulty is what those
+mechanisms record. A table snapshot records when a row was written, not when the
+producer released the value. While data only accumulates the two time axes run
+in parallel; when a source is revised retrospectively they separate, and the
+table snapshot can no longer answer a question about the value as of a given
+release.
+
+This study therefore asks how much it costs to maintain SDG indicators that stay
+reproducible and traceable when several official sources disagree, and at what
+revision size incremental recomputation stops being cheaper than full
+recomputation. Four sub-questions follow. \textbf{RQ1} asks which forms of
+disagreement actually occur between official BPS sources across five domains,
+and what share comes from vintage revision rather than methodology or
+granularity. \textbf{RQ2} asks whether that disagreement can be represented as
+indicator vintages on an open table format so that published values remain
+addressable without storing a full copy of every release. \textbf{RQ3} asks what
+time and space one revision costs, and where the incremental approach stops
+paying. \textbf{RQ4} asks whether a previously reported figure can still be
+produced exactly after its source has been revised, and under what conditions it
+fails. RQ4 acts as an eligibility condition: a cheaper result that cannot
+reproduce the old figure does not count as a gain.
+
+The contributions are four. First, an empirical characterisation of disagreement
+between official BPS sources across five domains, with classification rules
+fixed in advance and measured cause proportions. Second, a storage design that
+treats the indicator vintage as an explicit dimension of an open table format;
+on the real workload, 38 observations from three releases project onto 14
+indicator cells without losing provenance, and each per-release state is
+reconstructed from the vintage key alone. Third, physical measurement of all
+four treatments on identical hardware, including the finding that at this scale
+one revision costs one table commit rather than its data. Fourth, a
+reproducibility audit recomputed from the state of each treatment rather than
+trusted from an earlier label.
+
+The break-even point that RQ3 asks for is not reported here. The sweep that
+locates it was frozen together with the rest of the experiment configuration and
+is executed after this draft; Section~\ref{sec:status} states what remains.
+
+\section{Related work and positioning}\label{sec:related}
+
+\subsection{Computing SDG indicators from heterogeneous open data}
+
+Computing SDG indicators from scattered open sources has been pursued for
+several years. SustainGraph builds a knowledge graph that tracks progress and
+interlinkage among SDG targets \citep{fotopoulou2022sustaingraph}, while
+\citet{jiang2023discovery} propose a rule-based approach for discovering data
+relevant to a given indicator. Both address discovery and linking, that is, how
+a dataset is recognised as a candidate input for an indicator.
+
+The closest work is SDG-KG \citep{benjira2025sdgkg}. It joins a metadata graph
+derived from data sources with an SDG graph derived from the UN indicator
+metadata repository, uses an LLM to assist schema alignment, and emits an
+execution plan translated into Python code. When sources disagree, the conflict
+is resolved by a trust score that combines spatial, temporal and contextual
+similarity with source reliability and completeness, after which one source is
+selected. The journal version extends the automated mapping between indicators
+and open data \citep{benjira2025dke}.
+
+Two limits apply to this line of work, and the authors state the first
+themselves: SDG-KG operates at the metadata level and does not process data
+flows, so it contains no performance evaluation, no scalability study and no
+discussion of physical storage. The second limit is conceptual. Selecting one
+source discards the values of the sources not selected. For open data of uneven
+quality that is a reasonable decision. For official statistics it discards
+precisely the information under study.
+
+That consequence is measurable, and this study measures it. Treatment B2
+replicates single-source selection using a frozen trust score. Ten of 14 cells
+end up serving a value that does not come from the most recent vintage, and
+under the injected revision workload only 8 of 28 revisions reach the serving
+state, a propagation rate of 0.2857. This is not an implementation defect but a
+property of the class of policies that selects one source before computation.
+
+\subsection{Truth discovery and data fusion}
+
+Truth discovery provides the formal basis for such a decision.
+\citet{dong2015fusion} formulate data fusion as conflict resolution over many
+sources, and subsequent surveys map the families of methods that estimate source
+reliability while inferring the correct value
+\citep{li2016truthsurvey,tbd2025truthsurvey}. The underlying assumption is
+consistent across that literature: one hidden true value exists and the sources
+are not all trustworthy.
+
+The assumption does not hold for official statistics. When the BPS web API and
+the published SDG compilation report different values for the same indicator,
+region and year, no source is wrong. Both are issued by the same producer
+through equally legitimate channels, and the difference originates in the
+release vintage, a methodological change, or a difference in granularity. The
+empirical evidence in this study supports that reading: 96 of 123 discrepancy
+events are confirmed to arise from one of those three causes.
+
+Truth discovery is therefore used as a comparator rather than as a foundation.
+No novelty is claimed for its algorithms. Only the pattern is taken, so that it
+can be run as treatment B2 and its consequences measured on the same workload as
+the other treatments.
+
+\subsection{Vintages and revisions in official statistics}
+
+On the official statistics side the revision problem was formulated long ago.
+The OECD and Eurostat guidelines set out how revisions are announced and
+analysed \citep{oecd_eurostat_revisions}, and Statistics Canada publishes
+real-time data tables that carry every revision of a data point over time
+\citep{statcan_realtime}. Econometric work uses vintages to test forecast
+stability \citep{ecb2007vintages}, and tooling continues to be developed for
+analysing real-time series vintages.
+
+Two terms from this literature are used directly here. A \emph{vintage} is the
+state of a figure at the moment it was released, and a \emph{revision triangle}
+is the matrix showing how the estimate for one period changes across subsequent
+releases.
+
+The limit lies in the object of study. This literature works on aggregates that
+have already been published, usually small time series, in a statistical and
+econometric setting. The pipeline that produces those figures is not the object,
+so the question of how much time and space it takes to maintain their history
+never arises. That question is the subject of this paper.
+
+\subsection{Lakehouse versioning and incremental maintenance}
+
+Mechanisms for storing and maintaining history are mature at the lakehouse
+layer. Open table formats provide snapshots and time travel
+\citep{iceberg_spec}, and systems research has compared their storage behaviour
+experimentally \citep{jain2023lhbench,is2025lakehouse}. Incremental view
+maintenance is likewise available as a product capability, with refreshes that
+may be no-op, incremental or full \citep{fabric_mlv}.
+
+The issue is not the availability of a mechanism but what the mechanism records,
+as set out in Section~\ref{sec:intro}. The distinction is not merely conceptual.
+In this study an Iceberg REST catalogue that kept its table registrations in
+memory lost all of them when the node was restarted, although the data files
+remained intact in object storage. The ability of the full-snapshot treatment to
+recall old figures depends on snapshot metadata held in the catalogue, so that
+ability disappeared without leaving any trace in the data. The proposed
+treatment was unaffected at that point, because its recall rests on a
+\texttt{(cell\_id, vintage\_id)} key stored as rows rather than on table
+snapshots.
+
+As with truth discovery, incremental view maintenance is used as a mechanism and
+a comparator. No novelty is claimed here either.
+
+\subsection{Provenance and pipeline reproducibility}
+
+Reproducing a published figure depends on complete provenance. Transparent
+provenance capture for data science pipelines has been addressed since URSPRUNG
+\citep{rupprecht2020ursprung}, and the underlying principle was formulated
+earlier as a requirement for computational research \citep{peng2011reproducible}.
+This study follows that line and applies it to a specific chain, from source
+manifest through vintage, transformation version, indicator cell and metric to
+the table or figure. The completeness of that chain is measured rather than
+assumed: 152 complete paths are formed across the four treatments, at a
+completeness of 1.0000.
+
+\subsection{Positioning}
+
+Two mature literatures have not been brought together. Official statistics has a
+settled notion of vintage but applies it to published aggregates without
+accounting for computational cost. Data systems has complete machinery for
+versioning and incremental maintenance but models disagreement between sources
+as error to be resolved, a model that is wrong for official statistics.
+
+This work sits between them, and differs from the closest prior work in three
+ways. It operates at the physical layer, so what is measured is time, space and
+the ability to reproduce a figure, rather than the ability to align schemas.
+Differences between sources are treated as vintages to be preserved rather than
+as conflicts from which one value must be chosen. Testing is carried out on
+Indonesian national official statistics with revisions that actually occurred.
+
+The claim boundary is stated in advance. No novelty is claimed for truth
+discovery algorithms or for incremental view maintenance, and no claim is made
+about scalability or performance, since all measurements run on a single small
+node. What is claimed is the treatment of the indicator vintage as a first-class
+object inside a lakehouse, together with the measurement of what maintaining it
+costs.
+
+\section{Study design}\label{sec:design}
+
+\subsection{Treatments}
+
+Four storage treatments are compared on identical workloads. Table~\ref{tbl:trt}
+lists the state each keeps and the statements it issues to apply one revision;
+the maintenance column matters because, as Section~\ref{sec:results} shows, the
+number of statements dominates the measured time at this scale.
+
+\begin{table}[t]
+\caption{The four treatments. B3 is the proposal; B0--B2 are comparators.}\label{tbl:trt}
+\begin{tabular*}{\tblwidth}{@{}p{0.06\textwidth}p{0.17\textwidth}p{0.18\textwidth}@{}}
+\toprule
+ & State kept & Write and maintenance per revision \\
+\midrule
+B0 & exactly one current row per cell & \texttt{MERGE}; expire snapshots to one \\
+B1 & one full-state snapshot per release & \texttt{INSERT OVERWRITE} of the whole state; no expiry \\
+B2 & single-source selection under a frozen trust score & \texttt{INSERT OVERWRITE} of the recomputed selection; expire snapshots to one \\
+B3 & append-only store keyed by \texttt{(cell\_id, vintage\_id)} plus a materialised serving table & \texttt{INSERT} into the store, then \texttt{MERGE} of the dirty cells only; expire snapshots to one on both tables \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+The dirty set of B3 is derived from lineage edges, not from comparing values.
+The trust score of B2 uses five weighted dimensions frozen before execution, and
+observed values and conflict outcomes are barred from entering the score, so the
+selection cannot be tuned by its own results.
+
+\subsection{Workload and freeze}
+
+The evidence workload consists of three release vintages, 38 observations and 14
+indicator cells, and is the set of cells whose revisions are confirmed rather
+than assumed. Revisions of a controlled size are injected on top of it, because
+the size of a real revision cannot be chosen. Each injected revision changes one
+value by exactly one unit of published precision, leaving every cell dimension
+untouched; the mechanism is a dependency trigger, not a model of the empirical
+revision distribution, so it is the number of revised cells that is controlled,
+never the magnitude of the change.
+
+The full experiment configuration was frozen before the main sweep: source
+snapshots and retrieval dates, the indicator list per domain, the discrepancy
+rules, the four treatments, the metric definitions, the injected revision sizes
+and the resource limit. Each frozen value is recorded together with the checksum
+of its evidence file at the moment of freezing.
+
+All measurements run on a single node with 2 vCPU and 7.7~GiB of memory. Runs
+are sequential and held by one operator, and every measurement point is repeated
+three times and reported as the median. Timing may therefore be read only as a
+comparison between treatments on identical hardware, never as a performance or
+scalability claim.
+
+\section{Results so far}\label{sec:results}
+
+\subsection{Recall of published figures}
+
+Table~\ref{tbl:res} reports the three measured outcomes per treatment. B1 and B3
+recall all 38 published figures exactly; B0 and B2 recall 14 of 38, which is
+what their contracts imply rather than a defect. The same outcome survives two
+stress conditions applied physically: after the Iceberg catalogue was restarted,
+and after an injected revision was written through each treatment's own write
+path, where B1 and B3 recall 39 of 39 requests and B0 and B2 recall 14.
+
+\begin{table}[t]
+\caption{Measured outcomes per treatment on the frozen workload. Bytes are
+medians over three repetitions; times are for a single-cell revision and include
+the maintenance each treatment requires.}\label{tbl:res}
+\begin{tabular*}{\tblwidth}{@{}lrrrr@{}}
+\toprule
+ & B0 & B1 & B2 & B3 \\
+\midrule
+Recall rate & 0.3684 & 1.0000 & 0.3684 & 1.0000 \\
+Recall after restart & 14/38 & 38/38 & 14/38 & 38/38 \\
+Recall after revision & 14/39 & 39/39 & 14/39 & 39/39 \\
+Footprint (bytes) & 95,898 & 190,261 & 64,077 & 240,884 \\
+Write time (s) & 9.818 & 5.442 & 5.308 & 13.388 \\
+Total time (s) & 23.448 & 5.442 & 21.253 & 34.877 \\
+Added bytes & 24,076 & 68,447 & 24,564 & 60,156 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{Space}
+
+On the evidence workload B3 has the largest footprint, at 240,884 bytes against
+190,261 for B1, because its serving table is materialised. Decomposing it shows
+where the cost sits: the vintage store alone occupies 146,352 bytes, which is 23
+per cent smaller than B1 while preserving the same recall. The cost of B3 on
+this fixture therefore comes from serving materialisation and not from keeping
+vintages. Iceberg metadata is comparable to the data it describes and exceeds it
+for B0 and B3.
+
+\subsection{Cost of one revision}
+
+The timing results invert the expectation that the incremental treatment is
+cheaper. On a single-cell revision B1 is the cheapest at 5.442~s, because it
+issues one statement and requires no maintenance, while B3 is the most expensive
+at 34.877~s across two statements plus snapshot expiry. At a state of 14 cells
+the fixed cost of a statement exceeds its data work, so the ordering reflects
+the number of statements rather than the number of rows touched.
+
+The same effect appears in bytes. A single-value revision under B0 changes 161
+bytes of data but adds 23,915 bytes of metadata, and B1 adds 68,447 bytes for
+both a one-cell and a two-cell revision because it always rewrites the entire
+state. B2 pays the full write cost even when it withholds the revision: on the
+single-cell scenario it rewrites its selection table at a cost of 5.308~s and
+24,564 bytes and still serves no new value, because the revision touches a cell
+whose source loses on score. Selecting a single source therefore saves no write
+cost; only information is lost.
+
+Snapshot expiry is a real cost of the treatments that discard history. B0, B2 and
+B3 spend between 14 and 23 seconds pruning snapshots on every revision, whereas
+B1 needs none. Counting logical rows, as an earlier stage of this work did,
+makes that cost invisible.
+
+\section{Current status and limitations}\label{sec:status}
+
+The results above are measured on a fixture of 38 observations across 14 cells,
+with revisions of one and two cells. Neither the time ordering nor the byte
+ordering may be extrapolated from that size. In particular, the break-even point
+that RQ3 asks for cannot be observed on this fixture, precisely because the
+fixed cost per statement dominates the data work; that is an empirical finding
+about the measurement design, not an answer to RQ3.
+
+The sweep that answers RQ3 is frozen and pending. It runs on a province panel of
+5,378 indicator cells, roughly 384 times the base state of the fixture, with
+revision sizes of 1, 2, 4, 8, 16 and 38 cells, where the largest point is one
+full year for every province of a single indicator served by a single source. At
+that base-state size the full rewrite of B1 grows with the size of the state
+while the work of B3 grows with the number of revised cells, which is the
+difference that decides whether a break-even point exists. Its result, together
+with the analysis of the case in which an old figure cannot be reproduced, will
+complete the answer to RQ3 and RQ4.
+
+Two further limits are stated in advance. Data volume in this study is small,
+which follows from the domain rather than from the design: SDG indicators at
+national and province granularity are never large, and the questions asked
+concern correctness, traceability and maintenance cost rather than throughput.
+Second, the results are specific to one national statistical office and to five
+SDG domains, and are not generalised to all 17 goals or to other countries.
+
+\section*{Data and code availability}
+
+The source manifests, checksums, classification rules, frozen experiment
+configuration, treatment implementations and every processed result table are
+kept in the project repository. Raw source payloads are not committed;
+every figure in this paper is reproducible from the committed manifests without
+re-downloading the sources.
+
+\printcredits
+
+\bibliographystyle{cas-model2-names}
+\bibliography{refs}
+
+\end{document}

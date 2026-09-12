@@ -1,0 +1,9 @@
+metric_id,metric_class,metric_name,definition,unit,frozen_at,first_declared
+m1,primary,recomputation_time,"Wall-clock time of the write statements a treatment issues to apply one revision, plus the maintenance statements that treatment requires, measured inside one Spark SQL session on the frozen node",second,2026-09-12,proposal
+m2,primary,cells_recomputed,"Number of indicator cells a treatment evaluates when applying one revision; for B3 this is the dirty set derived from the H6C lineage edges, for the others it is the full state the treatment rewrites",cell_evaluation,2026-09-12,proposal
+m3,primary,storage_footprint,"Total bytes of every object reachable from the metadata of the snapshots a treatment retains, sized from MinIO; unreferenced objects in the table location are reported separately and never counted",byte,2026-09-12,proposal
+m4,primary,recall_rate,"Requests for a published figure that the treatment state can still answer exactly, divided by all requests addressed by (cell_id, vintage_id)",ratio,2026-09-12,proposal
+s1,supporting,lineage_completeness,"Complete paths from a published figure back to a source record, divided by the paths the graph should contain",ratio,2026-09-12,proposal
+s2,supporting,bytes_read,"Bytes a treatment reads while recomputing one revision",byte,2026-09-12,proposal
+s3,supporting,explained_discrepancy_share,"Discrepancy events assigned to the vintage, methodology or granularity family by rules R01-R08, divided by all discrepancy events",ratio,2026-09-12,proposal
+s4,supporting,revision_propagation_rate,"Revisions readable in the treatment serving state after a run, divided by the revisions admitted in that run; on the H9B validation profile B0 = B1 = B3 = 1.000 and B2 = 8/28 = 0.286",ratio,2026-09-12,2026-09-11 after the H9B validation profile

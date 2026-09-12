@@ -1,4 +1,4 @@
-.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run h8c-run h9-run h9-apply h9b-run h9c-run h10-measure h10-run h10b-prepare h10b-cleanup h10b-measure h10b-run article-bundle raw-backup stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
+.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run h8c-run h9-run h9-apply h9b-run h9c-run h10-measure h10-run h10b-prepare h10b-cleanup h10b-measure h10b-run article-bundle manuscript raw-backup stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
 
 PYTHON ?= python3
 H1 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h1.cli
@@ -212,6 +212,13 @@ h10b-run:
 
 article-bundle:
 	$(ARTICLE)
+
+manuscript:
+	cd papers/vintage_reconciliation/manuscript && \
+	pdflatex -interaction=nonstopmode -halt-on-error main.tex && \
+	bibtex main && \
+	pdflatex -interaction=nonstopmode -halt-on-error main.tex && \
+	pdflatex -interaction=nonstopmode -halt-on-error main.tex
 
 raw-backup:
 	bash scripts/backup_raw.sh .
