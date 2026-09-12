@@ -156,6 +156,24 @@
       "source_path": "results/processed/h10-storage-footprint.csv"
     },
     {
+      "description": "Waktu pernyataan dan pertambahan byte satu revisi tersuntik per perlakuan (H10B)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h10b-apply-cost.csv",
+      "rows": 8,
+      "sha256": "edc10dd4749979c67421a5b3dddc3df651b68f88622d3e41a6283151a9ab8081",
+      "source_manifest": "data/manifests/h10b-injected-revision-physical.json",
+      "source_path": "results/processed/h10b-apply-cost.csv"
+    },
+    {
+      "description": "Selisih byte baseline-sesudah revisi per tabel dan per repetisi (H10B)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h10b-storage-delta.csv",
+      "rows": 30,
+      "sha256": "aec234d001492f35f7427ab8a10fb7d1c1f3b415a03219a270e8867f29186848",
+      "source_manifest": "data/manifests/h10b-injected-revision-physical.json",
+      "source_path": "results/processed/h10b-storage-delta.csv"
+    },
+    {
       "description": "Tabel reproducibility empat perlakuan (H9C)",
       "group": "p4-reproducibility",
       "path": "p4-reproducibility/h9c-reproducibility-table.csv",
@@ -190,6 +208,15 @@
       "sha256": "d32e6945d7e41382629e70526921fee7e150de2507714bed918ad234a22a9406",
       "source_manifest": "data/manifests/h10-storage-recall.json",
       "source_path": "results/processed/h10-recall-after-restart.csv"
+    },
+    {
+      "description": "316 pemanggilan ulang fisik setelah satu revisi tersuntik (H10B)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h10b-recall-after-revision.csv",
+      "rows": 316,
+      "sha256": "91dae66418e2b7f1fc22490025a18be14b5d0218c89159c67852b822245f1c6a",
+      "source_manifest": "data/manifests/h10b-injected-revision-physical.json",
+      "source_path": "results/processed/h10b-recall-after-revision.csv"
     },
     {
       "description": "Ringkasan lineage bukti: node edge path dan completeness (H9C)",
@@ -262,14 +289,14 @@
     {
       "description": "Angka kunci naskah beserta sumber dan cara penurunannya",
       "path": "angka-kunci.csv",
-      "rows": 70,
-      "sha256": "266f7311165217ce7d091244326ba55c2907ba7a6e64d1351fc9ae06a57959a5"
+      "rows": 86,
+      "sha256": "f3398a38cc6d4ac950dd76fbe9387cc1effe5d267b0e246c39fc9aa2e7b02450"
     }
   ],
   "inputs": [
     {
       "path": "config/article/bundle_tables.csv",
-      "sha256": "faf2a788f01e28f11168f8ad0903858728bc183a2e1015cce4f3e62d4731c522"
+      "sha256": "4bfd5ed3b662fe27fe4c96b8f575181c8f74955a37f2f981001d92966b6608d5"
     }
   ],
   "verified_sources": [
@@ -297,6 +324,21 @@
       "path": "results/processed/h10-storage-tables.csv",
       "sha256": "18af9312ab1dcd047f01daab45017ce788ae8816e7d463165a931d05e6286856",
       "source_manifest": "data/manifests/h10-storage-recall.json"
+    },
+    {
+      "path": "results/processed/h10b-apply-cost.csv",
+      "sha256": "edc10dd4749979c67421a5b3dddc3df651b68f88622d3e41a6283151a9ab8081",
+      "source_manifest": "data/manifests/h10b-injected-revision-physical.json"
+    },
+    {
+      "path": "results/processed/h10b-recall-after-revision.csv",
+      "sha256": "91dae66418e2b7f1fc22490025a18be14b5d0218c89159c67852b822245f1c6a",
+      "source_manifest": "data/manifests/h10b-injected-revision-physical.json"
+    },
+    {
+      "path": "results/processed/h10b-storage-delta.csv",
+      "sha256": "aec234d001492f35f7427ab8a10fb7d1c1f3b415a03219a270e8867f29186848",
+      "source_manifest": "data/manifests/h10b-injected-revision-physical.json"
     },
     {
       "path": "results/processed/h2-indicator-summary.csv",

@@ -1,0 +1,9 @@
+scenario_id,treatment_id,cells_revised,cells_evaluated,rows_written_logical,write_statements,write_seconds_median,write_seconds_min,write_seconds_max,maintenance_seconds_median,total_seconds_median,baseline_bytes_median,after_bytes_median,delta_bytes_median,delta_bytes_min,delta_bytes_max,delta_data_bytes_median,delta_metadata_bytes_median,snapshots_after
+validation_001,B0,1,1,1,1,9.818,9.321,9.885,14.088,23.448,95896,119972,24076,24075,24085,161,23915,1
+validation_001,B1,1,14,14,1,5.442,4.847,5.533,0.000,5.442,190252,258699,68447,68445,68448,33923,34524,4
+validation_001,B2,1,1,0,1,5.308,5.245,5.381,15.872,21.253,64079,88643,24564,24563,24565,37,24527,1
+validation_001,B3,1,1,2,2,13.388,13.109,14.977,20.991,34.877,240874,301030,60156,60150,60167,11550,48606,1+1
+validation_002,B0,2,2,2,1,9.503,8.970,10.846,13.765,23.268,95878,119906,24028,24028,24031,253,23775,1
+validation_002,B1,2,14,14,1,5.384,5.030,5.648,0.000,5.384,190245,258782,68537,68523,68541,34015,34522,4
+validation_002,B2,2,2,1,1,5.335,5.104,5.429,17.230,22.585,64077,88833,24756,24755,24757,128,24628,1
+validation_002,B3,2,2,4,2,14.704,14.396,15.116,22.914,37.618,240878,312368,71483,71472,71493,22831,48652,1+1

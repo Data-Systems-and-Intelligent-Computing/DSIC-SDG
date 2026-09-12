@@ -238,6 +238,14 @@ def key_numbers(src: Sources) -> list[dict[str, str]]:
     add("p3_b3_over_b1_bytes", "P3", "H10A", "Rasio ruang B3 total / B1", _ratio(int(storage["B3"]["total_bytes_median"]), b1_bytes), "rasio", "h10-storage-by-treatment.csv", "p3_b3_bytes_median / p3_b1_bytes_median")
     add("p3_b3_store_over_b1_bytes", "P3", "H10A", "Rasio ruang store B3 / B1", _ratio(store, b1_bytes), "rasio", "h10-storage-tables.csv", "p3_b3_store_bytes_median / p3_b1_bytes_median")
 
+    cost = {(r["scenario_id"], r["treatment_id"]): r for r in src.rows("h10b-apply-cost.csv")}
+    smoke = "validation_001"
+    for treatment in TREATMENTS:
+        row = cost[(smoke, treatment)]
+        add(f"p3_{treatment.lower()}_revision_write_seconds", "P3", "H10B", f"Waktu tulis satu revisi 1 sel, {treatment}", row["write_seconds_median"], "detik", "h10b-apply-cost.csv", f"write_seconds_median {smoke}; rentang {row['write_seconds_min']}-{row['write_seconds_max']}; {row['write_statements']} pernyataan")
+        add(f"p3_{treatment.lower()}_revision_total_seconds", "P3", "H10B", f"Waktu tulis dan pemeliharaan satu revisi 1 sel, {treatment}", row["total_seconds_median"], "detik", "h10b-apply-cost.csv", f"total_seconds_median {smoke}; pemeliharaan {row['maintenance_seconds_median']}")
+        add(f"p3_{treatment.lower()}_revision_delta_bytes", "P3", "H10B", f"Pertambahan byte satu revisi 1 sel, {treatment}", row["delta_bytes_median"], "byte", "h10b-apply-cost.csv", f"delta_bytes_median {smoke}; data {row['delta_data_bytes_median']}; metadata {row['delta_metadata_bytes_median']}")
+
     repro = {r["treatment_id"]: r for r in src.rows("h9c-reproducibility-table.csv")}
     recall = src.rows("h10-recall-after-restart.csv")
     for treatment in TREATMENTS:
@@ -246,6 +254,15 @@ def key_numbers(src: Sources) -> list[dict[str, str]]:
         if _ratio(recalled, 38) != repro[treatment]["success_rate"]:
             raise ValueError(f"physical recall of {treatment} disagrees with the H9C audit")
         add(f"p4_{treatment.lower()}_recalled_after_restart", "P4", "H10A", f"Angka terbit yang dipanggil ulang fisik setelah restart katalog, {treatment}", recalled, "permintaan dari 38", "h10-recall-after-restart.csv", "addressable = yes")
+    after_revision = src.rows("h10b-recall-after-revision.csv")
+    for treatment in TREATMENTS:
+        served = sum(
+            1
+            for r in after_revision
+            if r["treatment_id"] == treatment and r["scenario_id"] == smoke and r["addressable"] == "yes"
+        )
+        add(f"p4_{treatment.lower()}_recalled_after_revision", "P4", "H10B", f"Permintaan yang dipanggil ulang fisik setelah satu revisi tersuntik, {treatment}", served, "permintaan dari 39", "h10b-recall-after-revision.csv", f"addressable = yes pada {smoke}")
+
     add("p4_lineage_paths", "P4", "H9C", "Path lineage sumber-sampai-tabel empat perlakuan", src.metric("h9c-summary.csv", "closed_lineage_paths"), "path", "h9c-summary.csv", "metric closed_lineage_paths")
     add("p4_lineage_completeness", "P4", "H9C", "Kelengkapan lineage", src.metric("h9c-summary.csv", "closure_completeness"), "rasio", "h9c-summary.csv", "metric closure_completeness")
 

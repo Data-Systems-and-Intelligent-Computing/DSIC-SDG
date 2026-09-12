@@ -439,8 +439,8 @@ Marker:
 `H10B_VERIFY|3|2|8|64|585261|9.818|5.442|5.308|13.388|24076|68447|24564|60156|14|39|14|39|measured`.
 
 Semua angka dan tabel untuk naskah dikumpulkan di
-[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 27 tabel per pertanyaan
-penelitian, 3 tabel turunan, dan 70 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
+[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 30 tabel per pertanyaan
+penelitian, 3 tabel turunan, dan 86 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
 dengan `make article-bundle`, yang memverifikasi checksum setiap sumber terhadap manifest tahapnya.
 Bahan mentah sumber di `data/raw/` hanya ada di laptop peneliti. `make raw-backup` membuat arsip
 beserta daftar checksum di `backups/`, dan arsip itu wajib disalin ke lokasi kedua.

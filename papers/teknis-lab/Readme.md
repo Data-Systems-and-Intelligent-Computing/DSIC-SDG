@@ -1435,7 +1435,7 @@ Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 - H8C menghitung ulang 114 hasil dan menutup seluruh path bukti tiga perlakuan yang sudah berjalan.
 - H9A menghasilkan store append-only dan state serving inkremental yang sama dengan penghitungan ulang penuh, B0, dan B1, serta 38/38 pembacaan melalui kunci vintage; hasil ini diulang di Iceberg VM setelah snapshot dihapus.
 - H9B mengeksekusi 20 route harness secara logis dengan checksum payload yang cocok dan replay baseline tanpa selisih.
-- `make article-bundle` mengumpulkan 27 tabel dan 70 angka kunci di `papers/vintage_reconciliation/data/`; setiap sumber diverifikasi terhadap manifest tahapnya.
+- `make article-bundle` mengumpulkan 30 tabel dan 86 angka kunci di `papers/vintage_reconciliation/data/`; setiap sumber diverifikasi terhadap manifest tahapnya.
 - H10A membangun ulang semua tabel di katalog persisten dengan marker identik, mengukur 201 objek yang dirujuk dalam tiga repetisi, dan memanggil ulang 152 permintaan setelah restart katalog.
 - H9C mengaudit B3 dengan prosedur H8C yang terkunci checksum, menurunkan ulang 38 baris impact tanpa selisih, dan menutup 152 path empat perlakuan.
 - H10A mengukur ruang fisik keempat perlakuan pada tiga repetisi dan memanggil ulang 152 permintaan setelah katalog di-restart.
@@ -1481,7 +1481,7 @@ docker compose --env-file infra/docker/versions.env ps
 
 ### Paket data artikel dan manifest H1
 
-Untuk penulisan naskah, `make article-bundle` mengumpulkan tabel per pertanyaan penelitian dan `angka-kunci.csv` (70 angka) di [papers/vintage_reconciliation/](../vintage_reconciliation/README.md). Pipeline paket menolak sumber yang tidak tercatat atau tidak cocok dengan manifest tahapnya. Pemeriksaan ini menemukan bahwa `h1-webapi-coverage.csv` dan `h1-indicator-coverage.csv` dibuat sebelum setiap output wajib tercatat di manifest. `profile-coverage` H1 kini menulis [h1-coverage.json](../../data/manifests/h1-coverage.json). Sebelum manifest itu dibuat, kedua CSV dibentuk ulang dari `data/raw` lokal ke folder sementara, dan hasilnya identik byte demi byte dengan versi yang tersimpan. Menjalankan `make h1-profile-coverage` tidak mengubah kedua CSV.
+Untuk penulisan naskah, `make article-bundle` mengumpulkan tabel per pertanyaan penelitian dan `angka-kunci.csv` (86 angka) di [papers/vintage_reconciliation/](../vintage_reconciliation/README.md). Pipeline paket menolak sumber yang tidak tercatat atau tidak cocok dengan manifest tahapnya. Pemeriksaan ini menemukan bahwa `h1-webapi-coverage.csv` dan `h1-indicator-coverage.csv` dibuat sebelum setiap output wajib tercatat di manifest. `profile-coverage` H1 kini menulis [h1-coverage.json](../../data/manifests/h1-coverage.json). Sebelum manifest itu dibuat, kedua CSV dibentuk ulang dari `data/raw` lokal ke folder sementara, dan hasilnya identik byte demi byte dengan versi yang tersimpan. Menjalankan `make h1-profile-coverage` tidak mengubah kedua CSV.
 
 ## 24. Daftar audit manusia yang disarankan
 

@@ -20,7 +20,14 @@ byte 24.076, 68.447, 24.564, dan 60.156; permintaan yang dapat dipanggil ulang 1
 
 Pengukuran berjalan di VM `praktikum-sd` pada 12 September 2026 pukul 01:36–03:07 UTC, commit
 `6c34e1d`, working tree bersih, satu operator dan tanpa beban lain di node. Ke-24 marker pembangunan
-ulang cocok pada percobaan pertama, dan seluruh 105 test lokal lulus.
+ulang cocok pada percobaan pertama.
+
+Data mentah disalin dari VM ke repositori. `make h10b-run` dijalankan sekali di lokal dan dua kali di
+VM; marker serta checksum keluaran dan manifest identik pada ketiga run. Seluruh 105 test lokal lulus,
+dan di VM 105 test lulus dengan satu test PDF dilewati karena PDF mentah tidak disimpan di Git.
+
+Angka H10B juga masuk paket data artikel: `make article-bundle` sekarang mengumpulkan 30 tabel dan 86
+angka kunci, termasuk waktu tulis, pertambahan byte, dan pemanggilan ulang setelah revisi.
 
 ## Keputusan manusia yang dipakai
 

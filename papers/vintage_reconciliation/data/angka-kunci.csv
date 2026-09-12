@@ -51,6 +51,18 @@ p3_b3_store_bytes_median,P3,H10A,Ruang fisik store B3 saja,146352,byte,results/p
 p3_b3_serving_bytes_median,P3,H10A,Ruang fisik tabel serving B3,94532,byte,results/processed/h10-storage-tables.csv,median reachable_bytes b3_indicator_current
 p3_b3_over_b1_bytes,P3,H10A,Rasio ruang B3 total / B1,1.2661,rasio,results/processed/h10-storage-by-treatment.csv,p3_b3_bytes_median / p3_b1_bytes_median
 p3_b3_store_over_b1_bytes,P3,H10A,Rasio ruang store B3 / B1,0.7692,rasio,results/processed/h10-storage-tables.csv,p3_b3_store_bytes_median / p3_b1_bytes_median
+p3_b0_revision_write_seconds,P3,H10B,"Waktu tulis satu revisi 1 sel, B0",9.818,detik,results/processed/h10b-apply-cost.csv,write_seconds_median validation_001; rentang 9.321-9.885; 1 pernyataan
+p3_b0_revision_total_seconds,P3,H10B,"Waktu tulis dan pemeliharaan satu revisi 1 sel, B0",23.448,detik,results/processed/h10b-apply-cost.csv,total_seconds_median validation_001; pemeliharaan 14.088
+p3_b0_revision_delta_bytes,P3,H10B,"Pertambahan byte satu revisi 1 sel, B0",24076,byte,results/processed/h10b-apply-cost.csv,delta_bytes_median validation_001; data 161; metadata 23915
+p3_b1_revision_write_seconds,P3,H10B,"Waktu tulis satu revisi 1 sel, B1",5.442,detik,results/processed/h10b-apply-cost.csv,write_seconds_median validation_001; rentang 4.847-5.533; 1 pernyataan
+p3_b1_revision_total_seconds,P3,H10B,"Waktu tulis dan pemeliharaan satu revisi 1 sel, B1",5.442,detik,results/processed/h10b-apply-cost.csv,total_seconds_median validation_001; pemeliharaan 0.000
+p3_b1_revision_delta_bytes,P3,H10B,"Pertambahan byte satu revisi 1 sel, B1",68447,byte,results/processed/h10b-apply-cost.csv,delta_bytes_median validation_001; data 33923; metadata 34524
+p3_b2_revision_write_seconds,P3,H10B,"Waktu tulis satu revisi 1 sel, B2",5.308,detik,results/processed/h10b-apply-cost.csv,write_seconds_median validation_001; rentang 5.245-5.381; 1 pernyataan
+p3_b2_revision_total_seconds,P3,H10B,"Waktu tulis dan pemeliharaan satu revisi 1 sel, B2",21.253,detik,results/processed/h10b-apply-cost.csv,total_seconds_median validation_001; pemeliharaan 15.872
+p3_b2_revision_delta_bytes,P3,H10B,"Pertambahan byte satu revisi 1 sel, B2",24564,byte,results/processed/h10b-apply-cost.csv,delta_bytes_median validation_001; data 37; metadata 24527
+p3_b3_revision_write_seconds,P3,H10B,"Waktu tulis satu revisi 1 sel, B3",13.388,detik,results/processed/h10b-apply-cost.csv,write_seconds_median validation_001; rentang 13.109-14.977; 2 pernyataan
+p3_b3_revision_total_seconds,P3,H10B,"Waktu tulis dan pemeliharaan satu revisi 1 sel, B3",34.877,detik,results/processed/h10b-apply-cost.csv,total_seconds_median validation_001; pemeliharaan 20.991
+p3_b3_revision_delta_bytes,P3,H10B,"Pertambahan byte satu revisi 1 sel, B3",60156,byte,results/processed/h10b-apply-cost.csv,delta_bytes_median validation_001; data 11550; metadata 48606
 p4_b0_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B0",0.3684,rasio,results/processed/h9c-reproducibility-table.csv,success_rate
 p4_b0_recalled_after_restart,P4,H10A,"Angka terbit yang dipanggil ulang fisik setelah restart katalog, B0",14,permintaan dari 38,results/processed/h10-recall-after-restart.csv,addressable = yes
 p4_b1_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B1",1.0000,rasio,results/processed/h9c-reproducibility-table.csv,success_rate
@@ -59,6 +71,10 @@ p4_b2_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B2",0
 p4_b2_recalled_after_restart,P4,H10A,"Angka terbit yang dipanggil ulang fisik setelah restart katalog, B2",14,permintaan dari 38,results/processed/h10-recall-after-restart.csv,addressable = yes
 p4_b3_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B3",1.0000,rasio,results/processed/h9c-reproducibility-table.csv,success_rate
 p4_b3_recalled_after_restart,P4,H10A,"Angka terbit yang dipanggil ulang fisik setelah restart katalog, B3",38,permintaan dari 38,results/processed/h10-recall-after-restart.csv,addressable = yes
+p4_b0_recalled_after_revision,P4,H10B,"Permintaan yang dipanggil ulang fisik setelah satu revisi tersuntik, B0",14,permintaan dari 39,results/processed/h10b-recall-after-revision.csv,addressable = yes pada validation_001
+p4_b1_recalled_after_revision,P4,H10B,"Permintaan yang dipanggil ulang fisik setelah satu revisi tersuntik, B1",39,permintaan dari 39,results/processed/h10b-recall-after-revision.csv,addressable = yes pada validation_001
+p4_b2_recalled_after_revision,P4,H10B,"Permintaan yang dipanggil ulang fisik setelah satu revisi tersuntik, B2",14,permintaan dari 39,results/processed/h10b-recall-after-revision.csv,addressable = yes pada validation_001
+p4_b3_recalled_after_revision,P4,H10B,"Permintaan yang dipanggil ulang fisik setelah satu revisi tersuntik, B3",39,permintaan dari 39,results/processed/h10b-recall-after-revision.csv,addressable = yes pada validation_001
 p4_lineage_paths,P4,H9C,Path lineage sumber-sampai-tabel empat perlakuan,152,path,results/processed/h9c-summary.csv,metric closed_lineage_paths
 p4_lineage_completeness,P4,H9C,Kelengkapan lineage,1.0000,rasio,results/processed/h9c-summary.csv,metric closure_completeness
 b2_trust_score_bps_tpb_2025,B2,H6B,Skor kepercayaan beku bps_tpb_2025,0.962500,skor,results/processed/h6b-source-trust-scores.csv,trust_score

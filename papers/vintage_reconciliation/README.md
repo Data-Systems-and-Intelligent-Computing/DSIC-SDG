@@ -8,7 +8,7 @@ atau mengedit angka secara manual.
 
 | Jenis | Lokasi | Keterangan |
 |---|---|---|
-| **Paket data artikel** (folder ini) | `papers/vintage_reconciliation/data/` | 27 tabel salinan, 3 tabel turunan, 70 angka kunci; laptop dan GitHub |
+| **Paket data artikel** (folder ini) | `papers/vintage_reconciliation/data/` | 30 tabel salinan, 3 tabel turunan, 86 angka kunci; laptop dan GitHub |
 | Seluruh hasil olahan H1–H10 | `results/processed/` | laptop dan GitHub; sumber folder ini |
 | Manifest checksum setiap tahap | `data/manifests/` | laptop dan GitHub |
 | Data mentah pengukuran H10A | `results/raw/h10/h10a-20260911/` | laptop dan GitHub |
@@ -22,7 +22,7 @@ repository ini tanpa VM.
 
 ```text
 data/
-├── angka-kunci.csv          70 angka kunci + sumber + cara penurunan  ← mulai dari sini
+├── angka-kunci.csv          86 angka kunci + sumber + cara penurunan  ← mulai dari sini
 ├── bundle-manifest.json     checksum setiap berkas dan manifest tahap asalnya
 ├── p1-karakterisasi/        P1: bentuk dan sebab ketidaksesuaian antarsumber (H1–H5)
 ├── p2-representasi/         P2: vintage sebagai dimensi eksplisit (H6, H9A)
