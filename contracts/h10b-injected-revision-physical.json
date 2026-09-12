@@ -1,0 +1,118 @@
+{
+  "contract_version": "h10b.1",
+  "stage": "H10",
+  "track": "B",
+  "name": "physical_injected_revision_execution",
+  "description": "Rebuild the four treatment tables from the real H6 workload, inject one frozen H8B revision scenario physically through each treatment's own write mechanism, and measure the statement time and the byte growth of that single revision.",
+  "human_decisions": {
+    "registry": "config/h10/human_decisions.csv",
+    "approved_at": "2026-09-12",
+    "decision_ids": ["h10b_timing_environment", "h10b_orphan_cleanup"]
+  },
+  "input": {
+    "harness_manifest": "data/manifests/h8b-injected-revision-harness.json",
+    "harness_contract_version": "h8b.2",
+    "logical_manifest": "data/manifests/h9b-small-revision-execution.json",
+    "logical_contract_version": "h9b.2",
+    "profile_status": "validation_only",
+    "baseline_workload": "the 38-observation H6 real-revision workload"
+  },
+  "scenarios": [
+    {
+      "physical_order": 1,
+      "scenario_id": "validation_001",
+      "cells": 1,
+      "revised_sources": ["bps_webapi"],
+      "single_revised_source": true,
+      "b2_expected_behaviour": "withhold"
+    },
+    {
+      "physical_order": 2,
+      "scenario_id": "validation_002",
+      "cells": 2,
+      "revised_sources": ["bps_tpb_2025", "bps_webapi"],
+      "single_revised_source": false,
+      "b2_expected_behaviour": "propagate_one_of_two"
+    }
+  ],
+  "tables": {
+    "B0": ["kkciv.experiments.b0_indicator_current"],
+    "B1": ["kkciv.experiments.b1_indicator_full_snapshots"],
+    "B2": ["kkciv.experiments.b2_indicator_selected"],
+    "B3": ["kkciv.experiments.b3_observation_vintages", "kkciv.experiments.b3_indicator_current"]
+  },
+  "protocol": {
+    "repetitions": 3,
+    "execution": "serial, one operator, no concurrent treatment run and no other workload on the node",
+    "orphan_cleanup": {
+      "call": "kkciv.system.remove_orphan_files",
+      "when": "once, before the first baseline rebuild",
+      "older_than": "the measurement start time, because the run is serial and no concurrent writer exists",
+      "decision_id": "h10b_orphan_cleanup"
+    },
+    "baseline_rebuild": "DROP TABLE ... PURGE for every treatment table, then the treatment apply scripts in the order B0 B1 B2 B3",
+    "apply_scripts": {
+      "B0": "scripts/h7_apply.sh",
+      "B1": "scripts/h8_apply.sh",
+      "B2": "scripts/h7b_apply.sh",
+      "B3": "scripts/h9_apply.sh"
+    },
+    "expected_markers": {
+      "B0": "H7_VERIFY|14|14|14|24|1|3|0|0|0",
+      "B1": "H8_VERIFY|3|42|14|38|0|3|0|0|0|0",
+      "B2": "H7B_VERIFY|14|14|1|10|14|24|1|3|0|0|0",
+      "B3": "H9_VERIFY|38|38|14|14|38|0|1|1|0|0|42|0"
+    },
+    "injection": {
+      "B0": "MERGE the synthetic rows into the current table, then expire snapshots to one",
+      "B1": "INSERT OVERWRITE the complete next state as a fourth retained snapshot",
+      "B2": "INSERT OVERWRITE the selection recomputed with the frozen H6B scores, then expire snapshots to one",
+      "B3": "INSERT the synthetic rows into the append-only store, MERGE only the dirty cells into the serving table, then expire snapshots to one on both tables"
+    },
+    "catalog_uri_prefix": "jdbc:sqlite:/home/iceberg/"
+  },
+  "timing": {
+    "boundary": "in-session Spark SQL statement time reported by the Spark SQL CLI; JVM startup, catalog warm-up, and view creation are excluded from the treatment cost",
+    "source": "Time taken lines of one Spark SQL session per treatment",
+    "phases": ["write", "maintenance"],
+    "environment_decision": "h10b_timing_environment",
+    "aggregation": "median over repetitions, reported with the minimum and maximum",
+    "claim_limit": "comparative between treatments on the declared 2 vCPU VM at fixture scale; never a performance or scalability claim"
+  },
+  "footprint": {
+    "definition": "bytes of every object reachable from the table metadata of retained snapshots",
+    "classes": ["data", "delete", "manifest", "manifest_list", "metadata_json"],
+    "size_source": "MinIO object listing of the table location",
+    "metadata_size_must_match_object_size": ["data", "delete", "manifest"],
+    "phases": ["baseline", "after_revision"],
+    "reported": ["baseline_bytes", "after_bytes", "delta_bytes"]
+  },
+  "recall_after_revision": {
+    "requests": "every official observation of the H6 workload plus every synthetic observation of the scenario",
+    "access": {
+      "B0": "observation_id in the current table",
+      "B1": "observation_id in any retained snapshot read with VERSION AS OF",
+      "B2": "observation_id in the current table",
+      "B3": "(cell_id, vintage_id) in the append-only store"
+    },
+    "expectation_source": "results/processed/h9b-recall-audit.csv",
+    "value_matching": ["observation_id", "value_lexeme"]
+  },
+  "measurement_boundary": {
+    "timing": "measured_on_declared_environment",
+    "storage": "measured_on_declared_environment",
+    "sweep_status": "physical_smoke_not_the_main_sweep",
+    "profile_freeze": "the main sweep profile and its one-source-per-run rule stay with H11"
+  },
+  "invariants": [
+    "the catalog is persistent and the working tree is clean before any measurement starts",
+    "orphan files are removed once before the first baseline rebuild and the removal is recorded",
+    "every baseline rebuild reproduces the recorded treatment verification markers",
+    "every physical post-revision state equals the logical H9B state for the same scenario",
+    "every physical recall result equals the logical H9B recall audit for the same scenario",
+    "every metadata-referenced object exists in MinIO with the size recorded in metadata",
+    "B1 retains four snapshots after the revision while B0 B2 and B3 retain one per table",
+    "all repetitions are reported and aggregation happens only after row-level checks",
+    "timing is reported only for the declared environment and only as a comparison between treatments"
+  ]
+}

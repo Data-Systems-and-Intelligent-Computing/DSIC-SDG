@@ -155,8 +155,8 @@ def validate_contract(contract: dict[str, Any]) -> None:
 
 def validate_human_decisions(rows: list[dict[str, str]]) -> None:
     by_id = {row["decision_id"]: row for row in rows}
-    if len(rows) != len(REQUIRED_DECISIONS) or set(by_id) != set(REQUIRED_DECISIONS):
-        raise ValueError("H10A requires exactly the two H10 human decisions")
+    if len(by_id) != len(rows) or not set(REQUIRED_DECISIONS) <= set(by_id):
+        raise ValueError("H10A requires the two H10 measurement decisions in the registry")
     for decision_id, (scope, decision) in REQUIRED_DECISIONS.items():
         row = by_id[decision_id]
         if (
@@ -168,6 +168,13 @@ def validate_human_decisions(rows: list[dict[str, str]]) -> None:
             or not row["rationale"]
         ):
             raise ValueError(f"H10 human decision {decision_id} is not approved as recorded")
+    # Later H10 answers (audit responses, H10B inputs) may extend the registry; they
+    # never relax the two decisions the measurement itself depended on.
+    for row in rows:
+        if row["decision_id"] in REQUIRED_DECISIONS:
+            continue
+        if row["decided_by"] != "human_reviewer" or row["status"] != "approved" or not row["rationale"]:
+            raise ValueError(f"H10 registry row {row['decision_id']} is not an approved human decision")
 
 
 def read_environment(path: Path) -> dict[str, str]:
@@ -421,7 +428,7 @@ def run_h10(
     recalled = {treatment: sum(row["addressable"] == "yes" for row in recall_rows if row["treatment_id"] == treatment) for treatment in TREATMENTS}
     validation = [
         {"invariant": "h10a_contract", "status": "passed", "checked_rows": "6", "detail": "decisions tables protocol footprint recall and boundary match h10a.1"},
-        {"invariant": "human_decisions", "status": "passed", "checked_rows": str(len(decisions)), "detail": "persistent catalog and declared storage environment approved on 2026-09-11"},
+        {"invariant": "human_decisions", "status": "passed", "checked_rows": str(len(decisions)), "detail": "persistent catalog and declared storage environment approved on 2026-09-11; later H10 audit answers extend the same registry"},
         {"invariant": "persistent_catalog", "status": "passed", "checked_rows": "1", "detail": environment["catalog_uri"]},
         {"invariant": "clean_start", "status": "passed", "checked_rows": "1", "detail": f"git commit {environment['git_commit']} with no local changes"},
         {"invariant": "recorded_markers", "status": "passed", "checked_rows": str(len(markers)), "detail": "every repetition reproduces the recorded B0 B1 B2 and B3 verification markers"},

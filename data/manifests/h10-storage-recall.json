@@ -29,7 +29,7 @@
     },
     {
       "path": "config/h10/human_decisions.csv",
-      "sha256": "f4b06a33649b6cc58a079813cc67cd2dacb1fc4cb781312a10b6399e3d82cb01"
+      "sha256": "339216e7cec64c05b0aeae7e620278810f64f05592c05317dde7267dbc1cb564"
     },
     {
       "path": "data/manifests/h6-vintage-schema.json",
@@ -79,7 +79,7 @@
     {
       "path": "results/processed/h10-validation.csv",
       "rows": 10,
-      "sha256": "ae238167f70ff403b716c6a2da3cb8a37a794ace5a6ae044d00cb3d231acddd2"
+      "sha256": "574e03e79ab4de109c5a1d6f8751aba5bd1b4ffad90e5a387d62504d1e315ad7"
     },
     {
       "path": "results/processed/h10-summary.csv",

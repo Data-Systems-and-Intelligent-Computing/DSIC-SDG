@@ -1,0 +1,4 @@
+scenario_order,scenario_id,cell_id,base_observation_id,synthetic_observation_id,impact_basis
+1,validation_001,7c1c5248808f73b2f3a6,cb0d5147421c66597d95,b5718af8676ffae2106a,synthetic revision inherits the H6C cell edge of its base observation
+2,validation_002,7c1c5248808f73b2f3a6,cb0d5147421c66597d95,238bbedcececb0d35387,synthetic revision inherits the H6C cell edge of its base observation
+2,validation_002,7e097ceb497e25947325,d99bc3566095bc6ee582,4a1084035729f4017f16,synthetic revision inherits the H6C cell edge of its base observation

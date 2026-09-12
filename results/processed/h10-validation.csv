@@ -1,6 +1,6 @@
 invariant,status,checked_rows,detail
 h10a_contract,passed,6,decisions tables protocol footprint recall and boundary match h10a.1
-human_decisions,passed,2,persistent catalog and declared storage environment approved on 2026-09-11
+human_decisions,passed,6,persistent catalog and declared storage environment approved on 2026-09-11; later H10 audit answers extend the same registry
 persistent_catalog,passed,1,jdbc:sqlite:/home/iceberg/iceberg_catalog.db
 clean_start,passed,1,git commit c84e77ace6774a63ae6aca47b900f2ec605345a6 with no local changes
 recorded_markers,passed,12,every repetition reproduces the recorded B0 B1 B2 and B3 verification markers
