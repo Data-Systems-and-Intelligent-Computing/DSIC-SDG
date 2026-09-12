@@ -1,0 +1,83 @@
+metric,value,unit,interpretation
+repetitions,3,runs,serial rebuild-inject-measure cycles per sweep point
+sweep_points,6,scenarios,frozen sizes 1-2-4-8-16-38
+panel_cells,5378,cells,6983 observations of the frozen province panel
+host_nproc,2,vCPU,declared timing environment; comparison between treatments only
+b0_sweep_001_total_seconds_median,24.652,seconds,write 11.324 (range 10.665-11.381) plus maintenance 13.836 over 1 write statements
+b0_sweep_001_delta_bytes_median,13279,bytes,range 13278-13282; data 279; metadata 13000; 1 logical rows written
+b1_sweep_001_total_seconds_median,10.056,seconds,write 10.056 (range 9.625-10.116) plus maintenance 0.000 over 1 write statements
+b1_sweep_001_delta_bytes_median,468313,bytes,range 468307-468319; data 430494; metadata 37819; 15484 logical rows written
+b2_sweep_001_total_seconds_median,24.616,seconds,write 9.998 (range 9.405-12.869) plus maintenance 14.618 over 1 write statements
+b2_sweep_001_delta_bytes_median,25883,bytes,range 25879-25884; data 221; metadata 25662; 5378 logical rows written
+b3_sweep_001_total_seconds_median,38.007,seconds,write 15.971 (range 15.445-21.014) plus maintenance 22.103 over 2 write statements
+b3_sweep_001_delta_bytes_median,49262,bytes,range 49259-49661; data 11192; metadata 38070; 2 logical rows written
+b0_sweep_002_total_seconds_median,26.018,seconds,write 10.682 (range 10.318-11.939) plus maintenance 14.142 over 1 write statements
+b0_sweep_002_delta_bytes_median,13362,bytes,range 13359-13366; data 356; metadata 13006; 2 logical rows written
+b1_sweep_002_total_seconds_median,10.286,seconds,write 10.286 (range 10.012-10.386) plus maintenance 0.000 over 1 write statements
+b1_sweep_002_delta_bytes_median,468398,bytes,range 468391-468400; data 430573; metadata 37825; 15484 logical rows written
+b2_sweep_002_total_seconds_median,22.830,seconds,write 9.548 (range 9.408-9.685) plus maintenance 13.282 over 1 write statements
+b2_sweep_002_delta_bytes_median,25971,bytes,range 25970-25974; data 307; metadata 25664; 5378 logical rows written
+b3_sweep_002_total_seconds_median,37.563,seconds,write 15.659 (range 14.934-16.097) plus maintenance 21.727 over 2 write statements
+b3_sweep_002_delta_bytes_median,50608,bytes,range 50199-50615; data 12478; metadata 38130; 4 logical rows written
+b0_sweep_004_total_seconds_median,24.823,seconds,write 10.309 (range 10.283-10.995) plus maintenance 13.828 over 1 write statements
+b0_sweep_004_delta_bytes_median,13410,bytes,range 13406-13414; data 400; metadata 13010; 4 logical rows written
+b1_sweep_004_total_seconds_median,10.181,seconds,write 10.181 (range 9.425-10.572) plus maintenance 0.000 over 1 write statements
+b1_sweep_004_delta_bytes_median,468491,bytes,range 468487-468496; data 430679; metadata 37812; 15484 logical rows written
+b2_sweep_004_total_seconds_median,23.458,seconds,write 9.530 (range 9.479-10.353) plus maintenance 13.979 over 1 write statements
+b2_sweep_004_delta_bytes_median,26004,bytes,range 25998-26004; data 340; metadata 25664; 5378 logical rows written
+b3_sweep_004_total_seconds_median,36.920,seconds,write 15.674 (range 14.953-16.742) plus maintenance 21.468 over 2 write statements
+b3_sweep_004_delta_bytes_median,50789,bytes,range 50389-50797; data 12664; metadata 38125; 8 logical rows written
+b0_sweep_008_total_seconds_median,25.023,seconds,write 11.090 (range 10.018-12.017) plus maintenance 13.933 over 1 write statements
+b0_sweep_008_delta_bytes_median,13619,bytes,range 13606-13619; data 614; metadata 13005; 8 logical rows written
+b1_sweep_008_total_seconds_median,9.911,seconds,write 9.911 (range 9.785-11.510) plus maintenance 0.000 over 1 write statements
+b1_sweep_008_delta_bytes_median,468714,bytes,range 468709-468717; data 430889; metadata 37825; 15484 logical rows written
+b2_sweep_008_total_seconds_median,24.238,seconds,write 9.861 (range 9.644-11.178) plus maintenance 14.194 over 1 write statements
+b2_sweep_008_delta_bytes_median,26107,bytes,range 26100-26107; data 440; metadata 25667; 5378 logical rows written
+b3_sweep_008_total_seconds_median,35.854,seconds,write 15.606 (range 14.749-15.803) plus maintenance 20.248 over 2 write statements
+b3_sweep_008_delta_bytes_median,50818,bytes,range 50816-50827; data 12686; metadata 38132; 16 logical rows written
+b0_sweep_016_total_seconds_median,25.595,seconds,write 11.262 (range 10.659-11.642) plus maintenance 14.333 over 1 write statements
+b0_sweep_016_delta_bytes_median,13884,bytes,range 13869-13887; data 878; metadata 13006; 16 logical rows written
+b1_sweep_016_total_seconds_median,10.349,seconds,write 10.349 (range 10.247-10.609) plus maintenance 0.000 over 1 write statements
+b1_sweep_016_delta_bytes_median,468987,bytes,range 468981-468988; data 431161; metadata 37826; 15484 logical rows written
+b2_sweep_016_total_seconds_median,24.084,seconds,write 9.891 (range 9.135-9.899) plus maintenance 14.391 over 1 write statements
+b2_sweep_016_delta_bytes_median,26250,bytes,range 26248-26253; data 593; metadata 25657; 5378 logical rows written
+b3_sweep_016_total_seconds_median,37.517,seconds,write 15.421 (range 15.360-15.561) plus maintenance 22.096 over 2 write statements
+b3_sweep_016_delta_bytes_median,51959,bytes,range 51548-51961; data 13824; metadata 38135; 32 logical rows written
+b0_sweep_038_total_seconds_median,24.861,seconds,write 10.469 (range 10.378-11.081) plus maintenance 14.483 over 1 write statements
+b0_sweep_038_delta_bytes_median,14459,bytes,range 14459-14460; data 1450; metadata 13009; 38 logical rows written
+b1_sweep_038_total_seconds_median,10.068,seconds,write 10.068 (range 9.766-10.385) plus maintenance 0.000 over 1 write statements
+b1_sweep_038_delta_bytes_median,469682,bytes,range 469676-469687; data 431854; metadata 37828; 15484 logical rows written
+b2_sweep_038_total_seconds_median,23.052,seconds,write 9.466 (range 9.392-9.478) plus maintenance 13.595 over 1 write statements
+b2_sweep_038_delta_bytes_median,26363,bytes,range 26361-26365; data 695; metadata 25668; 5378 logical rows written
+b3_sweep_038_total_seconds_median,35.626,seconds,write 15.380 (range 14.844-15.798) plus maintenance 20.246 over 2 write statements
+b3_sweep_038_delta_bytes_median,52873,bytes,range 52872-52878; data 14727; metadata 38146; 76 logical rows written
+breakeven_b3_b1_total_seconds_median,none,cells,B1_cheaper_over_the_whole_sweep; 1:38.007/10.056;2:37.563/10.286;4:36.920/10.181;8:35.854/9.911;16:37.517/10.349;38:35.626/10.068
+breakeven_b3_b1_delta_bytes_median,none,cells,B3_cheaper_over_the_whole_sweep; 1:49262/468313;2:50608/468398;4:50789/468491;8:50818/468714;16:51959/468987;38:52873/469682
+breakeven_b3_b0_total_seconds_median,none,cells,B0_cheaper_over_the_whole_sweep; 1:38.007/24.652;2:37.563/26.018;4:36.920/24.823;8:35.854/25.023;16:37.517/25.595;38:35.626/24.861
+breakeven_b3_b0_delta_bytes_median,none,cells,B0_cheaper_over_the_whole_sweep; 1:49262/13279;2:50608/13362;4:50789/13410;8:50818/13619;16:51959/13884;38:52873/14459
+breakeven_b3_b2_total_seconds_median,none,cells,B2_cheaper_over_the_whole_sweep; 1:38.007/24.616;2:37.563/22.830;4:36.920/23.458;8:35.854/24.238;16:37.517/24.084;38:35.626/23.052
+breakeven_b3_b2_delta_bytes_median,none,cells,B2_cheaper_over_the_whole_sweep; 1:49262/25883;2:50608/25971;4:50789/26004;8:50818/26107;16:51959/26250;38:52873/26363
+b0_sweep_001_official_recall,0.7700,ratio,5377 of 6983 published observations returned with the exact lexeme
+b1_sweep_001_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme
+b2_sweep_001_official_recall,0.7700,ratio,5377 of 6983 published observations returned with the exact lexeme
+b3_sweep_001_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme
+b0_sweep_002_official_recall,0.7699,ratio,5376 of 6983 published observations returned with the exact lexeme
+b1_sweep_002_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme
+b2_sweep_002_official_recall,0.7699,ratio,5376 of 6983 published observations returned with the exact lexeme
+b3_sweep_002_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme
+b0_sweep_004_official_recall,0.7696,ratio,5374 of 6983 published observations returned with the exact lexeme
+b1_sweep_004_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme
+b2_sweep_004_official_recall,0.7696,ratio,5374 of 6983 published observations returned with the exact lexeme
+b3_sweep_004_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme
+b0_sweep_008_official_recall,0.7690,ratio,5370 of 6983 published observations returned with the exact lexeme
+b1_sweep_008_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme
+b2_sweep_008_official_recall,0.7690,ratio,5370 of 6983 published observations returned with the exact lexeme
+b3_sweep_008_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme
+b0_sweep_016_official_recall,0.7679,ratio,5362 of 6983 published observations returned with the exact lexeme
+b1_sweep_016_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme
+b2_sweep_016_official_recall,0.7679,ratio,5362 of 6983 published observations returned with the exact lexeme
+b3_sweep_016_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme
+b0_sweep_038_official_recall,0.7647,ratio,5340 of 6983 published observations returned with the exact lexeme
+b1_sweep_038_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme
+b2_sweep_038_official_recall,0.7647,ratio,5340 of 6983 published observations returned with the exact lexeme
+b3_sweep_038_official_recall,1.0000,ratio,6983 of 6983 published observations returned with the exact lexeme

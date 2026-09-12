@@ -29,3 +29,10 @@ p4-reproducibility,results/processed/h8-b1-summary.csv,Ringkasan perlakuan B1 sn
 pembahasan-b2,results/processed/h6b-source-trust-scores.csv,Skor kepercayaan beku tiga sumber untuk B2 (H6B)
 pembahasan-b2,results/processed/h7b-b2-summary.csv,Ringkasan perlakuan B2 single source (H7B)
 pembahasan-b2,results/processed/h7b-b2-discarded-candidates.csv,24 kandidat yang dibuang B2 beserta alasannya (H7B)
+p3-ongkos,results/processed/h11-sweep-scenarios.csv,Enam titik sweep utama pada panel provinsi beserta keluaran yang diprediksi per perlakuan (H11)
+p3-ongkos,results/processed/h11-apply-cost.csv,"Waktu, byte, sel dievaluasi, recall dan propagasi per titik sweep dan perlakuan (H11)"
+p3-ongkos,results/processed/h11-breakeven.csv,Titik impas inkremental terhadap setiap pembanding pada waktu dan byte (H11)
+p3-ongkos,results/processed/h11-statement-timing.csv,Waktu setiap pernyataan Spark SQL pada tiga repetisi sweep utama (H11)
+p3-ongkos,results/processed/h11-storage-delta.csv,Byte baseline dan sesudah revisi per tabel, repetisi dan titik sweep (H11)
+p4-reproducibility,results/processed/h11-recall.csv,Recall permintaan panel dan sintetis per perlakuan pada setiap titik sweep (H11)
+pembahasan-b2,results/processed/h11-propagation.csv,Propagasi revisi per perlakuan pada semesta sweep sumber tunggal (H11)

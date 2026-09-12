@@ -470,9 +470,35 @@ daya seluruh eksperimen. Freeze, alasan setiap nilai, dan cara verifikasinya ada
 [`config/h10c/human_decisions.csv`](config/h10c/human_decisions.csv). Dengan berkas freeze ini
 kriteria keempat terpenuhi dan **Gate G2 dinyatakan lolos**. Seluruh 105 test lulus.
 
+H11 menjalankan sweep utama P3 dan menutupnya dengan jawaban negatif untuk waktu. Panel provinsi
+beku diproyeksikan ke skema vintage H6 menjadi 6.983 observasi pada 5.378 sel dan empat vintage,
+setelah 683 baris duplikat `(cell_id, source_id)` yang nilainya terbukti identik dibuang. Keempat
+perlakuan dibangun ulang di atas panel itu dengan mekanisme tulis masing-masing, lalu revisi
+tersuntik berukuran 1, 2, 4, 8, 16, dan 38 sel dieksekusi dalam tiga repetisi, seluruhnya 72 route
+selama 2 jam 9 menit. Waktu keempat perlakuan praktis datar: B1 10,1 detik, B2 23,1 sampai 24,6
+detik, B0 24,7 sampai 26,0 detik, dan B3 35,6 sampai 38,0 detik, berapa pun besaran revisinya.
+Penyebabnya terukur, yaitu pernyataan tulis 9,5 sampai 11,3 detik berapa pun ukuran revisi ditambah
+`expire_snapshots` 13,3 sampai 22,1 detik; B1 tercepat justru karena mekanismenya tidak menuntut
+pemeliharaan snapshot. Dalam ruang urutannya berbalik: B1 menambah sekitar 468 KB pada setiap revisi
+karena selalu menulis salinan penuh 5.378 sel, sedangkan B3 menambah 49 sampai 53 KB, yaitu 8,9
+sampai 9,5 kali lebih sedikit, dan B0 paling murah dengan 13,3 sampai 14,5 KB. Merevisi satu nilai di
+B0 mengubah 279 byte data tetapi menambah 13.000 byte metadata. B0 dan B3 mengevaluasi tepat sel yang
+direvisi sedangkan B1 dan B2 menghitung ulang seluruh 5.378 sel, sehingga penghematan inkremental
+nyata dalam pekerjaan logis dan ruang tetapi habis diserap ongkos tetap pernyataan dalam waktu. Tidak
+ada titik impas di dalam rentang beku pada kedua ukuran: B3 lebih murah daripada B1 dalam byte di
+seluruh rentang dan lebih mahal dalam waktu di seluruh rentang. Recall B1 dan B3 tetap `1,0000` atas
+6.983 permintaan panel plus permintaan sintetis, sedangkan B0 dan B2 `0,7660` sampai `0,7700`.
+Propagasi revisi bernilai 1,0000 pada keempat perlakuan karena semesta sweep hanya dilayani satu
+sumber, sehingga perilaku menahan B2 pada H9B tidak dapat muncul di sini. Jalankan `make h11-prepare`,
+`make h11-measure` di host stack, lalu `make h11-run`; rincian, batas klaim, dan satu bug presedensi
+SQL yang ditemukan serta diperbaiki sebelum run utama ada di
+[`docs/research/h11-main-sweep.md`](docs/research/h11-main-sweep.md). Marker:
+`H11_VERIFY|3|6|72|6983|5378|24.652|10.056|24.616|38.007|24.861|10.068|23.052|35.626|14459|469682|26363|52873|0.7660|1.0000|0.7660|1.0000|none|none|measured`.
+Seluruh 133 test lulus.
+
 Semua angka dan tabel untuk naskah dikumpulkan di
-[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 30 tabel per pertanyaan
-penelitian, 3 tabel turunan, dan 86 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
+[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 37 tabel per pertanyaan
+penelitian, 3 tabel turunan, dan 127 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
 dengan `make article-bundle`, yang memverifikasi checksum setiap sumber terhadap manifest tahapnya.
 Bahan mentah sumber di `data/raw/` hanya ada di laptop peneliti. `make raw-backup` membuat arsip
 beserta daftar checksum di `backups/`, dan arsip itu wajib disalin ke lokasi kedua.

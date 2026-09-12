@@ -6,7 +6,7 @@ import json
 import statistics
 from decimal import Decimal
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from kkciv_vintage.h6.pipeline import (
     OBSERVATION_COLUMNS,
@@ -16,10 +16,8 @@ from kkciv_vintage.h6.pipeline import (
     _id,
 )
 from kkciv_vintage.h6c.pipeline import build_lineage
-from kkciv_vintage.h7.pipeline import STATE_COLUMNS as B0_STATE_COLUMNS
 from kkciv_vintage.h7.pipeline import simulate_overwrite
 from kkciv_vintage.h8.pipeline import CATALOG_COLUMNS as B1_CATALOG_COLUMNS
-from kkciv_vintage.h8.pipeline import SNAPSHOT_STATE_COLUMNS as B1_STATE_COLUMNS
 from kkciv_vintage.h8b.pipeline import (
     INJECTION_COLUMNS,
     PLAN_COLUMNS,
@@ -29,9 +27,7 @@ from kkciv_vintage.h8b.pipeline import (
     _payload_hash,
     _short_hash,
 )
-from kkciv_vintage.h9.pipeline import CURRENT_COLUMNS as B3_CURRENT_COLUMNS
 from kkciv_vintage.h9.pipeline import IMPACT_RELATIONSHIP, lineage_impact_index
-from kkciv_vintage.h9.pipeline import STORE_COLUMNS as B3_STORE_COLUMNS
 from kkciv_vintage.h9.pipeline import simulate_vintage_aware
 from kkciv_vintage.h9b.pipeline import (
     SYNTHETIC_EVIDENCE,
@@ -41,14 +37,13 @@ from kkciv_vintage.h9b.pipeline import (
     synthetic_observations,
     synthetic_vintage_row,
 )
-from kkciv_vintage.h10b.pipeline import B2_SELECTION_COLUMNS, b2_selection_state
+from kkciv_vintage.h10b.pipeline import b2_selection_state
 
 
 TREATMENTS = ["B0", "B1", "B2", "B3"]
 CLASSES = ["data", "delete", "manifest", "manifest_list", "metadata_json"]
 SIZED_CLASSES = {"data", "delete", "manifest"}
 PHASES = ["baseline", "after_revision"]
-REQUEST_KINDS = ["official", "synthetic"]
 REQUIRED_DECISIONS = {
     "h10c_sweep_workload": ("experiment_freeze", "hybrid_fixture_plus_province_panel"),
     "h10c_sweep_universe": ("injection_size", "productivity_growth_2025_province_webapi"),
@@ -85,7 +80,6 @@ IMPACT_EDGE_COLUMNS = [
     "arrival_order",
     "relationship",
 ]
-B3_STORE_OUTPUT_COLUMNS = B3_STORE_COLUMNS
 SYNTHETIC_STORE_COLUMNS = [
     "scenario_order",
     "scenario_id",
@@ -280,7 +274,7 @@ def verify_freeze(freeze_rows: list[dict[str, str]], required_ids: list[str]) ->
 def deduplicate_panel(
     rows: list[dict[str, str]],
     *,
-    retrieved_at_for: Any,
+    retrieved_at_for: Callable[[dict[str, str]], str],
 ) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
     """Keep one row per (cell_id, source_id) and prove every dropped row identical.
 
@@ -306,9 +300,9 @@ def deduplicate_panel(
     kept: list[dict[str, str]] = []
     duplicates: list[dict[str, str]] = []
     for (cell_id, source_id), candidates in sorted(groups.items()):
-        ordered = sorted(
-            candidates, key=lambda row: (_negated(row["retrieved_at"]), row["source_record_id"])
-        )
+        # Keep the most recent retrieval; a tie falls back to the smallest locator.
+        ordered = sorted(candidates, key=lambda row: row["source_record_id"])
+        ordered.sort(key=lambda row: row["retrieved_at"], reverse=True)
         winner = ordered[0]
         kept.append(winner)
         for loser in ordered[1:]:
@@ -337,11 +331,6 @@ def deduplicate_panel(
                 }
             )
     return kept, duplicates
-
-
-def _negated(text: str) -> tuple[int, ...]:
-    """Sort key that orders strings descending inside an ascending sort."""
-    return tuple(-ord(character) for character in text)
 
 
 def project_panel(

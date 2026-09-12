@@ -37,8 +37,8 @@ class ArticleBundleTests(unittest.TestCase):
 
             self.assertEqual(first, second)
             self.assertEqual(first_bytes, second_bytes)
-            self.assertEqual(first["copied_tables"], 30)
-            self.assertEqual(first["key_numbers"], 86)
+            self.assertEqual(first["copied_tables"], 37)
+            self.assertEqual(first["key_numbers"], 127)
             committed = ROOT / "papers/vintage_reconciliation/data"
             for relative, content in first_bytes.items():
                 self.assertEqual((committed / relative).read_bytes(), content, str(relative))
@@ -59,9 +59,17 @@ class ArticleBundleTests(unittest.TestCase):
                 "p4_b1_success_rate": "1.0000",
                 "p4_b2_recalled_after_restart": "14",
                 "b2_propagation_b2": "0.2857",
+                "p3_sweep_panel_cells": "5378",
+                "p3_b1_sweep_1_delta_bytes": "468313",
+                "p3_b3_sweep_1_delta_bytes": "49262",
+                "p3_b3_sweep_1_cells_evaluated": "1",
+                "p3_b1_sweep_38_cells_evaluated": "5378",
+                "p3_breakeven_b3_b1_byte": "none",
+                "p4_b3_sweep_recall": "1.0000",
+                "p4_b0_sweep_recall": "0.7660",
             }
             self.assertEqual({key: numbers[key] for key in expected}, expected)
-            self.assertEqual(len(numbers), 86)
+            self.assertEqual(len(numbers), 127)
             for row in _read_csv(output / "angka-kunci.csv"):
                 self.assertTrue((ROOT / row["source_file"]).exists(), row["source_file"])
 

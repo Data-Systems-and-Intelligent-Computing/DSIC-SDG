@@ -1,0 +1,13 @@
+invariant,status,checked_rows,detail
+frozen evidence still matches the freeze checksums,pass,24,24 frozen items re-checked against config/experiments/experiment_freeze.csv
+the panel keeps its frozen shape,pass,6983,6983 observations over 5378 cells
+every baseline rebuild reproduces the same treatment state,pass,18,"18 rebuilds, 1 distinct marker"
+every post-revision state equals the predicted state,pass,72,"cells the scenario revises are checked against the frozen prediction, the rest against the panel state"
+recall equals the predicted recall in every repetition,pass,48,"official and synthetic requests, matched on observation_id and value_lexeme"
+revision propagation equals the prediction,pass,72,served revisions counted in the serving state of each treatment
+B1 retains one snapshot per release plus the revision while the others retain one,pass,72,"B1 ['5'], others ['1']"
+the B1 snapshot before the revision still holds the pre-revision state,pass,18,VERSION AS OF returns 10106 rows and no revised state
+every metadata-referenced object exists in MinIO with the size metadata records,pass,90,checked while folding the footprint rows
+the run stayed on the frozen resource limit,pass,1,"nproc=2, driver=2g, catalog=jdbc:sqlite:/home/iceberg/iceberg_catalog.db"
+the working tree was clean when the measurement started,pass,1,"commit d32308e44324e6c0d2ec225515f459f0cee36089, dirty entries 0"
+all repetitions are reported before any aggregation,pass,306,3 repetitions of 6 scenarios and 4 treatments

@@ -1,0 +1,7 @@
+comparison,measure,incremental_treatment,comparator_treatment,cheaper_at_smallest_point,crossing_cells,crossing_share,direction,detail
+B3 against B1,total_seconds_median,B3,B1,no,none,,B1_cheaper_over_the_whole_sweep,1:38.007/10.056;2:37.563/10.286;4:36.920/10.181;8:35.854/9.911;16:37.517/10.349;38:35.626/10.068
+B3 against B1,delta_bytes_median,B3,B1,yes,none,,B3_cheaper_over_the_whole_sweep,1:49262/468313;2:50608/468398;4:50789/468491;8:50818/468714;16:51959/468987;38:52873/469682
+B3 against B0,total_seconds_median,B3,B0,no,none,,B0_cheaper_over_the_whole_sweep,1:38.007/24.652;2:37.563/26.018;4:36.920/24.823;8:35.854/25.023;16:37.517/25.595;38:35.626/24.861
+B3 against B0,delta_bytes_median,B3,B0,no,none,,B0_cheaper_over_the_whole_sweep,1:49262/13279;2:50608/13362;4:50789/13410;8:50818/13619;16:51959/13884;38:52873/14459
+B3 against B2,total_seconds_median,B3,B2,no,none,,B2_cheaper_over_the_whole_sweep,1:38.007/24.616;2:37.563/22.830;4:36.920/23.458;8:35.854/24.238;16:37.517/24.084;38:35.626/23.052
+B3 against B2,delta_bytes_median,B3,B2,no,none,,B2_cheaper_over_the_whole_sweep,1:49262/25883;2:50608/25971;4:50789/26004;8:50818/26107;16:51959/26250;38:52873/26363

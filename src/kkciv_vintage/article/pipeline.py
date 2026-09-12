@@ -246,6 +246,37 @@ def key_numbers(src: Sources) -> list[dict[str, str]]:
         add(f"p3_{treatment.lower()}_revision_total_seconds", "P3", "H10B", f"Waktu tulis dan pemeliharaan satu revisi 1 sel, {treatment}", row["total_seconds_median"], "detik", "h10b-apply-cost.csv", f"total_seconds_median {smoke}; pemeliharaan {row['maintenance_seconds_median']}")
         add(f"p3_{treatment.lower()}_revision_delta_bytes", "P3", "H10B", f"Pertambahan byte satu revisi 1 sel, {treatment}", row["delta_bytes_median"], "byte", "h10b-apply-cost.csv", f"delta_bytes_median {smoke}; data {row['delta_data_bytes_median']}; metadata {row['delta_metadata_bytes_median']}")
 
+    sweep = {(r["scenario_id"], r["treatment_id"]): r for r in src.rows("h11-apply-cost.csv")}
+    sweep_points = sorted(
+        {(int(r["scenario_order"]), r["scenario_id"], r["cells_revised"]) for r in src.rows("h11-apply-cost.csv")}
+    )
+    smallest_point, largest_point = sweep_points[0], sweep_points[-1]
+    scenarios = src.rows("h11-sweep-scenarios.csv")
+    add("p3_sweep_panel_observations", "P3", "H11", "Observasi panel provinsi yang menjadi keadaan dasar sweep", scenarios[0]["panel_observations"], "observasi", "h11-sweep-scenarios.csv", "panel_observations")
+    add("p3_sweep_panel_cells", "P3", "H11", "Sel panel provinsi yang menjadi keadaan dasar sweep", scenarios[0]["panel_cells"], "sel", "h11-sweep-scenarios.csv", "panel_cells")
+    add("p3_sweep_points", "P3", "H11", "Titik sweep utama yang dijalankan", len(sweep_points), "titik", "h11-apply-cost.csv", "-".join(point[2] for point in sweep_points) + " sel")
+    for _, scenario_id, cells in (smallest_point, largest_point):
+        for treatment in TREATMENTS:
+            row = sweep[(scenario_id, treatment)]
+            add(f"p3_{treatment.lower()}_sweep_{cells}_total_seconds", "P3", "H11", f"Waktu tulis dan pemeliharaan revisi {cells} sel pada panel, {treatment}", row["total_seconds_median"], "detik", "h11-apply-cost.csv", f"total_seconds_median {scenario_id}; tulis {row['write_seconds_median']} (rentang {row['write_seconds_min']}-{row['write_seconds_max']}); pemeliharaan {row['maintenance_seconds_median']}")
+            add(f"p3_{treatment.lower()}_sweep_{cells}_delta_bytes", "P3", "H11", f"Pertambahan byte revisi {cells} sel pada panel, {treatment}", row["delta_bytes_median"], "byte", "h11-apply-cost.csv", f"delta_bytes_median {scenario_id}; data {row['delta_data_bytes_median']}; metadata {row['delta_metadata_bytes_median']}")
+            add(f"p3_{treatment.lower()}_sweep_{cells}_cells_evaluated", "P3", "H11", f"Sel yang dievaluasi untuk revisi {cells} sel, {treatment}", row["cells_evaluated"], "sel", "h11-apply-cost.csv", f"cells_evaluated {scenario_id}")
+    for row in src.rows("h11-breakeven.csv"):
+        add(
+            f"p3_breakeven_{row['incremental_treatment'].lower()}_{row['comparator_treatment'].lower()}_{'waktu' if row['measure'].startswith('total_seconds') else 'byte'}",
+            "P3",
+            "H11",
+            f"Titik impas {row['incremental_treatment']} terhadap {row['comparator_treatment']} pada {row['measure']}",
+            row["crossing_cells"],
+            "sel",
+            "h11-breakeven.csv",
+            f"{row['direction']}; nilai per titik {row['detail']}",
+        )
+    for treatment in TREATMENTS:
+        row = sweep[(largest_point[1], treatment)]
+        add(f"p4_{treatment.lower()}_sweep_recall", "P4", "H11", f"Recall permintaan panel dan sintetis setelah revisi satu tahun penuh, {treatment}", row["recall_rate"], "rasio", "h11-apply-cost.csv", f"recall_rate {largest_point[1]}")
+        add(f"b2_sweep_propagation_{treatment.lower()}", "B2", "H11", f"Propagasi revisi pada semesta sweep sumber tunggal, {treatment}", row["propagation_rate"], "rasio", "h11-apply-cost.csv", f"propagation_rate {largest_point[1]}")
+
     repro = {r["treatment_id"]: r for r in src.rows("h9c-reproducibility-table.csv")}
     recall = src.rows("h10-recall-after-restart.csv")
     for treatment in TREATMENTS:

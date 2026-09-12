@@ -63,6 +63,47 @@ p3_b2_revision_delta_bytes,P3,H10B,"Pertambahan byte satu revisi 1 sel, B2",2456
 p3_b3_revision_write_seconds,P3,H10B,"Waktu tulis satu revisi 1 sel, B3",13.388,detik,results/processed/h10b-apply-cost.csv,write_seconds_median validation_001; rentang 13.109-14.977; 2 pernyataan
 p3_b3_revision_total_seconds,P3,H10B,"Waktu tulis dan pemeliharaan satu revisi 1 sel, B3",34.877,detik,results/processed/h10b-apply-cost.csv,total_seconds_median validation_001; pemeliharaan 20.991
 p3_b3_revision_delta_bytes,P3,H10B,"Pertambahan byte satu revisi 1 sel, B3",60156,byte,results/processed/h10b-apply-cost.csv,delta_bytes_median validation_001; data 11550; metadata 48606
+p3_sweep_panel_observations,P3,H11,Observasi panel provinsi yang menjadi keadaan dasar sweep,6983,observasi,results/processed/h11-sweep-scenarios.csv,panel_observations
+p3_sweep_panel_cells,P3,H11,Sel panel provinsi yang menjadi keadaan dasar sweep,5378,sel,results/processed/h11-sweep-scenarios.csv,panel_cells
+p3_sweep_points,P3,H11,Titik sweep utama yang dijalankan,6,titik,results/processed/h11-apply-cost.csv,1-2-4-8-16-38 sel
+p3_b0_sweep_1_total_seconds,P3,H11,"Waktu tulis dan pemeliharaan revisi 1 sel pada panel, B0",24.652,detik,results/processed/h11-apply-cost.csv,total_seconds_median sweep_001; tulis 11.324 (rentang 10.665-11.381); pemeliharaan 13.836
+p3_b0_sweep_1_delta_bytes,P3,H11,"Pertambahan byte revisi 1 sel pada panel, B0",13279,byte,results/processed/h11-apply-cost.csv,delta_bytes_median sweep_001; data 279; metadata 13000
+p3_b0_sweep_1_cells_evaluated,P3,H11,"Sel yang dievaluasi untuk revisi 1 sel, B0",1,sel,results/processed/h11-apply-cost.csv,cells_evaluated sweep_001
+p3_b1_sweep_1_total_seconds,P3,H11,"Waktu tulis dan pemeliharaan revisi 1 sel pada panel, B1",10.056,detik,results/processed/h11-apply-cost.csv,total_seconds_median sweep_001; tulis 10.056 (rentang 9.625-10.116); pemeliharaan 0.000
+p3_b1_sweep_1_delta_bytes,P3,H11,"Pertambahan byte revisi 1 sel pada panel, B1",468313,byte,results/processed/h11-apply-cost.csv,delta_bytes_median sweep_001; data 430494; metadata 37819
+p3_b1_sweep_1_cells_evaluated,P3,H11,"Sel yang dievaluasi untuk revisi 1 sel, B1",5378,sel,results/processed/h11-apply-cost.csv,cells_evaluated sweep_001
+p3_b2_sweep_1_total_seconds,P3,H11,"Waktu tulis dan pemeliharaan revisi 1 sel pada panel, B2",24.616,detik,results/processed/h11-apply-cost.csv,total_seconds_median sweep_001; tulis 9.998 (rentang 9.405-12.869); pemeliharaan 14.618
+p3_b2_sweep_1_delta_bytes,P3,H11,"Pertambahan byte revisi 1 sel pada panel, B2",25883,byte,results/processed/h11-apply-cost.csv,delta_bytes_median sweep_001; data 221; metadata 25662
+p3_b2_sweep_1_cells_evaluated,P3,H11,"Sel yang dievaluasi untuk revisi 1 sel, B2",5378,sel,results/processed/h11-apply-cost.csv,cells_evaluated sweep_001
+p3_b3_sweep_1_total_seconds,P3,H11,"Waktu tulis dan pemeliharaan revisi 1 sel pada panel, B3",38.007,detik,results/processed/h11-apply-cost.csv,total_seconds_median sweep_001; tulis 15.971 (rentang 15.445-21.014); pemeliharaan 22.103
+p3_b3_sweep_1_delta_bytes,P3,H11,"Pertambahan byte revisi 1 sel pada panel, B3",49262,byte,results/processed/h11-apply-cost.csv,delta_bytes_median sweep_001; data 11192; metadata 38070
+p3_b3_sweep_1_cells_evaluated,P3,H11,"Sel yang dievaluasi untuk revisi 1 sel, B3",1,sel,results/processed/h11-apply-cost.csv,cells_evaluated sweep_001
+p3_b0_sweep_38_total_seconds,P3,H11,"Waktu tulis dan pemeliharaan revisi 38 sel pada panel, B0",24.861,detik,results/processed/h11-apply-cost.csv,total_seconds_median sweep_038; tulis 10.469 (rentang 10.378-11.081); pemeliharaan 14.483
+p3_b0_sweep_38_delta_bytes,P3,H11,"Pertambahan byte revisi 38 sel pada panel, B0",14459,byte,results/processed/h11-apply-cost.csv,delta_bytes_median sweep_038; data 1450; metadata 13009
+p3_b0_sweep_38_cells_evaluated,P3,H11,"Sel yang dievaluasi untuk revisi 38 sel, B0",38,sel,results/processed/h11-apply-cost.csv,cells_evaluated sweep_038
+p3_b1_sweep_38_total_seconds,P3,H11,"Waktu tulis dan pemeliharaan revisi 38 sel pada panel, B1",10.068,detik,results/processed/h11-apply-cost.csv,total_seconds_median sweep_038; tulis 10.068 (rentang 9.766-10.385); pemeliharaan 0.000
+p3_b1_sweep_38_delta_bytes,P3,H11,"Pertambahan byte revisi 38 sel pada panel, B1",469682,byte,results/processed/h11-apply-cost.csv,delta_bytes_median sweep_038; data 431854; metadata 37828
+p3_b1_sweep_38_cells_evaluated,P3,H11,"Sel yang dievaluasi untuk revisi 38 sel, B1",5378,sel,results/processed/h11-apply-cost.csv,cells_evaluated sweep_038
+p3_b2_sweep_38_total_seconds,P3,H11,"Waktu tulis dan pemeliharaan revisi 38 sel pada panel, B2",23.052,detik,results/processed/h11-apply-cost.csv,total_seconds_median sweep_038; tulis 9.466 (rentang 9.392-9.478); pemeliharaan 13.595
+p3_b2_sweep_38_delta_bytes,P3,H11,"Pertambahan byte revisi 38 sel pada panel, B2",26363,byte,results/processed/h11-apply-cost.csv,delta_bytes_median sweep_038; data 695; metadata 25668
+p3_b2_sweep_38_cells_evaluated,P3,H11,"Sel yang dievaluasi untuk revisi 38 sel, B2",5378,sel,results/processed/h11-apply-cost.csv,cells_evaluated sweep_038
+p3_b3_sweep_38_total_seconds,P3,H11,"Waktu tulis dan pemeliharaan revisi 38 sel pada panel, B3",35.626,detik,results/processed/h11-apply-cost.csv,total_seconds_median sweep_038; tulis 15.380 (rentang 14.844-15.798); pemeliharaan 20.246
+p3_b3_sweep_38_delta_bytes,P3,H11,"Pertambahan byte revisi 38 sel pada panel, B3",52873,byte,results/processed/h11-apply-cost.csv,delta_bytes_median sweep_038; data 14727; metadata 38146
+p3_b3_sweep_38_cells_evaluated,P3,H11,"Sel yang dievaluasi untuk revisi 38 sel, B3",38,sel,results/processed/h11-apply-cost.csv,cells_evaluated sweep_038
+p3_breakeven_b3_b1_waktu,P3,H11,Titik impas B3 terhadap B1 pada total_seconds_median,none,sel,results/processed/h11-breakeven.csv,B1_cheaper_over_the_whole_sweep; nilai per titik 1:38.007/10.056;2:37.563/10.286;4:36.920/10.181;8:35.854/9.911;16:37.517/10.349;38:35.626/10.068
+p3_breakeven_b3_b1_byte,P3,H11,Titik impas B3 terhadap B1 pada delta_bytes_median,none,sel,results/processed/h11-breakeven.csv,B3_cheaper_over_the_whole_sweep; nilai per titik 1:49262/468313;2:50608/468398;4:50789/468491;8:50818/468714;16:51959/468987;38:52873/469682
+p3_breakeven_b3_b0_waktu,P3,H11,Titik impas B3 terhadap B0 pada total_seconds_median,none,sel,results/processed/h11-breakeven.csv,B0_cheaper_over_the_whole_sweep; nilai per titik 1:38.007/24.652;2:37.563/26.018;4:36.920/24.823;8:35.854/25.023;16:37.517/25.595;38:35.626/24.861
+p3_breakeven_b3_b0_byte,P3,H11,Titik impas B3 terhadap B0 pada delta_bytes_median,none,sel,results/processed/h11-breakeven.csv,B0_cheaper_over_the_whole_sweep; nilai per titik 1:49262/13279;2:50608/13362;4:50789/13410;8:50818/13619;16:51959/13884;38:52873/14459
+p3_breakeven_b3_b2_waktu,P3,H11,Titik impas B3 terhadap B2 pada total_seconds_median,none,sel,results/processed/h11-breakeven.csv,B2_cheaper_over_the_whole_sweep; nilai per titik 1:38.007/24.616;2:37.563/22.830;4:36.920/23.458;8:35.854/24.238;16:37.517/24.084;38:35.626/23.052
+p3_breakeven_b3_b2_byte,P3,H11,Titik impas B3 terhadap B2 pada delta_bytes_median,none,sel,results/processed/h11-breakeven.csv,B2_cheaper_over_the_whole_sweep; nilai per titik 1:49262/25883;2:50608/25971;4:50789/26004;8:50818/26107;16:51959/26250;38:52873/26363
+p4_b0_sweep_recall,P4,H11,"Recall permintaan panel dan sintetis setelah revisi satu tahun penuh, B0",0.7660,rasio,results/processed/h11-apply-cost.csv,recall_rate sweep_038
+b2_sweep_propagation_b0,B2,H11,"Propagasi revisi pada semesta sweep sumber tunggal, B0",1.0000,rasio,results/processed/h11-apply-cost.csv,propagation_rate sweep_038
+p4_b1_sweep_recall,P4,H11,"Recall permintaan panel dan sintetis setelah revisi satu tahun penuh, B1",1.0000,rasio,results/processed/h11-apply-cost.csv,recall_rate sweep_038
+b2_sweep_propagation_b1,B2,H11,"Propagasi revisi pada semesta sweep sumber tunggal, B1",1.0000,rasio,results/processed/h11-apply-cost.csv,propagation_rate sweep_038
+p4_b2_sweep_recall,P4,H11,"Recall permintaan panel dan sintetis setelah revisi satu tahun penuh, B2",0.7660,rasio,results/processed/h11-apply-cost.csv,recall_rate sweep_038
+b2_sweep_propagation_b2,B2,H11,"Propagasi revisi pada semesta sweep sumber tunggal, B2",1.0000,rasio,results/processed/h11-apply-cost.csv,propagation_rate sweep_038
+p4_b3_sweep_recall,P4,H11,"Recall permintaan panel dan sintetis setelah revisi satu tahun penuh, B3",1.0000,rasio,results/processed/h11-apply-cost.csv,recall_rate sweep_038
+b2_sweep_propagation_b3,B2,H11,"Propagasi revisi pada semesta sweep sumber tunggal, B3",1.0000,rasio,results/processed/h11-apply-cost.csv,propagation_rate sweep_038
 p4_b0_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B0",0.3684,rasio,results/processed/h9c-reproducibility-table.csv,success_rate
 p4_b0_recalled_after_restart,P4,H10A,"Angka terbit yang dipanggil ulang fisik setelah restart katalog, B0",14,permintaan dari 38,results/processed/h10-recall-after-restart.csv,addressable = yes
 p4_b1_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B1",1.0000,rasio,results/processed/h9c-reproducibility-table.csv,success_rate

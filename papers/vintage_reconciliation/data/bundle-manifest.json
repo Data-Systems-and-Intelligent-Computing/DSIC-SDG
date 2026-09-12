@@ -271,6 +271,69 @@
       "sha256": "35b9560520ed07c0da060528cc093b9a474ed03bf76f469a3c2854812d782e7f",
       "source_manifest": "data/manifests/h7b-b2-single-source.json",
       "source_path": "results/processed/h7b-b2-discarded-candidates.csv"
+    },
+    {
+      "description": "Enam titik sweep utama pada panel provinsi beserta keluaran yang diprediksi per perlakuan (H11)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h11-sweep-scenarios.csv",
+      "rows": 6,
+      "sha256": "2170dd7f6c21d81735e14e01333d32da42413cd3f2d246997f114725f23baae6",
+      "source_manifest": "data/manifests/h11-main-sweep-payload.json",
+      "source_path": "results/processed/h11-sweep-scenarios.csv"
+    },
+    {
+      "description": "Waktu, byte, sel dievaluasi, recall dan propagasi per titik sweep dan perlakuan (H11)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h11-apply-cost.csv",
+      "rows": 24,
+      "sha256": "6200461441ac43cff6a6fcda2b3fab173b0edd81fc443ca9db9e02768329bb2b",
+      "source_manifest": "data/manifests/h11-main-sweep.json",
+      "source_path": "results/processed/h11-apply-cost.csv"
+    },
+    {
+      "description": "Titik impas inkremental terhadap setiap pembanding pada waktu dan byte (H11)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h11-breakeven.csv",
+      "rows": 6,
+      "sha256": "e5d0883b58351152cc7507365015ed782cec9e80680548820d24bff6c8b8c70f",
+      "source_manifest": "data/manifests/h11-main-sweep.json",
+      "source_path": "results/processed/h11-breakeven.csv"
+    },
+    {
+      "description": "Waktu setiap pernyataan Spark SQL pada tiga repetisi sweep utama (H11)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h11-statement-timing.csv",
+      "rows": 306,
+      "sha256": "ef3321772b9b0418975f5968472d26ad36dd10aca7550e551e0a36442b1bbb69",
+      "source_manifest": "data/manifests/h11-main-sweep.json",
+      "source_path": "results/processed/h11-statement-timing.csv"
+    },
+    {
+      "description": "Byte baseline dan sesudah revisi per tabel",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h11-storage-delta.csv",
+      "rows": 90,
+      "sha256": "a9a207856a805b05d59e17de9be2b3fe1b778e4d14774ed5958ee40cc0517faf",
+      "source_manifest": "data/manifests/h11-main-sweep.json",
+      "source_path": "results/processed/h11-storage-delta.csv"
+    },
+    {
+      "description": "Recall permintaan panel dan sintetis per perlakuan pada setiap titik sweep (H11)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h11-recall.csv",
+      "rows": 48,
+      "sha256": "001ba65a6da72c12cc2fdc0842d3bf7c6637452876a7d51613522140773da537",
+      "source_manifest": "data/manifests/h11-main-sweep.json",
+      "source_path": "results/processed/h11-recall.csv"
+    },
+    {
+      "description": "Propagasi revisi per perlakuan pada semesta sweep sumber tunggal (H11)",
+      "group": "pembahasan-b2",
+      "path": "pembahasan-b2/h11-propagation.csv",
+      "rows": 24,
+      "sha256": "33a1f852cce60cd7a6427900089efbfe5a1d44b6165316691c8ccea496e9a66b",
+      "source_manifest": "data/manifests/h11-main-sweep.json",
+      "source_path": "results/processed/h11-propagation.csv"
     }
   ],
   "derived_tables": [
@@ -289,14 +352,14 @@
     {
       "description": "Angka kunci naskah beserta sumber dan cara penurunannya",
       "path": "angka-kunci.csv",
-      "rows": 86,
-      "sha256": "f3398a38cc6d4ac950dd76fbe9387cc1effe5d267b0e246c39fc9aa2e7b02450"
+      "rows": 127,
+      "sha256": "152548a9621c8614efb8c985939b8d98ac9f349fa47333a7f0d090ccf8d59837"
     }
   ],
   "inputs": [
     {
       "path": "config/article/bundle_tables.csv",
-      "sha256": "4bfd5ed3b662fe27fe4c96b8f575181c8f74955a37f2f981001d92966b6608d5"
+      "sha256": "82305f62ef37f47d0f39bbb81192160bbe69fdf8350f9ccedd0ba72c8e01c8aa"
     }
   ],
   "verified_sources": [
@@ -339,6 +402,41 @@
       "path": "results/processed/h10b-storage-delta.csv",
       "sha256": "aec234d001492f35f7427ab8a10fb7d1c1f3b415a03219a270e8867f29186848",
       "source_manifest": "data/manifests/h10b-injected-revision-physical.json"
+    },
+    {
+      "path": "results/processed/h11-apply-cost.csv",
+      "sha256": "6200461441ac43cff6a6fcda2b3fab173b0edd81fc443ca9db9e02768329bb2b",
+      "source_manifest": "data/manifests/h11-main-sweep.json"
+    },
+    {
+      "path": "results/processed/h11-breakeven.csv",
+      "sha256": "e5d0883b58351152cc7507365015ed782cec9e80680548820d24bff6c8b8c70f",
+      "source_manifest": "data/manifests/h11-main-sweep.json"
+    },
+    {
+      "path": "results/processed/h11-propagation.csv",
+      "sha256": "33a1f852cce60cd7a6427900089efbfe5a1d44b6165316691c8ccea496e9a66b",
+      "source_manifest": "data/manifests/h11-main-sweep.json"
+    },
+    {
+      "path": "results/processed/h11-recall.csv",
+      "sha256": "001ba65a6da72c12cc2fdc0842d3bf7c6637452876a7d51613522140773da537",
+      "source_manifest": "data/manifests/h11-main-sweep.json"
+    },
+    {
+      "path": "results/processed/h11-statement-timing.csv",
+      "sha256": "ef3321772b9b0418975f5968472d26ad36dd10aca7550e551e0a36442b1bbb69",
+      "source_manifest": "data/manifests/h11-main-sweep.json"
+    },
+    {
+      "path": "results/processed/h11-storage-delta.csv",
+      "sha256": "a9a207856a805b05d59e17de9be2b3fe1b778e4d14774ed5958ee40cc0517faf",
+      "source_manifest": "data/manifests/h11-main-sweep.json"
+    },
+    {
+      "path": "results/processed/h11-sweep-scenarios.csv",
+      "sha256": "2170dd7f6c21d81735e14e01333d32da42413cd3f2d246997f114725f23baae6",
+      "source_manifest": "data/manifests/h11-main-sweep-payload.json"
     },
     {
       "path": "results/processed/h2-indicator-summary.csv",
