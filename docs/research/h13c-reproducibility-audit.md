@@ -95,6 +95,18 @@ skenario-perlakuan cocok tanpa kecuali.
 Seluruh 6.983 permintaan juga terselesaikan ke satu rekaman sumber melalui lineage panel, dengan
 kelengkapan `1,0000` atas 19.379 node dan 41.928 edge.
 
+## Reproduksi
+
+```bash
+make h13c-run
+```
+
+Audit menolak berjalan bila prosedur sepuluh langkah H8C berubah, bila satu saja keluaran payload
+panel tidak cocok dengan checksum manifestnya, bila ada kegagalan yang tidak terklasifikasi, atau
+bila recall turunan tidak cocok dengan recall yang diukur sweep. Audit diulang di VM dari commit yang
+sama dan menghasilkan checksum identik untuk kelima berkas keluaran; 164 test lulus pada kedua mesin
+dengan satu test PDF dilewati.
+
 ## Batas klaim
 
 Audit ini menyangkut kemampuan memanggil ulang angka yang pernah terbit, bukan kebenaran angkanya.
