@@ -11,12 +11,16 @@ menjelang submit. Target venue tetap jurnal Q1 Scopus sesuai §7 README utama.
 | `01-pendahuluan.md` | Pendahuluan | H10 Jalur C, 12 September 2026 |
 | `02-kedudukan-terhadap-literatur.md` | Kedudukan terhadap Literatur | H10 Jalur C, 12 September 2026 |
 | `03-kerangka-tabel-hasil.md` | kerangka tabel dan gambar bagian Hasil | H11 Jalur A dan C, 13 September 2026 |
+| `04-metode.md` | Metode | H12 Jalur A dan C, 13 September 2026 |
 
 Versi bahasa Inggris kedua bagian tersebut, dalam format Elsevier CAS kolom ganda, ada di
 [`../manuscript/`](../manuscript/README.md) dan dapat dikompilasi dengan `make manuscript`.
 
-Metode, Hasil, Pembahasan, dan Kesimpulan belum ditulis. Metode dijadwalkan pada H12 dan Hasil pada
-H15 sesuai §6.5 README utama. Bentuk tabel dan gambar bagian Hasil sudah dibekukan pada H11 di
+Metode sudah ditulis pada H12 dan memuat bagian ancaman terhadap validitas, termasuk tiga
+keterbatasan yang ditemukan sendiri oleh sweep H11: kebijakan pemeliharaan snapshot ikut terukur di
+dalam angka waktu, semesta sweep hanya dilayani satu sumber, dan besaran perubahan nilai tidak
+divariasikan. Hasil, Pembahasan, dan Kesimpulan belum ditulis; Hasil dijadwalkan pada H15 sesuai
+§6.5 README utama, dan bentuk tabel serta gambarnya sudah dibekukan pada H11 di
 `03-kerangka-tabel-hasil.md`, sebelum angka sweep ditafsirkan.
 
 ## Aturan penulisan yang dipakai
