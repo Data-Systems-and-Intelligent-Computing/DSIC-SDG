@@ -510,7 +510,8 @@ Kedua, keunggulan ruang B3 ternyata bergantung pada seberapa besar bagian keadaa
 rilis; setelah keempat rilis nyata yang banyak menambah sel baru, byte terujuk B3 dan B1 praktis sama,
 839.008 berbanding 837.744. Jalankan `make h12-measure` lalu `make h12-run`; rincian ada di
 [`docs/research/h12-real-revision-cost.md`](docs/research/h12-real-revision-cost.md). Marker:
-`H12_VERIFY|3|4|43|52.184|15.050|47.688|88.929|329276|837744|312945|839008|measured`. Draf Metode
+`H12_VERIFY|3|4|43|52.184|15.050|47.688|88.929|329276|837744|312945|839008|measured`; agregasi yang
+diulang di VM menghasilkan checksum identik dan 143 test lulus dengan satu test PDF dilewati. Draf Metode
 ditulis Jalur A dan C pada hari yang sama di
 [`papers/vintage_reconciliation/draft/04-metode.md`](papers/vintage_reconciliation/draft/04-metode.md),
 lengkap dengan bagian ancaman terhadap validitas.

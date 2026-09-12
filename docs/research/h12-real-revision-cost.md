@@ -162,6 +162,19 @@ memuat empat kedatangan dengan ukuran yang sangat timpang, mulai 62 sampai 4.591
 perbandingan antarkedatangan mencampur dua hal sekaligus, yaitu besaran kedatangan dan keadaan yang
 sudah ada sebelumnya. Sweep H11-lah yang memisahkan keduanya dengan besaran terkontrol.
 
+## Reproduksi
+
+```bash
+bash scripts/h12_measure.sh . <label>   # di host stack, satu operator, berurutan
+make h12-run H12_RUN=<label>            # audit dan agregasi
+```
+
+Agregasi menolak run yang ditandai `limited_run=yes` maupun run yang tidak mencakup ketiga repetisi
+dan keempat kedatangan, dan ia memeriksa ulang seluruh checksum bukti beku sebelum bekerja.
+Agregasi diulang di VM dari commit yang sama: keenam berkas `results/processed/h12-*.csv` menghasilkan
+checksum yang identik dengan hasil di laptop, keenam berkas mentah identik byte per byte, dan 143
+test lulus pada kedua mesin dengan satu test PDF dilewati.
+
 ## Artefak audit
 
 - kontrak: `contracts/h12-real-revision-cost.json`;
