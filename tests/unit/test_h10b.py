@@ -9,6 +9,7 @@ from pathlib import Path
 
 from kkciv_vintage.h10b.pipeline import (
     aggregate_apply_cost,
+    run_aggregate,
     audit_injection,
     audit_orphan_cleanup,
     audit_recall,
@@ -178,6 +179,76 @@ class H10BPreparationTest(unittest.TestCase):
             self.assertEqual(row["arrival_order"], "4")
             self.assertEqual(row["source_id"], "synthetic_revision_harness")
             self.assertEqual(row["vintage_date"], "2026-09-09")
+
+
+RAW_DIR = Path("results/raw/h10b/h10b-20260912")
+CLEANUP_DIR = Path("results/raw/h10b/cleanup-20260912")
+
+
+@unittest.skipUnless((ROOT / RAW_DIR / "recall.txt").exists(), "the physical run is not committed yet")
+class H10BMeasurementTest(unittest.TestCase):
+    def _aggregate(self, output: Path) -> dict[str, object]:
+        return run_aggregate(
+            contract_path=CONTRACT,
+            decisions_path=DECISIONS,
+            raw_dir=RAW_DIR,
+            cleanup_dir=CLEANUP_DIR,
+            payload_manifest_path=Path("data/manifests/h10b-physical-payload.json"),
+            timing_output=output / "timing.csv",
+            apply_cost_output=output / "cost.csv",
+            storage_output=output / "storage.csv",
+            recall_output=output / "recall.csv",
+            orphan_output=output / "orphan.csv",
+            validation_output=output / "validation.csv",
+            summary_output=output / "summary.csv",
+            manifest_output=output / "manifest.json",
+        )
+
+    def test_aggregation_is_deterministic_and_matches_the_published_outputs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            first = self._aggregate(output)
+            first_manifest = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
+            second = self._aggregate(output)
+            second_manifest = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(first, second)
+        self.assertEqual(first_manifest["outputs"], second_manifest["outputs"])
+        self.assertEqual(first["status"], "measured")
+
+        published = {
+            Path(item["path"]).name: item["sha256"]
+            for item in json.loads(
+                Path("data/manifests/h10b-injected-revision-physical.json").read_text(encoding="utf-8")
+            )["outputs"]
+        }
+        produced = {
+            "timing.csv": "h10b-statement-timing.csv",
+            "cost.csv": "h10b-apply-cost.csv",
+            "storage.csv": "h10b-storage-delta.csv",
+            "recall.csv": "h10b-recall-after-revision.csv",
+            "orphan.csv": "h10b-orphan-cleanup.csv",
+            "validation.csv": "h10b-validation.csv",
+            "summary.csv": "h10b-summary.csv",
+        }
+        by_name = {Path(item["path"]).name: item["sha256"] for item in first_manifest["outputs"]}
+        for local, publishedname in produced.items():
+            with self.subTest(output=publishedname):
+                self.assertEqual(by_name[local], published[publishedname])
+
+    def test_every_treatment_keeps_its_designed_recall_after_the_revision(self) -> None:
+        recall = _read_csv(PROCESSED / "h10b-recall-after-revision.csv")
+        for row in recall:
+            self.assertEqual(row["addressable"], row["expected_addressable"])
+            if row["addressable"] == "yes":
+                self.assertEqual(row["returned_value_lexeme"], row["requested_value_lexeme"])
+        for scenario, requests in (("validation_001", 39), ("validation_002", 40)):
+            for treatment, expected in (("B1", requests), ("B3", requests)):
+                addressable = sum(
+                    row["addressable"] == "yes"
+                    for row in recall
+                    if row["scenario_id"] == scenario and row["treatment_id"] == treatment
+                )
+                self.assertEqual(addressable, expected)
 
 
 class H10BContractTest(unittest.TestCase):

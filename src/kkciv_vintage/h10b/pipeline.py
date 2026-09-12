@@ -533,18 +533,19 @@ def prepare_scenarios(
         }
         if set(routes) != set(TREATMENTS):
             raise ValueError(f"H10B has no logical route for every treatment of {scenario_id}")
-        b2_behaviour = (
-            "propagate_all"
-            if routes["B2"]["synthetic_observations_served"] == str(len(payload))
-            else "withhold"
-            if routes["B2"]["synthetic_observations_served"] == "0"
-            else f"propagate_{routes['B2']['synthetic_observations_served']}_of_{len(payload)}"
+        served = int(routes["B2"]["synthetic_observations_served"])
+        if served == 0:
+            b2_behaviour = "withhold"
+        elif served == len(payload):
+            b2_behaviour = "propagate_all"
+        else:
+            b2_behaviour = f"propagate_{served}_of_{len(payload)}"
+        expected_behaviour = {"propagate_one_of_two": "propagate_1_of_2"}.get(
+            scenario["b2_expected_behaviour"], scenario["b2_expected_behaviour"]
         )
-        if scenario["b2_expected_behaviour"] not in {b2_behaviour, "propagate_one_of_two"} or (
-            scenario["b2_expected_behaviour"] == "propagate_one_of_two" and b2_behaviour != "propagate_1_of_2"
-        ):
+        if expected_behaviour != b2_behaviour:
             raise ValueError(
-                f"H10B contract expects B2 to {scenario['b2_expected_behaviour']} in {scenario_id}, logical run says {b2_behaviour}"
+                f"H10B contract expects B2 to {expected_behaviour} in {scenario_id}, logical run says {b2_behaviour}"
             )
         scenario_rows.append(
             {

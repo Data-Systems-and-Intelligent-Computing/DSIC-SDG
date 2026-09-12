@@ -65,7 +65,9 @@ Kontraknya adalah `contracts/h10-storage-recall.json` (`h10a.1`), dengan eksekus
    `(cell_id, vintage_id)`, sedangkan B0 dan B2 dengan `observation_id` di tabel current.
 
 Footprint didefinisikan sebagai byte setiap objek yang **dapat dicapai dari metadata snapshot yang
-dipertahankan**. Ukuran diambil dari listing MinIO. Untuk data, delete, dan manifest, ukuran di
+dipertahankan**, termasuk metadata JSON lama yang masih tercatat di `metadata_log_entries`. Definisi
+ini disetujui peninjau pada 12 September 2026 (`h10a_footprint_definition`). Ukuran diambil dari
+listing MinIO. Untuk data, delete, dan manifest, ukuran di
 metadata harus sama dengan ukuran objek. Objek di lokasi tabel yang tidak dirujuk metadata dilaporkan
 terpisah dan tidak dihitung, termasuk sisa run 9 September yang tertinggal saat katalog hilang.
 
@@ -85,8 +87,10 @@ keluaran `results/processed/h10-*` dari data mentah itu.
 
 Lingkungan ini lebih kecil daripada spesifikasi proposal (8 vCPU, 16 GB, 256 GB). Keputusan
 `h10_storage_environment` menyatakan dan membekukannya **hanya untuk pengukuran byte**. Byte tidak
-bergantung pada CPU selama tata letak file sama, dan tata letak itu direkam per objek. Keputusan
-spesifikasi VM untuk pengukuran waktu ditunda sampai sebelum timing H10B/H11.
+bergantung pada CPU selama tata letak file sama, dan tata letak itu direkam per objek. Pada 12
+September 2026, VM yang sama juga dibekukan sebagai lingkungan pengukuran waktu H10B dan H11
+(`h10b_timing_environment`), sehingga keempat perlakuan diukur pada perangkat keras yang identik dan
+angkanya hanya boleh dibaca sebagai perbandingan antarperlakuan.
 
 ## Hasil ruang
 
@@ -113,7 +117,9 @@ duplikasi tersembunyi di tingkat file.
    tabel serving yang dimaterialisasi (94.532 B). **Store B3 saja 23% lebih kecil daripada B1**
    (146.352 dibanding 190.261 B): 38 baris dan 7 file data, dibanding 42 baris dan 9 file.
    Keputusan memelihara tabel serving (disetujui 2026-09-11) menjadi ongkos terbesar B3 pada skala
-   ini.
+   ini. Keputusan pelaporan 12 September 2026 (`h10a_b3_serving_reporting`) menetapkan angka utama
+   B3 adalah total termasuk tabel serving, karena tabel itu bagian dari rancangan perlakuan,
+   sedangkan dekomposisi store dan serving dilaporkan pada tabel yang sama.
 2. **Metadata sebanding dengan data, bahkan melampauinya.** B0 menyimpan 63.242 B metadata untuk
    32.656 B data. `expire_snapshots` menghapus snapshot dan file data lama, tetapi keenam metadata
    JSON dari riwayat tulis tabel tetap tersimpan. Pada tabel sekecil ini, ongkos tetap Iceberg
@@ -187,12 +193,28 @@ bila salah satu marker perlakuan gagal.
 - ringkasan: `results/processed/h10-summary.csv`;
 - manifest: `data/manifests/h10-storage-recall.json`.
 
-## Hal yang memerlukan audit manusia
+## Keputusan audit manusia
 
-1. Setujui definisi footprint sebagai objek yang dapat dicapai dari metadata snapshot yang
-   dipertahankan, termasuk metadata JSON lama yang masih tercatat di `metadata_log_entries`.
-2. Putuskan apakah naskah melaporkan B3 dengan dan tanpa tabel serving. Dekomposisi ini menunjukkan
-   bahwa ongkos B3 pada fixture ini berasal dari materialisasi serving, bukan dari store vintage.
-3. Tetapkan spesifikasi VM untuk pengukuran waktu sebelum timing H10B/H11.
-4. Putuskan apakah orphan sebesar 1,07 MB di lokasi tabel eksperimen perlu dibersihkan dengan
-   `remove_orphan_files` sebelum sweep utama.
+Keempat pertanyaan audit H10A dijawab peninjau pada 12 September 2026 dan dicatat di
+[`config/h10/human_decisions.csv`](../../config/h10/human_decisions.csv).
+
+| ID | Keputusan |
+|---|---|
+| `h10a_footprint_definition` | Disetujui. Footprint adalah objek yang dapat dicapai dari metadata snapshot yang dipertahankan, termasuk metadata JSON lama di `metadata_log_entries`; objek yang tidak dirujuk dilaporkan terpisah dan tidak dihitung |
+| `h10a_b3_serving_reporting` | Naskah melaporkan B3 sebagai total **termasuk** tabel serving, dengan dekomposisi store dan serving pada tabel yang sama |
+| `h10b_timing_environment` | VM `praktikum-sd` 2 vCPU yang sudah dinyatakan dibekukan sebagai lingkungan pengukuran waktu H10B dan H11 |
+| `h10b_orphan_cleanup` | Orphan di lokasi tabel eksperimen dibersihkan dengan `remove_orphan_files` sebelum sweep utama |
+
+Pembersihan orphan dijalankan pada 12 September 2026 dan hasilnya berbeda dari dugaan semula:
+
+- 64 objek dan 585.261 byte terhapus dari lokasi B0, B1, dan B2. Seluruhnya bertanggal 9 September
+  05:19–05:25 UTC, yaitu run yang kehilangan registrasi katalog.
+- Kedua lokasi B3 tidak kehilangan satu objek pun. Sebanyak 481.747 byte yang tidak dihitung sebagai
+  footprint di sana **bukan orphan menurut Iceberg**, karena masih dapat dicapai lewat berkas
+  metadata lama. Objek seperti itu hanya hilang bila metadata log dipangkas atau tabel dibangun ulang.
+- `remove_orphan_files` juga tidak dapat melistkan lokasi tabel sendiri pada stack ini, karena image
+  Spark tidak memuat file system Hadoop untuk skema `s3`. Daftar berkas karena itu diberikan dari
+  listing MinIO lewat parameter `file_list_view`.
+
+Rincian pembersihan ada di [`docs/research/h10b-injected-revision-physical.md`](h10b-injected-revision-physical.md)
+dan data mentahnya di `results/raw/h10b/cleanup-20260912/`.
