@@ -1,0 +1,13 @@
+file_path,last_modified
+s3://kkciv-warehouse/experiments/b0_indicator_current/data/domain=ecology/00000-13-239b6995-ef27-4f70-b2e7-6a0ce41a5c4f-0-00003.parquet,2026-09-11 11:25:12
+s3://kkciv-warehouse/experiments/b0_indicator_current/data/domain=economy/00000-20-4811a8b0-0ba5-44bd-bb1c-1ab4508ff73d-0-00001.parquet,2026-09-11 11:25:14
+s3://kkciv-warehouse/experiments/b0_indicator_current/data/domain=energy/00000-13-239b6995-ef27-4f70-b2e7-6a0ce41a5c4f-0-00002.parquet,2026-09-11 11:25:12
+s3://kkciv-warehouse/experiments/b0_indicator_current/metadata/00000-0a8580ac-f1ba-47ba-baad-daf05325b15b.metadata.json,2026-09-11 11:24:43
+s3://kkciv-warehouse/experiments/b0_indicator_current/metadata/00001-6dd4dbfd-2d64-4a3f-949d-25cb9156eaf3.metadata.json,2026-09-11 11:25:02
+s3://kkciv-warehouse/experiments/b0_indicator_current/metadata/00002-5080d01c-adba-4004-ae49-8f8f16187e2c.metadata.json,2026-09-11 11:25:08
+s3://kkciv-warehouse/experiments/b0_indicator_current/metadata/00003-fee7e580-aca7-4521-8721-a30cefec68d7.metadata.json,2026-09-11 11:25:12
+s3://kkciv-warehouse/experiments/b0_indicator_current/metadata/00004-63cec13f-3afc-448c-9649-0df46bc723ac.metadata.json,2026-09-11 11:25:14
+s3://kkciv-warehouse/experiments/b0_indicator_current/metadata/00005-564473b2-dd4c-4167-b0e1-ebf2982d3a0c.metadata.json,2026-09-11 11:25:14
+s3://kkciv-warehouse/experiments/b0_indicator_current/metadata/58db11f9-4ad6-42df-ac66-df88384912c2-m0.avro,2026-09-11 11:25:14
+s3://kkciv-warehouse/experiments/b0_indicator_current/metadata/58db11f9-4ad6-42df-ac66-df88384912c2-m1.avro,2026-09-11 11:25:14
+s3://kkciv-warehouse/experiments/b0_indicator_current/metadata/snap-4368642861064448150-1-58db11f9-4ad6-42df-ac66-df88384912c2.avro,2026-09-11 11:25:14

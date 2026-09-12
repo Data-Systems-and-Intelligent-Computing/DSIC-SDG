@@ -153,7 +153,8 @@ dijalankan ulang di atas keluaran baru.
    (`h9b_b2_synthetic_scoring`).
 3. **Disetujui 2026-09-11:** observasi sintetis mewarisi edge sel dari observasi dasar yang
    direvisinya (`h9b_synthetic_cell_lineage`).
-4. Tetapkan skenario kecil satu sumber untuk eksekusi fisik H10 Jalur B. Rekomendasi: bekukan dua
-   skenario smoke 1-sel, yaitu `validation_001` (WebAPI, jalur B2 yang menahan revisi) dan satu sel
-   TPB 2025 dengan seed yang sama (jalur B2 yang mempropagasikan revisi). Dengan begitu kedua
-   perilaku B2 teruji secara fisik, dan setiap run tetap memakai satu sumber.
+4. **Diputuskan 2026-09-12:** eksekusi fisik H10 Jalur B memakai `validation_001` (1 sel WebAPI,
+   jalur B2 yang menahan revisi) dan `validation_002` (2 sel, jalur B2 yang meneruskan satu revisi).
+   Skenario kedua sengaja memakai dua sumber karena hanya itu skenario beku yang menguji jalur B2
+   yang meneruskan revisi; aturan satu sumber per run tetap berlaku untuk sweep utama H11. Hasilnya
+   ada di [`h10b-injected-revision-physical.md`](h10b-injected-revision-physical.md).

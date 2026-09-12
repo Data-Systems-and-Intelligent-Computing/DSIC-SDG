@@ -1,0 +1,8 @@
+file_path,last_modified
+s3://kkciv-warehouse/experiments/b2_indicator_selected/data/domain=ecology/00000-3-97623e2b-1094-4920-b5b3-76f1ef123a03-0-00003.parquet,2026-09-11 11:27:56
+s3://kkciv-warehouse/experiments/b2_indicator_selected/data/domain=economy/00000-3-97623e2b-1094-4920-b5b3-76f1ef123a03-0-00001.parquet,2026-09-11 11:27:56
+s3://kkciv-warehouse/experiments/b2_indicator_selected/data/domain=energy/00000-3-97623e2b-1094-4920-b5b3-76f1ef123a03-0-00002.parquet,2026-09-11 11:27:56
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/00000-fae12035-3c04-45f7-b535-c2a37bec727b.metadata.json,2026-09-11 11:27:36
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/00001-d321c8a4-8153-4bde-8d17-84624678ada0.metadata.json,2026-09-11 11:27:57
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/3b55ab70-ab78-4619-ac26-48ea158bd484-m0.avro,2026-09-11 11:27:56
+s3://kkciv-warehouse/experiments/b2_indicator_selected/metadata/snap-3573121250119357232-1-3b55ab70-ab78-4619-ac26-48ea158bd484.avro,2026-09-11 11:27:57

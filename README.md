@@ -154,7 +154,10 @@ sebagai bukti performa. Sebelum pengukuran, VM harus dinaikkan ke spesifikasi pr
 sumber daya yang lebih kecil harus dinyatakan dan dibekukan sebagai revisi desain eksperimen.
 Pada 11 September 2026, VM 2 vCPU tersebut dinyatakan dan dibekukan **hanya untuk pengukuran byte**
 (`h10_storage_environment` di [`config/h10/human_decisions.csv`](config/h10/human_decisions.csv)).
-Keputusan spesifikasi untuk pengukuran waktu masih terbuka dan wajib diambil sebelum timing H10B/H11.
+Pada 12 September 2026, VM yang sama juga dibekukan sebagai lingkungan pengukuran waktu H10B dan H11
+(`h10b_timing_environment`), karena tidak ada node yang lebih besar. Konsekuensinya dinyatakan di
+muka: waktu hanya boleh dibaca sebagai perbandingan antarperlakuan pada perangkat keras yang sama,
+tidak pernah sebagai klaim performa atau skalabilitas.
 
 ### 5.3 Aturan provenance
 
@@ -414,6 +417,26 @@ observasi secara persis, sedangkan B0 dan B2 14/38. Jalankan `make h10-run`; rin
 [`docs/research/h10-storage-recall.md`](docs/research/h10-storage-recall.md). Marker:
 `H10_VERIFY|3|95898|190261|64077|240884|14|38|14|38|variable|measured`. Label `variable` berasal dari
 selisih 4–18 byte pada metadata antarrepetisi.
+
+H10 Jalur B menjalankan revisi tersuntik H8B secara fisik di Iceberg, bukan lagi secara logis seperti
+H9B. Dua skenario beku dieksekusi dalam tiga repetisi: `validation_001` (1 sel WebAPI, jalur B2 yang
+menahan revisi) dan `validation_002` (2 sel, jalur B2 yang meneruskan satu revisi). Setiap siklus
+membangun ulang keempat tabel dari workload nyata, menyuntikkan revisi melalui mekanisme tulis milik
+tiap perlakuan, lalu mengukur waktu pernyataan dan pertambahan byte. Pada revisi satu sel, B1 justru
+paling murah dalam waktu (5,4 s satu pernyataan, tanpa pemeliharaan) dan B3 paling mahal (13,4 s dua
+pernyataan ditambah 21,0 s `expire_snapshots`), karena pada fixture 14 sel ongkos tetap per pernyataan
+lebih besar daripada pekerjaan datanya. Dalam byte, B1 menambah 68.447 byte baik untuk satu maupun dua
+sel karena selalu menulis ulang seluruh state, sedangkan B3 menambah 60.156 byte untuk satu sel dan
+71.483 byte untuk dua sel. Metadata Iceberg mendominasi: revisi satu nilai di B0 mengubah 161 byte
+data tetapi menambah 23.915 byte metadata. B2 membayar penuh ongkos tulis meskipun menahan revisinya.
+Setelah revisi, B1 dan B3 tetap memanggil ulang seluruh observasi resmi dan sintetis (39/39 dan
+40/40), sedangkan B0 dan B2 hanya 14. Seluruh hasil fisik sama persis dengan audit logis H9B.
+Sebelum pengukuran, 64 objek sisa run 9 September (585.261 byte) dibersihkan dengan
+`remove_orphan_files`. Jalankan `make h10b-prepare`, `make h10b-cleanup`, `make h10b-measure`, dan
+`make h10b-run`; rincian ada di
+[`docs/research/h10b-injected-revision-physical.md`](docs/research/h10b-injected-revision-physical.md).
+Marker:
+`H10B_VERIFY|3|2|8|64|585261|9.818|5.442|5.308|13.388|24076|68447|24564|60156|14|39|14|39|measured`.
 
 Semua angka dan tabel untuk naskah dikumpulkan di
 [`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 27 tabel per pertanyaan

@@ -1,0 +1,29 @@
+metric,value,unit,interpretation
+repetitions,3,runs,serial rebuild-inject-measure cycles per scenario
+scenarios,2,scenarios,frozen H8B validation payloads; not the main sweep profile
+orphan_bytes_removed,585261,bytes,64 objects removed once before the run
+host_nproc,2,vCPU,"declared timing environment, frozen on 2026-09-12"
+b0_validation_001_write_seconds_median,9.818,seconds,range 9.321-9.885; maintenance 14.088; 1 write statements
+b0_validation_001_delta_bytes_median,24076,bytes,range 24075-24085; data 161; metadata 23915
+b1_validation_001_write_seconds_median,5.442,seconds,range 4.847-5.533; maintenance 0.000; 1 write statements
+b1_validation_001_delta_bytes_median,68447,bytes,range 68445-68448; data 33923; metadata 34524
+b2_validation_001_write_seconds_median,5.308,seconds,range 5.245-5.381; maintenance 15.872; 1 write statements
+b2_validation_001_delta_bytes_median,24564,bytes,range 24563-24565; data 37; metadata 24527
+b3_validation_001_write_seconds_median,13.388,seconds,range 13.109-14.977; maintenance 20.991; 2 write statements
+b3_validation_001_delta_bytes_median,60156,bytes,range 60150-60167; data 11550; metadata 48606
+b0_validation_002_write_seconds_median,9.503,seconds,range 8.970-10.846; maintenance 13.765; 1 write statements
+b0_validation_002_delta_bytes_median,24028,bytes,range 24028-24031; data 253; metadata 23775
+b1_validation_002_write_seconds_median,5.384,seconds,range 5.030-5.648; maintenance 0.000; 1 write statements
+b1_validation_002_delta_bytes_median,68537,bytes,range 68523-68541; data 34015; metadata 34522
+b2_validation_002_write_seconds_median,5.335,seconds,range 5.104-5.429; maintenance 17.230; 1 write statements
+b2_validation_002_delta_bytes_median,24756,bytes,range 24755-24757; data 128; metadata 24628
+b3_validation_002_write_seconds_median,14.704,seconds,range 14.396-15.116; maintenance 22.914; 2 write statements
+b3_validation_002_delta_bytes_median,71483,bytes,range 71472-71493; data 22831; metadata 48652
+b0_validation_001_recalled,14,requests,official and synthetic observations returned with the exact value after the revision
+b1_validation_001_recalled,39,requests,official and synthetic observations returned with the exact value after the revision
+b2_validation_001_recalled,14,requests,official and synthetic observations returned with the exact value after the revision
+b3_validation_001_recalled,39,requests,official and synthetic observations returned with the exact value after the revision
+b0_validation_002_recalled,14,requests,official and synthetic observations returned with the exact value after the revision
+b1_validation_002_recalled,40,requests,official and synthetic observations returned with the exact value after the revision
+b2_validation_002_recalled,14,requests,official and synthetic observations returned with the exact value after the revision
+b3_validation_002_recalled,40,requests,official and synthetic observations returned with the exact value after the revision

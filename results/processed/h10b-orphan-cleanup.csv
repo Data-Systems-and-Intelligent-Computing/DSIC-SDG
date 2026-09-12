@@ -1,0 +1,6 @@
+table,objects_before,bytes_before,objects_removed,objects_after,bytes_after,bytes_removed
+kkciv.experiments.b0_indicator_current,38,344366,26,12,95890,248476
+kkciv.experiments.b1_indicator_full_snapshots,49,438443,28,21,190258,248185
+kkciv.experiments.b2_indicator_selected,17,152675,10,7,64075,88600
+kkciv.experiments.b3_indicator_current,33,283583,0,33,283583,0
+kkciv.experiments.b3_observation_vintages,48,439048,0,48,439048,0

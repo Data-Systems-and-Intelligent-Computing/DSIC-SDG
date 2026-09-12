@@ -1,0 +1,12 @@
+invariant,status,checked_rows,detail
+h10b_contract,passed,7,decisions scenarios tables protocol timing footprint and boundary match h10b.1
+human_decisions,passed,6,timing environment and orphan cleanup approved on 2026-09-12
+persistent_catalog,passed,1,jdbc:sqlite:/home/iceberg/iceberg_catalog.db
+clean_start,passed,1,git commit 6c34e1dae6a895be7f6f158988d258ea71efb182 with no local changes
+orphan_cleanup_before_run,passed,5,64 objects and 585261 bytes removed once; a dry run found nothing left in any table
+baseline_markers,passed,24,every rebuild reproduces the recorded B0 B1 B2 and B3 verification markers
+physical_equals_logical_state,passed,24,every post-revision table equals the logical H9B state of its scenario
+objects_exist_with_metadata_size,passed,30,every referenced object exists in MinIO; data delete and manifest sizes equal their metadata
+retained_snapshots,passed,24,B1 keeps four snapshots; B0 B2 and both B3 tables keep one
+physical_equals_logical_recall,passed,316,every request agrees with the H9B recall audit in all repetitions
+timing_environment_declared,passed,132,statement times measured on 2 vCPU and 2g driver memory; comparative only

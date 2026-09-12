@@ -1,8 +1,8 @@
-# Rekap Teknis dan Panduan Audit H1–H9C dan H10A
+# Rekap Teknis dan Panduan Audit H1–H9C, H10A, dan H10B
 
-Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C, H7 Jalur A, B, dan C, H8 Jalur A, B, dan C, H9 Jalur A, B, dan C, serta H10 Jalur A. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
+Dokumen ini mencatat pekerjaan yang **sudah benar-benar dieksekusi** sampai H6 Jalur C, H7 Jalur A, B, dan C, H8 Jalur A, B, dan C, H9 Jalur A, B, dan C, serta H10 Jalur A dan Jalur B. Tujuannya agar peneliti manusia dapat memeriksa ulang angka, keputusan metodologis, kode, serta bukti eksekusi di VM tanpa harus menebak alurnya dari riwayat Git.
 
-Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 September 2026, kemudian H7C, H8A–H8C, H9A–H9C, dan H10A ditambahkan sebagai kelanjutan audit. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
+Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 September 2026, kemudian H7C, H8A–H8C, H9A–H9C, H10A, dan H10B ditambahkan sebagai kelanjutan audit. Sumber ringkas utama proyek tetap berada di [README proyek](../../README.md).
 
 ## 1. Ringkasan status
 
@@ -26,6 +26,7 @@ Bagian H1–H7B mula-mula membekukan keadaan sampai commit `4eec549` pada 9 Sept
 | H9 Jalur B | Eksekusi harness pada revisi kecil | 20 route logis, 28 injeksi, B2 menyajikan 8/28 revisi | Selesai secara logis dan divalidasi di VM |
 | H9 Jalur C | Audit B3, impact lineage, dan penutupan empat perlakuan | 152 audit, 38 impact tanpa selisih, 377 node, 1.088 edge | Selesai dan divalidasi di VM |
 | H10 Jalur A | Ruang fisik dan recall setelah restart katalog | 3 repetisi, median B0 95.898 B, B1 190.261 B, B2 64.077 B, B3 240.884 B; recall 14/38/14/38 | Diukur di VM; katalog kini persisten |
+| H10 Jalur B | Eksekusi fisik satu revisi tersuntik, waktu dan byte | 2 skenario × 3 repetisi; waktu tulis 1 sel B0 9,8 s, B1 5,4 s, B2 5,3 s, B3 13,4 s; pertambahan byte 24.076/68.447/24.564/60.156 | Diukur di VM; sama dengan hasil logis H9B |
 
 Keempat perlakuan kini sudah diimplementasikan pada workload nyata H6. Keempatnya sudah diuji di Iceberg VM; B3 lulus pada H9A di alamat VM baru (lihat §3). Lineage keempat perlakuan sudah mencapai metrik, tabel bukti, dan data gambar.
 
@@ -33,7 +34,9 @@ Harness revisi tersuntik juga sudah dieksekusi secara logis ke keempat perlakuan
 
 Ruang fisik keempat perlakuan pada workload nyata sudah diukur pada H10 Jalur A. Pemanggilan angka lama juga sudah terbukti setelah restart katalog, yang kini persisten.
 
-Yang **belum** dikerjakan pada batas audit ini adalah eksekusi fisik keempat perlakuan pada skenario tersuntik kecil (H10 Jalur B), keputusan spesifikasi VM untuk pengukuran waktu, pembekuan eksperimen H10, dan eksperimen H11–H15. Dengan demikian, Gate G2 belum boleh dinyatakan lolos. Belum ada perbandingan waktu atau ruang, dan belum ada gambar manuskrip final.
+Ruang fisik dan waktu satu revisi tersuntik sudah diukur pada H10 Jalur B, pada dua skenario profil validasi. Spesifikasi VM untuk pengukuran waktu dibekukan pada 12 September 2026, bersama tiga keputusan audit H10 lainnya.
+
+Yang **belum** dikerjakan pada batas audit ini adalah pembekuan eksperimen H10 (daftar §4.4 README) dan eksperimen H11–H15, termasuk sweep tersuntik penuh dengan aturan satu sumber per run. Dengan demikian, Gate G2 belum boleh dinyatakan lolos, dan belum ada gambar manuskrip final.
 
 ## 2. Cara memahami bukti di repositori
 
@@ -1311,13 +1314,116 @@ Pengukuran berjalan di VM pada commit `c84e77a` pukul 11:05–11:33 UTC. Data me
 
 ### Yang harus dikoreksi manusia bila perlu
 
-Setujui definisi footprint sebagai objek yang dapat dicapai dari metadata snapshot yang dipertahankan, termasuk metadata JSON lama. Putuskan apakah naskah melaporkan B3 dengan dan tanpa tabel serving, dan apakah orphan di lokasi tabel dibersihkan sebelum sweep utama. Spesifikasi VM untuk pengukuran waktu belum diputuskan. Jangan mengekstrapolasi byte fixture ini menjadi klaim skala.
+Keempat pertanyaan audit ini sudah dijawab pada 12 September 2026 dan dicatat di [human_decisions.csv](../../config/h10/human_decisions.csv); rinciannya ada di §22. Yang tersisa untuk pemeriksa adalah menilai apakah keputusan itu tepat, bukan lagi mengambilnya. Jangan mengekstrapolasi byte fixture ini menjadi klaim skala. Perlu dicatat pula bahwa "objek yang tidak dirujuk" pada tabel ini bukan sinonim "orphan menurut Iceberg": pembersihan H10B hanya menghapus 585.261 dari 1.067.008 byte tersebut.
 
-## 22. Pemeriksaan akhir yang sudah lulus
+## 22. H10 Jalur B — Eksekusi fisik satu revisi tersuntik, waktu dan byte
+
+### Tujuan
+
+Menjalankan revisi tersuntik yang sudah dibekukan H8B secara fisik di Iceberg, lalu mengukur waktu pernyataan dan pertambahan byte yang ditimbulkannya pada masing-masing perlakuan. H9B hanya menjalankannya secara logis.
+
+### Keputusan manusia yang mendahului
+
+Empat pertanyaan audit H10 dijawab pada 12 September 2026 dan dicatat di [human_decisions.csv](../../config/h10/human_decisions.csv): definisi footprint (`h10a_footprint_definition`), cara naskah melaporkan B3 (`h10a_b3_serving_reporting`, yaitu total termasuk tabel serving beserta dekomposisinya), VM untuk pengukuran waktu (`h10b_timing_environment`, yaitu VM 2 vCPU yang sudah dinyatakan), dan pembersihan orphan sebelum sweep utama (`h10b_orphan_cleanup`).
+
+### Pembersihan orphan
+
+`scripts/h10b_cleanup_orphans.sh` menghapus 64 objek dan 585.261 byte dari lokasi B0, B1, dan B2. Seluruhnya bertanggal 9 September 2026 pukul 05:19–05:25 UTC, yaitu run yang kehilangan registrasi katalog. Kedua lokasi B3 tidak berubah: 481.747 byte yang tidak dihitung footprint H10A di sana masih dijangkau berkas metadata lama, sehingga **bukan orphan menurut Iceberg**. Dua temuan infrastruktur ikut tercatat: prosedur `remove_orphan_files` tidak dapat melistkan lokasi tabel sendiri karena image Spark tidak memuat file system Hadoop untuk skema `s3` (daftar berkas diberikan dari MinIO lewat `file_list_view`), dan prosedur menolak interval di bawah 24 jam sehingga ambangnya ditetapkan 25 jam.
+
+### Langkah yang dieksekusi
+
+1. Menetapkan kontrak [h10b-injected-revision-physical.json](../../contracts/h10b-injected-revision-physical.json) (`h10b.1`) dengan dua skenario beku: `validation_001` (1 sel, `bps_webapi`, jalur B2 yang menahan revisi) dan `validation_002` (2 sel, `bps_tpb_2025` dan `bps_webapi`, jalur B2 yang meneruskan satu revisi).
+2. `make h10b-prepare` membentuk payload fisik dari artefak beku H8B dan H9B: baris observasi sintetis lengkap, state B1 berikutnya, seleksi B2 yang dihitung ulang, sel kotor B3, serta state dan recall yang diharapkan. Pipeline menolak berjalan bila hasil hitungannya berbeda dari state logis H9B.
+3. `make h10b-cleanup` menjalankan pembersihan orphan satu kali.
+4. `make h10b-measure` menjalankan tiga repetisi × dua skenario di VM. Setiap siklus: `DROP TABLE ... PURGE`, membangun ulang B0–B3 dari workload nyata dan mencocokkan marker, mengukur footprint baseline, menyuntikkan revisi lewat satu sesi Spark SQL per perlakuan sambil merekam `Time taken` setiap pernyataan, mengukur footprint sesudah revisi, lalu memanggil ulang seluruh observasi resmi dan sintetis.
+5. `make h10b-run` memvalidasi dan mengagregasi data mentahnya.
+
+Perintah:
+
+```bash
+make h10b-prepare
+make h10b-cleanup H10B_CLEANUP=<label>   # di VM stack, sekali saja
+make h10b-measure H10B_RUN=<label-baru>  # di VM stack
+make h10b-run
+make test
+```
+
+### Hasil waktu (median tiga repetisi, detik)
+
+| Skenario | Perlakuan | Pernyataan tulis | Tulis | Pemeliharaan | Total |
+|---|---|---:|---:|---:|---:|
+| `validation_001` (1 sel) | B0 | 1 | 9,818 | 14,088 | 23,448 |
+| | B1 | 1 | 5,442 | 0,000 | 5,442 |
+| | B2 | 1 | 5,308 | 15,872 | 21,253 |
+| | B3 | 2 | 13,388 | 20,991 | 34,877 |
+| `validation_002` (2 sel) | B0 | 1 | 9,503 | 13,765 | 23,268 |
+| | B1 | 1 | 5,384 | 0,000 | 5,384 |
+| | B2 | 1 | 5,335 | 17,230 | 22,585 |
+| | B3 | 2 | 14,704 | 22,914 | 37,618 |
+
+### Hasil ruang (median tiga repetisi, byte)
+
+| Skenario | Perlakuan | Baseline | Sesudah | Pertambahan | Data | Metadata | Snapshot |
+|---|---|---:|---:|---:|---:|---:|---|
+| `validation_001` | B0 | 95.896 | 119.972 | 24.076 | 161 | 23.915 | 1 |
+| | B1 | 190.252 | 258.699 | 68.447 | 33.923 | 34.524 | 4 |
+| | B2 | 64.079 | 88.643 | 24.564 | 37 | 24.527 | 1 |
+| | B3 | 240.874 | 301.030 | 60.156 | 11.550 | 48.606 | 1+1 |
+| `validation_002` | B0 | 95.878 | 119.906 | 24.028 | 253 | 23.775 | 1 |
+| | B1 | 190.245 | 258.782 | 68.537 | 34.015 | 34.522 | 4 |
+| | B2 | 64.077 | 88.833 | 24.756 | 128 | 24.628 | 1 |
+| | B3 | 240.878 | 312.368 | 71.483 | 22.831 | 48.652 | 1+1 |
+
+### Pemanggilan ulang setelah revisi
+
+| Skenario | B0 | B1 | B2 | B3 |
+|---|---|---|---|---|
+| `validation_001` (39 permintaan) | 14 | 39 | 14 | 39 |
+| `validation_002` (40 permintaan) | 14 | 40 | 14 | 40 |
+
+Setiap pembacaan yang berhasil cocok pada `observation_id` dan `value_lexeme`, identik pada ketiga repetisi, dan sama dengan audit logis H9B baris per baris. B2 menahan revisi WebAPI dan hanya meneruskan revisi TPB 2025.
+
+### Yang dapat dibaca dari hasil ini
+
+1. Pada revisi satu sel, B1 paling murah dalam waktu dan B3 paling mahal. Penyebabnya ongkos tetap per pernyataan, bukan volume data: B3 memerlukan dua pernyataan tulis dan dua `expire_snapshots`, B1 hanya satu pernyataan tanpa pemeliharaan.
+2. Ongkos ruang B1 tetap (68.447 byte untuk satu maupun dua sel), sedangkan ongkos ruang B3 tumbuh mengikuti sel yang direvisi (60.156 lalu 71.483 byte). Titik silang ruang sudah terlewati pada dua sel di fixture ini, tetapi dua sel itu berada di dua domain sehingga store B3 menulis dua file partisi. Angka ini belum boleh disebut titik impas P3.
+3. Metadata Iceberg mendominasi pertambahan byte: revisi satu nilai di B0 mengubah 161 byte data dan menambah 23.915 byte metadata.
+4. B2 membayar penuh ongkos tulis meskipun menahan revisinya.
+5. `expire_snapshots` adalah ongkos nyata perlakuan yang membuang histori, dan sebelumnya tidak terlihat pada hitungan baris logis H9B.
+
+Marker agregasi:
+
+```text
+H10B_VERIFY|3|2|8|64|585261|9.818|5.442|5.308|13.388|24076|68447|24564|60156|14|39|14|39|measured
+```
+
+Pengukuran berjalan pada commit `6c34e1d` pukul 01:36–03:07 UTC, working tree bersih, satu operator, tanpa beban lain di node. Ke-24 marker pembangunan ulang cocok pada percobaan pertama.
+
+### Bukti yang dapat diaudit
+
+- [kontrak H10B](../../contracts/h10b-injected-revision-physical.json)
+- [keputusan manusia](../../config/h10/human_decisions.csv)
+- [script pembersihan orphan](../../scripts/h10b_cleanup_orphans.sh) dan [script pengukuran](../../scripts/h10b_measure.sh)
+- [data mentah pembersihan](../../results/raw/h10b/cleanup-20260912/) dan [data mentah pengukuran](../../results/raw/h10b/h10b-20260912/)
+- [payload fisik](../../results/processed/h10b-synthetic-observations.csv) beserta [state B1](../../results/processed/h10b-b1-next-state.csv), [seleksi B2](../../results/processed/h10b-b2-next-state.csv), dan [sel kotor B3](../../results/processed/h10b-b3-dirty-cells.csv)
+- [waktu per pernyataan](../../results/processed/h10b-statement-timing.csv)
+- [ongkos per perlakuan](../../results/processed/h10b-apply-cost.csv)
+- [selisih byte per tabel](../../results/processed/h10b-storage-delta.csv)
+- [pemanggilan ulang setelah revisi](../../results/processed/h10b-recall-after-revision.csv)
+- [pembersihan orphan](../../results/processed/h10b-orphan-cleanup.csv)
+- [hasil validasi](../../results/processed/h10b-validation.csv)
+- [manifest payload](../../data/manifests/h10b-physical-payload.json) dan [manifest pengukuran](../../data/manifests/h10b-injected-revision-physical.json)
+- [laporan H10B](../../docs/research/h10b-injected-revision-physical.md)
+
+### Yang harus dikoreksi manusia bila perlu
+
+Periksa apakah batas waktu yang dipakai sudah tepat: yang dihitung adalah waktu pernyataan di dalam satu sesi Spark SQL, tanpa ongkos menyalakan JVM dan membuat view. Periksa juga apakah `expire_snapshots` pantas dihitung sebagai ongkos perlakuan B0, B2, dan B3. Jangan membaca urutan waktu atau byte pada fixture 14 sel sebagai klaim performa, dan jangan memakai `validation_002` sebagai titik sweep karena skenario itu merevisi dua sumber sekaligus.
+
+## 23. Pemeriksaan akhir yang sudah lulus
 
 Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 
-- seluruh 93 unit test lokal lulus, termasuk 5 test masing-masing untuk H9A, H9B, H9C, dan H10A serta 4 test paket artikel;
+- seluruh 105 unit test lokal lulus, termasuk 5 test masing-masing untuk H9A, H9B, H9C, dan H10A, 12 test H10B, serta 4 test paket artikel;
 - di VM, 83 test lulus dan 1 test dilewati karena PDF mentah tidak disimpan di Git;
 - working tree VM bersih setelah pull dan verifikasi terakhir;
 - H4 berhasil menulis dan membaca ulang objek MinIO dengan checksum sama;
@@ -1332,6 +1438,8 @@ Pada keadaan terakhir sebelum dokumen audit ini dibuat:
 - `make article-bundle` mengumpulkan 27 tabel dan 70 angka kunci di `papers/vintage_reconciliation/data/`; setiap sumber diverifikasi terhadap manifest tahapnya.
 - H10A membangun ulang semua tabel di katalog persisten dengan marker identik, mengukur 201 objek yang dirujuk dalam tiga repetisi, dan memanggil ulang 152 permintaan setelah restart katalog.
 - H9C mengaudit B3 dengan prosedur H8C yang terkunci checksum, menurunkan ulang 38 baris impact tanpa selisih, dan menutup 152 path empat perlakuan.
+- H10A mengukur ruang fisik keempat perlakuan pada tiga repetisi dan memanggil ulang 152 permintaan setelah katalog di-restart.
+- H10B menyuntikkan satu revisi secara fisik pada dua skenario dan tiga repetisi; ke-24 marker pembangunan ulang cocok, 316 permintaan recall sama dengan audit logis H9B, dan tidak ada state yang berbeda.
 
 Urutan pemeriksaan cepat tanpa menarik ulang data mentah:
 
@@ -1353,11 +1461,13 @@ make h9-run
 make h9b-run
 make h9c-run
 make h10-run
+make h10b-prepare
+make h10b-run
 make article-bundle
 make test
 ```
 
-H2 dan H3 membutuhkan PDF mentah untuk ekstraksi penuh. H1 fetch membutuhkan jaringan dan API key. Perintah `*-apply`, `h5-iceberg`, `h4-publish`, dan `h10-measure` membutuhkan stack yang sedang hidup.
+H2 dan H3 membutuhkan PDF mentah untuk ekstraksi penuh. H1 fetch membutuhkan jaringan dan API key. Perintah `*-apply`, `h5-iceberg`, `h4-publish`, `h10-measure`, `h10b-cleanup`, dan `h10b-measure` membutuhkan stack yang sedang hidup.
 
 Untuk pemeriksaan VM saat ini:
 
@@ -1373,7 +1483,7 @@ docker compose --env-file infra/docker/versions.env ps
 
 Untuk penulisan naskah, `make article-bundle` mengumpulkan tabel per pertanyaan penelitian dan `angka-kunci.csv` (70 angka) di [papers/vintage_reconciliation/](../vintage_reconciliation/README.md). Pipeline paket menolak sumber yang tidak tercatat atau tidak cocok dengan manifest tahapnya. Pemeriksaan ini menemukan bahwa `h1-webapi-coverage.csv` dan `h1-indicator-coverage.csv` dibuat sebelum setiap output wajib tercatat di manifest. `profile-coverage` H1 kini menulis [h1-coverage.json](../../data/manifests/h1-coverage.json). Sebelum manifest itu dibuat, kedua CSV dibentuk ulang dari `data/raw` lokal ke folder sementara, dan hasilnya identik byte demi byte dengan versi yang tersimpan. Menjalankan `make h1-profile-coverage` tidak mengubah kedua CSV.
 
-## 23. Daftar audit manusia yang disarankan
+## 24. Daftar audit manusia yang disarankan
 
 - [ ] Cocokkan 29 pilihan WebAPI H1 dengan definisi indikator, bukan hanya kemiripan nama.
 - [ ] Setujui atau koreksi 14 `verified`, 17 `partial`, dan 4 `unavailable`.
@@ -1404,17 +1514,19 @@ Untuk penulisan naskah, `make article-bundle` mengumpulkan tabel per pertanyaan 
 - [x] Tetapkan urutan vintage sintetis: sehari setelah vintage resmi terbaru (disetujui 2026-09-11).
 - [ ] Putuskan cara naskah membahas B2 yang mengabaikan 20 dari 28 revisi tersuntik.
 - [x] Setujui adapter B2 berbasis skor `revised_source_id` dan pewarisan edge sel untuk observasi sintetis (disetujui 2026-09-11).
-- [ ] Bekukan dua skenario smoke 1-sel satu sumber untuk H10B (rekomendasi: `validation_001` WebAPI dan satu sel TPB 2025).
+- [x] Skenario smoke fisik H10B dibekukan pada 2026-09-12: `validation_001` (1 sel WebAPI) dan `validation_002` (2 sel, sehingga jalur B2 yang meneruskan revisi ikut teruji). Keduanya sudah punya pembanding logis H9B.
 - [ ] Setujui kelas akses `vintage_key` yang terpisah dari `historical_snapshot`.
 - [x] Pindahkan katalog Iceberg REST ke SQLite persisten (disetujui 2026-09-11).
 - [x] Nyatakan VM saat ini untuk pengukuran byte dan tunda keputusan timing (disetujui 2026-09-11).
-- [ ] Putuskan spesifikasi VM sebelum pengukuran waktu H10B/H11 dimulai.
-- [ ] Setujui definisi footprint H10A dan putuskan apakah B3 dilaporkan dengan dan tanpa tabel serving.
-- [ ] Putuskan pembersihan orphan (1,07 MB) di lokasi tabel eksperimen sebelum sweep utama.
+- [x] Spesifikasi VM untuk pengukuran waktu dibekukan pada 2026-09-12 (`h10b_timing_environment`): VM 2 vCPU yang sudah dinyatakan.
+- [x] Definisi footprint H10A disetujui dan pelaporan B3 diputuskan pada 2026-09-12: angka utama adalah total termasuk tabel serving, dengan dekomposisi store dan serving pada tabel yang sama.
+- [x] Pembersihan orphan disetujui dan dijalankan pada 2026-09-12: 64 objek dan 585.261 byte terhapus; sisa 481.747 byte di lokasi B3 bukan orphan menurut Iceberg.
 - [ ] Setujui metrik tingkat propagasi revisi untuk dibekukan pada freeze H10.
+- [ ] Putuskan apakah `expire_snapshots` dihitung sebagai ongkos perlakuan B0, B2, dan B3 pada naskah, atau dilaporkan terpisah dari waktu tulis.
+- [ ] Bekukan profil sweep utama H11 beserta aturan satu sumber per run, memakai pelajaran H10B bahwa ongkos tetap per pernyataan mendominasi pada sel sedikit.
 - [ ] Salin `backups/data-raw-20260911.tar.gz` dan `.SHA256SUMS` ke lokasi kedua (Drive/disk eksternal). Arsip lokal sudah dibuat dan terverifikasi pada 2026-09-11, tetapi masih berada di laptop yang sama.
 
-## 24. Cara melakukan koreksi tanpa merusak jejak audit
+## 25. Cara melakukan koreksi tanpa merusak jejak audit
 
 Jika audit manusia menemukan kesalahan:
 
@@ -1430,7 +1542,7 @@ Jika audit manusia menemukan kesalahan:
 
 Dengan prosedur tersebut, koreksi manusia menjadi bagian dari provenance penelitian dan tidak menghapus bukti keputusan sebelumnya dari riwayat Git.
 
-## 25. Batas klaim pada posisi sekarang
+## 26. Batas klaim pada posisi sekarang
 
 Yang sudah dapat diklaim:
 
@@ -1447,6 +1559,9 @@ Yang sudah dapat diklaim:
 - lineage B0/B1/B2/B3 mencapai metrik, tabel bukti, dan data gambar dengan 152 path lengkap;
 - pada fixture 14 sel, footprint fisik B0/B1/B2/B3 adalah 95.898/190.261/64.077/240.884 byte (median tiga repetisi, VM 2 vCPU), dengan store B3 saja 146.352 byte;
 - B1 dan B3 memanggil ulang 38/38 observasi dari Iceberg setelah restart katalog persisten;
+- satu revisi tersuntik dapat dijalankan secara fisik pada keempat perlakuan, dan hasil fisiknya sama persis dengan hasil logis H9B, termasuk pemanggilan ulang 39/39 dan 40/40 pada B1 dan B3;
+- pada fixture ini, ongkos waktu satu revisi didominasi ongkos tetap per pernyataan Spark/Iceberg, dan ongkos ruangnya didominasi metadata Iceberg;
+- ongkos ruang B1 per revisi tetap, sedangkan ongkos ruang B3 tumbuh mengikuti jumlah sel yang direvisi;
 - seluruh keputusan B0/B2 dapat ditelusuri dari rekaman sumber sampai keluaran perlakuan;
 - tidak ada lagi sumber related work yang hanya berstatus `daftar`.
 
@@ -1456,10 +1571,11 @@ Yang belum dapat diklaim:
 - bahwa semua perbedaan adalah revisi;
 - bahwa lineage sudah mencakup seluruh 7.666 observasi H4 atau sampai semua tabel/gambar;
 - bahwa lineage sudah mencapai gambar manuskrip final;
-- bahwa salah satu perlakuan lebih cepat atau lebih skalabel, atau bahwa urutan byte pada fixture 14 sel berlaku pada tabel yang lebih besar;
+- bahwa salah satu perlakuan lebih cepat atau lebih skalabel, atau bahwa urutan waktu dan byte pada fixture 14 sel berlaku pada tabel yang lebih besar;
+- bahwa titik silang ruang B1 dan B3 pada dua sel adalah titik impas P3: skenario dua sel itu menyentuh dua domain sekaligus dan belum merupakan sweep;
 - bahwa penghitungan ulang inkremental B3 lebih murah: pada revisi nyata hanya 4 dari 42 evaluasi yang dilewati, dan titik impas baru dapat dicari melalui sweep tersuntik;
 - bahwa profil validasi H8B adalah ukuran final atau sudah mewakili satu tahun penuh seluruh provinsi;
 - bahwa Gate G2 atau G3 sudah lolos;
 - bahwa hasil 14 sel dapat digeneralisasi ke seluruh indikator BPS.
 
-Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; H8 dan H9 seluruh jalur selesai. Keempat perlakuan berjalan secara fungsional pada workload nyata, dan lineage keempatnya tertutup sampai bukti presentasi sementara. B3 juga lulus di Iceberg VM tanpa bergantung pada snapshot tabel. Harness revisi tersuntik sudah dieksekusi secara logis ke keempat perlakuan (H9 Jalur B), dan H10 Jalur A sudah mengukur ruang fisik serta recall setelah restart katalog. Eksekusi fisik workload tersuntik, keputusan VM untuk timing, freeze eksperimen, dan pengukuran utama belum dilakukan. Gate G2 belum lolos.**
+Posisi audit yang tepat adalah: **Gate G1 sudah ditutup dengan bukti; H8, H9, dan H10 seluruh jalur selesai. Keempat perlakuan berjalan secara fungsional pada workload nyata, dan lineage keempatnya tertutup sampai bukti presentasi sementara. B3 juga lulus di Iceberg VM tanpa bergantung pada snapshot tabel. Harness revisi tersuntik sudah dieksekusi secara logis ke keempat perlakuan (H9 Jalur B), H10 Jalur A sudah mengukur ruang fisik serta recall setelah restart katalog, dan H10 Jalur B sudah mengeksekusi satu revisi tersuntik secara fisik lengkap dengan waktu dan byte. Keempat keputusan audit H10 sudah diambil. Yang belum: freeze eksperimen H10 dan sweep utama H11–H15. Gate G2 belum lolos.**

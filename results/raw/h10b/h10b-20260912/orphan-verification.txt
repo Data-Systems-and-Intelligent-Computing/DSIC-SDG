@@ -1,0 +1,5 @@
+H10BV|kkciv.experiments.b0_indicator_current|0|12|95890
+H10BV|kkciv.experiments.b1_indicator_full_snapshots|0|21|190258
+H10BV|kkciv.experiments.b2_indicator_selected|0|7|64075
+H10BV|kkciv.experiments.b3_observation_vintages|0|48|439048
+H10BV|kkciv.experiments.b3_indicator_current|0|33|283583
