@@ -825,3 +825,202 @@ def measure_phases(
                     }
                 )
     return rows
+
+
+def audit_injection(
+    *,
+    lines: list[list[str]],
+    contract: dict[str, Any],
+    scenarios: list[dict[str, str]],
+    official_requests: int,
+) -> list[dict[str, str]]:
+    repetitions = [str(rep) for rep in range(1, contract["protocol"]["repetitions"] + 1)]
+    cells_by_scenario = {row["scenario_id"]: int(row["cells"]) for row in scenarios}
+    rows: list[dict[str, str]] = []
+    seen = set()
+    for _, rep, scenario, treatment, served_rows, cells, snapshots, mismatches, store_rows, store_snapshots in lines:
+        if rep not in repetitions or scenario not in cells_by_scenario or treatment not in TREATMENTS:
+            raise ValueError(f"unexpected H10B injection row for {treatment} rep {rep} {scenario}")
+        if (rep, scenario, treatment) in seen:
+            raise ValueError(f"H10B injected {treatment} twice in rep {rep} {scenario}")
+        seen.add((rep, scenario, treatment))
+        if mismatches != "0":
+            raise ValueError(f"H10B {treatment} state after {scenario} differs from the logical H9B state")
+        if served_rows != cells or served_rows != "14":
+            raise ValueError(f"H10B {treatment} serves {served_rows} rows over {cells} cells instead of 14")
+        expected_snapshots = "4" if treatment == "B1" else "1"
+        if snapshots != expected_snapshots:
+            raise ValueError(f"H10B {treatment} retains {snapshots} snapshots instead of {expected_snapshots}")
+        if treatment == "B3":
+            if store_rows != str(official_requests + cells_by_scenario[scenario]):
+                raise ValueError(f"H10B B3 store holds {store_rows} rows after {scenario}")
+            if store_snapshots != "1":
+                raise ValueError("H10B B3 store must keep exactly one snapshot")
+        rows.append(
+            {
+                "repetition": rep,
+                "scenario_id": scenario,
+                "treatment_id": treatment,
+                "served_rows": served_rows,
+                "served_cells": cells,
+                "snapshots": snapshots,
+                "store_rows": store_rows,
+                "store_snapshots": store_snapshots,
+            }
+        )
+    if len(seen) != len(repetitions) * len(cells_by_scenario) * len(TREATMENTS):
+        raise ValueError("H10B did not inject every treatment in every repetition and scenario")
+    return rows
+
+
+def audit_recall(
+    *,
+    lines: list[list[str]],
+    expected: list[dict[str, str]],
+    snapshot_counts: list[list[str]],
+    repetitions: int,
+) -> list[dict[str, str]]:
+    expected_by_key = {
+        (row["scenario_id"], row["treatment_id"], row["requested_observation_id"]): row
+        for row in expected
+    }
+    for _, _rep, scenario, count in snapshot_counts:
+        if count != "4":
+            raise ValueError(f"H10B B1 must expose four snapshots in {scenario}, found {count}")
+    observed: dict[tuple[str, str, str], list[dict[str, str]]] = {}
+    for _, rep, scenario, treatment, request_id, returned_id, returned_lexeme, locator in lines:
+        key = (scenario, treatment, request_id)
+        if key not in expected_by_key:
+            raise ValueError(f"H10B recalled an unexpected request {request_id} for {treatment} {scenario}")
+        expectation = expected_by_key[key]
+        addressable = returned_id == request_id
+        if returned_id and not addressable:
+            raise ValueError(f"H10B {treatment} returned a different observation for {request_id}")
+        if addressable and returned_lexeme != expectation["requested_value_lexeme"]:
+            raise ValueError(f"H10B {treatment} returned a different value for {request_id}")
+        if ("yes" if addressable else "no") != expectation["expected_addressable"]:
+            raise ValueError(
+                f"H10B {treatment} recall of {request_id} in {scenario} disagrees with the logical H9B audit"
+            )
+        observed.setdefault(key, []).append(
+            {
+                "repetition": rep,
+                "returned_value_lexeme": returned_lexeme,
+                "locator": locator if addressable else "",
+                "addressable": "yes" if addressable else "no",
+            }
+        )
+    if set(observed) != set(expected_by_key):
+        raise ValueError("H10B recall does not cover every expected request")
+
+    rows: list[dict[str, str]] = []
+    for key, results in observed.items():
+        if len(results) != repetitions:
+            raise ValueError(f"H10B recall of {key} was not repeated {repetitions} times")
+        if len({(row["addressable"], row["returned_value_lexeme"]) for row in results}) != 1:
+            raise ValueError(f"H10B repetitions disagree about the recall of {key}")
+        scenario, treatment, request_id = key
+        expectation = expected_by_key[key]
+        first = results[0]
+        addressable = first["addressable"] == "yes"
+        rows.append(
+            {
+                "scenario_id": scenario,
+                "treatment_id": treatment,
+                "requested_observation_id": request_id,
+                "request_kind": expectation["request_kind"],
+                "requested_value_lexeme": expectation["requested_value_lexeme"],
+                "returned_value_lexeme": first["returned_value_lexeme"],
+                "locator": first["locator"],
+                "addressable": first["addressable"],
+                "expected_addressable": expectation["expected_addressable"],
+                "exact_match": "yes" if addressable and first["returned_value_lexeme"] == expectation["requested_value_lexeme"] else "not_applicable",
+                "repetitions_agreeing": str(len(results)),
+            }
+        )
+    rows.sort(
+        key=lambda row: (row["scenario_id"], TREATMENTS.index(row["treatment_id"]), row["requested_observation_id"])
+    )
+    return rows
+
+
+def aggregate_apply_cost(
+    *,
+    timing_rows: list[dict[str, str]],
+    storage_rows: list[dict[str, str]],
+    scenarios: list[dict[str, str]],
+    repetitions: int,
+) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    for scenario in sorted(scenarios, key=lambda row: int(row["physical_order"])):
+        scenario_id = scenario["scenario_id"]
+        for treatment in TREATMENTS:
+            write_seconds: list[float] = []
+            maintenance_seconds: list[float] = []
+            total_bytes: list[int] = []
+            data_bytes: list[int] = []
+            baseline_bytes: list[int] = []
+            after_bytes: list[int] = []
+            snapshots: set[str] = set()
+            write_statements: set[int] = set()
+            for rep in [str(index) for index in range(1, repetitions + 1)]:
+                timed = [
+                    row
+                    for row in timing_rows
+                    if row["repetition"] == rep
+                    and row["scenario_id"] == scenario_id
+                    and row["treatment_id"] == treatment
+                ]
+                if not timed:
+                    raise ValueError(f"H10B has no timing for {treatment} in rep {rep} {scenario_id}")
+                write = [row for row in timed if row["phase"] == "write"]
+                write_statements.add(len(write))
+                write_seconds.append(sum(float(row["seconds"]) for row in write))
+                maintenance_seconds.append(
+                    sum(float(row["seconds"]) for row in timed if row["phase"] == "maintenance")
+                )
+                tables = [
+                    row
+                    for row in storage_rows
+                    if row["repetition"] == rep
+                    and row["scenario_id"] == scenario_id
+                    and row["treatment_id"] == treatment
+                ]
+                if not tables:
+                    raise ValueError(f"H10B has no storage delta for {treatment} in rep {rep} {scenario_id}")
+                total_bytes.append(sum(int(row["delta_bytes"]) for row in tables))
+                data_bytes.append(
+                    sum(int(row["after_data_bytes"]) - int(row["baseline_data_bytes"]) for row in tables)
+                )
+                baseline_bytes.append(sum(int(row["baseline_bytes"]) for row in tables))
+                after_bytes.append(sum(int(row["after_bytes"]) for row in tables))
+                snapshots.add("+".join(row["after_snapshots"] for row in tables))
+            if len(write_statements) != 1 or len(snapshots) != 1:
+                raise ValueError(f"H10B {treatment} wrote a different shape across repetitions in {scenario_id}")
+            delta_median = _median_int(total_bytes)
+            rows.append(
+                {
+                    "scenario_id": scenario_id,
+                    "treatment_id": treatment,
+                    "cells_revised": scenario["cells"],
+                    "cells_evaluated": scenario[f"{treatment.lower()}_cells_evaluated"],
+                    "rows_written_logical": scenario[f"{treatment.lower()}_rows_written_logical"],
+                    "write_statements": str(write_statements.pop()),
+                    "write_seconds_median": _median_seconds(write_seconds),
+                    "write_seconds_min": f"{min(write_seconds):.3f}",
+                    "write_seconds_max": f"{max(write_seconds):.3f}",
+                    "maintenance_seconds_median": _median_seconds(maintenance_seconds),
+                    "total_seconds_median": _median_seconds(
+                        [write + maintenance for write, maintenance in zip(write_seconds, maintenance_seconds)]
+                    ),
+                    "baseline_bytes_median": str(_median_int(baseline_bytes)),
+                    "after_bytes_median": str(_median_int(after_bytes)),
+                    "delta_bytes_median": str(delta_median),
+                    "delta_bytes_min": str(min(total_bytes)),
+                    "delta_bytes_max": str(max(total_bytes)),
+                    "delta_data_bytes_median": str(_median_int(data_bytes)),
+                    "delta_metadata_bytes_median": str(delta_median - _median_int(data_bytes)),
+                    "snapshots_after": snapshots.pop(),
+                }
+            )
+    return rows

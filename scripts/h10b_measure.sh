@@ -302,17 +302,18 @@ mkdir -p "$raw_dir"
 
 # Approved cleanup (h10b_orphan_cleanup): drop the objects the 2026-09-09 run left behind
 # when the catalog lost its table registrations, so later listings only hold current objects.
-# 25 hours back is the shortest interval the Iceberg procedure accepts; nothing this run
-# writes can fall inside it, and the 2026-09-09 leftovers are three days old.
-cleanup_stamp="$(date -u -d '25 hours ago' +'%Y-%m-%d %H:%M:%S')"
-echo "orphan_cleanup_older_than=${cleanup_stamp}" >> "$raw_dir/environment.txt"
+# The approved cleanup (h10b_orphan_cleanup) runs once through
+# scripts/h10b_cleanup_orphans.sh. Here it is only verified: a dry run must find nothing
+# left to remove before the first baseline rebuild.
+verify_stamp="$(date -u -d '25 hours ago' +'%Y-%m-%d %H:%M:%S')"
+echo "orphan_verification_older_than=${verify_stamp}" >> "$raw_dir/environment.txt"
 mkdir -p "$raw_dir/file-lists"
 for entry in "${treatment_tables[@]}"; do
   table="${entry#* }"
   short_table="${table#kkciv.}"
   location="$(table_location "$table")"
   if [[ "$location" != s3://* ]]; then
-    echo "H10B could not resolve the location of ${table} before cleanup" >&2
+    echo "H10B could not resolve the location of ${table} before the run" >&2
     exit 1
   fi
   file_list="$raw_dir/file-lists/${table##*.}.csv"
@@ -323,31 +324,26 @@ for entry in "${treatment_tables[@]}"; do
     objects=$((objects + 1))
     bytes=$((bytes + size))
   done < <(list_location "$location")
-  printf 'H10BC|%s|before|%s|%s\n' "$table" "$objects" "$bytes" >> "$raw_dir/orphan-cleanup.txt"
 
-  run_spark "remove orphan files ${table}" "
+  run_spark "verify orphan cleanup ${table}" "
 CREATE OR REPLACE TEMPORARY VIEW h10b_file_list_csv USING csv OPTIONS (
   path '/home/iceberg/${file_list}', header 'true', inferSchema 'false');
 CREATE OR REPLACE TEMPORARY VIEW h10b_file_list AS
 SELECT file_path, CAST(last_modified AS TIMESTAMP) AS last_modified FROM h10b_file_list_csv;
 CALL kkciv.system.remove_orphan_files(
   table => '${short_table}',
-  older_than => TIMESTAMP '${cleanup_stamp}',
-  file_list_view => 'h10b_file_list'
+  older_than => TIMESTAMP '${verify_stamp}',
+  file_list_view => 'h10b_file_list',
+  dry_run => true
 );"
-  printf '%s\n' "$output" | grep -E '^s3://' | while read -r removed; do
-    printf 'H10BO|%s|%s\n' "$table" "$removed" >> "$raw_dir/orphan-cleanup.txt"
-  done
-
-  objects=0
-  bytes=0
-  while IFS='|' read -r _path size _modified; do
-    objects=$((objects + 1))
-    bytes=$((bytes + size))
-  done < <(list_location "$location")
-  printf 'H10BC|%s|after|%s|%s\n' "$table" "$objects" "$bytes" >> "$raw_dir/orphan-cleanup.txt"
+  remaining="$(printf '%s\n' "$output" | grep -cE '^s3://' || true)"
+  if (( remaining != 0 )); then
+    echo "H10B found ${remaining} orphan files left in ${table}; run make h10b-cleanup first" >&2
+    exit 1
+  fi
+  printf 'H10BV|%s|%s|%s|%s\n' "$table" "$remaining" "$objects" "$bytes" >> "$raw_dir/orphan-verification.txt"
 done
-echo "orphan_cleanup_at_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$raw_dir/environment.txt"
+echo "orphan_verification_at_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$raw_dir/environment.txt"
 
 for rep in $(seq 1 "$repetitions"); do
   for scenario in "${scenarios[@]}"; do

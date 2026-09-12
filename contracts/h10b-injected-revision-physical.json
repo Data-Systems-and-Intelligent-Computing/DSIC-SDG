@@ -46,7 +46,8 @@
     "execution": "serial, one operator, no concurrent treatment run and no other workload on the node",
     "orphan_cleanup": {
       "call": "kkciv.system.remove_orphan_files",
-      "when": "once, before the first baseline rebuild",
+      "script": "scripts/h10b_cleanup_orphans.sh",
+      "when": "once, before the first baseline rebuild; the measurement only re-checks with a dry run that nothing is left to remove",
       "older_than": "25 hours before the measurement start, the shortest interval the Iceberg procedure accepts; every leftover object is three days old",
       "file_list": "supplied from the MinIO listing of the table location, because the Spark image has no Hadoop file system for the s3 scheme",
       "decision_id": "h10b_orphan_cleanup"
