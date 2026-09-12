@@ -694,3 +694,134 @@ def run_prepare(
         "expected_states": len(prepared["expected_state"]),
         "expected_requests": len(prepared["expected_recall"]),
     }
+
+
+def read_environment(path: Path) -> dict[str, str]:
+    environment = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        key, _, value = line.partition("=")
+        environment[key] = value
+    return environment
+
+
+def audit_orphan_cleanup(lines: list[list[str]], removals: list[list[str]]) -> list[dict[str, str]]:
+    before = {row[1]: row for row in lines if row[2] == "before"}
+    after = {row[1]: row for row in lines if row[2] == "after"}
+    if not before or set(before) != set(after):
+        raise ValueError("H10B orphan cleanup did not list every table before and after")
+    removed_by_table: dict[str, int] = {table: 0 for table in before}
+    for row in removals:
+        if row[1] not in removed_by_table:
+            raise ValueError(f"H10B removed an orphan file of an unknown table {row[1]}")
+        removed_by_table[row[1]] += 1
+    rows: list[dict[str, str]] = []
+    for table in sorted(before):
+        objects_before, bytes_before = int(before[table][3]), int(before[table][4])
+        objects_after, bytes_after = int(after[table][3]), int(after[table][4])
+        if objects_before - objects_after != removed_by_table[table]:
+            raise ValueError(f"H10B orphan cleanup of {table} removed a different number of objects than it reported")
+        if bytes_after > bytes_before:
+            raise ValueError(f"H10B orphan cleanup of {table} did not shrink the table location")
+        rows.append(
+            {
+                "table": table,
+                "objects_before": str(objects_before),
+                "bytes_before": str(bytes_before),
+                "objects_removed": str(removed_by_table[table]),
+                "objects_after": str(objects_after),
+                "bytes_after": str(bytes_after),
+                "bytes_removed": str(bytes_before - bytes_after),
+            }
+        )
+    return rows
+
+
+def measure_phases(
+    *,
+    contract: dict[str, Any],
+    footprint_lines: list[list[str]],
+    state_lines: list[list[str]],
+    listing_lines: list[list[str]],
+    scenarios: list[str],
+) -> list[dict[str, str]]:
+    """Fold the per-object rows into one baseline-versus-after row per table."""
+    expected_tables = {
+        (treatment, table) for treatment, tables in contract["tables"].items() for table in tables
+    }
+    repetitions = [str(rep) for rep in range(1, contract["protocol"]["repetitions"] + 1)]
+    listing: dict[tuple[str, str, str, str], dict[str, int]] = {}
+    for _, rep, scenario, phase, _treatment, table, path, size in listing_lines:
+        listing.setdefault((rep, scenario, phase, table), {})[path] = int(size)
+    states = {
+        (rep, scenario, phase, table): (snapshots, rows)
+        for _, rep, scenario, phase, _treatment, table, snapshots, rows in state_lines
+    }
+
+    # object path -> (size, object class); a path is reachable at most once per class.
+    reachable: dict[tuple[str, str, str, str], dict[str, tuple[int, str]]] = {}
+    for (
+        _,
+        rep,
+        scenario,
+        phase,
+        treatment,
+        table,
+        object_class,
+        path,
+        metadata_size,
+        _records,
+    ) in footprint_lines:
+        if (treatment, table) not in expected_tables or rep not in repetitions or scenario not in scenarios:
+            raise ValueError(f"unexpected H10B footprint row for {treatment} {table} rep {rep}")
+        if phase not in PHASES or object_class not in CLASSES:
+            raise ValueError(f"unexpected H10B footprint phase {phase} or class {object_class}")
+        objects = listing.get((rep, scenario, phase, table), {})
+        if path not in objects:
+            raise ValueError(f"metadata references a missing object {path}")
+        if object_class in SIZED_CLASSES and int(metadata_size) != objects[path]:
+            raise ValueError(f"metadata size differs from the MinIO object size for {path}")
+        reachable.setdefault((rep, scenario, phase, table), {})[path] = (objects[path], object_class)
+
+    rows: list[dict[str, str]] = []
+    for rep in repetitions:
+        for scenario in scenarios:
+            for treatment, table in sorted(
+                expected_tables, key=lambda item: (TREATMENTS.index(item[0]), item[1])
+            ):
+                phase_values = {}
+                for phase in PHASES:
+                    key = (rep, scenario, phase, table)
+                    if key not in reachable or key not in states:
+                        raise ValueError(f"H10B has no {phase} measurement for {table} rep {rep} {scenario}")
+                    objects = reachable[key]
+                    phase_values[phase] = {
+                        "objects": len(objects),
+                        "bytes": sum(size for size, _ in objects.values()),
+                        "data_bytes": sum(
+                            size for size, object_class in objects.values() if object_class in {"data", "delete"}
+                        ),
+                        "snapshots": states[key][0],
+                        "rows": states[key][1],
+                    }
+                baseline, after = phase_values["baseline"], phase_values["after_revision"]
+                rows.append(
+                    {
+                        "repetition": rep,
+                        "scenario_id": scenario,
+                        "treatment_id": treatment,
+                        "table": table,
+                        "baseline_objects": str(baseline["objects"]),
+                        "baseline_bytes": str(baseline["bytes"]),
+                        "after_objects": str(after["objects"]),
+                        "after_bytes": str(after["bytes"]),
+                        "delta_objects": str(after["objects"] - baseline["objects"]),
+                        "delta_bytes": str(after["bytes"] - baseline["bytes"]),
+                        "baseline_rows": baseline["rows"],
+                        "after_rows": after["rows"],
+                        "baseline_snapshots": baseline["snapshots"],
+                        "after_snapshots": after["snapshots"],
+                        "baseline_data_bytes": str(baseline["data_bytes"]),
+                        "after_data_bytes": str(after["data_bytes"]),
+                    }
+                )
+    return rows

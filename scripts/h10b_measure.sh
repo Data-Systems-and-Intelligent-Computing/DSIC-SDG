@@ -134,8 +134,21 @@ for line in sys.stdin:
     item = json.loads(line)
     if item.get("status") != "success" or item.get("type") != "file":
         raise SystemExit("unexpected MinIO listing entry: " + line)
-    print(location + "/" + item["key"] + "|" + str(item["size"]))
+    modified = item["lastModified"].replace("T", " ")[:19]
+    print(location + "/" + item["key"] + "|" + str(item["size"]) + "|" + modified)
 ' "$location"
+}
+
+# The Spark image carries no Hadoop file system for the s3 scheme, so remove_orphan_files
+# cannot list the table location itself. The MinIO listing is handed to it instead.
+write_file_list() {
+  local location="$1" out_csv="$2"
+  {
+    echo "file_path,last_modified"
+    while IFS='|' read -r path _size modified; do
+      printf '%s,%s\n' "$path" "$modified"
+    done < <(list_location "$location")
+  } > "$out_csv"
 }
 
 measure_table() {
@@ -167,7 +180,7 @@ SELECT concat_ws('|', 'H10S', '${rep}', '${scenario}', '${phase}', '${treatment}
     echo "H10B could not resolve the location of ${table}" >&2
     exit 1
   fi
-  while IFS='|' read -r path size; do
+  while IFS='|' read -r path size _modified; do
     printf 'H10L|%s|%s|%s|%s|%s|%s|%s\n' "$rep" "$scenario" "$phase" "$treatment" "$table" "$path" "$size" \
       >> "$raw_dir/listing.txt"
   done < <(list_location "$location")
@@ -289,7 +302,11 @@ mkdir -p "$raw_dir"
 
 # Approved cleanup (h10b_orphan_cleanup): drop the objects the 2026-09-09 run left behind
 # when the catalog lost its table registrations, so later listings only hold current objects.
-cleanup_stamp="$(date -u +'%Y-%m-%d %H:%M:%S')"
+# 25 hours back is the shortest interval the Iceberg procedure accepts; nothing this run
+# writes can fall inside it, and the 2026-09-09 leftovers are three days old.
+cleanup_stamp="$(date -u -d '25 hours ago' +'%Y-%m-%d %H:%M:%S')"
+echo "orphan_cleanup_older_than=${cleanup_stamp}" >> "$raw_dir/environment.txt"
+mkdir -p "$raw_dir/file-lists"
 for entry in "${treatment_tables[@]}"; do
   table="${entry#* }"
   short_table="${table#kkciv.}"
@@ -298,18 +315,25 @@ for entry in "${treatment_tables[@]}"; do
     echo "H10B could not resolve the location of ${table} before cleanup" >&2
     exit 1
   fi
+  file_list="$raw_dir/file-lists/${table##*.}.csv"
+  write_file_list "$location" "$file_list"
   objects=0
   bytes=0
-  while IFS='|' read -r _path size; do
+  while IFS='|' read -r _path size _modified; do
     objects=$((objects + 1))
     bytes=$((bytes + size))
   done < <(list_location "$location")
   printf 'H10BC|%s|before|%s|%s\n' "$table" "$objects" "$bytes" >> "$raw_dir/orphan-cleanup.txt"
 
   run_spark "remove orphan files ${table}" "
+CREATE OR REPLACE TEMPORARY VIEW h10b_file_list_csv USING csv OPTIONS (
+  path '/home/iceberg/${file_list}', header 'true', inferSchema 'false');
+CREATE OR REPLACE TEMPORARY VIEW h10b_file_list AS
+SELECT file_path, CAST(last_modified AS TIMESTAMP) AS last_modified FROM h10b_file_list_csv;
 CALL kkciv.system.remove_orphan_files(
   table => '${short_table}',
-  older_than => TIMESTAMP '${cleanup_stamp}'
+  older_than => TIMESTAMP '${cleanup_stamp}',
+  file_list_view => 'h10b_file_list'
 );"
   printf '%s\n' "$output" | grep -E '^s3://' | while read -r removed; do
     printf 'H10BO|%s|%s\n' "$table" "$removed" >> "$raw_dir/orphan-cleanup.txt"
@@ -317,7 +341,7 @@ CALL kkciv.system.remove_orphan_files(
 
   objects=0
   bytes=0
-  while IFS='|' read -r _path size; do
+  while IFS='|' read -r _path size _modified; do
     objects=$((objects + 1))
     bytes=$((bytes + size))
   done < <(list_location "$location")
