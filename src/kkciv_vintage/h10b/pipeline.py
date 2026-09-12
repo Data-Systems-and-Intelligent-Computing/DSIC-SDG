@@ -1024,3 +1024,247 @@ def aggregate_apply_cost(
                 }
             )
     return rows
+
+
+def run_aggregate(
+    *,
+    contract_path: Path,
+    decisions_path: Path,
+    raw_dir: Path,
+    cleanup_dir: Path,
+    payload_manifest_path: Path,
+    timing_output: Path,
+    apply_cost_output: Path,
+    storage_output: Path,
+    recall_output: Path,
+    orphan_output: Path,
+    validation_output: Path,
+    summary_output: Path,
+    manifest_output: Path,
+) -> dict[str, Any]:
+    contract = json.loads(contract_path.read_text(encoding="utf-8"))
+    validate_contract(contract)
+    decisions = _read_csv(decisions_path)
+    validate_human_decisions(decisions)
+
+    payload = _manifest_outputs(
+        payload_manifest_path, {"stage": "H10", "track": "B", "payload_status": "prepared"}
+    )
+    scenarios = _read_csv(_required(payload, "h10b-physical-scenarios.csv"))
+    expected_recall = _read_csv(_required(payload, "h10b-expected-recall.csv"))
+    scenario_ids = [row["scenario_id"] for row in sorted(scenarios, key=lambda row: int(row["physical_order"]))]
+    if scenario_ids != [row["scenario_id"] for row in sorted(contract["scenarios"], key=lambda row: int(row["physical_order"]))]:
+        raise ValueError("H10B payload scenarios differ from the contract")
+    repetitions = contract["protocol"]["repetitions"]
+
+    environment = read_environment(raw_dir / "environment.txt")
+    if not environment.get("catalog_uri", "").startswith(contract["protocol"]["catalog_uri_prefix"]):
+        raise ValueError("H10B measurement ran without the persistent catalog")
+    if environment.get("git_dirty_entries") != "0":
+        raise ValueError("H10B measurement started from a dirty working tree")
+    if environment.get("repetitions") != str(repetitions):
+        raise ValueError("H10B raw run used a different repetition count")
+    if environment.get("scenarios") != ";".join(scenario_ids):
+        raise ValueError("H10B raw run measured other scenarios than the payload")
+
+    markers = [
+        line.split("|", 3)
+        for line in (raw_dir / "apply-markers.txt").read_text(encoding="utf-8").splitlines()
+    ]
+    expected_markers = contract["protocol"]["expected_markers"]
+    for rep, scenario, treatment, marker in markers:
+        if scenario not in scenario_ids or marker != expected_markers[treatment]:
+            raise ValueError(f"H10B rep {rep} {scenario} {treatment} marker {marker} differs from the recorded marker")
+    if len(markers) != repetitions * len(scenario_ids) * len(TREATMENTS):
+        raise ValueError("H10B baseline apply markers are incomplete")
+
+    orphan_rows = audit_orphan_cleanup(
+        _lines(cleanup_dir / "orphan-cleanup.txt", "H10BC"),
+        _lines(cleanup_dir / "orphan-cleanup.txt", "H10BO"),
+    )
+    verification = _lines(raw_dir / "orphan-verification.txt", "H10BV")
+    if len(verification) != len(orphan_rows) or any(row[2] != "0" for row in verification):
+        raise ValueError("H10B started before every table was verified free of orphan files")
+
+    storage_rows = measure_phases(
+        contract=contract,
+        footprint_lines=_lines(raw_dir / "footprint.txt", "H10F"),
+        state_lines=_lines(raw_dir / "footprint.txt", "H10S"),
+        listing_lines=_lines(raw_dir / "listing.txt", "H10L"),
+        scenarios=scenario_ids,
+    )
+    timing_rows = [
+        {
+            "repetition": rep,
+            "scenario_id": scenario,
+            "treatment_id": treatment,
+            "statement_index": index,
+            "statement_label": label,
+            "phase": phase,
+            "seconds": seconds,
+        }
+        for _, rep, scenario, treatment, index, label, phase, seconds in _lines(raw_dir / "timing.txt", "H10BT")
+    ]
+    official_requests = len(
+        [
+            row
+            for row in expected_recall
+            if row["scenario_id"] == scenario_ids[0]
+            and row["treatment_id"] == "B0"
+            and row["request_kind"] == "official"
+        ]
+    )
+    injection_rows = audit_injection(
+        lines=_lines(raw_dir / "injection.txt", "H10BI"),
+        contract=contract,
+        scenarios=scenarios,
+        official_requests=official_requests,
+    )
+    recall_rows = audit_recall(
+        lines=_lines(raw_dir / "recall.txt", "H10BR"),
+        expected=expected_recall,
+        snapshot_counts=_lines(raw_dir / "recall.txt", "H10BSNAPCOUNT"),
+        repetitions=repetitions,
+    )
+    cost_rows = aggregate_apply_cost(
+        timing_rows=timing_rows,
+        storage_rows=storage_rows,
+        scenarios=scenarios,
+        repetitions=repetitions,
+    )
+
+    first_scenario = scenario_ids[0]
+    cost_by_key = {(row["scenario_id"], row["treatment_id"]): row for row in cost_rows}
+    recalled = {
+        (row["scenario_id"], row["treatment_id"]): sum(
+            other["addressable"] == "yes"
+            for other in recall_rows
+            if other["scenario_id"] == row["scenario_id"] and other["treatment_id"] == row["treatment_id"]
+        )
+        for row in recall_rows
+    }
+    orphan_bytes = sum(int(row["bytes_removed"]) for row in orphan_rows)
+    orphan_objects = sum(int(row["objects_removed"]) for row in orphan_rows)
+
+    validation = [
+        {"invariant": "h10b_contract", "status": "passed", "checked_rows": "7", "detail": "decisions scenarios tables protocol timing footprint and boundary match h10b.1"},
+        {"invariant": "human_decisions", "status": "passed", "checked_rows": str(len(decisions)), "detail": "timing environment and orphan cleanup approved on 2026-09-12"},
+        {"invariant": "persistent_catalog", "status": "passed", "checked_rows": "1", "detail": environment["catalog_uri"]},
+        {"invariant": "clean_start", "status": "passed", "checked_rows": "1", "detail": f"git commit {environment['git_commit']} with no local changes"},
+        {"invariant": "orphan_cleanup_before_run", "status": "passed", "checked_rows": str(len(orphan_rows)), "detail": f"{orphan_objects} objects and {orphan_bytes} bytes removed once; a dry run found nothing left in any table"},
+        {"invariant": "baseline_markers", "status": "passed", "checked_rows": str(len(markers)), "detail": "every rebuild reproduces the recorded B0 B1 B2 and B3 verification markers"},
+        {"invariant": "physical_equals_logical_state", "status": "passed", "checked_rows": str(len(injection_rows)), "detail": "every post-revision table equals the logical H9B state of its scenario"},
+        {"invariant": "objects_exist_with_metadata_size", "status": "passed", "checked_rows": str(len(storage_rows)), "detail": "every referenced object exists in MinIO; data delete and manifest sizes equal their metadata"},
+        {"invariant": "retained_snapshots", "status": "passed", "checked_rows": str(len(injection_rows)), "detail": "B1 keeps four snapshots; B0 B2 and both B3 tables keep one"},
+        {"invariant": "physical_equals_logical_recall", "status": "passed", "checked_rows": str(len(recall_rows)), "detail": "every request agrees with the H9B recall audit in all repetitions"},
+        {"invariant": "timing_environment_declared", "status": "passed", "checked_rows": str(len(timing_rows)), "detail": f"statement times measured on {environment['host_nproc']} vCPU and {environment['spark_driver_memory']} driver memory; comparative only"},
+    ]
+    summary = [
+        {"metric": "repetitions", "value": str(repetitions), "unit": "runs", "interpretation": "serial rebuild-inject-measure cycles per scenario"},
+        {"metric": "scenarios", "value": str(len(scenario_ids)), "unit": "scenarios", "interpretation": "frozen H8B validation payloads; not the main sweep profile"},
+        {"metric": "orphan_bytes_removed", "value": str(orphan_bytes), "unit": "bytes", "interpretation": f"{orphan_objects} objects removed once before the run"},
+        {"metric": "host_nproc", "value": environment["host_nproc"], "unit": "vCPU", "interpretation": "declared timing environment, frozen on 2026-09-12"},
+    ]
+    for row in cost_rows:
+        summary.append(
+            {
+                "metric": f"{row['treatment_id'].lower()}_{row['scenario_id']}_write_seconds_median",
+                "value": row["write_seconds_median"],
+                "unit": "seconds",
+                "interpretation": f"range {row['write_seconds_min']}-{row['write_seconds_max']}; maintenance {row['maintenance_seconds_median']}; {row['write_statements']} write statements",
+            }
+        )
+        summary.append(
+            {
+                "metric": f"{row['treatment_id'].lower()}_{row['scenario_id']}_delta_bytes_median",
+                "value": row["delta_bytes_median"],
+                "unit": "bytes",
+                "interpretation": f"range {row['delta_bytes_min']}-{row['delta_bytes_max']}; data {row['delta_data_bytes_median']}; metadata {row['delta_metadata_bytes_median']}",
+            }
+        )
+    for scenario_id in scenario_ids:
+        for treatment in TREATMENTS:
+            summary.append(
+                {
+                    "metric": f"{treatment.lower()}_{scenario_id}_recalled",
+                    "value": str(recalled[(scenario_id, treatment)]),
+                    "unit": "requests",
+                    "interpretation": "official and synthetic observations returned with the exact value after the revision",
+                }
+            )
+
+    written_outputs = []
+    for path, columns, rows in (
+        (timing_output, TIMING_COLUMNS, timing_rows),
+        (apply_cost_output, APPLY_COST_COLUMNS, cost_rows),
+        (storage_output, STORAGE_DELTA_COLUMNS, storage_rows),
+        (recall_output, RECALL_COLUMNS, recall_rows),
+        (orphan_output, ORPHAN_COLUMNS, orphan_rows),
+        (validation_output, VALIDATION_COLUMNS, validation),
+        (summary_output, SUMMARY_COLUMNS, summary),
+    ):
+        written_outputs.append(
+            {"path": str(path), "rows": len(rows), "sha256": _write_csv(path, columns, rows)}
+        )
+
+    raw_files = sorted(
+        path for path in [*raw_dir.rglob("*"), *cleanup_dir.rglob("*")] if path.is_file()
+    )
+    manifest = {
+        "stage": "H10",
+        "track": "B",
+        "contract_version": contract["contract_version"],
+        "execution_status": "executed_physical",
+        "environment": environment,
+        "orphan_cleanup": {"objects_removed": orphan_objects, "bytes_removed": orphan_bytes},
+        "apply_cost": {
+            f"{row['scenario_id']}|{row['treatment_id']}": {
+                key: row[key]
+                for key in (
+                    "write_seconds_median",
+                    "maintenance_seconds_median",
+                    "delta_bytes_median",
+                    "snapshots_after",
+                )
+            }
+            for row in cost_rows
+        },
+        "recall_after_revision": {
+            f"{scenario_id}|{treatment}": recalled[(scenario_id, treatment)]
+            for scenario_id in scenario_ids
+            for treatment in TREATMENTS
+        },
+        "measurement": contract["measurement_boundary"],
+        "raw_inputs": [{"path": str(path), "sha256": _sha256(path)} for path in raw_files],
+        "inputs": [
+            {"path": str(path), "sha256": _sha256(path)}
+            for path in (contract_path, decisions_path, payload_manifest_path)
+        ],
+        "outputs": written_outputs,
+    }
+    manifest_output.parent.mkdir(parents=True, exist_ok=True)
+    manifest_output.write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return {
+        "repetitions": repetitions,
+        "scenarios": len(scenario_ids),
+        "routes": len(cost_rows),
+        "requests": len(recall_rows),
+        "orphan_objects": orphan_objects,
+        "orphan_bytes": orphan_bytes,
+        "first_scenario": first_scenario,
+        "write_seconds": {
+            treatment: cost_by_key[(first_scenario, treatment)]["write_seconds_median"]
+            for treatment in TREATMENTS
+        },
+        "delta_bytes": {
+            treatment: cost_by_key[(first_scenario, treatment)]["delta_bytes_median"]
+            for treatment in TREATMENTS
+        },
+        "recalled": {
+            treatment: recalled[(first_scenario, treatment)] for treatment in TREATMENTS
+        },
+        "status": "measured",
+    }

@@ -3,7 +3,7 @@
   "inputs": [
     {
       "path": "contracts/h10b-injected-revision-physical.json",
-      "sha256": "9a86f88d0e393130316faecd31e22ad436652e063a769c99b531dbbb14eb8d8a"
+      "sha256": "c6c27dbc37388d1f51132e84acb23a99bb777c04591b79ac8b00fc04b8c419ab"
     },
     {
       "path": "config/h10/human_decisions.csv",
@@ -57,7 +57,7 @@
     {
       "path": "results/processed/h10b-b2-next-state.csv",
       "rows": 28,
-      "sha256": "c0f0f020da233638351b5353a9847faeaef5c622b1d6f7458da5b7be6d56d252"
+      "sha256": "99e1de786e74c1c7a3e7c72ef3165a4f07cd49ff84c7dae52dfeb94152b1400f"
     },
     {
       "path": "results/processed/h10b-b3-dirty-cells.csv",
