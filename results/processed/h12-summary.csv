@@ -1,0 +1,15 @@
+metric,value,unit,interpretation
+host_nproc,2,vCPU,declared timing environment; comparison between treatments only
+b0_all_arrivals_total_seconds,52.184,seconds,sum of the median write and maintenance time of the four real releases
+b0_referenced_bytes_after_last_release,329276,bytes,data and manifest bytes the metadata still references after the last release
+b1_all_arrivals_total_seconds,15.050,seconds,sum of the median write and maintenance time of the four real releases
+b1_referenced_bytes_after_last_release,837744,bytes,data and manifest bytes the metadata still references after the last release
+b2_all_arrivals_total_seconds,47.688,seconds,sum of the median write and maintenance time of the four real releases
+b2_referenced_bytes_after_last_release,312945,bytes,data and manifest bytes the metadata still references after the last release
+b3_all_arrivals_total_seconds,88.929,seconds,sum of the median write and maintenance time of the four real releases
+b3_referenced_bytes_after_last_release,839008,bytes,data and manifest bytes the metadata still references after the last release
+footprint_b0_panel_current,383025,bytes,17 objects; data 297074; metadata 85951
+footprint_b1_panel_full_snapshots,889873,bytes,36 objects; data 760833; metadata 129040
+footprint_b2_panel_selected,372108,bytes,16 objects; data 289764; metadata 82344
+footprint_b3_panel_current,380548,bytes,17 objects; data 289084; metadata 91464
+footprint_b3_panel_observation_vintages,571722,bytes,30 objects; data 473831; metadata 97891

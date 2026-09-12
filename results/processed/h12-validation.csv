@@ -1,0 +1,10 @@
+invariant,status,checked_rows,detail
+frozen evidence still matches the freeze checksums,pass,24,24 frozen items re-checked before the run was aggregated
+every arrival leaves the state the frozen panel implies,pass,60,"row, cell and snapshot counts checked against the panel catalog on every arrival"
+the state after the last real release equals the H11 baseline,pass,5,"[('kkciv.sweep.b0_panel_current', '5378'), ('kkciv.sweep.b1_panel_full_snapshots', '10106'), ('kkciv.sweep.b2_panel_selected', '5378'), ('kkciv.sweep.b3_panel_current', '5378'), ('kkciv.sweep.b3_panel_observation_vintages', '6983')]"
+every repetition reproduces the same state after every arrival,pass,60,3 repetitions over 4 arrivals
+every metadata-referenced object exists in MinIO with the size metadata records,pass,5,checked while folding the final footprint
+no unreferenced object is counted as stored space,pass,5,b0_panel_current=0;b1_panel_full_snapshots=0;b2_panel_selected=0;b3_panel_current=0;b3_panel_observation_vintages=0
+the run stayed on the frozen resource limit,pass,1,"nproc=2, driver=2g, catalog=jdbc:sqlite:/home/iceberg/iceberg_catalog.db"
+the working tree was clean when the measurement started,pass,1,commit d6297de2ca674c439215e2e7a2676d387b58a9b8
+all repetitions are reported before any aggregation,pass,192,3 repetitions of 4 arrivals and 4 treatments

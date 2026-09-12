@@ -1,0 +1,200 @@
+{
+  "arrival_cost": {
+    "1|B0": {
+      "maintenance_seconds_median": "6.627",
+      "referenced_bytes_added": "121407",
+      "total_seconds_median": "14.849",
+      "write_seconds_median": "8.021"
+    },
+    "1|B1": {
+      "maintenance_seconds_median": "0.000",
+      "referenced_bytes_added": "124697",
+      "total_seconds_median": "8.267",
+      "write_seconds_median": "8.267"
+    },
+    "1|B2": {
+      "maintenance_seconds_median": "6.615",
+      "referenced_bytes_added": "133286",
+      "total_seconds_median": "15.117",
+      "write_seconds_median": "8.797"
+    },
+    "1|B3": {
+      "maintenance_seconds_median": "9.410",
+      "referenced_bytes_added": "256218",
+      "total_seconds_median": "24.454",
+      "write_seconds_median": "14.961"
+    },
+    "2|B0": {
+      "maintenance_seconds_median": "10.937",
+      "referenced_bytes_added": "12721",
+      "total_seconds_median": "14.832",
+      "write_seconds_median": "3.929"
+    },
+    "2|B1": {
+      "maintenance_seconds_median": "0.000",
+      "referenced_bytes_added": "150571",
+      "total_seconds_median": "2.315",
+      "write_seconds_median": "2.315"
+    },
+    "2|B2": {
+      "maintenance_seconds_median": "10.501",
+      "referenced_bytes_added": "12784",
+      "total_seconds_median": "12.949",
+      "write_seconds_median": "2.064"
+    },
+    "2|B3": {
+      "maintenance_seconds_median": "17.712",
+      "referenced_bytes_added": "71891",
+      "total_seconds_median": "24.297",
+      "write_seconds_median": "6.467"
+    },
+    "3|B0": {
+      "maintenance_seconds_median": "8.120",
+      "referenced_bytes_added": "22058",
+      "total_seconds_median": "11.926",
+      "write_seconds_median": "3.497"
+    },
+    "3|B1": {
+      "maintenance_seconds_median": "0.000",
+      "referenced_bytes_added": "172735",
+      "total_seconds_median": "2.199",
+      "write_seconds_median": "2.199"
+    },
+    "3|B2": {
+      "maintenance_seconds_median": "7.850",
+      "referenced_bytes_added": "590",
+      "total_seconds_median": "10.251",
+      "write_seconds_median": "2.062"
+    },
+    "3|B3": {
+      "maintenance_seconds_median": "14.781",
+      "referenced_bytes_added": "101066",
+      "total_seconds_median": "20.608",
+      "write_seconds_median": "5.513"
+    },
+    "4|B0": {
+      "maintenance_seconds_median": "7.368",
+      "referenced_bytes_added": "173090",
+      "total_seconds_median": "10.577",
+      "write_seconds_median": "3.197"
+    },
+    "4|B1": {
+      "maintenance_seconds_median": "0.000",
+      "referenced_bytes_added": "389741",
+      "total_seconds_median": "2.269",
+      "write_seconds_median": "2.269"
+    },
+    "4|B2": {
+      "maintenance_seconds_median": "7.541",
+      "referenced_bytes_added": "166285",
+      "total_seconds_median": "9.371",
+      "write_seconds_median": "1.830"
+    },
+    "4|B3": {
+      "maintenance_seconds_median": "13.709",
+      "referenced_bytes_added": "409833",
+      "total_seconds_median": "19.570",
+      "write_seconds_median": "5.861"
+    }
+  },
+  "contract_version": "h12.1",
+  "environment": {
+    "arrivals": "4",
+    "catalog_uri": "jdbc:sqlite:/home/iceberg/iceberg_catalog.db",
+    "compose_sha256": "c8318b63c1855de3330eeefa0bf91492eefa332290f878b70c0d47bccd5965aa",
+    "finished_at_utc": "2026-09-12T22:20:09Z",
+    "git_commit": "d6297de2ca674c439215e2e7a2676d387b58a9b8",
+    "git_dirty_entries": "0",
+    "host_disk_free_bytes_after": "3443032064",
+    "host_disk_free_bytes_before": "3445997568",
+    "host_mem_total_bytes": "8318799872",
+    "host_nproc": "2",
+    "hostname": "praktikum-sd",
+    "image_iceberg-rest": "sha256:8921def9ab4e42df83972ee9d228d3d2c275100b55e6127cdf811b1f6bc53f72",
+    "image_minio": "sha256:c7175077d39a8cc10c9fd611cdcc68b6a5b365793e9ac6f4198ffff1ef0fe555",
+    "image_spark": "sha256:790a72e744e0d09f161e1b4c7c2f79625cc598cf0476da4703e62f1f4e023460",
+    "limited_run": "no",
+    "payload_manifest_sha256": "f15b439b77c79dc670b81638b359ef2489bda16eb319d24093377b53f04bdc88",
+    "repetitions": "3",
+    "run_label": "h12-20260913",
+    "spark_defaults_sha256": "77c1f777f4a29b6cc69c14fb4b9b7fdbc5b603a9fd4f68173a0e6aa02d2a5339",
+    "spark_driver_memory": "2g",
+    "started_at_utc": "2026-09-12T22:00:32Z",
+    "versions_env_sha256": "af5f61ea78a765d43158d19f115fa5567d22e0d2e2530db3df8a21effaa8f81b"
+  },
+  "execution_status": "executed_physical",
+  "inputs": [
+    {
+      "path": "contracts/h12-real-revision-cost.json",
+      "sha256": "d5b09b2ab060226b8c0412bb23ef8f928b43b944168a7e8a5c2a0e49e58fccd6"
+    },
+    {
+      "path": "config/experiments/experiment_freeze.csv",
+      "sha256": "674bb1ca9e8550921f52824e566b78cef28b467e24ade1c5784db6b9d9f6620b"
+    },
+    {
+      "path": "data/manifests/h11-main-sweep-payload.json",
+      "sha256": "f15b439b77c79dc670b81638b359ef2489bda16eb319d24093377b53f04bdc88"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h12-statement-timing.csv",
+      "rows": 192,
+      "sha256": "6d9422b563a4d512004bbf8fd97ebd1fddadded7f42b999cc262bd6b817f2448"
+    },
+    {
+      "path": "results/processed/h12-arrival-state.csv",
+      "rows": 60,
+      "sha256": "ba58f486c70946ea7b1af642f7ff213e752c6c3f860c37e551ba7954e14d5f73"
+    },
+    {
+      "path": "results/processed/h12-arrival-cost.csv",
+      "rows": 16,
+      "sha256": "8d352f81f4570e07cb79cd61e4903b07eded7918460aa73104534e721a5790c5"
+    },
+    {
+      "path": "results/processed/h12-final-footprint.csv",
+      "rows": 5,
+      "sha256": "9a3985b4245ac68984ec40e1cdd3e94addb7da94892d7a2f7fe66cf5a8f9c69b"
+    },
+    {
+      "path": "results/processed/h12-validation.csv",
+      "rows": 9,
+      "sha256": "de7ff91569fac6db33e9d1a1f0381d359a12d74780013d19523ba21fba268003"
+    },
+    {
+      "path": "results/processed/h12-summary.csv",
+      "rows": 14,
+      "sha256": "4a56a5da4bd438f8e03e7caf760e29ab4d84c23da52d024d7bfc2cb8eb536522"
+    }
+  ],
+  "raw_inputs": [
+    {
+      "path": "results/raw/h12/h12-20260913/arrivals.txt",
+      "sha256": "fc0d0c29b4988bcbef5f243873af1099d49bc45ca732ef2d7d1f760d7e221ed3"
+    },
+    {
+      "path": "results/raw/h12/h12-20260913/cycles.txt",
+      "sha256": "cc6dc5a1d6eb357afc4c890774efb28b1a4f58df21b0fb82675a1fed04f738cf"
+    },
+    {
+      "path": "results/raw/h12/h12-20260913/environment.txt",
+      "sha256": "d555a08fa5321b62dd58a4616d845d29905f37fb14f697fc2edb37a9d3f13a43"
+    },
+    {
+      "path": "results/raw/h12/h12-20260913/footprint.txt",
+      "sha256": "5958008ee5f8faf253626cfbc59567e9d6373f63c33cd001d39ee46fbde91217"
+    },
+    {
+      "path": "results/raw/h12/h12-20260913/listing.txt",
+      "sha256": "86918456ffbcd4438f5d7051a18218152f71024023416fd8a32785eaa0bb80f4"
+    },
+    {
+      "path": "results/raw/h12/h12-20260913/timing.txt",
+      "sha256": "8d17b375ac2b1f887634f66a8bff57f095d932c649a155acb435e35daf72188d"
+    }
+  ],
+  "stage": "H12",
+  "track": "B"
+}

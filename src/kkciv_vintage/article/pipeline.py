@@ -277,6 +277,18 @@ def key_numbers(src: Sources) -> list[dict[str, str]]:
         add(f"p4_{treatment.lower()}_sweep_recall", "P4", "H11", f"Recall permintaan panel dan sintetis setelah revisi satu tahun penuh, {treatment}", row["recall_rate"], "rasio", "h11-apply-cost.csv", f"recall_rate {largest_point[1]}")
         add(f"b2_sweep_propagation_{treatment.lower()}", "B2", "H11", f"Propagasi revisi pada semesta sweep sumber tunggal, {treatment}", row["propagation_rate"], "rasio", "h11-apply-cost.csv", f"propagation_rate {largest_point[1]}")
 
+    real_cost = {(r["arrival_order"], r["treatment_id"]): r for r in src.rows("h12-arrival-cost.csv")}
+    arrivals = sorted({key[0] for key in real_cost}, key=int)
+    add("p3_real_value_revisions", "P3", "H12", "Nilai terbit yang benar-benar berubah pada keempat rilis nyata", sum(int(src.rows("h12-arrival-cost.csv")[index]["value_changed_rows"]) for index in range(0, len(src.rows("h12-arrival-cost.csv")), len(TREATMENTS))), "sel", "h12-arrival-cost.csv", "jumlah value_changed_rows per kedatangan")
+    for treatment in TREATMENTS:
+        total = sum(Decimal(real_cost[(arrival, treatment)]["total_seconds_median"]) for arrival in arrivals)
+        add(f"p3_{treatment.lower()}_real_releases_total_seconds", "P3", "H12", f"Waktu menerapkan keempat rilis nyata, {treatment}", f"{total:.3f}", "detik", "h12-arrival-cost.csv", "jumlah total_seconds_median keempat kedatangan")
+        add(f"p3_{treatment.lower()}_real_releases_referenced_bytes", "P3", "H12", f"Byte data dan manifest yang dirujuk setelah rilis terakhir, {treatment}", real_cost[(arrivals[-1], treatment)]["referenced_bytes_after"], "byte", "h12-arrival-cost.csv", f"referenced_bytes_after pada kedatangan {arrivals[-1]}")
+    for treatment in ("B0", "B1"):
+        for arrival in (arrivals[1], arrivals[-1]):
+            row = real_cost[(arrival, treatment)]
+            add(f"p3_{treatment.lower()}_release_{arrival}_write_seconds", "P3", "H12", f"Waktu tulis rilis nyata ke-{arrival}, {treatment}", row["write_seconds_median"], "detik", "h12-arrival-cost.csv", f"write_seconds_median; {row['arriving_rows']} baris masuk, {row['overwritten_rows']} tertimpa")
+
     repro = {r["treatment_id"]: r for r in src.rows("h9c-reproducibility-table.csv")}
     recall = src.rows("h10-recall-after-restart.csv")
     for treatment in TREATMENTS:

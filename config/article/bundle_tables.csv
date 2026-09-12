@@ -36,3 +36,5 @@ p3-ongkos,results/processed/h11-statement-timing.csv,Waktu setiap pernyataan Spa
 p3-ongkos,results/processed/h11-storage-delta.csv,Byte baseline dan sesudah revisi per tabel, repetisi dan titik sweep (H11)
 p4-reproducibility,results/processed/h11-recall.csv,Recall permintaan panel dan sintetis per perlakuan pada setiap titik sweep (H11)
 pembahasan-b2,results/processed/h11-propagation.csv,Propagasi revisi per perlakuan pada semesta sweep sumber tunggal (H11)
+p3-ongkos,results/processed/h12-arrival-cost.csv,"Waktu, keadaan dan byte tiap perlakuan setelah setiap rilis nyata panel (H12)"
+p3-ongkos,results/processed/h12-final-footprint.csv,Footprint akhir tiap tabel setelah keempat rilis nyata diterapkan (H12)

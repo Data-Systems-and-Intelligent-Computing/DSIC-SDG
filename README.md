@@ -497,9 +497,27 @@ SQL yang ditemukan serta diperbaiki sebelum run utama ada di
 Agregasi yang dijalankan ulang di VM menghasilkan marker dan checksum seluruh keluaran yang identik
 dengan laptop, dan 133 test lulus dengan satu test PDF dilewati.
 
+H12 sisi operator mengukur ongkos revisi yang benar-benar diterbitkan, bukan revisi buatan. Keempat
+rilis yang membangun panel diterapkan satu per satu pada keempat perlakuan dalam tiga repetisi;
+ketiga kedatangan terakhir menimpa 1.605 baris dan 43 di antaranya benar-benar mengubah nilai terbit,
+sedangkan 1.562 sisanya menuliskan ulang nilai yang sama. Urutan biayanya sama persis dengan hasil
+sweep tersuntik: B1 15,050 detik untuk keempat rilis, B2 47,688 detik, B0 52,184 detik, dan B3 88,929
+detik, dengan pemeliharaan snapshot menghabiskan sekitar dua pertiga waktu B0, B2, dan B3. Temuan
+H11 karena itu bukan artefak revisi buatan. Dua hal baru muncul di sini. Pertama, pada skala ini
+`MERGE` lebih mahal daripada penulisan ulang penuh: rilis kedua membawa 62 baris tetapi `MERGE` B0
+memakan 3,929 detik sedangkan `INSERT OVERWRITE` B1 yang menuliskan 3.144 baris hanya 2,315 detik.
+Kedua, keunggulan ruang B3 ternyata bergantung pada seberapa besar bagian keadaan yang disentuh tiap
+rilis; setelah keempat rilis nyata yang banyak menambah sel baru, byte terujuk B3 dan B1 praktis sama,
+839.008 berbanding 837.744. Jalankan `make h12-measure` lalu `make h12-run`; rincian ada di
+[`docs/research/h12-real-revision-cost.md`](docs/research/h12-real-revision-cost.md). Marker:
+`H12_VERIFY|3|4|43|52.184|15.050|47.688|88.929|329276|837744|312945|839008|measured`. Draf Metode
+ditulis Jalur A dan C pada hari yang sama di
+[`papers/vintage_reconciliation/draft/04-metode.md`](papers/vintage_reconciliation/draft/04-metode.md),
+lengkap dengan bagian ancaman terhadap validitas.
+
 Semua angka dan tabel untuk naskah dikumpulkan di
-[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 37 tabel per pertanyaan
-penelitian, 3 tabel turunan, dan 127 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
+[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 39 tabel per pertanyaan
+penelitian, 3 tabel turunan, dan 140 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
 dengan `make article-bundle`, yang memverifikasi checksum setiap sumber terhadap manifest tahapnya.
 Bahan mentah sumber di `data/raw/` hanya ada di laptop peneliti. `make raw-backup` membuat arsip
 beserta daftar checksum di `backups/`, dan arsip itu wajib disalin ke lokasi kedua.

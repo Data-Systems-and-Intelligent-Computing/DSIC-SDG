@@ -104,6 +104,19 @@ p4_b2_sweep_recall,P4,H11,"Recall permintaan panel dan sintetis setelah revisi s
 b2_sweep_propagation_b2,B2,H11,"Propagasi revisi pada semesta sweep sumber tunggal, B2",1.0000,rasio,results/processed/h11-apply-cost.csv,propagation_rate sweep_038
 p4_b3_sweep_recall,P4,H11,"Recall permintaan panel dan sintetis setelah revisi satu tahun penuh, B3",1.0000,rasio,results/processed/h11-apply-cost.csv,recall_rate sweep_038
 b2_sweep_propagation_b3,B2,H11,"Propagasi revisi pada semesta sweep sumber tunggal, B3",1.0000,rasio,results/processed/h11-apply-cost.csv,propagation_rate sweep_038
+p3_real_value_revisions,P3,H12,Nilai terbit yang benar-benar berubah pada keempat rilis nyata,43,sel,results/processed/h12-arrival-cost.csv,jumlah value_changed_rows per kedatangan
+p3_b0_real_releases_total_seconds,P3,H12,"Waktu menerapkan keempat rilis nyata, B0",52.184,detik,results/processed/h12-arrival-cost.csv,jumlah total_seconds_median keempat kedatangan
+p3_b0_real_releases_referenced_bytes,P3,H12,"Byte data dan manifest yang dirujuk setelah rilis terakhir, B0",329276,byte,results/processed/h12-arrival-cost.csv,referenced_bytes_after pada kedatangan 4
+p3_b1_real_releases_total_seconds,P3,H12,"Waktu menerapkan keempat rilis nyata, B1",15.050,detik,results/processed/h12-arrival-cost.csv,jumlah total_seconds_median keempat kedatangan
+p3_b1_real_releases_referenced_bytes,P3,H12,"Byte data dan manifest yang dirujuk setelah rilis terakhir, B1",837744,byte,results/processed/h12-arrival-cost.csv,referenced_bytes_after pada kedatangan 4
+p3_b2_real_releases_total_seconds,P3,H12,"Waktu menerapkan keempat rilis nyata, B2",47.688,detik,results/processed/h12-arrival-cost.csv,jumlah total_seconds_median keempat kedatangan
+p3_b2_real_releases_referenced_bytes,P3,H12,"Byte data dan manifest yang dirujuk setelah rilis terakhir, B2",312945,byte,results/processed/h12-arrival-cost.csv,referenced_bytes_after pada kedatangan 4
+p3_b3_real_releases_total_seconds,P3,H12,"Waktu menerapkan keempat rilis nyata, B3",88.929,detik,results/processed/h12-arrival-cost.csv,jumlah total_seconds_median keempat kedatangan
+p3_b3_real_releases_referenced_bytes,P3,H12,"Byte data dan manifest yang dirujuk setelah rilis terakhir, B3",839008,byte,results/processed/h12-arrival-cost.csv,referenced_bytes_after pada kedatangan 4
+p3_b0_release_2_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-2, B0",3.929,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 62 baris masuk, 38 tertimpa"
+p3_b0_release_4_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-4, B0",3.197,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 4591 baris masuk, 797 tertimpa"
+p3_b1_release_2_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-2, B1",2.315,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 62 baris masuk, 38 tertimpa"
+p3_b1_release_4_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-4, B1",2.269,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 4591 baris masuk, 797 tertimpa"
 p4_b0_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B0",0.3684,rasio,results/processed/h9c-reproducibility-table.csv,success_rate
 p4_b0_recalled_after_restart,P4,H10A,"Angka terbit yang dipanggil ulang fisik setelah restart katalog, B0",14,permintaan dari 38,results/processed/h10-recall-after-restart.csv,addressable = yes
 p4_b1_success_rate,P4,H9C,"Tingkat keberhasilan memanggil 38 angka terbit, B1",1.0000,rasio,results/processed/h9c-reproducibility-table.csv,success_rate

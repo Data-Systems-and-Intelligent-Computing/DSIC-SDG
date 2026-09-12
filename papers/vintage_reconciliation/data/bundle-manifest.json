@@ -334,6 +334,24 @@
       "sha256": "33a1f852cce60cd7a6427900089efbfe5a1d44b6165316691c8ccea496e9a66b",
       "source_manifest": "data/manifests/h11-main-sweep.json",
       "source_path": "results/processed/h11-propagation.csv"
+    },
+    {
+      "description": "Waktu, keadaan dan byte tiap perlakuan setelah setiap rilis nyata panel (H12)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h12-arrival-cost.csv",
+      "rows": 16,
+      "sha256": "8d352f81f4570e07cb79cd61e4903b07eded7918460aa73104534e721a5790c5",
+      "source_manifest": "data/manifests/h12-real-revision-cost.json",
+      "source_path": "results/processed/h12-arrival-cost.csv"
+    },
+    {
+      "description": "Footprint akhir tiap tabel setelah keempat rilis nyata diterapkan (H12)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h12-final-footprint.csv",
+      "rows": 5,
+      "sha256": "9a3985b4245ac68984ec40e1cdd3e94addb7da94892d7a2f7fe66cf5a8f9c69b",
+      "source_manifest": "data/manifests/h12-real-revision-cost.json",
+      "source_path": "results/processed/h12-final-footprint.csv"
     }
   ],
   "derived_tables": [
@@ -352,14 +370,14 @@
     {
       "description": "Angka kunci naskah beserta sumber dan cara penurunannya",
       "path": "angka-kunci.csv",
-      "rows": 127,
-      "sha256": "152548a9621c8614efb8c985939b8d98ac9f349fa47333a7f0d090ccf8d59837"
+      "rows": 140,
+      "sha256": "206580cfb547da17231d6fc90e573ea8e8717c0ba0003347909048fcc1189421"
     }
   ],
   "inputs": [
     {
       "path": "config/article/bundle_tables.csv",
-      "sha256": "82305f62ef37f47d0f39bbb81192160bbe69fdf8350f9ccedd0ba72c8e01c8aa"
+      "sha256": "1fcf0c8e921203e2658f8138f76d0781498558c9d1a1a01a80465e64a6de0fe8"
     }
   ],
   "verified_sources": [
@@ -437,6 +455,16 @@
       "path": "results/processed/h11-sweep-scenarios.csv",
       "sha256": "2170dd7f6c21d81735e14e01333d32da42413cd3f2d246997f114725f23baae6",
       "source_manifest": "data/manifests/h11-main-sweep-payload.json"
+    },
+    {
+      "path": "results/processed/h12-arrival-cost.csv",
+      "sha256": "8d352f81f4570e07cb79cd61e4903b07eded7918460aa73104534e721a5790c5",
+      "source_manifest": "data/manifests/h12-real-revision-cost.json"
+    },
+    {
+      "path": "results/processed/h12-final-footprint.csv",
+      "sha256": "9a3985b4245ac68984ec40e1cdd3e94addb7da94892d7a2f7fe66cf5a8f9c69b",
+      "source_manifest": "data/manifests/h12-real-revision-cost.json"
     },
     {
       "path": "results/processed/h2-indicator-summary.csv",

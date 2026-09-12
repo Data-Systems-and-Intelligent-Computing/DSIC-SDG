@@ -1,0 +1,6 @@
+treatment_id,table,objects,total_bytes,data_bytes,metadata_bytes,unreferenced_objects,unreferenced_bytes
+B0,kkciv.sweep.b0_panel_current,17,383025,297074,85951,0,0
+B1,kkciv.sweep.b1_panel_full_snapshots,36,889873,760833,129040,0,0
+B2,kkciv.sweep.b2_panel_selected,16,372108,289764,82344,0,0
+B3,kkciv.sweep.b3_panel_current,17,380548,289084,91464,0,0
+B3,kkciv.sweep.b3_panel_observation_vintages,30,571722,473831,97891,0,0
