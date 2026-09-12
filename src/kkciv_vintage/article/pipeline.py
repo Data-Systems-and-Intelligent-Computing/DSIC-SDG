@@ -318,6 +318,18 @@ def key_numbers(src: Sources) -> list[dict[str, str]]:
         )
         add(f"p4_{treatment.lower()}_recalled_after_revision", "P4", "H10B", f"Permintaan yang dipanggil ulang fisik setelah satu revisi tersuntik, {treatment}", served, "permintaan dari 39", "h10b-recall-after-revision.csv", f"addressable = yes pada {smoke}")
 
+    panel_audit = {r["treatment_id"]: r for r in src.rows("h13c-reproducibility-table.csv") if r["scale"] == "panel"}
+    profile = src.rows("h13c-failure-profile.csv")
+    cases = src.rows("h13c-failure-cases.csv")
+    for treatment in TREATMENTS:
+        row = panel_audit[treatment]
+        add(f"p4_{treatment.lower()}_panel_recall", "P4", "H13C", f"Keberhasilan memanggil ulang 6.983 angka terbit panel, {treatment}", row["success_rate"], "rasio", "h13c-reproducibility-table.csv", f"{int(row['requests']) - int(row['failures'])}/{row['requests']} melalui {row['access_path']}")
+        add(f"p4_{treatment.lower()}_panel_failures", "P4", "H13C", f"Angka terbit panel yang tidak dapat dihasilkan ulang, {treatment}", row["failures"], "angka", "h13c-reproducibility-table.csv", "failures")
+        material = sum(int(r["material_failures"]) for r in profile if r["treatment_id"] == treatment and r["failure_kind"] != "serving_value_superseded")
+        add(f"p4_{treatment.lower()}_material_failures", "P4", "H13C", f"Kegagalan yang nilainya benar-benar hilang, {treatment}", material, "angka", "h13c-failure-profile.csv", "jumlah material_failures di luar serving_value_superseded")
+    add("p4_b2_superseded_serving_cells", "P4", "H13C", "Sel yang disajikan B2 dengan nilai yang sudah digantikan produsen", sum(1 for r in cases if r["failure_kind"] == "serving_value_superseded"), "sel", "h13c-failure-cases.csv", "failure_kind = serving_value_superseded")
+    add("p4_failure_cases", "P4", "H13C", "Kasus kegagalan yang didokumentasikan baris per baris", len(cases), "kasus", "h13c-failure-cases.csv", "jumlah baris")
+
     add("p4_lineage_paths", "P4", "H9C", "Path lineage sumber-sampai-tabel empat perlakuan", src.metric("h9c-summary.csv", "closed_lineage_paths"), "path", "h9c-summary.csv", "metric closed_lineage_paths")
     add("p4_lineage_completeness", "P4", "H9C", "Kelengkapan lineage", src.metric("h9c-summary.csv", "closure_completeness"), "rasio", "h9c-summary.csv", "metric closure_completeness")
 

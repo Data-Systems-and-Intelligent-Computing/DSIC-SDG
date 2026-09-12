@@ -532,9 +532,28 @@ dengan median gabungan. Jalankan `make h13-rerun` lalu `make h13-run`; rincian a
 [`docs/research/h13-rerun-stability.md`](docs/research/h13-rerun-stability.md). Marker:
 `H13_VERIFY|40|6|20|3|18|2|0.0901|verified`.
 
+H13 Jalur C menjawab P4 pada skala panel dan menutup butir §13 tentang analisis kegagalan. Prosedur
+audit sepuluh langkah yang dibekukan H8C dijalankan atas seluruh 6.983 angka terbit panel untuk
+keempat perlakuan. B1 dan B3 memanggil ulang seluruhnya (`1,0000`), sedangkan B0 dan B2 sama-sama
+gagal pada 1.605 permintaan (`0,7702`). Angka yang sama itu menyembunyikan perbedaan yang penting:
+B0 kehilangan yang lama karena ditimpa, yaitu 1.556 baris TPB 2024 dan 49 baris TPB 2025, sedangkan
+B2 kehilangan yang baru karena skornya lebih rendah, yaitu 1.567 baris WebAPI dan 38 baris TPB 2024.
+Dari 1.605 kegagalan itu, hanya **43** membawa nilai yang berbeda dari yang kini disajikan; 1.562
+sisanya duplikat nilai yang sama dari sumber lain. Empat puluh tiga angka itulah kerugian
+reproducibility yang sebenarnya, dan seluruhnya dicatat baris per baris beserta nilai pengganti serta
+locator sumbernya. Satu bentuk kegagalan ketiga tidak muncul pada tingkat keberhasilan sama sekali:
+B2 menyajikan nilai yang sudah digantikan produsen pada 39 sel, karena ia memilih menurut skor
+kepercayaan dan bukan menurut kebaruan. Tingkat keberhasilan juga sangat bergantung beban: pada
+fixture yang setiap selnya direvisi B0 kehilangan 63 persen, pada panel ia kehilangan 23 persen, dan
+keduanya dilaporkan berdampingan. Audit ini diturunkan dari panel beku lalu dicocokkan dengan recall
+fisik sweep H11 pada 24 pasangan skenario-perlakuan tanpa satu pun selisih, dengan kelengkapan
+lineage `1,0000`. Jalankan `make h13c-run`; rincian ada di
+[`docs/research/h13c-reproducibility-audit.md`](docs/research/h13c-reproducibility-audit.md). Marker:
+`H13C_VERIFY|6983|0.7702|1.0000|0.7702|1.0000|1605|0|1605|0|43|0|43|0|39|1.0000|125|validated`.
+
 Semua angka dan tabel untuk naskah dikumpulkan di
-[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 41 tabel per pertanyaan
-penelitian, 3 tabel turunan, dan 146 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
+[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 44 tabel per pertanyaan
+penelitian, 3 tabel turunan, dan 160 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
 dengan `make article-bundle`, yang memverifikasi checksum setiap sumber terhadap manifest tahapnya.
 Bahan mentah sumber di `data/raw/` hanya ada di laptop peneliti. `make raw-backup` membuat arsip
 beserta daftar checksum di `backups/`, dan arsip itu wajib disalin ke lokasi kedua.

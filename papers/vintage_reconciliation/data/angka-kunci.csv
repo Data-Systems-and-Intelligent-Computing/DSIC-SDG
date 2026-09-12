@@ -135,6 +135,20 @@ p4_b0_recalled_after_revision,P4,H10B,"Permintaan yang dipanggil ulang fisik set
 p4_b1_recalled_after_revision,P4,H10B,"Permintaan yang dipanggil ulang fisik setelah satu revisi tersuntik, B1",39,permintaan dari 39,results/processed/h10b-recall-after-revision.csv,addressable = yes pada validation_001
 p4_b2_recalled_after_revision,P4,H10B,"Permintaan yang dipanggil ulang fisik setelah satu revisi tersuntik, B2",14,permintaan dari 39,results/processed/h10b-recall-after-revision.csv,addressable = yes pada validation_001
 p4_b3_recalled_after_revision,P4,H10B,"Permintaan yang dipanggil ulang fisik setelah satu revisi tersuntik, B3",39,permintaan dari 39,results/processed/h10b-recall-after-revision.csv,addressable = yes pada validation_001
+p4_b0_panel_recall,P4,H13C,"Keberhasilan memanggil ulang 6.983 angka terbit panel, B0",0.7702,rasio,results/processed/h13c-reproducibility-table.csv,5378/6983 melalui observation_id in the current table
+p4_b0_panel_failures,P4,H13C,"Angka terbit panel yang tidak dapat dihasilkan ulang, B0",1605,angka,results/processed/h13c-reproducibility-table.csv,failures
+p4_b0_material_failures,P4,H13C,"Kegagalan yang nilainya benar-benar hilang, B0",43,angka,results/processed/h13c-failure-profile.csv,jumlah material_failures di luar serving_value_superseded
+p4_b1_panel_recall,P4,H13C,"Keberhasilan memanggil ulang 6.983 angka terbit panel, B1",1.0000,rasio,results/processed/h13c-reproducibility-table.csv,6983/6983 melalui observation_id in any state the table retains
+p4_b1_panel_failures,P4,H13C,"Angka terbit panel yang tidak dapat dihasilkan ulang, B1",0,angka,results/processed/h13c-reproducibility-table.csv,failures
+p4_b1_material_failures,P4,H13C,"Kegagalan yang nilainya benar-benar hilang, B1",0,angka,results/processed/h13c-failure-profile.csv,jumlah material_failures di luar serving_value_superseded
+p4_b2_panel_recall,P4,H13C,"Keberhasilan memanggil ulang 6.983 angka terbit panel, B2",0.7702,rasio,results/processed/h13c-reproducibility-table.csv,5378/6983 melalui observation_id in the current table
+p4_b2_panel_failures,P4,H13C,"Angka terbit panel yang tidak dapat dihasilkan ulang, B2",1605,angka,results/processed/h13c-reproducibility-table.csv,failures
+p4_b2_material_failures,P4,H13C,"Kegagalan yang nilainya benar-benar hilang, B2",43,angka,results/processed/h13c-failure-profile.csv,jumlah material_failures di luar serving_value_superseded
+p4_b3_panel_recall,P4,H13C,"Keberhasilan memanggil ulang 6.983 angka terbit panel, B3",1.0000,rasio,results/processed/h13c-reproducibility-table.csv,"6983/6983 melalui (cell_id, vintage_id) in the append-only store"
+p4_b3_panel_failures,P4,H13C,"Angka terbit panel yang tidak dapat dihasilkan ulang, B3",0,angka,results/processed/h13c-reproducibility-table.csv,failures
+p4_b3_material_failures,P4,H13C,"Kegagalan yang nilainya benar-benar hilang, B3",0,angka,results/processed/h13c-failure-profile.csv,jumlah material_failures di luar serving_value_superseded
+p4_b2_superseded_serving_cells,P4,H13C,Sel yang disajikan B2 dengan nilai yang sudah digantikan produsen,39,sel,results/processed/h13c-failure-cases.csv,failure_kind = serving_value_superseded
+p4_failure_cases,P4,H13C,Kasus kegagalan yang didokumentasikan baris per baris,125,kasus,results/processed/h13c-failure-cases.csv,jumlah baris
 p4_lineage_paths,P4,H9C,Path lineage sumber-sampai-tabel empat perlakuan,152,path,results/processed/h9c-summary.csv,metric closed_lineage_paths
 p4_lineage_completeness,P4,H9C,Kelengkapan lineage,1.0000,rasio,results/processed/h9c-summary.csv,metric closure_completeness
 b2_trust_score_bps_tpb_2025,B2,H6B,Skor kepercayaan beku bps_tpb_2025,0.962500,skor,results/processed/h6b-source-trust-scores.csv,trust_score

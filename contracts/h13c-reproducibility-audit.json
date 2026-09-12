@@ -1,0 +1,75 @@
+{
+  "contract_version": "h13c.1",
+  "stage": "H13",
+  "track": "C",
+  "name": "panel_reproducibility_audit_and_failure_analysis",
+  "description": "Answer P4 at panel scale: run the frozen ten-step reproducibility audit over every published figure of the province panel for all four treatments, then analyse what is actually lost when a figure cannot be reproduced.",
+  "audit_procedure": {
+    "path": "config/h8c/reproducibility_audit_steps.csv",
+    "frozen_at": "H8C",
+    "required_steps": 10,
+    "identity_matching": "exact_observation_id",
+    "value_matching": [
+      "value_decimal",
+      "value_lexeme"
+    ],
+    "lineage_matching": "exact_h6c_source_lineage_path_id",
+    "unclassified_failure_allowed": false
+  },
+  "scope": {
+    "fixture": {
+      "requests": 38,
+      "source": "results/processed/h9c-reproducibility-table.csv",
+      "role": "the real-revision evidence fixture audited at H9C; its numbers are carried forward unchanged"
+    },
+    "panel": {
+      "requests": 6983,
+      "cells": 5378,
+      "source": "results/processed/h11-panel-observations.csv",
+      "role": "every published figure of the frozen province panel, audited here for the first time"
+    },
+    "synthetic_requests": "none; injected revisions are audited at H11 and stay there"
+  },
+  "access": {
+    "B0": "observation_id in the current table",
+    "B1": "observation_id in any state the table retains",
+    "B2": "observation_id in the current table",
+    "B3": "(cell_id, vintage_id) in the append-only store"
+  },
+  "failure_classification": {
+    "kinds": [
+      "overwritten_by_later_vintage",
+      "not_selected_by_trust_score",
+      "serving_value_superseded"
+    ],
+    "materiality": {
+      "material": "the figure that cannot be reproduced carries a value different from the one the treatment now serves for that cell",
+      "duplicate_value": "the figure that cannot be reproduced carries the same value the treatment now serves, so no published value is lost",
+      "why_it_matters": "a recall rate alone cannot tell a lost revision from a lost duplicate, and only the first is a reproducibility failure with consequences"
+    },
+    "unclassified_allowed": false
+  },
+  "cross_check": {
+    "physical": "results/processed/h11-recall.csv",
+    "rule": "for every sweep point k, the measured official recall of B0 and B2 must equal the derived count minus k, and that of B1 and B3 must equal the derived count",
+    "why": "the audit is derived from the frozen panel, so it must agree with what the physical sweep actually returned"
+  },
+  "lineage": {
+    "graph": "the H6C lineage built over the frozen panel",
+    "requirement": "every request resolves to exactly one source record and one source artifact",
+    "completeness": "complete paths divided by requests, reported as a ratio"
+  },
+  "measurement_boundary": {
+    "timing": "not measured here; H11 and H12 measure cost",
+    "physical_execution": "not repeated here; the panel recall was executed physically at H11 and is cross-checked against it"
+  },
+  "invariants": [
+    "the ten frozen audit steps are unchanged since H8C",
+    "all four treatments answer exactly the same request set",
+    "every failure is classified, and no failure is left unexplained",
+    "every request resolves to its source record through the lineage",
+    "the derived recall agrees with the recall the physical sweep measured",
+    "B1 and B3 report no failure, and any failure they did report would stop the audit",
+    "the fixture numbers audited at H9C are carried forward unchanged, never recomputed"
+  ]
+}

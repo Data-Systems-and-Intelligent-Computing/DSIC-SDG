@@ -370,6 +370,33 @@
       "sha256": "d0a4d5a4beccbc37a64ba8ed5bde300b8591218c8ff7482cccd9e97484a38f6c",
       "source_manifest": "data/manifests/h13-rerun-stability.json",
       "source_path": "results/processed/h13-stability.csv"
+    },
+    {
+      "description": "Keberhasilan memanggil ulang angka terbit pada fixture dan pada panel untuk keempat perlakuan (H13C)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h13c-reproducibility-table.csv",
+      "rows": 8,
+      "sha256": "e150ac75936049327d975e0c3ad3234a8dddb520008d5216657489415a72741b",
+      "source_manifest": "data/manifests/h13c-reproducibility-audit.json",
+      "source_path": "results/processed/h13c-reproducibility-table.csv"
+    },
+    {
+      "description": "Profil kegagalan menurut perlakuan sebab sumber domain dan tingkat geografi (H13C)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h13c-failure-profile.csv",
+      "rows": 28,
+      "sha256": "e4ae9f399bf47a3a839d785d523ee0935d83ee176060368945d73d9dc7adfcd6",
+      "source_manifest": "data/manifests/h13c-reproducibility-audit.json",
+      "source_path": "results/processed/h13c-failure-profile.csv"
+    },
+    {
+      "description": "Angka terbit yang tidak dapat dihasilkan ulang beserta nilai penggantinya dan locator sumbernya (H13C)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h13c-failure-cases.csv",
+      "rows": 125,
+      "sha256": "3e076df75f02a496fa3d66c4af617e0eb597aaf81f33ceab309d26f9e6e91e93",
+      "source_manifest": "data/manifests/h13c-reproducibility-audit.json",
+      "source_path": "results/processed/h13c-failure-cases.csv"
     }
   ],
   "derived_tables": [
@@ -388,14 +415,14 @@
     {
       "description": "Angka kunci naskah beserta sumber dan cara penurunannya",
       "path": "angka-kunci.csv",
-      "rows": 146,
-      "sha256": "a81b7ad9990d004fae00b0a039cb09f83bb90f9d4643da07dd8b979e954f83eb"
+      "rows": 160,
+      "sha256": "811b53f3050235be606ed75e7505beb17ad4d651c65a10c9c446514fb743483f"
     }
   ],
   "inputs": [
     {
       "path": "config/article/bundle_tables.csv",
-      "sha256": "dab1d77f027d567f1211cb43a7ad32296c8021cd7d4409b175b0e860d78c51cd"
+      "sha256": "1db6e5050da2d471298782e3b58212d320ccc2e9fb600f1c69aaa3cdc3035154"
     }
   ],
   "verified_sources": [
@@ -493,6 +520,21 @@
       "path": "results/processed/h13-stability.csv",
       "sha256": "d0a4d5a4beccbc37a64ba8ed5bde300b8591218c8ff7482cccd9e97484a38f6c",
       "source_manifest": "data/manifests/h13-rerun-stability.json"
+    },
+    {
+      "path": "results/processed/h13c-failure-cases.csv",
+      "sha256": "3e076df75f02a496fa3d66c4af617e0eb597aaf81f33ceab309d26f9e6e91e93",
+      "source_manifest": "data/manifests/h13c-reproducibility-audit.json"
+    },
+    {
+      "path": "results/processed/h13c-failure-profile.csv",
+      "sha256": "e4ae9f399bf47a3a839d785d523ee0935d83ee176060368945d73d9dc7adfcd6",
+      "source_manifest": "data/manifests/h13c-reproducibility-audit.json"
+    },
+    {
+      "path": "results/processed/h13c-reproducibility-table.csv",
+      "sha256": "e150ac75936049327d975e0c3ad3234a8dddb520008d5216657489415a72741b",
+      "source_manifest": "data/manifests/h13c-reproducibility-audit.json"
     },
     {
       "path": "results/processed/h2-indicator-summary.csv",

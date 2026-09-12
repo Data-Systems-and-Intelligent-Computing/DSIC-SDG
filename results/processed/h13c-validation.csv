@@ -1,0 +1,9 @@
+invariant,status,checked_rows,detail
+the ten audit steps frozen at H8C are unchanged,pass,10,verify_inputs;lock_request_set;reset_isolated_state;execute_serially;capture_read_locator;verify_identity;verify_value;verify_provenance;classify_unavailable;aggregate_and_preserve
+all four treatments answer exactly the same request set,pass,4,6983 published figures asked of every treatment
+every failure is classified,pass,3210,3210 failures over 3 kinds
+every request resolves to its source record through the lineage,pass,6983,"19379 nodes, 41928 edges, completeness 1.0000"
+the derived recall agrees with the recall the sweep measured,pass,24,24 scenario-treatment pairs checked against results/processed/h11-recall.csv
+B1 and B3 reproduce every published figure,pass,2,B1=1.0000;B3=1.0000
+the fixture audit of H9C is carried forward unchanged,pass,4,B0=0.3684;B1=1.0000;B2=0.3684;B3=1.0000
+every material failure names the lost figure and its source record,pass,86,"86 published values that can no longer be produced, each with its artifact and locator"

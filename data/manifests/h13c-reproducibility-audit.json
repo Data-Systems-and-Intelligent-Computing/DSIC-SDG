@@ -1,0 +1,91 @@
+{
+  "audit_status": "validated",
+  "contract_version": "h13c.1",
+  "cross_checks": 24,
+  "inputs": [
+    {
+      "path": "contracts/h13c-reproducibility-audit.json",
+      "sha256": "ece494ab10eaadc8b8ac05c1114b46877bfd58236cb3faf48a648afe0aba5229"
+    },
+    {
+      "path": "config/h8c/reproducibility_audit_steps.csv",
+      "sha256": "29223460d62485916efc07629882d992c431c67bb5bc931aaf27cd3ff16b201f"
+    },
+    {
+      "path": "data/manifests/h11-main-sweep-payload.json",
+      "sha256": "f15b439b77c79dc670b81638b359ef2489bda16eb319d24093377b53f04bdc88"
+    },
+    {
+      "path": "results/processed/h9c-reproducibility-table.csv",
+      "sha256": "2498ffbf3fa5cea35f46c302b242148ce1a9bfabb540afec6a294a3126759703"
+    },
+    {
+      "path": "results/processed/h11-recall.csv",
+      "sha256": "001ba65a6da72c12cc2fdc0842d3bf7c6637452876a7d51613522140773da537"
+    },
+    {
+      "path": "results/processed/h6b-source-trust-scores.csv",
+      "sha256": "114b33a9bb9274d0fa8f4cd546afe14d4e64f1fc29fe80ed3d97a5b9dac5006d"
+    },
+    {
+      "path": "contracts/h7b-b2-single-source.json",
+      "sha256": "18ba718cb4b115a10b1f6b0820fe7ee792850c1f2a9c9091d493eaa020c44ea1"
+    }
+  ],
+  "material_failures": {
+    "B0": 43,
+    "B1": 0,
+    "B2": 43,
+    "B3": 0
+  },
+  "outputs": [
+    {
+      "path": "results/processed/h13c-reproducibility-table.csv",
+      "rows": 8,
+      "sha256": "e150ac75936049327d975e0c3ad3234a8dddb520008d5216657489415a72741b"
+    },
+    {
+      "path": "results/processed/h13c-failure-profile.csv",
+      "rows": 28,
+      "sha256": "e4ae9f399bf47a3a839d785d523ee0935d83ee176060368945d73d9dc7adfcd6"
+    },
+    {
+      "path": "results/processed/h13c-failure-cases.csv",
+      "rows": 125,
+      "sha256": "3e076df75f02a496fa3d66c4af617e0eb597aaf81f33ceab309d26f9e6e91e93"
+    },
+    {
+      "path": "results/processed/h13c-validation.csv",
+      "rows": 8,
+      "sha256": "9f8b66433103a4f220693d5817168f3fad6cc6b56fe18902858974cafab284cd"
+    },
+    {
+      "path": "results/processed/h13c-summary.csv",
+      "rows": 8,
+      "sha256": "4c572cf7d6e54a77c15a4dd75edef6cc1d3458f7188f7166f1638a963c8c0ad0"
+    }
+  ],
+  "panel": {
+    "cells": 5378,
+    "completeness": "1.0000",
+    "edges": 41928,
+    "nodes": 19379,
+    "paths": 6983,
+    "requests": 6983,
+    "resolved_requests": 6983
+  },
+  "recall": {
+    "B0": "0.7702",
+    "B1": "1.0000",
+    "B2": "0.7702",
+    "B3": "1.0000"
+  },
+  "stage": "H13",
+  "superseded_serving_cells": {
+    "B0": 0,
+    "B1": 0,
+    "B2": 39,
+    "B3": 0
+  },
+  "track": "C"
+}

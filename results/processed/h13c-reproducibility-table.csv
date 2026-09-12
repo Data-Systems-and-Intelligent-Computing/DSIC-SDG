@@ -1,0 +1,9 @@
+table_order,scale,treatment_id,requests,serving_state_successes,historical_snapshot_successes,historical_vintage_key_successes,failures,success_rate,access_path
+1,fixture,B0,38,14,0,0,24,0.3684,observation_id in the current table
+2,fixture,B1,38,14,24,0,0,1.0000,observation_id in any state the table retains
+3,fixture,B2,38,14,0,0,24,0.3684,observation_id in the current table
+4,fixture,B3,38,14,0,24,0,1.0000,"(cell_id, vintage_id) in the append-only store"
+1,panel,B0,6983,5378,0,0,1605,0.7702,observation_id in the current table
+2,panel,B1,6983,5378,1605,0,0,1.0000,observation_id in any state the table retains
+3,panel,B2,6983,5378,0,0,1605,0.7702,observation_id in the current table
+4,panel,B3,6983,5378,0,1605,0,1.0000,"(cell_id, vintage_id) in the append-only store"

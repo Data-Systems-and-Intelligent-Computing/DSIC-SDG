@@ -40,3 +40,6 @@ p3-ongkos,results/processed/h12-arrival-cost.csv,"Waktu, keadaan dan byte tiap p
 p3-ongkos,results/processed/h12-final-footprint.csv,Footprint akhir tiap tabel setelah keempat rilis nyata diterapkan (H12)
 p3-ongkos,results/processed/h13-doubtful-points.csv,Sebaran repetisi setiap titik pengukuran H11 dan H12 beserta penandaan meragukan (H13)
 p3-ongkos,results/processed/h13-stability.csv,Median terbitan dan median gabungan setelah repetisi tambahan pada titik yang diulang (H13)
+p4-reproducibility,results/processed/h13c-reproducibility-table.csv,Keberhasilan memanggil ulang angka terbit pada fixture dan pada panel untuk keempat perlakuan (H13C)
+p4-reproducibility,results/processed/h13c-failure-profile.csv,Profil kegagalan menurut perlakuan sebab sumber domain dan tingkat geografi (H13C)
+p4-reproducibility,results/processed/h13c-failure-cases.csv,Angka terbit yang tidak dapat dihasilkan ulang beserta nilai penggantinya dan locator sumbernya (H13C)

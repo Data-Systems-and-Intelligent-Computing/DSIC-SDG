@@ -1,0 +1,9 @@
+metric,value,unit,interpretation
+b0_panel_recall,0.7702,ratio,"5378 of 6983 published figures, answered through observation_id in the current table"
+b1_panel_recall,1.0000,ratio,"6983 of 6983 published figures, answered through observation_id in any state the table retains"
+b2_panel_recall,0.7702,ratio,"5378 of 6983 published figures, answered through observation_id in the current table"
+b3_panel_recall,1.0000,ratio,"6983 of 6983 published figures, answered through (cell_id, vintage_id) in the append-only store"
+b0_material_failures,43,figures,"1605 figures cannot be reproduced, and this many of them carry a value the treatment no longer serves anywhere"
+b2_material_failures,43,figures,"1605 figures cannot be reproduced, and this many of them carry a value the treatment no longer serves anywhere"
+b2_superseded_serving_cells,39,cells,cells served with a value the producer has already replaced with a different one
+lineage_completeness,1.0000,ratio,6983 requests resolved to a source record over 19379 nodes and 41928 edges
