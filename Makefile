@@ -1,4 +1,4 @@
-.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run h8c-run h9-run h9-apply h9b-run h9c-run h10-measure h10-run h10b-prepare h10b-cleanup h10b-measure h10b-run h11-prepare h11-baseline h11-measure h11-run article-bundle manuscript raw-backup stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
+.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run h8c-run h9-run h9-apply h9b-run h9c-run h10-measure h10-run h10b-prepare h10b-cleanup h10b-measure h10b-run h11-prepare h11-baseline h11-measure h11-run h12-measure h12-run article-bundle manuscript raw-backup stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
 
 PYTHON ?= python3
 H1 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h1.cli
@@ -25,6 +25,8 @@ H10B_RUN ?= h10b-20260912
 H10B_CLEANUP ?= 20260912
 H11 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h11.cli
 H11_RUN ?= h11-20260913
+H12 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h12.cli
+H12_RUN ?= h12-20260913
 ARTICLE = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.article.cli
 COMPOSE ?= docker-compose --env-file infra/docker/versions.env
 STACK_HOST ?= sigerciv@34.101.84.199
@@ -77,6 +79,8 @@ help:
 	@echo "make h11-baseline Rebuild the four treatments on the frozen province panel"
 	@echo "make h11-measure  Run the frozen main sweep on the stack host"
 	@echo "make h11-run      Aggregate, audit and analyze the main sweep measurement"
+	@echo "make h12-measure  Apply the four real releases per treatment and time them"
+	@echo "make h12-run      Aggregate and audit the real-revision measurement"
 	@echo "make article-bundle  Collect checksum-verified article tables and key numbers"
 	@echo "make raw-backup   Archive data/raw with a checksum list into backups/"
 	@echo "make stack-up     Bring up MinIO, the Iceberg REST catalog, and Spark"
@@ -227,6 +231,12 @@ h11-measure:
 
 h11-run:
 	$(H11) aggregate --raw-dir results/raw/h11/$(H11_RUN)
+
+h12-measure:
+	bash scripts/h12_measure.sh . $(H12_RUN)
+
+h12-run:
+	$(H12) aggregate --raw-dir results/raw/h12/$(H12_RUN)
 
 article-bundle:
 	$(ARTICLE)

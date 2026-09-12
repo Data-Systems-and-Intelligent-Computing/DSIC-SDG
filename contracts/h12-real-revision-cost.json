@@ -1,0 +1,95 @@
+{
+  "contract_version": "h12.1",
+  "stage": "H12",
+  "track": "B",
+  "name": "real_revision_application_cost",
+  "description": "Apply the four real BPS releases of the frozen province panel to every treatment, one arrival at a time, and measure what each real revision costs that treatment in statement time, in stored rows and in bytes.",
+  "human_decisions": {
+    "registry": "config/h10c/human_decisions.csv",
+    "approved_at": "2026-09-12",
+    "decision_ids": [
+      "h10c_sweep_workload",
+      "h10c_resource_limit"
+    ]
+  },
+  "relation_to_h11": {
+    "same_workload": "the frozen province panel of results/processed/h11-panel-observations.csv",
+    "same_mechanisms": "the frozen treatment write mechanisms, with the maintenance each treatment requires applied per arrival",
+    "difference": "H11 measures one synthetic revision of a controlled size on top of the finished panel; H12 measures the four real releases that build that panel, so the revisions are the ones BPS actually published",
+    "expected_final_state": "the state after the fourth arrival must equal the H11 baseline expectations"
+  },
+  "workload": {
+    "source": "results/processed/h11-panel-observations.csv",
+    "vintages": "results/processed/h11-panel-vintages.csv",
+    "arrivals": 4,
+    "observations": 6983,
+    "cells": 5378,
+    "arrival_order": "vintage_date, then retrieved_at, then vintage_id",
+    "real_revision_evidence": "results/processed/h11-b1-state-catalog.csv records, per arrival, the rows that arrive, the rows they overwrite and how many of those overwrites change the published value"
+  },
+  "tables": {
+    "B0": [
+      "kkciv.sweep.b0_panel_current"
+    ],
+    "B1": [
+      "kkciv.sweep.b1_panel_full_snapshots"
+    ],
+    "B2": [
+      "kkciv.sweep.b2_panel_selected"
+    ],
+    "B3": [
+      "kkciv.sweep.b3_panel_observation_vintages",
+      "kkciv.sweep.b3_panel_current"
+    ]
+  },
+  "protocol": {
+    "repetitions": 3,
+    "execution": "serial, one operator, no concurrent treatment run and no other workload on the node",
+    "cycle": "DROP TABLE ... PURGE for every table, recreate them, then one timed Spark SQL session per treatment that applies arrival 1 to 4 in order",
+    "per_arrival": {
+      "B0": "MERGE the arriving vintage into the current table, then expire_snapshots down to one",
+      "B1": "INSERT OVERWRITE every state up to this arrival, retaining one Iceberg snapshot per release",
+      "B2": "INSERT OVERWRITE the selection recomputed over the vintages that have arrived, then expire_snapshots down to one",
+      "B3": "INSERT the arriving vintage into the append-only store, MERGE the cells its lineage edges mark dirty into the serving table, then expire_snapshots down to one on both tables"
+    },
+    "maintenance_note": "maintenance runs per arrival, exactly as it does per injected revision in H10B and H11, so the two measurements are comparable",
+    "catalog_uri_prefix": "jdbc:sqlite:/home/iceberg/"
+  },
+  "timing": {
+    "boundary": "in-session Spark SQL statement time reported by the Spark SQL CLI; JVM startup, catalog warm-up and view creation are excluded from the treatment cost",
+    "phases": [
+      "write",
+      "maintenance"
+    ],
+    "environment_decision": "h10b_timing_environment",
+    "resource_decision": "h10c_resource_limit",
+    "aggregation": "median over repetitions, reported with the minimum and maximum",
+    "claim_limit": "comparative between treatments on the declared 2 vCPU VM at panel scale; never a performance, throughput or scalability claim"
+  },
+  "footprint": {
+    "per_arrival": "bytes of the data files and manifests the table metadata still references after that arrival",
+    "final_check": "the MinIO listing of every table location after the last arrival, with every metadata-referenced object present at the size metadata records",
+    "classes": [
+      "data",
+      "delete",
+      "manifest",
+      "manifest_list",
+      "metadata_json"
+    ]
+  },
+  "measurement_boundary": {
+    "timing": "measured_on_declared_environment",
+    "storage": "measured_on_declared_environment",
+    "revision_kind": "real_releases_only",
+    "synthetic_revisions": "none; the injected sweep stays with H11"
+  },
+  "invariants": [
+    "the panel payload still matches the checksums of its manifest",
+    "the catalog is persistent and the working tree is clean before any measurement starts",
+    "every arrival leaves the row, cell and snapshot counts the panel state implies",
+    "the state after the fourth arrival equals the H11 baseline expectations for every treatment",
+    "every metadata-referenced object exists in MinIO with the size recorded in metadata",
+    "all repetitions are reported and aggregation happens only after row-level checks",
+    "timing is reported only for the declared environment and only as a comparison between treatments"
+  ]
+}
