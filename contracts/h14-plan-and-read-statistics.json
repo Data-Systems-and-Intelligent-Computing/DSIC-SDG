@@ -1,0 +1,76 @@
+{
+  "contract_version": "h14.1",
+  "stage": "H14",
+  "track": "B",
+  "name": "query_plans_logs_and_read_statistics",
+  "description": "Collect what section 12 requires and the earlier stages never captured: the query plan of every treatment write statement, the full session log, and the bytes each statement actually reads.",
+  "human_decisions": {
+    "registry": "config/h10c/human_decisions.csv",
+    "approved_at": "2026-09-12",
+    "decision_ids": [
+      "h10c_resource_limit"
+    ],
+    "note": "H14 changes no frozen parameter. It re-executes frozen statements on the frozen workload with instrumentation enabled, and its timings are excluded from the article."
+  },
+  "why": {
+    "section_12": "raw timing, query plan, read statistics and logs must be preserved before any statistical aggregation; timing was preserved from H10B onward, plans, logs and read statistics were not",
+    "s2": "the supporting metric bytes_read was declared unmeasured at H11 because the Spark SQL CLI does not report it per statement; the Iceberg scan metrics in the Spark event log do report it, so H14 closes the metric"
+  },
+  "instrumentation": {
+    "event_log": {
+      "enabled": true,
+      "conf": "spark.eventLog.enabled=true",
+      "directory_conf": "spark.eventLog.dir",
+      "why_timings_are_excluded": "event logging writes one line per task and per SQL update, so the session carries overhead the frozen timing runs do not have"
+    },
+    "plan_capture": {
+      "statement": "EXPLAIN FORMATTED of every write statement, captured before the statement is executed",
+      "conf": "spark.sql.debug.maxToStringFields=200",
+      "why_the_conf": "the default truncates long plans; the setting changes only how a plan is rendered, never how it runs"
+    },
+    "read_statistics": {
+      "source": "Iceberg scan metrics reported as driver accumulator updates in the Spark event log",
+      "metrics": [
+        "total data file size (bytes)",
+        "total delete file size (bytes)",
+        "number of result data files",
+        "number of skipped data files",
+        "number of output rows"
+      ],
+      "meaning": "bytes of the data files a scan reads after pruning, not decompressed bytes and not object-store traffic",
+      "closes_metric": "s2"
+    }
+  },
+  "workload": {
+    "baseline": "the frozen province panel rebuilt by scripts/h11_baseline.sh before every cycle",
+    "scenarios": [
+      "sweep_001",
+      "sweep_038"
+    ],
+    "why_two_points": "the smallest and largest frozen sweep points bound the range; the statements in between are the same statements with a different filter",
+    "statements": "the frozen H11 injection statements of every treatment, unchanged"
+  },
+  "protocol": {
+    "repetitions": 2,
+    "execution": "serial, one operator, one session per treatment",
+    "preserved": [
+      "the full session log of every treatment",
+      "the EXPLAIN FORMATTED plan of every write statement",
+      "the Spark event log of every session",
+      "the parsed read statistics"
+    ]
+  },
+  "measurement_boundary": {
+    "timing": "not_reported; this run is instrumented and its seconds are not comparable with the frozen timing runs",
+    "storage": "not_reported; H10A, H11 and H12 measure space",
+    "read_statistics": "measured_on_declared_environment"
+  },
+  "invariants": [
+    "the write statements are the frozen H11 statements, taken from the same shared SQL library",
+    "every treatment and scenario yields at least one scan with measured read bytes",
+    "read statistics agree between repetitions, because the same statement over the same state reads the same files",
+    "the captured plan of a statement is identical between repetitions",
+    "every preserved artifact is recorded with its size and checksum",
+    "no timing from this run enters any table of the article"
+  ]
+}

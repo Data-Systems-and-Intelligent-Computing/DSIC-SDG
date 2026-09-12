@@ -1,4 +1,4 @@
-.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run h8c-run h9-run h9-apply h9b-run h9c-run h10-measure h10-run h10b-prepare h10b-cleanup h10b-measure h10b-run h11-prepare h11-baseline h11-measure h11-run h12-measure h12-run h13-rerun h13-run h13c-run article-bundle manuscript raw-backup stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
+.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run h8c-run h9-run h9-apply h9b-run h9c-run h10-measure h10-run h10b-prepare h10b-cleanup h10b-measure h10b-run h11-prepare h11-baseline h11-measure h11-run h12-measure h12-run h13-rerun h13-run h13c-run h14-collect h14-run article-bundle manuscript raw-backup stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
 
 PYTHON ?= python3
 H1 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h1.cli
@@ -29,6 +29,8 @@ H12 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h12.cli
 H12_RUN ?= h12-20260913
 H13 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h13.cli
 H13C = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h13c.cli
+H14 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h14.cli
+H14_RUN ?= h14-20260913
 H13_SCENARIOS ?= sweep_001
 ARTICLE = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.article.cli
 COMPOSE ?= docker-compose --env-file infra/docker/versions.env
@@ -87,6 +89,8 @@ help:
 	@echo "make h13-rerun    Measure the doubtful points again on the stack host"
 	@echo "make h13-run      Pool the extra repetitions and report what still holds"
 	@echo "make h13c-run     Audit reproducibility on the panel and analyse the failures"
+	@echo "make h14-collect  Capture query plans, session logs and read statistics"
+	@echo "make h14-run      Aggregate the plans and the measured read sizes"
 	@echo "make article-bundle  Collect checksum-verified article tables and key numbers"
 	@echo "make raw-backup   Archive data/raw with a checksum list into backups/"
 	@echo "make stack-up     Bring up MinIO, the Iceberg REST catalog, and Spark"
@@ -253,6 +257,12 @@ h13-run:
 
 h13c-run:
 	$(H13C)
+
+h14-collect:
+	bash scripts/h14_collect.sh . $(H14_RUN)
+
+h14-run:
+	$(H14) --raw-dir results/raw/h14/$(H14_RUN)
 
 article-bundle:
 	$(ARTICLE)
