@@ -1,0 +1,7 @@
+scenario_order,scenario_id,seed,selection_count,base_cell_count,selection_fraction,selected_rank_min,selected_rank_max,synthetic_vintage_id,workload_sha256,profile_status,nested_from_previous
+1,sweep_001,20260912,1,38,0.026316,1,1,b9f2f5dad5caf5892768,4d0a5774c09e64587698b8973bd1b36eb8e41b52b23552b479f924947be4207b,main_sweep,not_applicable
+2,sweep_002,20260912,2,38,0.052632,1,2,0ed99cf59e8df03d30a0,b6893aac6ac43fd86163c61a7c3cc0f0ccf0b2a43e6f3c560fec33a5ea685692,main_sweep,yes
+3,sweep_004,20260912,4,38,0.105263,1,4,b062ed0cff7d25ea5b30,c5b39f0cfa63585e7e68feca9012917471fe8f07f94fe847d4da348ac6c36011,main_sweep,yes
+4,sweep_008,20260912,8,38,0.210526,1,8,ba1e102d01e352784220,8722fe59e4f3ce96e88afa1eb06fa9455524c56c90dc6c184cf88cdbe3c56eea,main_sweep,yes
+5,sweep_016,20260912,16,38,0.421053,1,16,d2a198581bb1eb705145,b809f4482e05771acb1c04be44a21d575c18deeeb0ada4371b6ec6a25fc04da7,main_sweep,yes
+6,sweep_038,20260912,38,38,1.000000,1,38,3fb53c851f143d46f75a,68c8d932c9d101c9dfe84dbeead0b8cc64ea46d4562831ffbebc1a5ba6acc467,main_sweep,yes

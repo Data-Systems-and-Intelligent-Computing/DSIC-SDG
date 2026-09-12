@@ -1,0 +1,6 @@
+treatment_id,table,expected_rows,expected_cells,expected_snapshots,load_statements,detail
+B0,kkciv.sweep.b0_panel_current,5378,5378,1,4,"one MERGE per arriving vintage, then expire_snapshots down to one"
+B1,kkciv.sweep.b1_panel_full_snapshots,10106,5378,4,4,state_1=1560;state_2=1584;state_3=1584;state_4=5378
+B2,kkciv.sweep.b2_panel_selected,5378,5378,1,1,bps_tpb_2024=1522;bps_tpb_2025=62;bps_webapi=3794
+B3,kkciv.sweep.b3_panel_observation_vintages,6983,5378,1,4,"append-only store keyed by (cell_id, vintage_id)"
+B3,kkciv.sweep.b3_panel_current,5378,5378,1,4,arrival_1=1560;arrival_2=62;arrival_3=770;arrival_4=4591

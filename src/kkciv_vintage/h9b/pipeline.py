@@ -206,6 +206,7 @@ def synthetic_vintage_row(
     *,
     manifest_path: str,
     manifest_sha: str,
+    label_prefix: str = "H8B",
 ) -> dict[str, str]:
     latest = max(date.fromisoformat(row["vintage_date"]) for row in official_vintages)
     vintage_date = (latest + timedelta(days=1)).isoformat()
@@ -216,7 +217,7 @@ def synthetic_vintage_row(
         "vintage_date": vintage_date,
         "vintage_basis": "synthetic_injected_revision",
         "retrieved_at": f"{vintage_date}T00:00:00+00:00",
-        "release_label": f"H8B {scenario['scenario_id']} synthetic revision (not BPS)",
+        "release_label": f"{label_prefix} {scenario['scenario_id']} synthetic revision (not BPS)",
         "source_manifest_path": manifest_path,
         "source_manifest_sha256": manifest_sha,
     }
@@ -229,6 +230,8 @@ def synthetic_observations(
     artifact_path: str,
     artifact_sha: str,
     run_id: str,
+    batch_prefix: str = "h8b",
+    transformation_version: str = "h9b-adapter-v1",
 ) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for injection in injections:
@@ -264,9 +267,9 @@ def synthetic_observations(
                 "source_artifact_path": artifact_path,
                 "source_artifact_sha256": artifact_sha,
                 "source_record_id": f"scenario_id={injection['scenario_id']};selection_rank={injection['selection_rank']}",
-                "ingestion_batch_id": f"h8b-{injection['synthetic_vintage_id']}",
+                "ingestion_batch_id": f"{batch_prefix}-{injection['synthetic_vintage_id']}",
                 "transformation_run_id": run_id,
-                "transformation_version": "h9b-adapter-v1",
+                "transformation_version": transformation_version,
                 "trace_id": "",
                 "cause_family": "synthetic_revision",
                 "evidence_level": SYNTHETIC_EVIDENCE,
@@ -279,6 +282,8 @@ def synthetic_lineage(
     nodes: list[dict[str, str]],
     edges: list[dict[str, str]],
     injections: list[dict[str, str]],
+    *,
+    tag: str = "H9B",
 ) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
     observation_nodes = {row["natural_key"]: row for row in nodes if row["node_type"] == "observation"}
     cell_edge_by_node = {
@@ -291,7 +296,7 @@ def synthetic_lineage(
         if base_node is None or base_node["node_id"] not in cell_edge_by_node:
             raise ValueError(f"base observation {injection['base_observation_id']} has no H6C cell edge")
         base_edge = cell_edge_by_node[base_node["node_id"]]
-        node_id = f"observation:{_id('H9B', injection['synthetic_observation_id'])}"
+        node_id = f"observation:{_id(tag, injection['synthetic_observation_id'])}"
         extra_nodes.append(
             {
                 **base_node,
@@ -305,7 +310,7 @@ def synthetic_lineage(
         extra_edges.append(
             {
                 **base_edge,
-                "edge_id": f"edge:{_id('H9B', IMPACT_RELATIONSHIP, node_id)}",
+                "edge_id": f"edge:{_id(tag, IMPACT_RELATIONSHIP, node_id)}",
                 "from_node_id": node_id,
                 "observation_id": injection["synthetic_observation_id"],
                 "evidence_basis": f"synthetic revision inherits base edge {base_edge['edge_id']}",
