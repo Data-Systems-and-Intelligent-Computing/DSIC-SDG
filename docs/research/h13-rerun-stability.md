@@ -92,6 +92,20 @@ yang sama, yaitu `62ff25a`. Kedua skrip pengukur kini juga mencatat **jalur** ma
 di-commit, bukan hanya jumlahnya, sehingga run berikutnya dapat memeriksa hal ini tanpa penalaran
 tambahan.
 
+## Reproduksi
+
+```bash
+make h13-rerun    # di host stack, berurutan, satu operator
+make h13-run      # aturan keraguan, penggabungan repetisi, dan putusan
+```
+
+Tahap `h13-run` menolak berjalan bila skenario yang dinyatakan pada kontrak tidak sama dengan
+skenario yang dipilih aturan keraguan, dan setiap pengulangan wajib lolos pemeriksaan keadaan
+tahapnya sendiri, yaitu 12 route H11 dan 60 keadaan kedatangan H12. Agregasi diulang di VM dari
+commit yang sama: keempat berkas `results/processed/h13-*.csv` berchecksum identik dengan hasil di
+laptop, keempat belas berkas mentah identik byte per byte, dan 155 test lulus pada kedua mesin dengan
+satu test PDF dilewati.
+
 ## Batas klaim
 
 H13 tidak menambah pengukuran baru dan tidak mengubah satu pun parameter beku; ia hanya menambah
