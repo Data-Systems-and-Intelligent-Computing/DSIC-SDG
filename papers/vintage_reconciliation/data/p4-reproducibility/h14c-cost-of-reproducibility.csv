@@ -1,0 +1,5 @@
+treatment_id,panel_recall,panel_failures,material_failures,superseded_serving_cells,seconds_per_revision,maintenance_share,bytes_per_revision_intercept,bytes_per_revised_cell,bytes_read_per_revision,real_releases_seconds,verdict
+B0,0.7702,1605,43,0,25.2290,0.5649,13308.9117,31.2975,1111882,52.184,loses published figures by design
+B1,1.0000,0,0,0,10.1532,0.0000,468349.3374,36.0721,3469013,15.050,keeps every published figure
+B2,0.7702,1605,43,39,23.9086,0.5905,25958.9597,11.9455,3489279,47.688,loses published figures by design
+B3,1.0000,0,0,0,37.4410,0.5771,50145.1573,78.8124,5628612,88.929,keeps every published figure

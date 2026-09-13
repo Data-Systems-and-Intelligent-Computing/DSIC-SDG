@@ -1,0 +1,52 @@
+{
+  "contract_version": "h14c.1",
+  "stage": "H14",
+  "track": "C",
+  "name": "breakeven_decomposition_and_failure_synthesis",
+  "description": "Explain the break-even result instead of only reporting it, and join the cost evidence to the reproducibility evidence so the price of keeping every published figure can be read in one place.",
+  "inputs": {
+    "sweep_cost": "results/processed/h11-apply-cost.csv",
+    "measured_breakeven": "results/processed/h11-breakeven.csv",
+    "real_release_cost": "results/processed/h12-arrival-cost.csv",
+    "read_statistics": "results/processed/h14-read-summary.csv",
+    "panel_audit": "results/processed/h13c-reproducibility-table.csv",
+    "failure_profile": "results/processed/h13c-failure-profile.csv",
+    "failure_cases": "results/processed/h13c-failure-cases.csv"
+  },
+  "decomposition": {
+    "method": "ordinary least squares over the six frozen sweep sizes, one line per treatment and per measure",
+    "measures": [
+      "total_seconds_median",
+      "delta_bytes_median"
+    ],
+    "reported": [
+      "intercept",
+      "slope_per_revised_cell",
+      "observed_range"
+    ],
+    "status": "descriptive",
+    "not_claimed": "these are descriptions of six measured points, not fitted models with inference; no confidence interval is computed and none may be quoted"
+  },
+  "breakeven": {
+    "measured_answer": "carried forward unchanged from results/processed/h11-breakeven.csv",
+    "projection": {
+      "allowed": true,
+      "where": "results/processed/h14c-breakeven-conditions.csv only",
+      "must_be_labelled": "outside_measured_range",
+      "never": "a projected crossing may never be reported as a break-even point, and may never enter the break-even table or the answer to P3"
+    },
+    "condition_reporting": "for every comparison, say which quantity would have to change for a crossing to become possible, and say plainly that the change was not tested"
+  },
+  "synthesis": {
+    "question": "what does it cost to keep every published figure reproducible",
+    "joins": "recall and failures from H13C, time and bytes from H11, read sizes from H14, real-release cost from H12",
+    "recall_source_is_authoritative": "recall figures are copied from the H13C audit, never recomputed here"
+  },
+  "invariants": [
+    "the measured break-even table is carried forward unchanged",
+    "every projection is labelled as outside the measured range and is kept out of the break-even table",
+    "recall and failure counts are copied from H13C without recomputation",
+    "a treatment reported with full recall must show no material failure",
+    "every reported slope names the six sweep sizes it was computed over"
+  ]
+}

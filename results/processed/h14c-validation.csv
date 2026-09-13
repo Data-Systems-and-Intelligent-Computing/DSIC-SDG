@@ -1,0 +1,6 @@
+invariant,status,checked_rows,detail
+the measured break-even answer is carried forward unchanged,pass,6,B3 against B1|total_seconds_median=none;B3 against B1|delta_bytes_median=none;B3 against B0|total_seconds_median=none;B3 against B0|delta_bytes_median=none;B3 against B2|total_seconds_median=none;B3 against B2|delta_bytes_median=none
+every projected crossing is labelled and none is presented as a break-even,pass,1,B3 against B1|delta_bytes_median=9785(outside_measured_range)
+every slope is declared descriptive and names the sizes it was computed over,pass,8,1-2-4-8-16-38
+recall is copied from the audit that measured it,pass,4,B0=0.7702;B1=1.0000;B2=0.7702;B3=1.0000
+a treatment with full recall reports no material failure,pass,4,B0:1605/43;B1:0/0;B2:1605/43;B3:0/0

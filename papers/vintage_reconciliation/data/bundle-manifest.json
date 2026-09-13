@@ -415,6 +415,42 @@
       "sha256": "f3c6cd19b8e169e5c6f8c8430a730e61060e6321cc613ef0fd30bd5a319b88d6",
       "source_manifest": "data/manifests/h14-plan-and-read-statistics.json",
       "source_path": "results/processed/h14-query-plans.csv"
+    },
+    {
+      "description": "Ongkos tetap dan ongkos per sel direvisi tiap perlakuan pada enam titik sweep (H14C)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h14c-cost-decomposition.csv",
+      "rows": 8,
+      "sha256": "226fba0106b955ed4e7f6c8b28ea0f243c7aace715f2145b91ec5e9c3601be22",
+      "source_manifest": "data/manifests/h14c-breakeven-and-failure-analysis.json",
+      "source_path": "results/processed/h14c-cost-decomposition.csv"
+    },
+    {
+      "description": "Arah terukur setiap perbandingan beserta syarat yang diperlukan agar titik impas mungkin ada (H14C)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h14c-breakeven-conditions.csv",
+      "rows": 6,
+      "sha256": "d7f552ff8a70cb50ff5eecdab8487d9f3988b4d81b856d37d712e71b185d2fae",
+      "source_manifest": "data/manifests/h14c-breakeven-and-failure-analysis.json",
+      "source_path": "results/processed/h14c-breakeven-conditions.csv"
+    },
+    {
+      "description": "Harga mempertahankan seluruh angka terbit per perlakuan (H14C)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h14c-cost-of-reproducibility.csv",
+      "rows": 4,
+      "sha256": "7be8ad4616ad6939c6ddc08c2f358d5f7b2bf36ef51cf5ffe11f4c569efc06cd",
+      "source_manifest": "data/manifests/h14c-breakeven-and-failure-analysis.json",
+      "source_path": "results/processed/h14c-cost-of-reproducibility.csv"
+    },
+    {
+      "description": "Ringkasan jenis kegagalan beserta akibat dan harga menghindarinya (H14C)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h14c-failure-synthesis.csv",
+      "rows": 3,
+      "sha256": "cf361eb60f0b86a651f6d7dd7302fca5a2897a59513f0f2bd26915bbce3264c0",
+      "source_manifest": "data/manifests/h14c-breakeven-and-failure-analysis.json",
+      "source_path": "results/processed/h14c-failure-synthesis.csv"
     }
   ],
   "derived_tables": [
@@ -433,14 +469,14 @@
     {
       "description": "Angka kunci naskah beserta sumber dan cara penurunannya",
       "path": "angka-kunci.csv",
-      "rows": 172,
-      "sha256": "7399299c0a933ab1265a69e37063fb211af2e419cd87ac53841cccc03b5e86d9"
+      "rows": 184,
+      "sha256": "fd03844d48563d907b837654bf1574e1f3b2a18ed001aae89eb0590b67b480ae"
     }
   ],
   "inputs": [
     {
       "path": "config/article/bundle_tables.csv",
-      "sha256": "ab2f873b5969ffc1016a7aefc323f85a011588b8176732f43bae8650800ca15b"
+      "sha256": "0b7d136b855bef30b70e704361461a72705df6ad0774be3b432d6c4ae2be9bf9"
     }
   ],
   "verified_sources": [
@@ -563,6 +599,26 @@
       "path": "results/processed/h14-read-summary.csv",
       "sha256": "c808d17999e66fca937f3d5cf765201cd490db3eb16a42ac22717d327d2316af",
       "source_manifest": "data/manifests/h14-plan-and-read-statistics.json"
+    },
+    {
+      "path": "results/processed/h14c-breakeven-conditions.csv",
+      "sha256": "d7f552ff8a70cb50ff5eecdab8487d9f3988b4d81b856d37d712e71b185d2fae",
+      "source_manifest": "data/manifests/h14c-breakeven-and-failure-analysis.json"
+    },
+    {
+      "path": "results/processed/h14c-cost-decomposition.csv",
+      "sha256": "226fba0106b955ed4e7f6c8b28ea0f243c7aace715f2145b91ec5e9c3601be22",
+      "source_manifest": "data/manifests/h14c-breakeven-and-failure-analysis.json"
+    },
+    {
+      "path": "results/processed/h14c-cost-of-reproducibility.csv",
+      "sha256": "7be8ad4616ad6939c6ddc08c2f358d5f7b2bf36ef51cf5ffe11f4c569efc06cd",
+      "source_manifest": "data/manifests/h14c-breakeven-and-failure-analysis.json"
+    },
+    {
+      "path": "results/processed/h14c-failure-synthesis.csv",
+      "sha256": "cf361eb60f0b86a651f6d7dd7302fca5a2897a59513f0f2bd26915bbce3264c0",
+      "source_manifest": "data/manifests/h14c-breakeven-and-failure-analysis.json"
     },
     {
       "path": "results/processed/h2-indicator-summary.csv",

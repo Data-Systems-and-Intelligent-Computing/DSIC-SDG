@@ -117,6 +117,18 @@ p3_b0_release_2_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-2, B0",3.929,de
 p3_b0_release_4_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-4, B0",3.197,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 4591 baris masuk, 797 tertimpa"
 p3_b1_release_2_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-2, B1",2.315,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 62 baris masuk, 38 tertimpa"
 p3_b1_release_4_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-4, B1",2.269,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 4591 baris masuk, 797 tertimpa"
+p3_b0_fixed_seconds,P3,H14C,"Ongkos waktu tetap satu revisi, B0",25.2290,detik,results/processed/h14c-cost-decomposition.csv,intercept atas titik 1-2-4-8-16-38; kemiringan -0.0058 per sel; pemeliharaan 0.5649 dari waktu
+p3_b0_bytes_per_cell,P3,H14C,"Pertambahan byte per sel direvisi, B0",31.2975,byte,results/processed/h14c-cost-decomposition.csv,kemiringan atas titik 1-2-4-8-16-38; intercept 13308.9117
+p3_b1_fixed_seconds,P3,H14C,"Ongkos waktu tetap satu revisi, B1",10.1532,detik,results/processed/h14c-cost-decomposition.csv,intercept atas titik 1-2-4-8-16-38; kemiringan -0.0010 per sel; pemeliharaan 0.0000 dari waktu
+p3_b1_bytes_per_cell,P3,H14C,"Pertambahan byte per sel direvisi, B1",36.0721,byte,results/processed/h14c-cost-decomposition.csv,kemiringan atas titik 1-2-4-8-16-38; intercept 468349.3374
+p3_b2_fixed_seconds,P3,H14C,"Ongkos waktu tetap satu revisi, B2",23.9086,detik,results/processed/h14c-cost-decomposition.csv,intercept atas titik 1-2-4-8-16-38; kemiringan -0.0170 per sel; pemeliharaan 0.5905 dari waktu
+p3_b2_bytes_per_cell,P3,H14C,"Pertambahan byte per sel direvisi, B2",11.9455,byte,results/processed/h14c-cost-decomposition.csv,kemiringan atas titik 1-2-4-8-16-38; intercept 25958.9597
+p3_b3_fixed_seconds,P3,H14C,"Ongkos waktu tetap satu revisi, B3",37.4410,detik,results/processed/h14c-cost-decomposition.csv,intercept atas titik 1-2-4-8-16-38; kemiringan -0.0458 per sel; pemeliharaan 0.5771 dari waktu
+p3_b3_bytes_per_cell,P3,H14C,"Pertambahan byte per sel direvisi, B3",78.8124,byte,results/processed/h14c-cost-decomposition.csv,kemiringan atas titik 1-2-4-8-16-38; intercept 50145.1573
+p3_projected_crossing_b3_byte,P3,H14C,Proyeksi titik silang B3 against B1 pada delta_bytes_median,9785,sel,results/processed/h14c-breakeven-conditions.csv,"outside_measured_range; bukan pengukuran, jawaban terukur tetap none"
+p4_failure_not_selected_by_trust_score,P4,H14C,Angka terbit yang terdampak not_selected_by_trust_score,1605,angka,results/processed/h14c-failure-synthesis.csv,material 43; perlakuan terdampak B2; bebas B0;B1;B3
+p4_failure_overwritten_by_later_vintage,P4,H14C,Angka terbit yang terdampak overwritten_by_later_vintage,1605,angka,results/processed/h14c-failure-synthesis.csv,material 43; perlakuan terdampak B0; bebas B1;B2;B3
+p4_failure_serving_value_superseded,P4,H14C,Angka terbit yang terdampak serving_value_superseded,39,angka,results/processed/h14c-failure-synthesis.csv,material 39; perlakuan terdampak B2; bebas B0;B1;B3
 s2_b0_sweep_001_bytes_read,P3,H14,"Byte yang dibaca satu revisi pada sweep_001, B0",1111875,byte,results/processed/h14-read-summary.csv,"tabel sendiri 594148 atas 10 berkas data, staging 517727"
 s2_b1_sweep_001_bytes_read,P3,H14,"Byte yang dibaca satu revisi pada sweep_001, B1",3469013,byte,results/processed/h14-read-summary.csv,"tabel sendiri 0 atas 0 berkas data, staging 3469013"
 s2_b2_sweep_001_bytes_read,P3,H14,"Byte yang dibaca satu revisi pada sweep_001, B2",3489276,byte,results/processed/h14-read-summary.csv,"tabel sendiri 0 atas 0 berkas data, staging 3489276"

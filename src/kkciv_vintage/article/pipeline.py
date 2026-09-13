@@ -289,6 +289,19 @@ def key_numbers(src: Sources) -> list[dict[str, str]]:
             row = real_cost[(arrival, treatment)]
             add(f"p3_{treatment.lower()}_release_{arrival}_write_seconds", "P3", "H12", f"Waktu tulis rilis nyata ke-{arrival}, {treatment}", row["write_seconds_median"], "detik", "h12-arrival-cost.csv", f"write_seconds_median; {row['arriving_rows']} baris masuk, {row['overwritten_rows']} tertimpa")
 
+    decomposition = {(r["treatment_id"], r["measure"]): r for r in src.rows("h14c-cost-decomposition.csv")}
+    for treatment in TREATMENTS:
+        seconds = decomposition[(treatment, "total_seconds_median")]
+        byte_line = decomposition[(treatment, "delta_bytes_median")]
+        add(f"p3_{treatment.lower()}_fixed_seconds", "P3", "H14C", f"Ongkos waktu tetap satu revisi, {treatment}", seconds["intercept"], "detik", "h14c-cost-decomposition.csv", f"intercept atas titik {seconds['sweep_sizes']}; kemiringan {seconds['slope_per_revised_cell']} per sel; pemeliharaan {seconds['maintenance_share']} dari waktu")
+        add(f"p3_{treatment.lower()}_bytes_per_cell", "P3", "H14C", f"Pertambahan byte per sel direvisi, {treatment}", byte_line["slope_per_revised_cell"], "byte", "h14c-cost-decomposition.csv", f"kemiringan atas titik {byte_line['sweep_sizes']}; intercept {byte_line['intercept']}")
+    for row in src.rows("h14c-breakeven-conditions.csv"):
+        if not row["projected_crossing_cells"]:
+            continue
+        add(f"p3_projected_crossing_{row['incremental_treatment'].lower() if 'incremental_treatment' in row else 'b3'}_{'byte' if row['measure'].startswith('delta') else 'waktu'}", "P3", "H14C", f"Proyeksi titik silang {row['comparison']} pada {row['measure']}", row["projected_crossing_cells"], "sel", "h14c-breakeven-conditions.csv", f"{row['projection_status']}; bukan pengukuran, jawaban terukur tetap {row['measured_crossing']}")
+    for row in src.rows("h14c-failure-synthesis.csv"):
+        add(f"p4_failure_{row['failure_kind']}", "P4", "H14C", f"Angka terbit yang terdampak {row['failure_kind']}", row["figures_affected"], "angka", "h14c-failure-synthesis.csv", f"material {row['material_figures']}; perlakuan terdampak {row['treatments_affected']}; bebas {row['treatments_free_of_it']}")
+
     reads = {(r["scenario_id"], r["treatment_id"]): r for r in src.rows("h14-read-summary.csv")}
     plans = {(r["scenario_id"], r["treatment_id"]): r for r in src.rows("h14-query-plans.csv")}
     read_points = sorted({key[0] for key in reads})

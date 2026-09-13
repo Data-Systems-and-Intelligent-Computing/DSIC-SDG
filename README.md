@@ -569,9 +569,29 @@ lalu `make h14-run`; rincian ada di
 [`docs/research/h14-plan-and-read-statistics.md`](docs/research/h14-plan-and-read-statistics.md).
 Marker: `H14_VERIFY|2|2|168|1111882|3469013|3489279|5628612|8|48|collected`.
 
+H14 Jalur A dan C menjelaskan hasil titik impas dan menyatukan sisi ongkos dengan sisi
+reproducibility. Jawaban terukur P3 tidak berubah, yaitu tidak ada titik impas di dalam rentang beku,
+dan dibawa apa adanya dari H11. Dekomposisi delapan garis atas enam titik sweep menunjukkan
+alasannya: waktu hampir seluruhnya ongkos tetap, yaitu 25,23 detik pada B0, 10,15 pada B1, 23,91 pada
+B2, dan 37,44 pada B3, dengan pemeliharaan snapshot memakan 56 sampai 59 persen waktu B0, B2, dan B3
+serta nol persen pada B1. Keunggulan waktu B1 karena itu sebagian besar berasal dari kebijakan
+pemeliharaan, bukan dari mekanisme tulisnya. Byte sebaliknya tumbuh linear terhadap jumlah sel yang
+direvisi, dengan ongkos tetap 13.309 byte pada B0, 25.959 pada B2, 50.145 pada B3, dan 468.349 pada
+B1. Sebuah tren hanya disebut tren bila rentang terukur di titik terkecil dan terbesar tidak
+bertumpang tindih **dan** mediannya bergerak satu arah; seluruh deret waktu gagal pada syarat kedua,
+sehingga tidak ada satu pun proyeksi waktu yang dilaporkan. Satu-satunya proyeksi yang dilaporkan,
+dan ditandai `outside_measured_range`, adalah bahwa B3 baru berhenti lebih murah daripada B1 dalam
+ruang bila satu revisi menyentuh sekitar 9.785 sel, sementara panelnya hanya 5.378 sel. Tabel harga
+reproducibility menutup P3 dan P4 sekaligus: mempertahankan seluruh angka terbit menuntut 3,8 kali
+byte B0 bila memakai B3 atau 35 kali bila memakai B1, dan B3 membeli recall penuh yang sama dengan B1
+dengan sekitar sepersembilan byte per revisi tetapi 3,7 kali waktunya. Jalankan `make h14c-run`;
+rincian ada di
+[`docs/research/h14c-breakeven-and-failure-analysis.md`](docs/research/h14c-breakeven-and-failure-analysis.md).
+Marker: `H14C_VERIFY|8|6|1|0|3|125|B1,B3|validated`.
+
 Semua angka dan tabel untuk naskah dikumpulkan di
-[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 46 tabel per pertanyaan
-penelitian, 3 tabel turunan, dan 172 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
+[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 50 tabel per pertanyaan
+penelitian, 3 tabel turunan, dan 184 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
 dengan `make article-bundle`, yang memverifikasi checksum setiap sumber terhadap manifest tahapnya.
 Bahan mentah sumber di `data/raw/` hanya ada di laptop peneliti. `make raw-backup` membuat arsip
 beserta daftar checksum di `backups/`, dan arsip itu wajib disalin ke lokasi kedua.

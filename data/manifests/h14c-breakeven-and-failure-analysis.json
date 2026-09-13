@@ -1,0 +1,140 @@
+{
+  "analysis_status": "validated",
+  "contract_version": "h14c.1",
+  "cost_of_recall": {
+    "B0": {
+      "bytes_per_revision_intercept": "13308.9117",
+      "panel_recall": "0.7702",
+      "seconds_per_revision": "25.2290"
+    },
+    "B1": {
+      "bytes_per_revision_intercept": "468349.3374",
+      "panel_recall": "1.0000",
+      "seconds_per_revision": "10.1532"
+    },
+    "B2": {
+      "bytes_per_revision_intercept": "25958.9597",
+      "panel_recall": "0.7702",
+      "seconds_per_revision": "23.9086"
+    },
+    "B3": {
+      "bytes_per_revision_intercept": "50145.1573",
+      "panel_recall": "1.0000",
+      "seconds_per_revision": "37.4410"
+    }
+  },
+  "decomposition": {
+    "B0|delta_bytes_median": {
+      "intercept": "13308.9117",
+      "slope_per_revised_cell": "31.2975"
+    },
+    "B0|total_seconds_median": {
+      "intercept": "25.2290",
+      "slope_per_revised_cell": "-0.0058"
+    },
+    "B1|delta_bytes_median": {
+      "intercept": "468349.3374",
+      "slope_per_revised_cell": "36.0721"
+    },
+    "B1|total_seconds_median": {
+      "intercept": "10.1532",
+      "slope_per_revised_cell": "-0.0010"
+    },
+    "B2|delta_bytes_median": {
+      "intercept": "25958.9597",
+      "slope_per_revised_cell": "11.9455"
+    },
+    "B2|total_seconds_median": {
+      "intercept": "23.9086",
+      "slope_per_revised_cell": "-0.0170"
+    },
+    "B3|delta_bytes_median": {
+      "intercept": "50145.1573",
+      "slope_per_revised_cell": "78.8124"
+    },
+    "B3|total_seconds_median": {
+      "intercept": "37.4410",
+      "slope_per_revised_cell": "-0.0458"
+    }
+  },
+  "inputs": [
+    {
+      "path": "contracts/h14c-breakeven-and-failure-analysis.json",
+      "sha256": "84e5a9cde5194cd1b487d93996981171734b304aff7761ac1014c5e74fb0f0c7"
+    },
+    {
+      "path": "results/processed/h11-apply-cost.csv",
+      "sha256": "6200461441ac43cff6a6fcda2b3fab173b0edd81fc443ca9db9e02768329bb2b"
+    },
+    {
+      "path": "results/processed/h11-breakeven.csv",
+      "sha256": "e5d0883b58351152cc7507365015ed782cec9e80680548820d24bff6c8b8c70f"
+    },
+    {
+      "path": "results/processed/h12-arrival-cost.csv",
+      "sha256": "8d352f81f4570e07cb79cd61e4903b07eded7918460aa73104534e721a5790c5"
+    },
+    {
+      "path": "results/processed/h14-read-summary.csv",
+      "sha256": "c808d17999e66fca937f3d5cf765201cd490db3eb16a42ac22717d327d2316af"
+    },
+    {
+      "path": "results/processed/h13c-reproducibility-table.csv",
+      "sha256": "e150ac75936049327d975e0c3ad3234a8dddb520008d5216657489415a72741b"
+    },
+    {
+      "path": "results/processed/h13c-failure-profile.csv",
+      "sha256": "e4ae9f399bf47a3a839d785d523ee0935d83ee176060368945d73d9dc7adfcd6"
+    },
+    {
+      "path": "results/processed/h13c-failure-cases.csv",
+      "sha256": "3e076df75f02a496fa3d66c4af617e0eb597aaf81f33ceab309d26f9e6e91e93"
+    },
+    {
+      "path": "results/processed/h11-sweep-scenarios.csv",
+      "sha256": "2170dd7f6c21d81735e14e01333d32da42413cd3f2d246997f114725f23baae6"
+    }
+  ],
+  "measured_breakeven": {
+    "B3 against B0|delta_bytes_median": "none",
+    "B3 against B0|total_seconds_median": "none",
+    "B3 against B1|delta_bytes_median": "none",
+    "B3 against B1|total_seconds_median": "none",
+    "B3 against B2|delta_bytes_median": "none",
+    "B3 against B2|total_seconds_median": "none"
+  },
+  "outputs": [
+    {
+      "path": "results/processed/h14c-cost-decomposition.csv",
+      "rows": 8,
+      "sha256": "226fba0106b955ed4e7f6c8b28ea0f243c7aace715f2145b91ec5e9c3601be22"
+    },
+    {
+      "path": "results/processed/h14c-breakeven-conditions.csv",
+      "rows": 6,
+      "sha256": "d7f552ff8a70cb50ff5eecdab8487d9f3988b4d81b856d37d712e71b185d2fae"
+    },
+    {
+      "path": "results/processed/h14c-cost-of-reproducibility.csv",
+      "rows": 4,
+      "sha256": "7be8ad4616ad6939c6ddc08c2f358d5f7b2bf36ef51cf5ffe11f4c569efc06cd"
+    },
+    {
+      "path": "results/processed/h14c-failure-synthesis.csv",
+      "rows": 3,
+      "sha256": "cf361eb60f0b86a651f6d7dd7302fca5a2897a59513f0f2bd26915bbce3264c0"
+    },
+    {
+      "path": "results/processed/h14c-validation.csv",
+      "rows": 5,
+      "sha256": "7744d7b01bab6eb6c0920e9b68fc8bffb3b5493db3c55ab1ca584cc6ab885b35"
+    },
+    {
+      "path": "results/processed/h14c-summary.csv",
+      "rows": 16,
+      "sha256": "376b4641300a9d0e53ba308e81742874aa9ae26985c5d62be0e827f2f3339f1b"
+    }
+  ],
+  "stage": "H14",
+  "track": "C"
+}

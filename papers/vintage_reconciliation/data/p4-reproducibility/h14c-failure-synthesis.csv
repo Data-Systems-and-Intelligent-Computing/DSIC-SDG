@@ -1,0 +1,4 @@
+failure_kind,treatments_affected,figures_affected,material_figures,consequence,treatments_free_of_it,price_of_avoiding_it
+not_selected_by_trust_score,B2,1605,43,the published figure cannot be produced again because its source was not selected,B0;B1;B3,"B3 keeps every figure for 50145.1573 bytes plus 78.8124 per revised cell, at 37.4410 seconds per revision"
+overwritten_by_later_vintage,B0,1605,43,the published figure cannot be produced again from the treatment state,B1;B2;B3,"B3 keeps every figure for 50145.1573 bytes plus 78.8124 per revised cell, at 37.4410 seconds per revision"
+serving_value_superseded,B2,39,39,"the request is answered, but with a value the producer has already replaced",B0;B1;B3,"B3 keeps every figure for 50145.1573 bytes plus 78.8124 per revised cell, at 37.4410 seconds per revision"

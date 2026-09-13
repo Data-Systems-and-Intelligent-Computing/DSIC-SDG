@@ -1,0 +1,9 @@
+treatment_id,measure,points,sweep_sizes,intercept,slope_per_revised_cell,observed_min,observed_max,write_share,maintenance_share,status
+B0,total_seconds_median,6,1-2-4-8-16-38,25.2290,-0.0058,24.6520,26.0180,0.4351,0.5649,descriptive
+B0,delta_bytes_median,6,1-2-4-8-16-38,13308.9117,31.2975,13279.0000,14459.0000,0.4351,0.5649,descriptive
+B1,total_seconds_median,6,1-2-4-8-16-38,10.1532,-0.0010,9.9110,10.3490,1.0000,0.0000,descriptive
+B1,delta_bytes_median,6,1-2-4-8-16-38,468349.3374,36.0721,468313.0000,469682.0000,1.0000,0.0000,descriptive
+B2,total_seconds_median,6,1-2-4-8-16-38,23.9086,-0.0170,22.8300,24.6160,0.4095,0.5905,descriptive
+B2,delta_bytes_median,6,1-2-4-8-16-38,25958.9597,11.9455,25883.0000,26363.0000,0.4095,0.5905,descriptive
+B3,total_seconds_median,6,1-2-4-8-16-38,37.4410,-0.0458,35.6260,38.0070,0.4229,0.5771,descriptive
+B3,delta_bytes_median,6,1-2-4-8-16-38,50145.1573,78.8124,49262.0000,52873.0000,0.4229,0.5771,descriptive

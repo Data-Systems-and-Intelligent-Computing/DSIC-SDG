@@ -45,3 +45,7 @@ p4-reproducibility,results/processed/h13c-failure-profile.csv,Profil kegagalan m
 p4-reproducibility,results/processed/h13c-failure-cases.csv,Angka terbit yang tidak dapat dihasilkan ulang beserta nilai penggantinya dan locator sumbernya (H13C)
 p3-ongkos,results/processed/h14-read-summary.csv,Byte yang dibaca tiap pernyataan tulis dari tabelnya sendiri dan dari berkas staging (H14)
 p3-ongkos,results/processed/h14-query-plans.csv,Rencana eksekusi setiap pernyataan tulis beserta operator puncak dan jenis join-nya (H14)
+p3-ongkos,results/processed/h14c-cost-decomposition.csv,Ongkos tetap dan ongkos per sel direvisi tiap perlakuan pada enam titik sweep (H14C)
+p3-ongkos,results/processed/h14c-breakeven-conditions.csv,Arah terukur setiap perbandingan beserta syarat yang diperlukan agar titik impas mungkin ada (H14C)
+p4-reproducibility,results/processed/h14c-cost-of-reproducibility.csv,Harga mempertahankan seluruh angka terbit per perlakuan (H14C)
+p4-reproducibility,results/processed/h14c-failure-synthesis.csv,Ringkasan jenis kegagalan beserta akibat dan harga menghindarinya (H14C)

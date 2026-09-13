@@ -1,0 +1,17 @@
+metric,value,unit,interpretation
+b0_seconds_per_revision,25.2290,seconds,plus -0.0058 per revised cell over the 1-2-4-8-16-38 sweep; observed 24.6520 to 26.0180; maintenance is 0.5649 of the time
+b0_bytes_per_revision,13308.9117,bytes,plus 31.2975 per revised cell over the 1-2-4-8-16-38 sweep; observed 13279.0000 to 14459.0000
+b1_seconds_per_revision,10.1532,seconds,plus -0.0010 per revised cell over the 1-2-4-8-16-38 sweep; observed 9.9110 to 10.3490; maintenance is 0.0000 of the time
+b1_bytes_per_revision,468349.3374,bytes,plus 36.0721 per revised cell over the 1-2-4-8-16-38 sweep; observed 468313.0000 to 469682.0000
+b2_seconds_per_revision,23.9086,seconds,plus -0.0170 per revised cell over the 1-2-4-8-16-38 sweep; observed 22.8300 to 24.6160; maintenance is 0.5905 of the time
+b2_bytes_per_revision,25958.9597,bytes,plus 11.9455 per revised cell over the 1-2-4-8-16-38 sweep; observed 25883.0000 to 26363.0000
+b3_seconds_per_revision,37.4410,seconds,plus -0.0458 per revised cell over the 1-2-4-8-16-38 sweep; observed 35.6260 to 38.0070; maintenance is 0.5771 of the time
+b3_bytes_per_revision,50145.1573,bytes,plus 78.8124 per revised cell over the 1-2-4-8-16-38 sweep; observed 49262.0000 to 52873.0000
+projection_B3_against_B1_delta_bytes_median,9785,cells,outside_measured_range; measured answer stays none
+b0_cost_of_recall,0.7702,ratio,"13308.9117 bytes and 25.2290 seconds per revision, 1111882 bytes read; loses published figures by design"
+b1_cost_of_recall,1.0000,ratio,"468349.3374 bytes and 10.1532 seconds per revision, 3469013 bytes read; keeps every published figure"
+b2_cost_of_recall,0.7702,ratio,"25958.9597 bytes and 23.9086 seconds per revision, 3489279 bytes read; loses published figures by design"
+b3_cost_of_recall,1.0000,ratio,"50145.1573 bytes and 37.4410 seconds per revision, 5628612 bytes read; keeps every published figure"
+failure_not_selected_by_trust_score,43,figures,1605 figures affected on B2; the published figure cannot be produced again because its source was not selected
+failure_overwritten_by_later_vintage,43,figures,1605 figures affected on B0; the published figure cannot be produced again from the treatment state
+failure_serving_value_superseded,39,figures,"39 figures affected on B2; the request is answered, but with a value the producer has already replaced"
