@@ -115,6 +115,19 @@ artikel ini adalah perbandingan mekanisme **beserta** kebijakan pemeliharaannya.
 memerlukan eksperimen versi baru, dan hal itu dinyatakan sebagai keterbatasan, bukan dikerjakan
 diam-diam di sini.
 
+## Reproduksi
+
+```bash
+make h14c-run
+```
+
+Analisis menolak berjalan bila kontraknya menyatakan dekomposisinya sebagai model terfit, bila
+proyeksi boleh disebut titik impas, bila angka recall dihitung ulang alih-alih disalin dari audit
+H13C, atau bila sebuah perlakuan dengan recall penuh ternyata membawa kegagalan material. Analisis
+diulang di VM dari commit yang sama: keenam berkas keluaran berchecksum identik dengan hasil di
+laptop, 189 test lulus pada kedua mesin dengan satu test PDF dilewati, dan paket naskah terverifikasi
+dengan 50 tabel serta 184 angka kunci.
+
 ## Artefak audit
 
 - kontrak: `contracts/h14c-breakeven-and-failure-analysis.json`;
