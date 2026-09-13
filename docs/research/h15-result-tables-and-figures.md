@@ -73,6 +73,10 @@ kontraknya mengizinkan nilai yang diketik manual, bila sebuah tabel tambahan tid
 bila ada titik gambar berepetisi yang tidak membawa rentangnya, atau bila sebuah keterangan gambar
 tidak menyebut lingkungan yang dibekukan.
 
+Penyusunan diulang di VM dari commit yang sama dan menghasilkan checksum identik untuk kedua belas
+berkas keluaran; 199 test lulus pada kedua mesin dengan satu test PDF dilewati, dan paket naskah
+terverifikasi dengan 60 tabel serta 184 angka kunci.
+
 ## Artefak audit
 
 - kontrak: `contracts/h15-result-tables-and-figures.json`;
