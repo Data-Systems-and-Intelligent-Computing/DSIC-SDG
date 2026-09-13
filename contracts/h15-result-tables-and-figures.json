@@ -1,0 +1,32 @@
+{
+  "contract_version": "h15.1",
+  "stage": "H15",
+  "track": "AC",
+  "name": "manuscript_tables_and_figure_data",
+  "description": "Compose the tables and the figure data of the Results section from checksum-verified stage outputs, so every number in the draft can be traced to the measurement that produced it.",
+  "frozen_frame": {
+    "path": "papers/vintage_reconciliation/draft/03-kerangka-tabel-hasil.md",
+    "frozen_at": "H11",
+    "tables": 14,
+    "figures": 4,
+    "rule": "the frame was fixed before the sweep numbers were interpreted; a table added afterwards must be marked as added and carry the reason"
+  },
+  "sources": {
+    "verification": "every source is verified against the checksum its stage manifest records, through data/manifests",
+    "no_manual_numbers": "a composed table may only contain values read from a verified source, never a value typed in by hand"
+  },
+  "figures": {
+    "format": "tidy data, one row per series point; no image is rendered because the frozen stack carries no plotting library",
+    "uncertainty": "every point that has repetitions carries the minimum and the maximum next to the median",
+    "caption_requirement": "every figure caption must name the declared 2 vCPU environment and the claim limit"
+  },
+  "environment_note": "Seluruh angka waktu berasal dari satu node dengan 2 vCPU yang dibekukan sebagai batas sumber daya; angka tersebut hanya dapat dibaca sebagai perbandingan antarperlakuan pada perangkat keras yang sama.",
+  "invariants": [
+    "every composed table names the sources it was built from",
+    "every source is verified against its stage manifest before a value is read",
+    "every table and figure of the frozen frame is accounted for, either composed, copied or explicitly deferred with a reason",
+    "a table added after the frame was frozen is marked as added and carries its reason",
+    "every figure series that has repetitions carries its minimum and maximum",
+    "no value is written that does not appear in a verified source"
+  ]
+}

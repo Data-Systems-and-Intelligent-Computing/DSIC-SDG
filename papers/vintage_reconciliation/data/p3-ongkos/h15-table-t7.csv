@@ -1,0 +1,5 @@
+treatment_id,baseline_rows,baseline_snapshots,cells_evaluated_per_revision,rows_written_per_revision,state_after_revision,snapshots_after_revision
+B0,b0_panel_current=5378,b0_panel_current=1,38,38,5378,1
+B1,b1_panel_full_snapshots=10106,b1_panel_full_snapshots=4,5378,15484,15484,5
+B2,b2_panel_selected=5378,b2_panel_selected=1,5378,5378,5378,1
+B3,b3_panel_observation_vintages=6983;b3_panel_current=5378,b3_panel_observation_vintages=1;b3_panel_current=1,38,76,12399,1

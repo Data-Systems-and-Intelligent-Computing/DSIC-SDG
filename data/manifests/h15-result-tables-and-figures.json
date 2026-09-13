@@ -1,0 +1,136 @@
+{
+  "composition_status": "validated",
+  "contract_version": "h15.1",
+  "figures": {
+    "G1": "24",
+    "G2": "24",
+    "G3": "24",
+    "G4": "8"
+  },
+  "inputs": [
+    {
+      "path": "contracts/h15-result-tables-and-figures.json",
+      "sha256": "8467463bf69d6d1f8fb366090b527a800e12271a53358b983f663695993b4ae3"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h15-table-t7.csv",
+      "rows": 4,
+      "sha256": "cce93c12110ea6801713b0c84ae675b7555a21313390fe3dab0942c9aeac49d1"
+    },
+    {
+      "path": "results/processed/h15-table-t8.csv",
+      "rows": 6,
+      "sha256": "ba851ed8a05d55ea7dd678565433360dd9a1ee432e3ce65936468e185de79fc0"
+    },
+    {
+      "path": "results/processed/h15-table-t9.csv",
+      "rows": 6,
+      "sha256": "fc6db1e4d5906f1750e00735a056f961f5dcf0c7f9cbf4dd1a3eb209ef224bd1"
+    },
+    {
+      "path": "results/processed/h15-table-t10.csv",
+      "rows": 6,
+      "sha256": "ab8af2fe0c94f88f670f3f2484b05d5e590e3fca411e6ba65215cf6030c1f609"
+    },
+    {
+      "path": "results/processed/h15-table-t13.csv",
+      "rows": 2,
+      "sha256": "6ab01cfbb676a98abdacddf21df724a2a88e9d91669a9f877817d6f9a617e538"
+    },
+    {
+      "path": "results/processed/h15-table-t15.csv",
+      "rows": 4,
+      "sha256": "4647adf8a25cc176ea37ce564c8313dc188c2966449d98fb4ba9b2183e4e1b98"
+    },
+    {
+      "path": "results/processed/h15-table-t16.csv",
+      "rows": 4,
+      "sha256": "a78b6b60525815ee9d248c833270c7bfb780c9d6259f4db436b0704584c7a150"
+    },
+    {
+      "path": "results/processed/h15-table-inventory.csv",
+      "rows": 7,
+      "sha256": "8f246c86296eebab373d657ec15e669c6351bb64a026b75cffe62d910aad464f"
+    },
+    {
+      "path": "results/processed/h15-figure-inventory.csv",
+      "rows": 4,
+      "sha256": "372f50e856e16a08a0e9075c671c488e65aa24734294a44d21f73ed4e7ea8ec3"
+    },
+    {
+      "path": "results/processed/h15-figure-data.csv",
+      "rows": 80,
+      "sha256": "0aaa73ef02fe02116115cf2ead4b94257dadce930ee8b934f34b179e2e39ce27"
+    },
+    {
+      "path": "results/processed/h15-validation.csv",
+      "rows": 5,
+      "sha256": "30d1603a93023eaca8739b2d63a19b0965aa4f9d6822571345815f916cbf00c2"
+    },
+    {
+      "path": "results/processed/h15-summary.csv",
+      "rows": 3,
+      "sha256": "210fbae619a63493e37667d89c0901b0566a7a507e316d7c7621f8c9cbc8c1e9"
+    }
+  ],
+  "stage": "H15",
+  "tables": {
+    "T10": "results/processed/h15-table-t10.csv",
+    "T13": "results/processed/h15-table-t13.csv",
+    "T15": "results/processed/h15-table-t15.csv",
+    "T16": "results/processed/h15-table-t16.csv",
+    "T7": "results/processed/h15-table-t7.csv",
+    "T8": "results/processed/h15-table-t8.csv",
+    "T9": "results/processed/h15-table-t9.csv"
+  },
+  "track": "AC",
+  "verified_sources": [
+    {
+      "path": "results/processed/h11-apply-cost.csv",
+      "sha256": "6200461441ac43cff6a6fcda2b3fab173b0edd81fc443ca9db9e02768329bb2b",
+      "source_manifest": "data/manifests/h11-main-sweep.json"
+    },
+    {
+      "path": "results/processed/h11-baseline-expectations.csv",
+      "sha256": "df65d2f53a18c2f24bf5cfb9b82a189ada238524edbcccb4ada8257db18749b5",
+      "source_manifest": "data/manifests/h11-main-sweep-payload.json"
+    },
+    {
+      "path": "results/processed/h11-sweep-scenarios.csv",
+      "sha256": "2170dd7f6c21d81735e14e01333d32da42413cd3f2d246997f114725f23baae6",
+      "source_manifest": "data/manifests/h11-main-sweep-payload.json"
+    },
+    {
+      "path": "results/processed/h12-arrival-cost.csv",
+      "sha256": "8d352f81f4570e07cb79cd61e4903b07eded7918460aa73104534e721a5790c5",
+      "source_manifest": "data/manifests/h12-real-revision-cost.json"
+    },
+    {
+      "path": "results/processed/h13c-failure-profile.csv",
+      "sha256": "e4ae9f399bf47a3a839d785d523ee0935d83ee176060368945d73d9dc7adfcd6",
+      "source_manifest": "data/manifests/h13c-reproducibility-audit.json"
+    },
+    {
+      "path": "results/processed/h13c-reproducibility-table.csv",
+      "sha256": "e150ac75936049327d975e0c3ad3234a8dddb520008d5216657489415a72741b",
+      "source_manifest": "data/manifests/h13c-reproducibility-audit.json"
+    },
+    {
+      "path": "results/processed/h14-query-plans.csv",
+      "sha256": "f3c6cd19b8e169e5c6f8c8430a730e61060e6321cc613ef0fd30bd5a319b88d6",
+      "source_manifest": "data/manifests/h14-plan-and-read-statistics.json"
+    },
+    {
+      "path": "results/processed/h14-read-summary.csv",
+      "sha256": "c808d17999e66fca937f3d5cf765201cd490db3eb16a42ac22717d327d2316af",
+      "source_manifest": "data/manifests/h14-plan-and-read-statistics.json"
+    },
+    {
+      "path": "results/processed/h14c-breakeven-conditions.csv",
+      "sha256": "d7f552ff8a70cb50ff5eecdab8487d9f3988b4d81b856d37d712e71b185d2fae",
+      "source_manifest": "data/manifests/h14c-breakeven-and-failure-analysis.json"
+    }
+  ]
+}

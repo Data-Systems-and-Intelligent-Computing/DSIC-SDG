@@ -589,8 +589,22 @@ rincian ada di
 [`docs/research/h14c-breakeven-and-failure-analysis.md`](docs/research/h14c-breakeven-and-failure-analysis.md).
 Marker: `H14C_VERIFY|8|6|1|0|3|125|B1,B3|validated`.
 
+H15 Jalur A dan C menyusun tabel dan gambar bagian Hasil, lalu menulis draf bagian tersebut. Tujuh
+tabel dibentuk karena memerlukan penggabungan lintas tahap, dan dua di antaranya, yaitu ongkos rilis
+nyata serta byte yang dibaca beserta rencana eksekusinya, ditandai sebagai tambahan setelah kerangka
+dibekukan pada H11 beserta alasannya. Data keempat gambar disimpan dalam bentuk tidy berisi 80 titik,
+lengkap dengan nilai minimum dan maksimum ketiga repetisi; tidak ada gambar yang dirender karena
+stack beku tidak memuat pustaka penggambar. Seluruh sumber diverifikasi terhadap checksum manifest
+tahapnya sebelum satu nilai pun dibaca, dan kontraknya melarang nilai yang diketik manual. Draf Hasil
+ditulis dalam bahasa Indonesia di
+[`papers/vintage_reconciliation/draft/05-hasil.md`](papers/vintage_reconciliation/draft/05-hasil.md)
+dengan 38 `metric_id` yang dirujuk dan diperiksa keberadaannya oleh pengujian. Jalankan
+`make h15-run`; rincian ada di
+[`docs/research/h15-result-tables-and-figures.md`](docs/research/h15-result-tables-and-figures.md).
+Marker: `H15_VERIFY|7|2|4|80|9|validated`.
+
 Semua angka dan tabel untuk naskah dikumpulkan di
-[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 50 tabel per pertanyaan
+[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 60 tabel per pertanyaan
 penelitian, 3 tabel turunan, dan 184 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
 dengan `make article-bundle`, yang memverifikasi checksum setiap sumber terhadap manifest tahapnya.
 Bahan mentah sumber di `data/raw/` hanya ada di laptop peneliti. `make raw-backup` membuat arsip

@@ -1,0 +1,5 @@
+treatment_id,own_table_bytes,own_table_data_files,staging_bytes,total_bytes,top_plan_operator,copy_on_write_rewrite
+B0,594148,10,517734,1111882,ReplaceData,yes
+B1,0,0,3469013,3469013,OverwriteByExpression,no
+B2,0,0,3489279,3489279,OverwriteByExpression,no
+B3,3078364,90,2550248,5628612,AppendData,no

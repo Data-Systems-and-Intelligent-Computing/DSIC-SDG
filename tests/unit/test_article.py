@@ -37,7 +37,7 @@ class ArticleBundleTests(unittest.TestCase):
 
             self.assertEqual(first, second)
             self.assertEqual(first_bytes, second_bytes)
-            self.assertEqual(first["copied_tables"], 50)
+            self.assertEqual(first["copied_tables"], 60)
             self.assertEqual(first["key_numbers"], 184)
             committed = ROOT / "papers/vintage_reconciliation/data"
             for relative, content in first_bytes.items():

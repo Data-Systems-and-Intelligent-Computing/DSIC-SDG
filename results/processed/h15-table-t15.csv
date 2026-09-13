@@ -1,0 +1,5 @@
+arrival_order,source_id,arriving_rows,overwritten_rows,value_changed_rows,b0_total_seconds,b1_total_seconds,b2_total_seconds,b3_total_seconds,b0_referenced_bytes,b1_referenced_bytes,b2_referenced_bytes,b3_referenced_bytes
+1,bps_tpb_2024,1560,0,0,14.849,8.267,15.117,24.454,121407,124697,133286,256218
+2,bps_tpb_2025,62,38,4,14.832,2.315,12.949,24.297,134128,275268,146070,328109
+3,bps_webapi,770,770,6,11.926,2.199,10.251,20.608,156186,448003,146660,429175
+4,bps_webapi,4591,797,33,10.577,2.269,9.371,19.570,329276,837744,312945,839008

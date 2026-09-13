@@ -451,6 +451,96 @@
       "sha256": "cf361eb60f0b86a651f6d7dd7302fca5a2897a59513f0f2bd26915bbce3264c0",
       "source_manifest": "data/manifests/h14c-breakeven-and-failure-analysis.json",
       "source_path": "results/processed/h14c-failure-synthesis.csv"
+    },
+    {
+      "description": "Tabel naskah T8 waktu penghitungan ulang per titik sweep (H15)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h15-table-t8.csv",
+      "rows": 6,
+      "sha256": "ba851ed8a05d55ea7dd678565433360dd9a1ee432e3ce65936468e185de79fc0",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
+      "source_path": "results/processed/h15-table-t8.csv"
+    },
+    {
+      "description": "Tabel naskah T9 pertambahan byte per titik sweep (H15)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h15-table-t9.csv",
+      "rows": 6,
+      "sha256": "fc6db1e4d5906f1750e00735a056f961f5dcf0c7f9cbf4dd1a3eb209ef224bd1",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
+      "source_path": "results/processed/h15-table-t9.csv"
+    },
+    {
+      "description": "Tabel naskah T10 titik impas dan syaratnya (H15)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h15-table-t10.csv",
+      "rows": 6,
+      "sha256": "ab8af2fe0c94f88f670f3f2484b05d5e590e3fca411e6ba65215cf6030c1f609",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
+      "source_path": "results/processed/h15-table-t10.csv"
+    },
+    {
+      "description": "Tabel naskah T15 ongkos menerapkan keempat rilis nyata (H15)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h15-table-t15.csv",
+      "rows": 4,
+      "sha256": "4647adf8a25cc176ea37ce564c8313dc188c2966449d98fb4ba9b2183e4e1b98",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
+      "source_path": "results/processed/h15-table-t15.csv"
+    },
+    {
+      "description": "Tabel naskah T16 byte yang dibaca dan rencana eksekusi (H15)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h15-table-t16.csv",
+      "rows": 4,
+      "sha256": "a78b6b60525815ee9d248c833270c7bfb780c9d6259f4db436b0704584c7a150",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
+      "source_path": "results/processed/h15-table-t16.csv"
+    },
+    {
+      "description": "Tabel naskah T7 keadaan dasar sweep tiap perlakuan (H15)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h15-table-t7.csv",
+      "rows": 4,
+      "sha256": "cce93c12110ea6801713b0c84ae675b7555a21313390fe3dab0942c9aeac49d1",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
+      "source_path": "results/processed/h15-table-t7.csv"
+    },
+    {
+      "description": "Tabel naskah T13 recall pada fixture dan panel (H15)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h15-table-t13.csv",
+      "rows": 2,
+      "sha256": "6ab01cfbb676a98abdacddf21df724a2a88e9d91669a9f877817d6f9a617e538",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
+      "source_path": "results/processed/h15-table-t13.csv"
+    },
+    {
+      "description": "Data keempat gambar bagian Hasil beserta rentang repetisinya (H15)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h15-figure-data.csv",
+      "rows": 80,
+      "sha256": "0aaa73ef02fe02116115cf2ead4b94257dadce930ee8b934f34b179e2e39ce27",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
+      "source_path": "results/processed/h15-figure-data.csv"
+    },
+    {
+      "description": "Daftar gambar beserta sumbu keterangan dan batas klaimnya (H15)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h15-figure-inventory.csv",
+      "rows": 4,
+      "sha256": "372f50e856e16a08a0e9075c671c488e65aa24734294a44d21f73ed4e7ea8ec3",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
+      "source_path": "results/processed/h15-figure-inventory.csv"
+    },
+    {
+      "description": "Daftar tabel naskah beserta sumber dan statusnya terhadap kerangka beku (H15)",
+      "group": "p4-reproducibility",
+      "path": "p4-reproducibility/h15-table-inventory.csv",
+      "rows": 7,
+      "sha256": "8f246c86296eebab373d657ec15e669c6351bb64a026b75cffe62d910aad464f",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
+      "source_path": "results/processed/h15-table-inventory.csv"
     }
   ],
   "derived_tables": [
@@ -476,7 +566,7 @@
   "inputs": [
     {
       "path": "config/article/bundle_tables.csv",
-      "sha256": "0b7d136b855bef30b70e704361461a72705df6ad0774be3b432d6c4ae2be9bf9"
+      "sha256": "be3bf2aaee2ed494a7218d1b39248708162b0845f2954bc000d7f9bf999e0179"
     }
   ],
   "verified_sources": [
@@ -619,6 +709,56 @@
       "path": "results/processed/h14c-failure-synthesis.csv",
       "sha256": "cf361eb60f0b86a651f6d7dd7302fca5a2897a59513f0f2bd26915bbce3264c0",
       "source_manifest": "data/manifests/h14c-breakeven-and-failure-analysis.json"
+    },
+    {
+      "path": "results/processed/h15-figure-data.csv",
+      "sha256": "0aaa73ef02fe02116115cf2ead4b94257dadce930ee8b934f34b179e2e39ce27",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
+    },
+    {
+      "path": "results/processed/h15-figure-inventory.csv",
+      "sha256": "372f50e856e16a08a0e9075c671c488e65aa24734294a44d21f73ed4e7ea8ec3",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
+    },
+    {
+      "path": "results/processed/h15-table-inventory.csv",
+      "sha256": "8f246c86296eebab373d657ec15e669c6351bb64a026b75cffe62d910aad464f",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
+    },
+    {
+      "path": "results/processed/h15-table-t10.csv",
+      "sha256": "ab8af2fe0c94f88f670f3f2484b05d5e590e3fca411e6ba65215cf6030c1f609",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
+    },
+    {
+      "path": "results/processed/h15-table-t13.csv",
+      "sha256": "6ab01cfbb676a98abdacddf21df724a2a88e9d91669a9f877817d6f9a617e538",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
+    },
+    {
+      "path": "results/processed/h15-table-t15.csv",
+      "sha256": "4647adf8a25cc176ea37ce564c8313dc188c2966449d98fb4ba9b2183e4e1b98",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
+    },
+    {
+      "path": "results/processed/h15-table-t16.csv",
+      "sha256": "a78b6b60525815ee9d248c833270c7bfb780c9d6259f4db436b0704584c7a150",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
+    },
+    {
+      "path": "results/processed/h15-table-t7.csv",
+      "sha256": "cce93c12110ea6801713b0c84ae675b7555a21313390fe3dab0942c9aeac49d1",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
+    },
+    {
+      "path": "results/processed/h15-table-t8.csv",
+      "sha256": "ba851ed8a05d55ea7dd678565433360dd9a1ee432e3ce65936468e185de79fc0",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
+    },
+    {
+      "path": "results/processed/h15-table-t9.csv",
+      "sha256": "fc6db1e4d5906f1750e00735a056f961f5dcf0c7f9cbf4dd1a3eb209ef224bd1",
+      "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
     },
     {
       "path": "results/processed/h2-indicator-summary.csv",

@@ -1,0 +1,8 @@
+table_id,research_question,title,origin,rows,output_path,sources,note
+T7,P3,Keadaan dasar sweep dan yang ditulis tiap perlakuan,frozen_frame,4,results/processed/h15-table-t7.csv,h11-sweep-scenarios.csv;h11-baseline-expectations.csv,
+T8,P3,Waktu penghitungan ulang per titik sweep,frozen_frame,6,results/processed/h15-table-t8.csv,h11-apply-cost.csv,
+T9,P3,Pertambahan byte per titik sweep,frozen_frame,6,results/processed/h15-table-t9.csv,h11-apply-cost.csv,
+T10,P3,Titik impas inkremental dan syaratnya,frozen_frame,6,results/processed/h15-table-t10.csv,h14c-breakeven-conditions.csv,
+T13,P4,Keberhasilan memanggil ulang angka terbit pada kedua skala,frozen_frame,2,results/processed/h15-table-t13.csv,h13c-reproducibility-table.csv;h13c-failure-profile.csv,
+T15,P3,Ongkos menerapkan keempat rilis nyata,added_after_the_frame_was_frozen,4,results/processed/h15-table-t15.csv,h12-arrival-cost.csv,H12 mengukur revisi nyata setelah kerangka dibekukan pada H11
+T16,P3,Byte yang dibaca dan rencana eksekusi tiap pernyataan tulis,added_after_the_frame_was_frozen,4,results/processed/h15-table-t16.csv,h14-read-summary.csv;h14-query-plans.csv,H14 menutup metrik s2 yang pada kerangka masih dinyatakan tidak terukur
