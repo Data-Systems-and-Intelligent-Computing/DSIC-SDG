@@ -117,6 +117,18 @@ p3_b0_release_2_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-2, B0",3.929,de
 p3_b0_release_4_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-4, B0",3.197,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 4591 baris masuk, 797 tertimpa"
 p3_b1_release_2_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-2, B1",2.315,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 62 baris masuk, 38 tertimpa"
 p3_b1_release_4_write_seconds,P3,H12,"Waktu tulis rilis nyata ke-4, B1",2.269,detik,results/processed/h12-arrival-cost.csv,"write_seconds_median; 4591 baris masuk, 797 tertimpa"
+s2_b0_sweep_001_bytes_read,P3,H14,"Byte yang dibaca satu revisi pada sweep_001, B0",1111875,byte,results/processed/h14-read-summary.csv,"tabel sendiri 594148 atas 10 berkas data, staging 517727"
+s2_b1_sweep_001_bytes_read,P3,H14,"Byte yang dibaca satu revisi pada sweep_001, B1",3469013,byte,results/processed/h14-read-summary.csv,"tabel sendiri 0 atas 0 berkas data, staging 3469013"
+s2_b2_sweep_001_bytes_read,P3,H14,"Byte yang dibaca satu revisi pada sweep_001, B2",3489276,byte,results/processed/h14-read-summary.csv,"tabel sendiri 0 atas 0 berkas data, staging 3489276"
+s2_b3_sweep_001_bytes_read,P3,H14,"Byte yang dibaca satu revisi pada sweep_001, B3",5618349,byte,results/processed/h14-read-summary.csv,"tabel sendiri 3073190 atas 90 berkas data, staging 2545159"
+s2_b0_sweep_038_bytes_read,P3,H14,"Byte yang dibaca satu revisi pada sweep_038, B0",1111882,byte,results/processed/h14-read-summary.csv,"tabel sendiri 594148 atas 10 berkas data, staging 517734"
+s2_b1_sweep_038_bytes_read,P3,H14,"Byte yang dibaca satu revisi pada sweep_038, B1",3469013,byte,results/processed/h14-read-summary.csv,"tabel sendiri 0 atas 0 berkas data, staging 3469013"
+s2_b2_sweep_038_bytes_read,P3,H14,"Byte yang dibaca satu revisi pada sweep_038, B2",3489279,byte,results/processed/h14-read-summary.csv,"tabel sendiri 0 atas 0 berkas data, staging 3489279"
+s2_b3_sweep_038_bytes_read,P3,H14,"Byte yang dibaca satu revisi pada sweep_038, B3",5628612,byte,results/processed/h14-read-summary.csv,"tabel sendiri 3078364 atas 90 berkas data, staging 2550248"
+p3_plan_b0,P3,H14,"Operator puncak rencana eksekusi pernyataan tulis, B0",ReplaceData,operator,results/processed/h14-query-plans.csv,copy-on-write rewrite: yes; join: BroadcastHashJoin;SortMergeJoin
+p3_plan_b1,P3,H14,"Operator puncak rencana eksekusi pernyataan tulis, B1",OverwriteByExpression,operator,results/processed/h14-query-plans.csv,copy-on-write rewrite: no; join: BroadcastHashJoin;BroadcastNestedLoopJoin
+p3_plan_b2,P3,H14,"Operator puncak rencana eksekusi pernyataan tulis, B2",OverwriteByExpression,operator,results/processed/h14-query-plans.csv,copy-on-write rewrite: no; join: BroadcastHashJoin
+p3_plan_b3,P3,H14,"Operator puncak rencana eksekusi pernyataan tulis, B3",AppendData,operator,results/processed/h14-query-plans.csv,copy-on-write rewrite: no; join: BroadcastHashJoin
 p3_points_checked,P3,H13,Titik pengukuran yang diperiksa sebarannya,40,titik,results/processed/h13-doubtful-points.csv,jumlah baris
 p3_points_doubtful,P3,H13,"Titik yang sebaran fase tulisnya melebihi ambang 0,20",6,titik,results/processed/h13-doubtful-points.csv,doubtful = yes
 p3_points_rerun,P3,H13,Titik yang menerima repetisi tambahan,20,titik,results/processed/h13-stability.csv,verdict != not_rerun

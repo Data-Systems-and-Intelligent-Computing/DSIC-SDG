@@ -1,0 +1,14 @@
+run_label=h14-20260913
+git_commit=684ea511d60f2c4e4e8efdbca7226c2138d40ced
+git_dirty_entries=0
+git_dirty_paths=results/raw/h14/
+hostname=praktikum-sd
+host_nproc=2
+spark_driver_memory=2g
+spark_defaults_sha256=77c1f777f4a29b6cc69c14fb4b9b7fdbc5b603a9fd4f68173a0e6aa02d2a5339
+payload_manifest_sha256=f15b439b77c79dc670b81638b359ef2489bda16eb319d24093377b53f04bdc88
+repetitions=2
+scenarios=sweep_001;sweep_038
+instrumentation=event_log_enabled;timings_not_reported
+started_at_utc=2026-09-12T23:50:20Z
+finished_at_utc=2026-09-13T00:10:54Z

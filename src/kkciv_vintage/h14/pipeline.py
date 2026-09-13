@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import re
+import statistics
 from decimal import Decimal
 from pathlib import Path
 from typing import Any
@@ -38,8 +40,13 @@ READ_SUMMARY_COLUMNS = [
     "scenario_id",
     "treatment_id",
     "executions",
-    "iceberg_bytes_read",
-    "file_bytes_read",
+    "iceberg_bytes_read_median",
+    "iceberg_bytes_read_min",
+    "iceberg_bytes_read_max",
+    "file_bytes_read_median",
+    "file_bytes_read_min",
+    "file_bytes_read_max",
+    "bytes_spread_ratio",
     "bytes_read",
     "delete_bytes_read",
     "data_files_read",
@@ -52,6 +59,7 @@ PLAN_COLUMNS = [
     "treatment_id",
     "plan_path",
     "plan_sha256",
+    "plan_raw_sha256",
     "plan_lines",
     "top_operator",
     "copy_on_write_rewrite",
@@ -60,6 +68,15 @@ PLAN_COLUMNS = [
 ]
 ARTIFACT_COLUMNS = ["kind", "path", "bytes", "sha256"]
 JOIN_PATTERN = re.compile(r"\b(SortMergeJoin|BroadcastHashJoin|ShuffledHashJoin|BroadcastNestedLoopJoin)\b")
+# The write node prints the identity of the lambda object that builds it, and that identity
+# belongs to the JVM, not to the plan.
+LAMBDA_PATTERN = re.compile(r"\$\$Lambda\$\d+/0x[0-9a-f]+@[0-9a-f]+")
+ADDRESS_PATTERN = re.compile(r"@[0-9a-f]{6,}")
+
+
+def normalise_plan(text: str) -> str:
+    """Strip the JVM object identities a plan prints, so two runs can be compared."""
+    return ADDRESS_PATTERN.sub("@<address>", LAMBDA_PATTERN.sub("$$Lambda@<address>", text))
 
 
 def validate_contract(contract: dict[str, Any]) -> None:
@@ -83,7 +100,7 @@ def validate_contract(contract: dict[str, Any]) -> None:
 
 
 def audit_read_statistics(
-    lines: list[list[str]], *, repetitions: int, scenarios: list[str]
+    lines: list[list[str]], *, repetitions: int, scenarios: list[str], tolerance: float = 0.001
 ) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
     rows: list[dict[str, str]] = []
     for (
@@ -162,22 +179,57 @@ def audit_read_statistics(
             ]
             if len(measured) != repetitions:
                 raise ValueError(f"H14 has no read statistics for {treatment} at {scenario} in every repetition")
-            distinct = {tuple(sorted(entry.items())) for entry in measured}
-            if len(distinct) != 1:
+            # What a statement reads is structurally fixed for a given state, so the file
+            # and row counts must repeat exactly. The byte sizes move by a fraction of a
+            # percent, because a Parquet file this cycle wrote is not byte-identical to the
+            # one the previous cycle wrote and a staging split boundary can shift.
+            exact = [
+                tuple(
+                    entry[column]
+                    for column in (
+                        "executions",
+                        "delete_bytes_read",
+                        "data_files_read",
+                        "data_files_skipped",
+                        "output_rows",
+                    )
+                )
+                for entry in measured
+            ]
+            if len(set(exact)) != 1:
                 raise ValueError(
-                    f"H14 read statistics for {treatment} at {scenario} differ between repetitions: {measured}"
+                    f"H14 read counts for {treatment} at {scenario} differ between repetitions: {measured}"
+                )
+            sizes = {}
+            spread = 0.0
+            for column in ("iceberg_bytes_read", "file_bytes_read"):
+                values = [entry[column] for entry in measured]
+                median = int(statistics.median(values))
+                sizes[column] = (median, min(values), max(values))
+                if median:
+                    spread = max(spread, (max(values) - min(values)) / median)
+            if spread > tolerance:
+                raise ValueError(
+                    f"H14 read sizes for {treatment} at {scenario} vary by {spread:.6f}, "
+                    f"beyond the tolerance {tolerance}"
                 )
             entry = measured[0]
-            if entry["bytes_read"] <= 0:
+            total = sizes["iceberg_bytes_read"][0] + sizes["file_bytes_read"][0]
+            if total <= 0:
                 raise ValueError(f"H14 measured no read bytes for {treatment} at {scenario}")
             summary.append(
                 {
                     "scenario_id": scenario,
                     "treatment_id": treatment,
                     "executions": str(entry["executions"]),
-                    "iceberg_bytes_read": str(entry["iceberg_bytes_read"]),
-                    "file_bytes_read": str(entry["file_bytes_read"]),
-                    "bytes_read": str(entry["bytes_read"]),
+                    "iceberg_bytes_read_median": str(sizes["iceberg_bytes_read"][0]),
+                    "iceberg_bytes_read_min": str(sizes["iceberg_bytes_read"][1]),
+                    "iceberg_bytes_read_max": str(sizes["iceberg_bytes_read"][2]),
+                    "file_bytes_read_median": str(sizes["file_bytes_read"][0]),
+                    "file_bytes_read_min": str(sizes["file_bytes_read"][1]),
+                    "file_bytes_read_max": str(sizes["file_bytes_read"][2]),
+                    "bytes_spread_ratio": f"{spread:.6f}",
+                    "bytes_read": str(total),
                     "delete_bytes_read": str(entry["delete_bytes_read"]),
                     "data_files_read": str(entry["data_files_read"]),
                     "data_files_skipped": str(entry["data_files_skipped"]),
@@ -196,11 +248,15 @@ def audit_plans(
     for scenario in scenarios:
         for treatment in TREATMENTS:
             digests: dict[str, str] = {}
+            raw_digests: dict[str, str] = {}
             for rep in range(1, repetitions + 1):
                 path = raw_dir / "plans" / f"rep{rep}-{scenario}-{treatment}.plan"
                 if not path.exists():
                     raise ValueError(f"H14 captured no plan at {path}")
-                digests[str(rep)] = _sha256(path)
+                raw_digests[str(rep)] = _sha256(path)
+                digests[str(rep)] = hashlib.sha256(
+                    normalise_plan(path.read_text(encoding="utf-8")).encode("utf-8")
+                ).hexdigest()
             first = raw_dir / "plans" / f"rep1-{scenario}-{treatment}.plan"
             text = first.read_text(encoding="utf-8")
             body = [line for line in text.splitlines() if line.strip()]
@@ -211,6 +267,7 @@ def audit_plans(
                     "treatment_id": treatment,
                     "plan_path": str(first),
                     "plan_sha256": digests["1"],
+                    "plan_raw_sha256": raw_digests["1"],
                     "plan_lines": str(len(body)),
                     "top_operator": operators[0].split(" ")[0] if operators else "",
                     "copy_on_write_rewrite": "yes" if "ReplaceData" in text else "no",
@@ -259,14 +316,21 @@ def build_validation(
         len(read_summary),
         ";".join(f"{row['scenario_id']}|{row['treatment_id']}={row['bytes_read']}" for row in read_summary),
     )
+    tolerance = float(contract["instrumentation"]["read_statistics"]["determinism"]["tolerance"])
     add(
-        "the read statistics agree between repetitions",
-        all(row["repetitions_agreeing"] == str(contract["protocol"]["repetitions"]) for row in read_summary),
+        "the read counts repeat exactly and the read sizes stay inside the tolerance",
+        all(
+            row["repetitions_agreeing"] == str(contract["protocol"]["repetitions"])
+            and float(row["bytes_spread_ratio"]) <= tolerance
+            for row in read_summary
+        ),
         len(read_rows),
-        f"{contract['protocol']['repetitions']} repetitions of the same statement over the same state",
+        "largest size spread "
+        + max((row["bytes_spread_ratio"] for row in read_summary), default="0")
+        + f" against tolerance {tolerance}",
     )
     add(
-        "the captured plan of a statement is identical between repetitions",
+        "the captured plan of a statement is identical between repetitions once JVM identities are normalised",
         all(row["repetitions_agreeing"] == "1" for row in plans),
         len(plans),
         ";".join(f"{row['treatment_id']}:{row['plan_sha256'][:8]}" for row in plans),
@@ -300,9 +364,9 @@ def build_summary(
                 "value": row["bytes_read"],
                 "unit": "bytes",
                 "interpretation": (
-                    f"{row['iceberg_bytes_read']} from its own table over {row['data_files_read']} data files "
-                    f"({row['data_files_skipped']} skipped) and {row['file_bytes_read']} from the staging files, "
-                    f"over {row['executions']} executions"
+                    f"{row['iceberg_bytes_read_median']} from its own table over {row['data_files_read']} data files "
+                    f"({row['data_files_skipped']} skipped) and {row['file_bytes_read_median']} from the staging "
+                    f"files, over {row['executions']} executions"
                 ),
             }
         )
@@ -357,6 +421,7 @@ def run_h14(
         _lines(raw_dir / "read-statistics.txt", "H14R"),
         repetitions=repetitions,
         scenarios=scenarios,
+        tolerance=float(contract["instrumentation"]["read_statistics"]["determinism"]["tolerance"]),
     )
     plans, artifacts = audit_plans(raw_dir=raw_dir, repetitions=repetitions, scenarios=scenarios)
     validation_rows = build_validation(
@@ -395,6 +460,8 @@ def run_h14(
         "read_statistics": {
             f"{row['scenario_id']}|{row['treatment_id']}": {
                 "bytes_read": row["bytes_read"],
+                "iceberg_bytes_read_median": row["iceberg_bytes_read_median"],
+                "file_bytes_read_median": row["file_bytes_read_median"],
                 "data_files_read": row["data_files_read"],
                 "data_files_skipped": row["data_files_skipped"],
             }

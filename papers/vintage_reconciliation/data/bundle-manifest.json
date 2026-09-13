@@ -397,6 +397,24 @@
       "sha256": "3e076df75f02a496fa3d66c4af617e0eb597aaf81f33ceab309d26f9e6e91e93",
       "source_manifest": "data/manifests/h13c-reproducibility-audit.json",
       "source_path": "results/processed/h13c-failure-cases.csv"
+    },
+    {
+      "description": "Byte yang dibaca tiap pernyataan tulis dari tabelnya sendiri dan dari berkas staging (H14)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h14-read-summary.csv",
+      "rows": 8,
+      "sha256": "c808d17999e66fca937f3d5cf765201cd490db3eb16a42ac22717d327d2316af",
+      "source_manifest": "data/manifests/h14-plan-and-read-statistics.json",
+      "source_path": "results/processed/h14-read-summary.csv"
+    },
+    {
+      "description": "Rencana eksekusi setiap pernyataan tulis beserta operator puncak dan jenis join-nya (H14)",
+      "group": "p3-ongkos",
+      "path": "p3-ongkos/h14-query-plans.csv",
+      "rows": 8,
+      "sha256": "f3c6cd19b8e169e5c6f8c8430a730e61060e6321cc613ef0fd30bd5a319b88d6",
+      "source_manifest": "data/manifests/h14-plan-and-read-statistics.json",
+      "source_path": "results/processed/h14-query-plans.csv"
     }
   ],
   "derived_tables": [
@@ -415,14 +433,14 @@
     {
       "description": "Angka kunci naskah beserta sumber dan cara penurunannya",
       "path": "angka-kunci.csv",
-      "rows": 160,
-      "sha256": "811b53f3050235be606ed75e7505beb17ad4d651c65a10c9c446514fb743483f"
+      "rows": 172,
+      "sha256": "7399299c0a933ab1265a69e37063fb211af2e419cd87ac53841cccc03b5e86d9"
     }
   ],
   "inputs": [
     {
       "path": "config/article/bundle_tables.csv",
-      "sha256": "1db6e5050da2d471298782e3b58212d320ccc2e9fb600f1c69aaa3cdc3035154"
+      "sha256": "ab2f873b5969ffc1016a7aefc323f85a011588b8176732f43bae8650800ca15b"
     }
   ],
   "verified_sources": [
@@ -535,6 +553,16 @@
       "path": "results/processed/h13c-reproducibility-table.csv",
       "sha256": "e150ac75936049327d975e0c3ad3234a8dddb520008d5216657489415a72741b",
       "source_manifest": "data/manifests/h13c-reproducibility-audit.json"
+    },
+    {
+      "path": "results/processed/h14-query-plans.csv",
+      "sha256": "f3c6cd19b8e169e5c6f8c8430a730e61060e6321cc613ef0fd30bd5a319b88d6",
+      "source_manifest": "data/manifests/h14-plan-and-read-statistics.json"
+    },
+    {
+      "path": "results/processed/h14-read-summary.csv",
+      "sha256": "c808d17999e66fca937f3d5cf765201cd490db3eb16a42ac22717d327d2316af",
+      "source_manifest": "data/manifests/h14-plan-and-read-statistics.json"
     },
     {
       "path": "results/processed/h2-indicator-summary.csv",

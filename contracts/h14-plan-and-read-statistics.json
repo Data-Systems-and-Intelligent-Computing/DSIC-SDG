@@ -26,7 +26,12 @@
     "plan_capture": {
       "statement": "EXPLAIN FORMATTED of every write statement, captured before the statement is executed",
       "conf": "spark.sql.debug.maxToStringFields=200",
-      "why_the_conf": "the default truncates long plans; the setting changes only how a plan is rendered, never how it runs"
+      "why_the_conf": "the default truncates long plans; the setting changes only how a plan is rendered, never how it runs",
+      "normalisation": {
+        "rule": "JVM object identities are rewritten before the plan is compared: lambda class names with their code-cache address, and any bare object hash, become a placeholder",
+        "why": "the write node prints the identity of the lambda object that builds it, and that identity changes with every JVM; the plan itself does not",
+        "both_digests_reported": "the normalised digest decides whether two runs planned the same statement, and the raw digest of the preserved file is recorded next to it"
+      }
     },
     "read_statistics": {
       "source": "Iceberg scan metrics reported as driver accumulator updates in the Spark event log",
@@ -38,7 +43,21 @@
         "number of output rows"
       ],
       "meaning": "bytes of the data files a scan reads after pruning, not decompressed bytes and not object-store traffic",
-      "closes_metric": "s2"
+      "closes_metric": "s2",
+      "determinism": {
+        "exact": [
+          "number of result data files",
+          "number of skipped data files",
+          "number of output rows",
+          "number of executions"
+        ],
+        "tolerated": [
+          "total data file size (bytes)",
+          "staging file bytes read"
+        ],
+        "tolerance": 0.001,
+        "why": "what a statement reads is structurally fixed for a given state, so the file and row counts repeat exactly; the byte sizes move by a fraction of a percent because a Parquet file written in this cycle is not byte-identical to the one written in the previous cycle and because a staging split boundary can shift"
+      }
     }
   },
   "workload": {

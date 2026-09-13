@@ -43,3 +43,5 @@ p3-ongkos,results/processed/h13-stability.csv,Median terbitan dan median gabunga
 p4-reproducibility,results/processed/h13c-reproducibility-table.csv,Keberhasilan memanggil ulang angka terbit pada fixture dan pada panel untuk keempat perlakuan (H13C)
 p4-reproducibility,results/processed/h13c-failure-profile.csv,Profil kegagalan menurut perlakuan sebab sumber domain dan tingkat geografi (H13C)
 p4-reproducibility,results/processed/h13c-failure-cases.csv,Angka terbit yang tidak dapat dihasilkan ulang beserta nilai penggantinya dan locator sumbernya (H13C)
+p3-ongkos,results/processed/h14-read-summary.csv,Byte yang dibaca tiap pernyataan tulis dari tabelnya sendiri dan dari berkas staging (H14)
+p3-ongkos,results/processed/h14-query-plans.csv,Rencana eksekusi setiap pernyataan tulis beserta operator puncak dan jenis join-nya (H14)

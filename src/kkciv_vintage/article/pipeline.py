@@ -289,6 +289,17 @@ def key_numbers(src: Sources) -> list[dict[str, str]]:
             row = real_cost[(arrival, treatment)]
             add(f"p3_{treatment.lower()}_release_{arrival}_write_seconds", "P3", "H12", f"Waktu tulis rilis nyata ke-{arrival}, {treatment}", row["write_seconds_median"], "detik", "h12-arrival-cost.csv", f"write_seconds_median; {row['arriving_rows']} baris masuk, {row['overwritten_rows']} tertimpa")
 
+    reads = {(r["scenario_id"], r["treatment_id"]): r for r in src.rows("h14-read-summary.csv")}
+    plans = {(r["scenario_id"], r["treatment_id"]): r for r in src.rows("h14-query-plans.csv")}
+    read_points = sorted({key[0] for key in reads})
+    for point in read_points:
+        for treatment in TREATMENTS:
+            row = reads[(point, treatment)]
+            add(f"s2_{treatment.lower()}_{point}_bytes_read", "P3", "H14", f"Byte yang dibaca satu revisi pada {point}, {treatment}", row["bytes_read"], "byte", "h14-read-summary.csv", f"tabel sendiri {row['iceberg_bytes_read_median']} atas {row['data_files_read']} berkas data, staging {row['file_bytes_read_median']}")
+    for treatment in TREATMENTS:
+        row = plans[(read_points[-1], treatment)]
+        add(f"p3_plan_{treatment.lower()}", "P3", "H14", f"Operator puncak rencana eksekusi pernyataan tulis, {treatment}", row["top_operator"], "operator", "h14-query-plans.csv", f"copy-on-write rewrite: {row['copy_on_write_rewrite']}; join: {row['join_operators']}")
+
     doubt = src.rows("h13-doubtful-points.csv")
     stability = src.rows("h13-stability.csv")
     rerun = [r for r in stability if r["verdict"] != "not_rerun"]

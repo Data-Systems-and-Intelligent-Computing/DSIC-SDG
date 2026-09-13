@@ -1,0 +1,229 @@
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/09/13 00:03:23 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/09/13 00:03:24 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+26/09/13 00:03:26 WARN HiveConf: HiveConf of name hive.stats.jdbc.timeout does not exist
+26/09/13 00:03:26 WARN HiveConf: HiveConf of name hive.stats.retries.wait does not exist
+26/09/13 00:03:29 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 2.3.0
+26/09/13 00:03:29 WARN ObjectStore: setMetaStoreSchemaVersion called but recording version is disabled: version = 2.3.0, comment = Set by MetaStore UNKNOWN@172.19.0.4
+Spark Web UI available at http://fcc158e6c316:4041
+Spark master: local[*], Application Id: local-1789257804925
+Time taken: 6.976 seconds
+Time taken: 0.491 seconds
+Time taken: 0.434 seconds
+Time taken: 0.572 seconds
+Time taken: 0.371 seconds
+Time taken: 0.47 seconds
+Time taken: 0.423 seconds
+Time taken: 0.378 seconds
+Time taken: 0.154 seconds
+Time taken: 0.073 seconds
+Time taken: 0.183 seconds
+Time taken: 0.226 seconds
+Time taken: 0.059 seconds
+Time taken: 0.041 seconds
+== Physical Plan ==
+OverwriteByExpression (37)
++- AdaptiveSparkPlan (36)
+   +- Exchange (35)
+      +- Project (34)
+         +- BroadcastHashJoin Inner BuildRight (33)
+            :- Project (24)
+            :  +- Filter (23)
+            :     +- Window (22)
+            :        +- WindowGroupLimit (21)
+            :           +- Sort (20)
+            :              +- Exchange (19)
+            :                 +- WindowGroupLimit (18)
+            :                    +- Sort (17)
+            :                       +- BroadcastNestedLoopJoin Inner BuildRight (16)
+            :                          :- Union (12)
+            :                          :  :- Project (8)
+            :                          :  :  +- BroadcastHashJoin Inner BuildRight (7)
+            :                          :  :     :- Filter (2)
+            :                          :  :     :  +- Scan csv  (1)
+            :                          :  :     +- BroadcastExchange (6)
+            :                          :  :        +- Project (5)
+            :                          :  :           +- Filter (4)
+            :                          :  :              +- Scan csv  (3)
+            :                          :  +- Project (11)
+            :                          :     +- Filter (10)
+            :                          :        +- Scan csv  (9)
+            :                          +- BroadcastExchange (15)
+            :                             +- Generate (14)
+            :                                +- Scan OneRowRelation (13)
+            +- BroadcastExchange (32)
+               +- Union (31)
+                  :- Project (27)
+                  :  +- Filter (26)
+                  :     +- Scan csv  (25)
+                  +- Project (30)
+                     +- Filter (29)
+                        +- Scan csv  (28)
+
+
+(1) Scan csv 
+Output [26]: [observation_id#17, cell_id#18, vintage_id#19, domain#20, indicator_key#21, series_key#22, observed_period#23, period_granularity#24, geo_level#25, geo_code#26, geo_name#27, unit#28, value_decimal#29, value_lexeme#30, published_decimal_places#31, producer#32, methodology_version#33, source_artifact_path#34, source_artifact_sha256#35, source_record_id#36, ingestion_batch_id#37, transformation_run_id#38, transformation_version#39, trace_id#40, cause_family#41, evidence_level#42]
+Batched: false
+Location: InMemoryFileIndex [file:/home/iceberg/results/processed/h11-panel-observations.csv]
+PushedFilters: [IsNotNull(vintage_id)]
+ReadSchema: struct<observation_id:string,cell_id:string,vintage_id:string,domain:string,indicator_key:string,series_key:string,observed_period:string,period_granularity:string,geo_level:string,geo_code:string,geo_name:string,unit:string,value_decimal:string,value_lexeme:string,published_decimal_places:string,producer:string,methodology_version:string,source_artifact_path:string,source_artifact_sha256:string,source_record_id:string,ingestion_batch_id:string,transformation_run_id:string,transformation_version:string,trace_id:string,cause_family:string,evidence_level:string>
+
+(2) Filter
+Input [26]: [observation_id#17, cell_id#18, vintage_id#19, domain#20, indicator_key#21, series_key#22, observed_period#23, period_granularity#24, geo_level#25, geo_code#26, geo_name#27, unit#28, value_decimal#29, value_lexeme#30, published_decimal_places#31, producer#32, methodology_version#33, source_artifact_path#34, source_artifact_sha256#35, source_record_id#36, ingestion_batch_id#37, transformation_run_id#38, transformation_version#39, trace_id#40, cause_family#41, evidence_level#42]
+Condition : isnotnull(vintage_id#19)
+
+(3) Scan csv 
+Output [2]: [vintage_id#86, arrival_order#95]
+Batched: false
+Location: InMemoryFileIndex [file:/home/iceberg/results/processed/h11-panel-vintages.csv]
+PushedFilters: [IsNotNull(vintage_id)]
+ReadSchema: struct<vintage_id:string,arrival_order:string>
+
+(4) Filter
+Input [2]: [vintage_id#86, arrival_order#95]
+Condition : (isnotnull(vintage_id#86) AND isnotnull(cast(arrival_order#95 as int)))
+
+(5) Project
+Output [2]: [vintage_id#86, cast(arrival_order#95 as int) AS arrival_order#550]
+Input [2]: [vintage_id#86, arrival_order#95]
+
+(6) BroadcastExchange
+Input [2]: [vintage_id#86, arrival_order#550]
+Arguments: HashedRelationBroadcastMode(List(input[0, string, true]),false), [plan_id=354]
+
+(7) BroadcastHashJoin
+Left keys [1]: [vintage_id#19]
+Right keys [1]: [vintage_id#86]
+Join type: Inner
+Join condition: None
+
+(8) Project
+Output [27]: [observation_id#17 AS observation_id#477, cell_id#18 AS cell_id#478, vintage_id#19 AS vintage_id#479, domain#20 AS domain#480, indicator_key#21 AS indicator_key#481, series_key#22 AS series_key#482, observed_period#23 AS observed_period#483, period_granularity#24 AS period_granularity#484, geo_level#25 AS geo_level#485, geo_code#26 AS geo_code#486, geo_name#27 AS geo_name#487, unit#28 AS unit#488, cast(value_decimal#29 as decimal(38,10)) AS value_decimal#489, value_lexeme#30 AS value_lexeme#490, cast(published_decimal_places#31 as int) AS published_decimal_places#491, producer#32 AS producer#492, methodology_version#33 AS methodology_version#493, source_artifact_path#34 AS source_artifact_path#494, source_artifact_sha256#35 AS source_artifact_sha256#495, source_record_id#36 AS source_record_id#496, ingestion_batch_id#37 AS ingestion_batch_id#497, transformation_run_id#38 AS transformation_run_id#498, transformation_version#39 AS transformation_version#499, trace_id#40 AS trace_id#500, cause_family#41 AS cause_family#501, evidence_level#42 AS evidence_level#502, arrival_order#550 AS arrival_order#507]
+Input [28]: [observation_id#17, cell_id#18, vintage_id#19, domain#20, indicator_key#21, series_key#22, observed_period#23, period_granularity#24, geo_level#25, geo_code#26, geo_name#27, unit#28, value_decimal#29, value_lexeme#30, published_decimal_places#31, producer#32, methodology_version#33, source_artifact_path#34, source_artifact_sha256#35, source_record_id#36, ingestion_batch_id#37, transformation_run_id#38, transformation_version#39, trace_id#40, cause_family#41, evidence_level#42, vintage_id#86, arrival_order#550]
+
+(9) Scan csv 
+Output [28]: [scenario_id#243, observation_id#244, cell_id#245, vintage_id#246, domain#247, indicator_key#248, series_key#249, observed_period#250, period_granularity#251, geo_level#252, geo_code#253, geo_name#254, unit#255, value_decimal#256, value_lexeme#257, published_decimal_places#258, producer#259, methodology_version#260, source_artifact_path#261, source_artifact_sha256#262, source_record_id#263, ingestion_batch_id#264, transformation_run_id#265, transformation_version#266, trace_id#267, cause_family#268, evidence_level#269, arrival_order#273]
+Batched: false
+Location: InMemoryFileIndex [file:/home/iceberg/results/processed/h11-sweep-synthetic-observations.csv]
+PushedFilters: [IsNotNull(scenario_id), EqualTo(scenario_id,sweep_001)]
+ReadSchema: struct<scenario_id:string,observation_id:string,cell_id:string,vintage_id:string,domain:string,indicator_key:string,series_key:string,observed_period:string,period_granularity:string,geo_level:string,geo_code:string,geo_name:string,unit:string,value_decimal:string,value_lexeme:string,published_decimal_places:string,producer:string,methodology_version:string,source_artifact_path:string,source_artifact_sha256:string,source_record_id:string,ingestion_batch_id:string,transformation_run_id:string,transformation_version:string,trace_id:string,cause_family:string,evidence_level:string,arrival_order:string>
+
+(10) Filter
+Input [28]: [scenario_id#243, observation_id#244, cell_id#245, vintage_id#246, domain#247, indicator_key#248, series_key#249, observed_period#250, period_granularity#251, geo_level#252, geo_code#253, geo_name#254, unit#255, value_decimal#256, value_lexeme#257, published_decimal_places#258, producer#259, methodology_version#260, source_artifact_path#261, source_artifact_sha256#262, source_record_id#263, ingestion_batch_id#264, transformation_run_id#265, transformation_version#266, trace_id#267, cause_family#268, evidence_level#269, arrival_order#273]
+Condition : ((isnotnull(scenario_id#243) AND (scenario_id#243 = sweep_001)) AND isnotnull(cast(arrival_order#273 as int)))
+
+(11) Project
+Output [27]: [observation_id#244, cell_id#245, vintage_id#246, domain#247, indicator_key#248, series_key#249, observed_period#250, period_granularity#251, geo_level#252, geo_code#253, geo_name#254, unit#255, cast(value_decimal#256 as decimal(38,10)) AS value_decimal#625, value_lexeme#257, cast(published_decimal_places#258 as int) AS published_decimal_places#627, producer#259, methodology_version#260, source_artifact_path#261, source_artifact_sha256#262, source_record_id#263, ingestion_batch_id#264, transformation_run_id#265, transformation_version#266, trace_id#267, cause_family#268, evidence_level#269, cast(arrival_order#273 as int) AS arrival_order#643]
+Input [28]: [scenario_id#243, observation_id#244, cell_id#245, vintage_id#246, domain#247, indicator_key#248, series_key#249, observed_period#250, period_granularity#251, geo_level#252, geo_code#253, geo_name#254, unit#255, value_decimal#256, value_lexeme#257, published_decimal_places#258, producer#259, methodology_version#260, source_artifact_path#261, source_artifact_sha256#262, source_record_id#263, ingestion_batch_id#264, transformation_run_id#265, transformation_version#266, trace_id#267, cause_family#268, evidence_level#269, arrival_order#273]
+
+(12) Union
+
+(13) Scan OneRowRelation
+Output: []
+Arguments: ParallelCollectionRDD[80] at processLine at CliDriver.java:336, OneRowRelation, UnknownPartitioning(0)
+
+(14) Generate
+Input: []
+Arguments: explode(org.apache.spark.sql.catalyst.expressions.UnsafeArrayData@63bcdd51), false, [snapshot_order#587]
+
+(15) BroadcastExchange
+Input [1]: [snapshot_order#587]
+Arguments: IdentityBroadcastMode, [plan_id=359]
+
+(16) BroadcastNestedLoopJoin
+Join type: Inner
+Join condition: (arrival_order#507 <= snapshot_order#587)
+
+(17) Sort
+Input [28]: [observation_id#477, cell_id#478, vintage_id#479, domain#480, indicator_key#481, series_key#482, observed_period#483, period_granularity#484, geo_level#485, geo_code#486, geo_name#487, unit#488, value_decimal#489, value_lexeme#490, published_decimal_places#491, producer#492, methodology_version#493, source_artifact_path#494, source_artifact_sha256#495, source_record_id#496, ingestion_batch_id#497, transformation_run_id#498, transformation_version#499, trace_id#500, cause_family#501, evidence_level#502, arrival_order#507, snapshot_order#587]
+Arguments: [snapshot_order#587 ASC NULLS FIRST, cell_id#478 ASC NULLS FIRST, arrival_order#507 DESC NULLS LAST], false, 0
+
+(18) WindowGroupLimit
+Input [28]: [observation_id#477, cell_id#478, vintage_id#479, domain#480, indicator_key#481, series_key#482, observed_period#483, period_granularity#484, geo_level#485, geo_code#486, geo_name#487, unit#488, value_decimal#489, value_lexeme#490, published_decimal_places#491, producer#492, methodology_version#493, source_artifact_path#494, source_artifact_sha256#495, source_record_id#496, ingestion_batch_id#497, transformation_run_id#498, transformation_version#499, trace_id#500, cause_family#501, evidence_level#502, arrival_order#507, snapshot_order#587]
+Arguments: [snapshot_order#587, cell_id#478], [arrival_order#507 DESC NULLS LAST], row_number(), 1, Partial
+
+(19) Exchange
+Input [28]: [observation_id#477, cell_id#478, vintage_id#479, domain#480, indicator_key#481, series_key#482, observed_period#483, period_granularity#484, geo_level#485, geo_code#486, geo_name#487, unit#488, value_decimal#489, value_lexeme#490, published_decimal_places#491, producer#492, methodology_version#493, source_artifact_path#494, source_artifact_sha256#495, source_record_id#496, ingestion_batch_id#497, transformation_run_id#498, transformation_version#499, trace_id#500, cause_family#501, evidence_level#502, arrival_order#507, snapshot_order#587]
+Arguments: hashpartitioning(snapshot_order#587, cell_id#478, 200), ENSURE_REQUIREMENTS, [plan_id=365]
+
+(20) Sort
+Input [28]: [observation_id#477, cell_id#478, vintage_id#479, domain#480, indicator_key#481, series_key#482, observed_period#483, period_granularity#484, geo_level#485, geo_code#486, geo_name#487, unit#488, value_decimal#489, value_lexeme#490, published_decimal_places#491, producer#492, methodology_version#493, source_artifact_path#494, source_artifact_sha256#495, source_record_id#496, ingestion_batch_id#497, transformation_run_id#498, transformation_version#499, trace_id#500, cause_family#501, evidence_level#502, arrival_order#507, snapshot_order#587]
+Arguments: [snapshot_order#587 ASC NULLS FIRST, cell_id#478 ASC NULLS FIRST, arrival_order#507 DESC NULLS LAST], false, 0
+
+(21) WindowGroupLimit
+Input [28]: [observation_id#477, cell_id#478, vintage_id#479, domain#480, indicator_key#481, series_key#482, observed_period#483, period_granularity#484, geo_level#485, geo_code#486, geo_name#487, unit#488, value_decimal#489, value_lexeme#490, published_decimal_places#491, producer#492, methodology_version#493, source_artifact_path#494, source_artifact_sha256#495, source_record_id#496, ingestion_batch_id#497, transformation_run_id#498, transformation_version#499, trace_id#500, cause_family#501, evidence_level#502, arrival_order#507, snapshot_order#587]
+Arguments: [snapshot_order#587, cell_id#478], [arrival_order#507 DESC NULLS LAST], row_number(), 1, Final
+
+(22) Window
+Input [28]: [observation_id#477, cell_id#478, vintage_id#479, domain#480, indicator_key#481, series_key#482, observed_period#483, period_granularity#484, geo_level#485, geo_code#486, geo_name#487, unit#488, value_decimal#489, value_lexeme#490, published_decimal_places#491, producer#492, methodology_version#493, source_artifact_path#494, source_artifact_sha256#495, source_record_id#496, ingestion_batch_id#497, transformation_run_id#498, transformation_version#499, trace_id#500, cause_family#501, evidence_level#502, arrival_order#507, snapshot_order#587]
+Arguments: [row_number() windowspecdefinition(snapshot_order#587, cell_id#478, arrival_order#507 DESC NULLS LAST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS resolution_rank#461], [snapshot_order#587, cell_id#478], [arrival_order#507 DESC NULLS LAST]
+
+(23) Filter
+Input [29]: [observation_id#477, cell_id#478, vintage_id#479, domain#480, indicator_key#481, series_key#482, observed_period#483, period_granularity#484, geo_level#485, geo_code#486, geo_name#487, unit#488, value_decimal#489, value_lexeme#490, published_decimal_places#491, producer#492, methodology_version#493, source_artifact_path#494, source_artifact_sha256#495, source_record_id#496, ingestion_batch_id#497, transformation_run_id#498, transformation_version#499, trace_id#500, cause_family#501, evidence_level#502, arrival_order#507, snapshot_order#587, resolution_rank#461]
+Condition : (resolution_rank#461 = 1)
+
+(24) Project
+Output [27]: [observation_id#477, cell_id#478, vintage_id#479, domain#480, indicator_key#481, series_key#482, observed_period#483, period_granularity#484, geo_level#485, geo_code#486, geo_name#487, unit#488, value_decimal#489, value_lexeme#490, published_decimal_places#491, producer#492, methodology_version#493, source_artifact_path#494, source_artifact_sha256#495, source_record_id#496, ingestion_batch_id#497, transformation_run_id#498, transformation_version#499, trace_id#500, cause_family#501, evidence_level#502, snapshot_order#587]
+Input [29]: [observation_id#477, cell_id#478, vintage_id#479, domain#480, indicator_key#481, series_key#482, observed_period#483, period_granularity#484, geo_level#485, geo_code#486, geo_name#487, unit#488, value_decimal#489, value_lexeme#490, published_decimal_places#491, producer#492, methodology_version#493, source_artifact_path#494, source_artifact_sha256#495, source_record_id#496, ingestion_batch_id#497, transformation_run_id#498, transformation_version#499, trace_id#500, cause_family#501, evidence_level#502, arrival_order#507, snapshot_order#587, resolution_rank#461]
+
+(25) Scan csv 
+Output [3]: [snapshot_order#123, state_snapshot_key#124, applied_vintage_id#125]
+Batched: false
+Location: InMemoryFileIndex [file:/home/iceberg/results/processed/h11-b1-state-catalog.csv]
+ReadSchema: struct<snapshot_order:string,state_snapshot_key:string,applied_vintage_id:string>
+
+(26) Filter
+Input [3]: [snapshot_order#123, state_snapshot_key#124, applied_vintage_id#125]
+Condition : isnotnull(cast(snapshot_order#123 as int))
+
+(27) Project
+Output [3]: [cast(snapshot_order#123 as int) AS snapshot_order#554, state_snapshot_key#124 AS state_snapshot_key#555, applied_vintage_id#125 AS applied_vintage_id#556]
+Input [3]: [snapshot_order#123, state_snapshot_key#124, applied_vintage_id#125]
+
+(28) Scan csv 
+Output [4]: [scenario_id#332, vintage_id#333, snapshot_order#343, state_snapshot_key#344]
+Batched: false
+Location: InMemoryFileIndex [file:/home/iceberg/results/processed/h11-sweep-vintages.csv]
+PushedFilters: [IsNotNull(scenario_id), EqualTo(scenario_id,sweep_001)]
+ReadSchema: struct<scenario_id:string,vintage_id:string,snapshot_order:string,state_snapshot_key:string>
+
+(29) Filter
+Input [4]: [scenario_id#332, vintage_id#333, snapshot_order#343, state_snapshot_key#344]
+Condition : ((isnotnull(scenario_id#332) AND (scenario_id#332 = sweep_001)) AND isnotnull(cast(snapshot_order#343 as int)))
+
+(30) Project
+Output [3]: [cast(snapshot_order#343 as int) AS snapshot_order#644, state_snapshot_key#344, vintage_id#333 AS applied_vintage_id#646]
+Input [4]: [scenario_id#332, vintage_id#333, snapshot_order#343, state_snapshot_key#344]
+
+(31) Union
+
+(32) BroadcastExchange
+Input [3]: [snapshot_order#554, state_snapshot_key#555, applied_vintage_id#556]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [plan_id=372]
+
+(33) BroadcastHashJoin
+Left keys [1]: [snapshot_order#587]
+Right keys [1]: [snapshot_order#554]
+Join type: Inner
+Join condition: None
+
+(34) Project
+Output [29]: [assertnotnull(observation_id#477) AS observation_id#588, assertnotnull(cell_id#478) AS cell_id#589, assertnotnull(vintage_id#479) AS vintage_id#590, assertnotnull(domain#480) AS domain#591, assertnotnull(indicator_key#481) AS indicator_key#592, assertnotnull(series_key#482) AS series_key#593, assertnotnull(observed_period#483) AS observed_period#594, assertnotnull(period_granularity#484) AS period_granularity#595, assertnotnull(geo_level#485) AS geo_level#596, assertnotnull(geo_code#486) AS geo_code#597, assertnotnull(geo_name#487) AS geo_name#598, assertnotnull(unit#488) AS unit#599, assertnotnull(value_decimal#489) AS value_decimal#600, assertnotnull(value_lexeme#490) AS value_lexeme#601, assertnotnull(published_decimal_places#491) AS published_decimal_places#602, assertnotnull(producer#492) AS producer#603, assertnotnull(methodology_version#493) AS methodology_version#604, assertnotnull(source_artifact_path#494) AS source_artifact_path#605, assertnotnull(source_artifact_sha256#495) AS source_artifact_sha256#606, assertnotnull(source_record_id#496) AS source_record_id#607, assertnotnull(ingestion_batch_id#497) AS ingestion_batch_id#608, assertnotnull(transformation_run_id#498) AS transformation_run_id#609, assertnotnull(transformation_version#499) AS transformation_version#610, trace_id#500, cause_family#501, evidence_level#502, snapshot_order#587, assertnotnull(state_snapshot_key#555) AS state_snapshot_key#611, assertnotnull(applied_vintage_id#556) AS applied_vintage_id#612]
+Input [30]: [observation_id#477, cell_id#478, vintage_id#479, domain#480, indicator_key#481, series_key#482, observed_period#483, period_granularity#484, geo_level#485, geo_code#486, geo_name#487, unit#488, value_decimal#489, value_lexeme#490, published_decimal_places#491, producer#492, methodology_version#493, source_artifact_path#494, source_artifact_sha256#495, source_record_id#496, ingestion_batch_id#497, transformation_run_id#498, transformation_version#499, trace_id#500, cause_family#501, evidence_level#502, snapshot_order#587, snapshot_order#554, state_snapshot_key#555, applied_vintage_id#556]
+
+(35) Exchange
+Input [29]: [observation_id#588, cell_id#589, vintage_id#590, domain#591, indicator_key#592, series_key#593, observed_period#594, period_granularity#595, geo_level#596, geo_code#597, geo_name#598, unit#599, value_decimal#600, value_lexeme#601, published_decimal_places#602, producer#603, methodology_version#604, source_artifact_path#605, source_artifact_sha256#606, source_record_id#607, ingestion_batch_id#608, transformation_run_id#609, transformation_version#610, trace_id#500, cause_family#501, evidence_level#502, snapshot_order#587, state_snapshot_key#611, applied_vintage_id#612]
+Arguments: hashpartitioning(domain#591, 200), REBALANCE_PARTITIONS_BY_COL, 402653184, [plan_id=375]
+
+(36) AdaptiveSparkPlan
+Output [29]: [observation_id#588, cell_id#589, vintage_id#590, domain#591, indicator_key#592, series_key#593, observed_period#594, period_granularity#595, geo_level#596, geo_code#597, geo_name#598, unit#599, value_decimal#600, value_lexeme#601, published_decimal_places#602, producer#603, methodology_version#604, source_artifact_path#605, source_artifact_sha256#606, source_record_id#607, ingestion_batch_id#608, transformation_run_id#609, transformation_version#610, trace_id#500, cause_family#501, evidence_level#502, snapshot_order#587, state_snapshot_key#611, applied_vintage_id#612]
+Arguments: isFinalPlan=false
+
+(37) OverwriteByExpression
+Input [29]: [observation_id#588, cell_id#589, vintage_id#590, domain#591, indicator_key#592, series_key#593, observed_period#594, period_granularity#595, geo_level#596, geo_code#597, geo_name#598, unit#599, value_decimal#600, value_lexeme#601, published_decimal_places#602, producer#603, methodology_version#604, source_artifact_path#605, source_artifact_sha256#606, source_record_id#607, ingestion_batch_id#608, transformation_run_id#609, transformation_version#610, trace_id#500, cause_family#501, evidence_level#502, snapshot_order#587, state_snapshot_key#611, applied_vintage_id#612]
+Arguments: org.apache.spark.sql.execution.datasources.v2.DataSourceV2Strategy$$Lambda$3803/0x000079831138d0c8@722713da, IcebergWrite(table=kkciv.sweep.b1_panel_full_snapshots, format=PARQUET)
+
+
+Time taken: 1.728 seconds, Fetched 1 row(s)
+Time taken: 9.13 seconds

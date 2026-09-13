@@ -1,0 +1,6 @@
+invariant,status,checked_rows,detail
+every treatment and sweep point yields a measured read size,pass,8,sweep_001|B0=1111875;sweep_001|B1=3469013;sweep_001|B2=3489276;sweep_001|B3=5618349;sweep_038|B0=1111882;sweep_038|B1=3469013;sweep_038|B2=3489279;sweep_038|B3=5628612
+the read counts repeat exactly and the read sizes stay inside the tolerance,pass,168,largest size spread 0.000313 against tolerance 0.001
+the captured plan of a statement is identical between repetitions once JVM identities are normalised,pass,8,B0:0502b5b4;B1:781af725;B2:9d614da2;B3:fec48dd3;B0:0604617a;B1:c604e902;B2:106bc7c9;B3:b9647462
+every preserved artifact carries its size and checksum,pass,48,plan=16;session_log=16;event_log=16
+the run is declared as instrumented and reports no timing,pass,1,"nproc=2, commit 684ea51"

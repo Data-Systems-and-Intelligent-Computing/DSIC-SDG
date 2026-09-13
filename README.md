@@ -551,9 +551,27 @@ lineage `1,0000`. Jalankan `make h13c-run`; rincian ada di
 [`docs/research/h13c-reproducibility-audit.md`](docs/research/h13c-reproducibility-audit.md). Marker:
 `H13C_VERIFY|6983|0.7702|1.0000|0.7702|1.0000|1605|0|1605|0|43|0|43|0|39|1.0000|125|validated`.
 
+H14 sisi operator mengumpulkan tiga hal yang diwajibkan §12 tetapi belum pernah tersimpan, yaitu
+query plan, log sesi, dan statistik pembacaan, dan sekaligus menutup metrik pendukung s2 yang H11
+nyatakan tidak terukur. Event log Spark memuat apa yang tidak dilaporkan CLI: Iceberg menerbitkan
+ukuran hasil pemindaiannya sebagai akumulator driver, sedangkan view CSV staging melaporkan input
+metrics per task. Karena instrumentasi menambah ongkos, waktu dari run ini sengaja tidak dilaporkan
+sama sekali. Hasilnya menjelaskan urutan biaya pada H11 dan H12 secara mekanistik. B1 dan B2 tidak
+membaca tabelnya sendiri sama sekali, sehingga seluruh 3,47 dan 3,49 MB bacaannya berasal dari sumber
+staging; B0 membaca 594.148 byte dari tabelnya sendiri berapa pun besaran revisinya, karena `MERGE`
+salin-saat-tulis harus membaca kesepuluh berkas data yang memuat baris yang cocok; dan B3 membaca
+paling banyak, 5,6 MB dari 90 berkas data store append-only-nya. Rencana eksekusi menegaskan hal yang
+sama: hanya B0 yang memakai `ReplaceData` dengan `SortMergeJoin` penuh, sedangkan B1 dan B2 memakai
+`OverwriteByExpression` dan B3 `AppendData`. Perlakuan yang paling hemat menulis justru paling banyak
+membaca. Jumlah berkas dan baris berulang persis pada kedua repetisi, sedangkan ukuran byte bergeser
+paling besar 0,031 persen karena berkas Parquet baru tidak identik byte. Jalankan `make h14-collect`
+lalu `make h14-run`; rincian ada di
+[`docs/research/h14-plan-and-read-statistics.md`](docs/research/h14-plan-and-read-statistics.md).
+Marker: `H14_VERIFY|2|2|168|1111882|3469013|3489279|5628612|8|48|collected`.
+
 Semua angka dan tabel untuk naskah dikumpulkan di
-[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 44 tabel per pertanyaan
-penelitian, 3 tabel turunan, dan 160 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
+[`papers/vintage_reconciliation/`](papers/vintage_reconciliation/README.md): 46 tabel per pertanyaan
+penelitian, 3 tabel turunan, dan 172 angka kunci beserta sumber serta cara penurunannya. Paket dibentuk
 dengan `make article-bundle`, yang memverifikasi checksum setiap sumber terhadap manifest tahapnya.
 Bahan mentah sumber di `data/raw/` hanya ada di laptop peneliti. `make raw-backup` membuat arsip
 beserta daftar checksum di `backups/`, dan arsip itu wajib disalin ke lokasi kedua.

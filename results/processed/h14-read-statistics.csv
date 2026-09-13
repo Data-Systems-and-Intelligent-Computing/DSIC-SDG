@@ -1,0 +1,169 @@
+repetition,scenario_id,treatment_id,execution_id,statement,iceberg_bytes_read,file_bytes_read,bytes_read,delete_bytes_read,data_files_read,data_files_skipped,output_rows,file_records_read
+1,sweep_001,B0,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_001,B0,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+1,sweep_001,B0,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+1,sweep_001,B0,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+1,sweep_001,B0,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_001,B0,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+1,sweep_001,B0,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+1,sweep_001,B0,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+1,sweep_001,B0,23,MERGE INTO kkciv.sweep.b0_panel_current AS current USING (,594148,303793,897941,0,10,0,12683,7817
+1,sweep_001,B0,25,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b0_panel_current",0,22977,22977,0,0,0,59,15
+1,sweep_001,B1,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_001,B1,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+1,sweep_001,B1,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+1,sweep_001,B1,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+1,sweep_001,B1,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_001,B1,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+1,sweep_001,B1,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+1,sweep_001,B1,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+1,sweep_001,B1,23,INSERT OVERWRITE kkciv.sweep.b1_panel_full_snapshots SELECT,0,3278069,3278069,0,0,0,102467,6993
+1,sweep_001,B2,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_001,B2,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+1,sweep_001,B2,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+1,sweep_001,B2,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+1,sweep_001,B2,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_001,B2,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+1,sweep_001,B2,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+1,sweep_001,B2,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+1,sweep_001,B2,23,INSERT OVERWRITE kkciv.sweep.b2_panel_selected SELECT,0,3275817,3275817,0,0,0,38712,6991
+1,sweep_001,B2,25,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b2_panel_selected",0,22517,22517,0,0,0,49,8
+1,sweep_001,B3,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_001,B3,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+1,sweep_001,B3,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+1,sweep_001,B3,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+1,sweep_001,B3,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_001,B3,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+1,sweep_001,B3,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+1,sweep_001,B3,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+1,sweep_001,B3,23,MERGE INTO kkciv.sweep.b3_panel_current AS serving USING (,1525280,1117605,2642885,0,44,0,33634,21779
+1,sweep_001,B3,24,INSERT INTO kkciv.sweep.b3_panel_observation_vintages SELECT,0,44263,44263,0,0,0,6,5
+1,sweep_001,B3,25,MERGE INTO kkciv.sweep.b3_panel_current AS serving USING (,1547776,1135967,2683743,0,46,0,33638,21781
+1,sweep_001,B3,27,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b3_panel_observation_vintages",0,23630,23630,0,0,0,83,23
+1,sweep_001,B3,29,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b3_panel_current",0,32352,32352,0,0,0,92,24
+1,sweep_038,B0,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_038,B0,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+1,sweep_038,B0,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+1,sweep_038,B0,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+1,sweep_038,B0,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_038,B0,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+1,sweep_038,B0,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+1,sweep_038,B0,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+1,sweep_038,B0,23,MERGE INTO kkciv.sweep.b0_panel_current AS current USING (,594148,303793,897941,0,10,0,12757,7891
+1,sweep_038,B0,25,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b0_panel_current",0,22991,22991,0,0,0,59,15
+1,sweep_038,B1,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_038,B1,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+1,sweep_038,B1,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+1,sweep_038,B1,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+1,sweep_038,B1,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_038,B1,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+1,sweep_038,B1,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+1,sweep_038,B1,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+1,sweep_038,B1,23,INSERT OVERWRITE kkciv.sweep.b1_panel_full_snapshots SELECT,0,3278069,3278069,0,0,0,102615,7030
+1,sweep_038,B2,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_038,B2,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+1,sweep_038,B2,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+1,sweep_038,B2,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+1,sweep_038,B2,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_038,B2,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+1,sweep_038,B2,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+1,sweep_038,B2,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+1,sweep_038,B2,23,INSERT OVERWRITE kkciv.sweep.b2_panel_selected SELECT,0,3275817,3275817,0,0,0,38823,7028
+1,sweep_038,B2,25,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b2_panel_selected",0,22519,22519,0,0,0,49,8
+1,sweep_038,B3,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_038,B3,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+1,sweep_038,B3,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+1,sweep_038,B3,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+1,sweep_038,B3,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+1,sweep_038,B3,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+1,sweep_038,B3,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+1,sweep_038,B3,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+1,sweep_038,B3,23,MERGE INTO kkciv.sweep.b3_panel_current AS serving USING (,1525280,1117605,2642885,0,44,0,33930,21853
+1,sweep_038,B3,24,INSERT INTO kkciv.sweep.b3_panel_observation_vintages SELECT,0,44263,44263,0,0,0,80,42
+1,sweep_038,B3,25,MERGE INTO kkciv.sweep.b3_panel_current AS serving USING (,1552950,1141069,2694019,0,46,0,34082,21929
+1,sweep_038,B3,27,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b3_panel_observation_vintages",0,23643,23643,0,0,0,83,23
+1,sweep_038,B3,29,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b3_panel_current",0,32348,32348,0,0,0,92,24
+2,sweep_001,B0,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_001,B0,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+2,sweep_001,B0,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+2,sweep_001,B0,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+2,sweep_001,B0,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_001,B0,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+2,sweep_001,B0,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+2,sweep_001,B0,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+2,sweep_001,B0,23,MERGE INTO kkciv.sweep.b0_panel_current AS current USING (,594148,303793,897941,0,10,0,12683,7817
+2,sweep_001,B0,25,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b0_panel_current",0,23004,23004,0,0,0,59,15
+2,sweep_001,B1,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_001,B1,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+2,sweep_001,B1,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+2,sweep_001,B1,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+2,sweep_001,B1,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_001,B1,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+2,sweep_001,B1,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+2,sweep_001,B1,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+2,sweep_001,B1,23,INSERT OVERWRITE kkciv.sweep.b1_panel_full_snapshots SELECT,0,3278069,3278069,0,0,0,102467,6993
+2,sweep_001,B2,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_001,B2,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+2,sweep_001,B2,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+2,sweep_001,B2,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+2,sweep_001,B2,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_001,B2,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+2,sweep_001,B2,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+2,sweep_001,B2,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+2,sweep_001,B2,23,INSERT OVERWRITE kkciv.sweep.b2_panel_selected SELECT,0,3275817,3275817,0,0,0,38712,6991
+2,sweep_001,B2,25,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b2_panel_selected",0,22514,22514,0,0,0,49,8
+2,sweep_001,B3,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_001,B3,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+2,sweep_001,B3,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+2,sweep_001,B3,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+2,sweep_001,B3,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_001,B3,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+2,sweep_001,B3,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+2,sweep_001,B3,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+2,sweep_001,B3,23,MERGE INTO kkciv.sweep.b3_panel_current AS serving USING (,1525830,1118273,2644103,0,44,0,33634,21779
+2,sweep_001,B3,24,INSERT INTO kkciv.sweep.b3_panel_observation_vintages SELECT,0,44263,44263,0,0,0,6,5
+2,sweep_001,B3,25,MERGE INTO kkciv.sweep.b3_panel_current AS serving USING (,1547494,1136092,2683586,0,46,0,33638,21781
+2,sweep_001,B3,27,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b3_panel_observation_vintages",0,23637,23637,0,0,0,83,23
+2,sweep_001,B3,29,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b3_panel_current",0,32349,32349,0,0,0,92,24
+2,sweep_038,B0,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_038,B0,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+2,sweep_038,B0,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+2,sweep_038,B0,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+2,sweep_038,B0,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_038,B0,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+2,sweep_038,B0,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+2,sweep_038,B0,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+2,sweep_038,B0,23,MERGE INTO kkciv.sweep.b0_panel_current AS current USING (,594148,303793,897941,0,10,0,12757,7891
+2,sweep_038,B0,25,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b0_panel_current",0,23004,23004,0,0,0,59,15
+2,sweep_038,B1,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_038,B1,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+2,sweep_038,B1,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+2,sweep_038,B1,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+2,sweep_038,B1,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_038,B1,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+2,sweep_038,B1,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+2,sweep_038,B1,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+2,sweep_038,B1,23,INSERT OVERWRITE kkciv.sweep.b1_panel_full_snapshots SELECT,0,3278069,3278069,0,0,0,102615,7030
+2,sweep_038,B2,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_038,B2,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+2,sweep_038,B2,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+2,sweep_038,B2,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+2,sweep_038,B2,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_038,B2,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+2,sweep_038,B2,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+2,sweep_038,B2,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+2,sweep_038,B2,23,INSERT OVERWRITE kkciv.sweep.b2_panel_selected SELECT,0,3275817,3275817,0,0,0,38823,7028
+2,sweep_038,B2,25,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b2_panel_selected",0,22518,22518,0,0,0,49,8
+2,sweep_038,B3,1,"CREATE OR REPLACE TEMPORARY VIEW h11_panel_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-observations.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_038,B3,3,"CREATE OR REPLACE TEMPORARY VIEW h11_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-vintages.csv', header '",0,1202,1202,0,0,0,2,1
+2,sweep_038,B3,5,"CREATE OR REPLACE TEMPORARY VIEW h11_b1_keys_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b1-state-catalog.csv', header ",0,798,798,0,0,0,2,1
+2,sweep_038,B3,7,"CREATE OR REPLACE TEMPORARY VIEW h11_scores_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h6b-source-trust-scores.csv', heade",0,621,621,0,0,0,2,1
+2,sweep_038,B3,9,"CREATE OR REPLACE TEMPORARY VIEW h11_edges_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-panel-impact-edges.csv', header ",0,65536,65536,0,0,0,2,1
+2,sweep_038,B3,11,CREATE OR REPLACE TEMPORARY VIEW h11_payload_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-synthetic-observations.c,0,43061,43061,0,0,0,2,1
+2,sweep_038,B3,13,CREATE OR REPLACE TEMPORARY VIEW h11_synthetic_vintages_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-sweep-vintages.csv',0,2075,2075,0,0,0,2,1
+2,sweep_038,B3,15,"CREATE OR REPLACE TEMPORARY VIEW h11_dirty_csv USING csv OPTIONS (path '/home/iceberg/results/processed/h11-b3-dirty-cells.csv', header 'tru",0,12115,12115,0,0,0,2,1
+2,sweep_038,B3,23,MERGE INTO kkciv.sweep.b3_panel_current AS serving USING (,1525830,1118273,2644103,0,44,0,33930,21853
+2,sweep_038,B3,24,INSERT INTO kkciv.sweep.b3_panel_observation_vintages SELECT,0,44263,44263,0,0,0,80,42
+2,sweep_038,B3,25,MERGE INTO kkciv.sweep.b3_panel_current AS serving USING (,1552668,1141194,2693862,0,46,0,34082,21929
+2,sweep_038,B3,27,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b3_panel_observation_vintages",0,23630,23630,0,0,0,83,23
+2,sweep_038,B3,29,"Expiring snapshots (older_than=253402214400000,retain_last=1) in kkciv.sweep.b3_panel_current",0,32321,32321,0,0,0,92,24

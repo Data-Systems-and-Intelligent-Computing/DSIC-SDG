@@ -1,0 +1,18 @@
+metric,value,unit,interpretation
+b0_sweep_001_bytes_read,1111875,bytes,"594148 from its own table over 10 data files (0 skipped) and 517727 from the staging files, over 10 executions"
+b1_sweep_001_bytes_read,3469013,bytes,"0 from its own table over 0 data files (0 skipped) and 3469013 from the staging files, over 9 executions"
+b2_sweep_001_bytes_read,3489276,bytes,"0 from its own table over 0 data files (0 skipped) and 3489276 from the staging files, over 10 executions"
+b3_sweep_001_bytes_read,5618349,bytes,"3073190 from its own table over 90 data files (0 skipped) and 2545159 from the staging files, over 13 executions"
+b0_sweep_038_bytes_read,1111882,bytes,"594148 from its own table over 10 data files (0 skipped) and 517734 from the staging files, over 10 executions"
+b1_sweep_038_bytes_read,3469013,bytes,"0 from its own table over 0 data files (0 skipped) and 3469013 from the staging files, over 9 executions"
+b2_sweep_038_bytes_read,3489279,bytes,"0 from its own table over 0 data files (0 skipped) and 3489279 from the staging files, over 10 executions"
+b3_sweep_038_bytes_read,5628612,bytes,"3078364 from its own table over 90 data files (0 skipped) and 2550248 from the staging files, over 13 executions"
+plan_b0_sweep_001,ReplaceData,operator,copy-on-write rewrite: yes; joins: BroadcastHashJoin;SortMergeJoin; 219 plan lines
+plan_b1_sweep_001,OverwriteByExpression,operator,copy-on-write rewrite: no; joins: BroadcastHashJoin;BroadcastNestedLoopJoin; 163 plan lines
+plan_b2_sweep_001,OverwriteByExpression,operator,copy-on-write rewrite: no; joins: BroadcastHashJoin; 131 plan lines
+plan_b3_sweep_001,AppendData,operator,copy-on-write rewrite: no; joins: BroadcastHashJoin; 70 plan lines
+plan_b0_sweep_038,ReplaceData,operator,copy-on-write rewrite: yes; joins: BroadcastHashJoin;SortMergeJoin; 219 plan lines
+plan_b1_sweep_038,OverwriteByExpression,operator,copy-on-write rewrite: no; joins: BroadcastHashJoin;BroadcastNestedLoopJoin; 163 plan lines
+plan_b2_sweep_038,OverwriteByExpression,operator,copy-on-write rewrite: no; joins: BroadcastHashJoin; 131 plan lines
+plan_b3_sweep_038,AppendData,operator,copy-on-write rewrite: no; joins: BroadcastHashJoin; 70 plan lines
+preserved_artifacts,48,files,"5127149 bytes of plans, session logs and event logs"

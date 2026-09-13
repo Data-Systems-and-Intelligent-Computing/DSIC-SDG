@@ -1,0 +1,238 @@
+{
+  "collection_status": "collected",
+  "contract_version": "h14.1",
+  "environment": {
+    "finished_at_utc": "2026-09-13T00:10:54Z",
+    "git_commit": "684ea511d60f2c4e4e8efdbca7226c2138d40ced",
+    "git_dirty_entries": "0",
+    "git_dirty_paths": "results/raw/h14/",
+    "host_nproc": "2",
+    "hostname": "praktikum-sd",
+    "instrumentation": "event_log_enabled;timings_not_reported",
+    "payload_manifest_sha256": "f15b439b77c79dc670b81638b359ef2489bda16eb319d24093377b53f04bdc88",
+    "repetitions": "2",
+    "run_label": "h14-20260913",
+    "scenarios": "sweep_001;sweep_038",
+    "spark_defaults_sha256": "77c1f777f4a29b6cc69c14fb4b9b7fdbc5b603a9fd4f68173a0e6aa02d2a5339",
+    "spark_driver_memory": "2g",
+    "started_at_utc": "2026-09-12T23:50:20Z"
+  },
+  "inputs": [
+    {
+      "path": "contracts/h14-plan-and-read-statistics.json",
+      "sha256": "fb459dc524c77b2a4d7c2c49916bc6eadffade37b464f6932c1fac14cc32937a"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/processed/h14-read-statistics.csv",
+      "rows": 168,
+      "sha256": "c3a9201d8278909299e7890f93a86ecfb9165ce0328cde791201428e3378b8d5"
+    },
+    {
+      "path": "results/processed/h14-read-summary.csv",
+      "rows": 8,
+      "sha256": "c808d17999e66fca937f3d5cf765201cd490db3eb16a42ac22717d327d2316af"
+    },
+    {
+      "path": "results/processed/h14-query-plans.csv",
+      "rows": 8,
+      "sha256": "f3c6cd19b8e169e5c6f8c8430a730e61060e6321cc613ef0fd30bd5a319b88d6"
+    },
+    {
+      "path": "results/processed/h14-artifact-inventory.csv",
+      "rows": 48,
+      "sha256": "6e122ed54be71ea522a3635cbb87485cdafe70495b2fc9c5a7ef192793346dc4"
+    },
+    {
+      "path": "results/processed/h14-validation.csv",
+      "rows": 5,
+      "sha256": "d95f93f7aafec01aa4c5427dc859da63dd1610771c12edacf7cd8731fb11c07d"
+    },
+    {
+      "path": "results/processed/h14-summary.csv",
+      "rows": 17,
+      "sha256": "6aa188945c91516c37fe4e7708ea57109969385adb6f1773fc40be9938c6e2e9"
+    }
+  ],
+  "plans": {
+    "sweep_001|B0": {
+      "copy_on_write_rewrite": "yes",
+      "sha256": "0502b5b4e12bcabb808a73ac139d7b1df06eba588711b224a8b9b692868db9eb",
+      "top_operator": "ReplaceData"
+    },
+    "sweep_001|B1": {
+      "copy_on_write_rewrite": "no",
+      "sha256": "781af725a54f145540c86367cae2c3ce232fe0bdea206a501e0c16a518772fa5",
+      "top_operator": "OverwriteByExpression"
+    },
+    "sweep_001|B2": {
+      "copy_on_write_rewrite": "no",
+      "sha256": "9d614da2b0bd92ae23f8753307aa2e7c9b00f4a4e0d2359dea62f6a0a1824c05",
+      "top_operator": "OverwriteByExpression"
+    },
+    "sweep_001|B3": {
+      "copy_on_write_rewrite": "no",
+      "sha256": "fec48dd37483035416a923b8dec800dd4afd2dfdf57a5760f9e03ec8f5f5e4f8",
+      "top_operator": "AppendData"
+    },
+    "sweep_038|B0": {
+      "copy_on_write_rewrite": "yes",
+      "sha256": "0604617a5b948ef8eb31bb7e8c5a071ad7a1122c27c7b7c1bace394c48b18521",
+      "top_operator": "ReplaceData"
+    },
+    "sweep_038|B1": {
+      "copy_on_write_rewrite": "no",
+      "sha256": "c604e90236b8eee08dc364386cf5d32bd6ef3581f2077affeddfd7f8c018402c",
+      "top_operator": "OverwriteByExpression"
+    },
+    "sweep_038|B2": {
+      "copy_on_write_rewrite": "no",
+      "sha256": "106bc7c96fee6a53f9e5e572d2ef52fba9a161d5a771af5ed4f737056c907cda",
+      "top_operator": "OverwriteByExpression"
+    },
+    "sweep_038|B3": {
+      "copy_on_write_rewrite": "no",
+      "sha256": "b9647462dcf09069587d61e946f07d134a421da86808435f44eda2557c086b3c",
+      "top_operator": "AppendData"
+    }
+  },
+  "raw_inputs": [
+    {
+      "path": "results/raw/h14/h14-20260913/baseline-markers.txt",
+      "sha256": "8ebcd9f9cd43a9f7015329c6835cb95339b368761a7bb5c5453b4285955d5be7"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/environment.txt",
+      "sha256": "05a1b5d7f1c64006c06cdf6a4690623fc83b90392f49a8073a7677eb1f8d156e"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep1-sweep_001-B0.log",
+      "sha256": "d9b78e0f92b9c32a0b6131e6886a5624114d06ff6b37ff6fdca0f00bcbf018af"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep1-sweep_001-B1.log",
+      "sha256": "9979f424d4bd37b4ff898af6fff324d17781af180f061fe74e29257a9701f7a5"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep1-sweep_001-B2.log",
+      "sha256": "98ac2d898ad489f4b75008300d5801d3fa2ecbe755d66c7b610989bf1a750a1b"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep1-sweep_001-B3.log",
+      "sha256": "93905c7d01c71e233d4b27a13a8b7503ff1ae683bc67122c115aa3de2b5525ee"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep1-sweep_038-B0.log",
+      "sha256": "f801b3005466a8dc7481fb0acc0db0c15fa314a20b034a162bc04edf4e9da2e0"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep1-sweep_038-B1.log",
+      "sha256": "801a581796d26720ec3580a7ee6547671a7190e917a17e3ab715265ce79af987"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep1-sweep_038-B2.log",
+      "sha256": "6efeed48dd3c08ab7eaf484e3acf2ff9a60d4511136087494ec28a0e8707b437"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep1-sweep_038-B3.log",
+      "sha256": "34d012e10856eef62ae6044718e858941c5586521b9602b6903af5a72f282899"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep2-sweep_001-B0.log",
+      "sha256": "c1ca03d478ddb05214bebbf1aa093e2212efc5f38f50cf4bb1e7af49021cecc4"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep2-sweep_001-B1.log",
+      "sha256": "3eab303ae44cb757952b671ca526442b96882a92de87683e50ad60890f222ed8"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep2-sweep_001-B2.log",
+      "sha256": "d022a109222f5e0ce4b1881e97ce0f5270ada094613dee72c7f9b53d0c24ae41"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep2-sweep_001-B3.log",
+      "sha256": "40b41c37fa20983d741386f88f1313b2cd164f9415950dda6e2efe5195ab9994"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep2-sweep_038-B0.log",
+      "sha256": "fd48cbef78b33d30f72031e52400bde9803087ca38694bfb6f1bc56c951d7542"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep2-sweep_038-B1.log",
+      "sha256": "693dff60082ef4eda2292096399509c685039b8f269ae5f57220a78fe4119f28"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep2-sweep_038-B2.log",
+      "sha256": "312b5b945d66dd82347ea05511fc4b69f110c7b5b836052cd5a6cf20f95de7c6"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/logs/rep2-sweep_038-B3.log",
+      "sha256": "25b2b5f1d840bf3050f5a3869c1e3f46ea4e4fff61bef22a85cd4463128fac46"
+    },
+    {
+      "path": "results/raw/h14/h14-20260913/read-statistics.txt",
+      "sha256": "1661cc5ce0bd2361324a0fe935a54a1447b143d5fbebad0013611116a3fd0c58"
+    }
+  ],
+  "read_statistics": {
+    "sweep_001|B0": {
+      "bytes_read": "1111875",
+      "data_files_read": "10",
+      "data_files_skipped": "0",
+      "file_bytes_read_median": "517727",
+      "iceberg_bytes_read_median": "594148"
+    },
+    "sweep_001|B1": {
+      "bytes_read": "3469013",
+      "data_files_read": "0",
+      "data_files_skipped": "0",
+      "file_bytes_read_median": "3469013",
+      "iceberg_bytes_read_median": "0"
+    },
+    "sweep_001|B2": {
+      "bytes_read": "3489276",
+      "data_files_read": "0",
+      "data_files_skipped": "0",
+      "file_bytes_read_median": "3489276",
+      "iceberg_bytes_read_median": "0"
+    },
+    "sweep_001|B3": {
+      "bytes_read": "5618349",
+      "data_files_read": "90",
+      "data_files_skipped": "0",
+      "file_bytes_read_median": "2545159",
+      "iceberg_bytes_read_median": "3073190"
+    },
+    "sweep_038|B0": {
+      "bytes_read": "1111882",
+      "data_files_read": "10",
+      "data_files_skipped": "0",
+      "file_bytes_read_median": "517734",
+      "iceberg_bytes_read_median": "594148"
+    },
+    "sweep_038|B1": {
+      "bytes_read": "3469013",
+      "data_files_read": "0",
+      "data_files_skipped": "0",
+      "file_bytes_read_median": "3469013",
+      "iceberg_bytes_read_median": "0"
+    },
+    "sweep_038|B2": {
+      "bytes_read": "3489279",
+      "data_files_read": "0",
+      "data_files_skipped": "0",
+      "file_bytes_read_median": "3489279",
+      "iceberg_bytes_read_median": "0"
+    },
+    "sweep_038|B3": {
+      "bytes_read": "5628612",
+      "data_files_read": "90",
+      "data_files_skipped": "0",
+      "file_bytes_read_median": "2550248",
+      "iceberg_bytes_read_median": "3078364"
+    }
+  },
+  "stage": "H14",
+  "track": "B"
+}
