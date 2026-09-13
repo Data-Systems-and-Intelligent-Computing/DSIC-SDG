@@ -143,8 +143,8 @@ P3; fungsinya menunjukkan seberapa jauh titik silang itu berada dari beban yang 
 Prosedur audit sepuluh langkah yang dibekukan pada tahap sebelumnya dijalankan pada dua skala beban.
 Pada fixture bukti berisi 38 permintaan, B1 dan B3 memanggil ulang seluruhnya sedangkan B0 dan B2
 memanggil ulang 0,3684 bagian. Pada panel provinsi berisi 6.983 permintaan, B1 dan B3 tetap
-memanggil ulang seluruhnya, sedangkan B0 dan B2 memanggil ulang 0,7702 bagian (Tabel T13, Gambar
-G4).
+memanggil ulang seluruhnya, sedangkan B0 dan B2 memanggil ulang 0,7702 bagian (Tabel T13, Gambar G4
+dan G5).
 
 Perbedaan antara kedua skala tersebut perlu dibaca dengan hati-hati. Fixture memang dipilih karena
 setiap selnya direvisi, sehingga proporsi kehilangannya jauh lebih besar. Pada panel yang sebagian
@@ -257,7 +257,7 @@ jumlah 3.144 baris pada kedatangan kedua B1 berasal dari `p3-ongkos/h12-arrival-
 | T13 | recall pada kedua skala | `results/processed/h15-table-t13.csv` |
 | T15 | ongkos keempat rilis nyata | `results/processed/h15-table-t15.csv` |
 | T16 | byte yang dibaca dan rencana eksekusi | `results/processed/h15-table-t16.csv` |
-| G1–G4 | data gambar | `results/processed/h15-figure-data.csv` |
+| G1–G5 | data gambar dan berkas gambar terender | `results/processed/h15-figure-data.csv`, `manuscript/figures/` |
 
 ## Yang belum masuk draf ini
 

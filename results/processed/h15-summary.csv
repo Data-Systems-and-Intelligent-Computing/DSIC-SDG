@@ -1,4 +1,4 @@
 metric,value,unit,interpretation
 composed_tables,7,tables,tables built here; the remaining tables of the frame are copied by the article bundle
-figure_points,80,points,G1=24;G2=24;G3=24;G4=8
-verified_sources,9,files,every source checked against the checksum its stage manifest records
+figure_points,88,points,G1=24;G2=24;G3=24;G4=8;G5=8
+verified_sources,10,files,every source checked against the checksum its stage manifest records

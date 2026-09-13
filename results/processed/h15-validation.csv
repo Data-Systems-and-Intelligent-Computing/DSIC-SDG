@@ -1,6 +1,7 @@
 invariant,status,checked_rows,detail
 every composed table names the sources it was built from,pass,7,T7;T8;T9;T10;T13;T15;T16
-every source was verified against its stage manifest before a value was read,pass,9,9 sources verified through data/manifests
+every source was verified against its stage manifest before a value was read,pass,10,10 sources verified through data/manifests
 a table added after the frame was frozen carries its reason,pass,2,T15:H12 mengukur revisi nyata setelah kerang;T16:H14 menutup metrik s2 yang pada kerangka
 every figure point with repetitions carries its minimum and maximum,pass,48,G1 and G2 carry the range of the three sweep repetitions
-every figure caption names the declared environment,pass,4,Seluruh angka waktu berasal dari satu node dengan 2 vCPU yan
+a figure added after the frame was frozen carries its reason,pass,1,G5:audit panel H13C belum ada ketika kerang
+every figure caption names the declared environment,pass,5,Seluruh angka waktu berasal dari satu node dengan 2 vCPU yan

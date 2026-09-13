@@ -10,7 +10,8 @@ dilihat.
 
 Kontrak ada di
 [`contracts/h15-result-tables-and-figures.json`](../../contracts/h15-result-tables-and-figures.json).
-Jalankan `make h15-run`. Marker: `H15_VERIFY|7|2|4|80|9|validated`.
+Jalankan `make h15-run` lalu `make h15-figures`. Marker: `H15_VERIFY|7|2|5|88|10|validated` dan
+`H15F_VERIFY|5|5|5|10|rendered`.
 
 ## Yang disusun
 
@@ -32,11 +33,35 @@ yang dikerjakan setelah kerangka dibekukan, dan T16 lahir dari penutupan metrik 
 yang pada kerangka masih dinyatakan tidak terukur. Penandaan ini disimpan pada kolom `origin` di
 inventaris, bukan diselesaikan dengan menulis ulang kerangkanya.
 
-Data keempat gambar disimpan dalam bentuk tidy dengan 80 titik. Tidak ada gambar yang dirender,
-karena stack yang dibekukan tidak memuat pustaka penggambar; keputusan ini mengikuti konvensi yang
-sama seperti data gambar pada tahap-tahap sebelumnya. Setiap titik G1 dan G2 membawa nilai minimum
-dan maksimum ketiga repetisi, dan setiap keterangan gambar memuat lingkungan 2 vCPU beserta batas
-klaimnya.
+Lima gambar dibentuk dengan 88 titik data. Empat di antaranya mengikuti kerangka beku, sedangkan G5
+ditandai sebagai tambahan karena audit panel yang menjadi sumbernya belum ada ketika kerangka
+dibekukan. Setiap titik G1 dan G2 membawa nilai minimum dan maksimum ketiga repetisi, dan setiap
+keterangan gambar memuat lingkungan 2 vCPU beserta batas klaimnya.
+
+| ID | Isi | Bentuk | Asal |
+|---|---|---|---|
+| G1 | waktu penghitungan ulang terhadap besaran revisi | garis, sumbu y linear | kerangka beku |
+| G2 | pertambahan byte terhadap besaran revisi | garis, sumbu y log | kerangka beku |
+| G3 | sel yang dievaluasi terhadap besaran revisi | garis, sumbu y log | kerangka beku |
+| G4 | recall per perlakuan, permintaan resmi dan sintetis | batang | kerangka beku |
+| G5 | recall pada fixture dan pada panel | batang | ditambahkan setelah kerangka dibekukan |
+
+## Perenderan gambar
+
+Gambar dirender sebagai sumber PGFPlots yang dikompilasi menjadi PDF dengan pdflatex. Pilihan ini
+diambil karena naskahnya memang dokumen LaTeX: hasilnya vektor, fontnya seragam dengan naskah, dan
+datanya tetap terbaca di dalam berkas sumber gambar sehingga dapat diperiksa tanpa membuka pipeline.
+Tidak ada pustaka penggambar yang ditambahkan ke stack pengukuran, dan perenderan berjalan di laptop
+peneliti, bukan di node pengukuran.
+
+Kompilasi dibuat deterministik dengan `SOURCE_DATE_EPOCH` tetap dan penekanan metadata opsional PDF,
+sehingga dua kompilasi berturut-turut menghasilkan berkas yang identik byte. Checksum kesepuluh
+berkas keluaran, yaitu lima sumber dan lima PDF, dicatat pada `data/manifests/h15-figures.json` dan
+diperiksa oleh pengujian.
+
+Satu catatan pembacaan gambar: pada G3, kurva B0 dan B3 berimpit karena keduanya mengevaluasi tepat
+sel yang direvisi, demikian pula B1 dan B2 yang selalu menghitung ulang seluruh sel. Hal tersebut
+dinyatakan pada keterangan gambar agar tidak terbaca sebagai kurva yang hilang.
 
 ## Cara angka masuk ke tabel
 
@@ -65,6 +90,7 @@ Pembahasan dan Kesimpulan tidak ditulis di sini dan memang berada di luar jendel
 
 ```bash
 make h15-run
+make h15-figures
 make article-bundle
 ```
 
@@ -86,4 +112,6 @@ terverifikasi dengan 60 tabel serta 184 angka kunci.
 - data gambar: `results/processed/h15-figure-data.csv`;
 - validasi dan ringkasan: `results/processed/h15-validation.csv`, `results/processed/h15-summary.csv`;
 - manifest: `data/manifests/h15-result-tables-and-figures.json`;
+- sumber dan berkas gambar: `papers/vintage_reconciliation/manuscript/figures/`;
+- manifest gambar: `data/manifests/h15-figures.json`;
 - draf: `papers/vintage_reconciliation/draft/05-hasil.md`.

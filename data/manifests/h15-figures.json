@@ -1,0 +1,73 @@
+{
+  "artifact": "figures",
+  "compiled": [
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5"
+  ],
+  "figures": [
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5"
+  ],
+  "inputs": [
+    {
+      "path": "results/processed/h15-figure-data.csv",
+      "sha256": "4db0f133cb965416396b8a0ddc162ba7c12ae60fe8296c618739847103e9a6a8"
+    },
+    {
+      "path": "results/processed/h15-figure-inventory.csv",
+      "sha256": "977238b17e6d3f13b6b0617103cc111ba988e3f912c6fa3733fa3322f20170bd"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "papers/vintage_reconciliation/manuscript/figures/g1.tex",
+      "sha256": "a082e9bc41c98540b328ebf4b2956432c4e2c5b8a0d5896ab6c43f20d45f8ff5"
+    },
+    {
+      "path": "papers/vintage_reconciliation/manuscript/figures/g1.pdf",
+      "sha256": "d8b36e26fc3273c3c2d9110310e66ea8afd5ddfbd3944e197360cb762ecbf2bf"
+    },
+    {
+      "path": "papers/vintage_reconciliation/manuscript/figures/g2.tex",
+      "sha256": "eaf048d408da9244509eb9ff5c1abe123b2145b09c1ec358d019e04b919629d0"
+    },
+    {
+      "path": "papers/vintage_reconciliation/manuscript/figures/g2.pdf",
+      "sha256": "a799a5a67108aca5250908a6813a61352c0c9466b22f2280091486011c960e28"
+    },
+    {
+      "path": "papers/vintage_reconciliation/manuscript/figures/g3.tex",
+      "sha256": "4fd1b5bcbdd6d79f646dc1f95ace48a611a7a29b169493e65d61f35e10428ae0"
+    },
+    {
+      "path": "papers/vintage_reconciliation/manuscript/figures/g3.pdf",
+      "sha256": "9af54befe3c52fba4366e549a2cfec7d094db2d254ea0e8dc20b7c832b677db9"
+    },
+    {
+      "path": "papers/vintage_reconciliation/manuscript/figures/g4.tex",
+      "sha256": "bbf495bf93b4ee17afe8c898e3a5143c8d37b2eac2c92068934fcd79cd03fcc8"
+    },
+    {
+      "path": "papers/vintage_reconciliation/manuscript/figures/g4.pdf",
+      "sha256": "fe54300232207196e8b807083d5daa267146b8e453b363bdaf017f346c085806"
+    },
+    {
+      "path": "papers/vintage_reconciliation/manuscript/figures/g5.tex",
+      "sha256": "fb861ac947930d50f5a19391dce3a6d2f8e018fd41aa9db945e4356c0721b911"
+    },
+    {
+      "path": "papers/vintage_reconciliation/manuscript/figures/g5.pdf",
+      "sha256": "643d2b67c50080153a657b66aaa082b12a856bd8d405ca0087a8a730dec94ff3"
+    }
+  ],
+  "render_status": "rendered",
+  "renderer": "pgfplots via pdflatex, reproducible with a fixed SOURCE_DATE_EPOCH",
+  "stage": "H15",
+  "track": "AC"
+}

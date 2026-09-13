@@ -1,4 +1,4 @@
-.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run h8c-run h9-run h9-apply h9b-run h9c-run h10-measure h10-run h10b-prepare h10b-cleanup h10b-measure h10b-run h11-prepare h11-baseline h11-measure h11-run h12-measure h12-run h13-rerun h13-run h13c-run h14-collect h14-run h14c-run h15-run article-bundle manuscript raw-backup stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
+.PHONY: help h1-validate h1-summary h1-discover-webapi h1-fetch-free-webapi h1-fetch-free-publications h1-profile-coverage h1-apply-coverage h1-example h1-compare h2-run h3-fetch h3-run h3-releases h4-run h4-publish h5-run h5-iceberg h6-run h6-apply h6b-run h6c-run h7-run h7-apply h7b-run h7b-apply h7c-run h8-run h8-apply h8b-run h8c-run h9-run h9-apply h9b-run h9c-run h10-measure h10-run h10b-prepare h10b-cleanup h10b-measure h10b-run h11-prepare h11-baseline h11-measure h11-run h12-measure h12-run h13-rerun h13-run h13c-run h14-collect h14-run h14c-run h15-run h15-figures article-bundle manuscript raw-backup stack-up stack-down stack-freeze stack-remote-sync stack-remote-up stack-remote-status stack-remote-verify stack-remote-freeze stack-remote-down test
 
 PYTHON ?= python3
 H1 = PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h1.cli
@@ -95,6 +95,7 @@ help:
 	@echo "make h14-run      Aggregate the plans and the measured read sizes"
 	@echo "make h14c-run     Decompose the break-even result and price the failures"
 	@echo "make h15-run      Compose the result tables and the figure data"
+	@echo "make h15-figures  Render the figures as PGFPlots sources and compile them"
 	@echo "make article-bundle  Collect checksum-verified article tables and key numbers"
 	@echo "make raw-backup   Archive data/raw with a checksum list into backups/"
 	@echo "make stack-up     Bring up MinIO, the Iceberg REST catalog, and Spark"
@@ -273,6 +274,9 @@ h14c-run:
 
 h15-run:
 	$(H15)
+
+h15-figures:
+	PYTHONPATH=src $(PYTHON) -m kkciv_vintage.h15.render
 
 article-bundle:
 	$(ARTICLE)

@@ -77,7 +77,7 @@ class InventoryTest(unittest.TestCase):
     def test_every_caption_carries_the_environment_note(self) -> None:
         contract = _contract()
         _, figures = build_inventories(contract=contract, composed={}, figures=[])
-        self.assertEqual(len(figures), 4)
+        self.assertEqual(len(figures), 5)
         for row in figures:
             self.assertIn(contract["environment_note"], row["caption"])
 
@@ -125,3 +125,38 @@ class DraftTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RenderTest(unittest.TestCase):
+    FIGURES = Path("papers/vintage_reconciliation/manuscript/figures")
+    MANIFEST = Path("data/manifests/h15-figures.json")
+
+    def test_every_figure_has_a_source_and_a_compiled_pdf(self) -> None:
+        inventory = _read_csv(PROCESSED / "h15-figure-inventory.csv")
+        manifest = json.loads(self.MANIFEST.read_text(encoding="utf-8"))
+        self.assertEqual(manifest["compiled"], [row["figure_id"] for row in inventory])
+        for row in inventory:
+            stem = row["figure_id"].lower()
+            self.assertTrue((self.FIGURES / f"{stem}.tex").exists(), stem)
+            self.assertTrue((self.FIGURES / f"{stem}.pdf").exists(), stem)
+
+    def test_the_rendered_files_match_the_checksums_the_manifest_records(self) -> None:
+        import hashlib
+
+        manifest = json.loads(self.MANIFEST.read_text(encoding="utf-8"))
+        for item in manifest["outputs"]:
+            path = Path(item["path"])
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+            self.assertEqual(digest, item["sha256"], item["path"])
+
+    def test_a_figure_source_carries_its_own_data(self) -> None:
+        source = (self.FIGURES / "g1.tex").read_text(encoding="utf-8")
+        self.assertIn("pgfplots", source)
+        self.assertIn("38", source)
+        self.assertIn("Sel yang direvisi", source)
+
+    def test_a_figure_added_after_the_frame_is_marked_in_the_inventory(self) -> None:
+        inventory = _read_csv(PROCESSED / "h15-figure-inventory.csv")
+        added = [row for row in inventory if row["origin"] == "added_after_the_frame_was_frozen"]
+        self.assertEqual([row["figure_id"] for row in added], ["G5"])
+        self.assertTrue(added[0]["note"])

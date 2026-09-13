@@ -5,7 +5,8 @@
     "G1": "24",
     "G2": "24",
     "G3": "24",
-    "G4": "8"
+    "G4": "8",
+    "G5": "8"
   },
   "inputs": [
     {
@@ -56,23 +57,23 @@
     },
     {
       "path": "results/processed/h15-figure-inventory.csv",
-      "rows": 4,
-      "sha256": "372f50e856e16a08a0e9075c671c488e65aa24734294a44d21f73ed4e7ea8ec3"
+      "rows": 5,
+      "sha256": "977238b17e6d3f13b6b0617103cc111ba988e3f912c6fa3733fa3322f20170bd"
     },
     {
       "path": "results/processed/h15-figure-data.csv",
-      "rows": 80,
-      "sha256": "0aaa73ef02fe02116115cf2ead4b94257dadce930ee8b934f34b179e2e39ce27"
+      "rows": 88,
+      "sha256": "4db0f133cb965416396b8a0ddc162ba7c12ae60fe8296c618739847103e9a6a8"
     },
     {
       "path": "results/processed/h15-validation.csv",
-      "rows": 5,
-      "sha256": "30d1603a93023eaca8739b2d63a19b0965aa4f9d6822571345815f916cbf00c2"
+      "rows": 6,
+      "sha256": "38269ee0542ed6b7947d01d20d478a29b220919e5f29a41616fa2c57fb7bd589"
     },
     {
       "path": "results/processed/h15-summary.csv",
       "rows": 3,
-      "sha256": "210fbae619a63493e37667d89c0901b0566a7a507e316d7c7621f8c9cbc8c1e9"
+      "sha256": "99e96b12e093834d8c4e142d3b4b5a6895cde3a547eaf3dc6afd4b4fa749b445"
     }
   ],
   "stage": "H15",
@@ -96,6 +97,11 @@
       "path": "results/processed/h11-baseline-expectations.csv",
       "sha256": "df65d2f53a18c2f24bf5cfb9b82a189ada238524edbcccb4ada8257db18749b5",
       "source_manifest": "data/manifests/h11-main-sweep-payload.json"
+    },
+    {
+      "path": "results/processed/h11-recall.csv",
+      "sha256": "001ba65a6da72c12cc2fdc0842d3bf7c6637452876a7d51613522140773da537",
+      "source_manifest": "data/manifests/h11-main-sweep.json"
     },
     {
       "path": "results/processed/h11-sweep-scenarios.csv",

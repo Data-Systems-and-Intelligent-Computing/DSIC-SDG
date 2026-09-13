@@ -519,8 +519,8 @@
       "description": "Data keempat gambar bagian Hasil beserta rentang repetisinya (H15)",
       "group": "p4-reproducibility",
       "path": "p4-reproducibility/h15-figure-data.csv",
-      "rows": 80,
-      "sha256": "0aaa73ef02fe02116115cf2ead4b94257dadce930ee8b934f34b179e2e39ce27",
+      "rows": 88,
+      "sha256": "4db0f133cb965416396b8a0ddc162ba7c12ae60fe8296c618739847103e9a6a8",
       "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
       "source_path": "results/processed/h15-figure-data.csv"
     },
@@ -528,8 +528,8 @@
       "description": "Daftar gambar beserta sumbu keterangan dan batas klaimnya (H15)",
       "group": "p4-reproducibility",
       "path": "p4-reproducibility/h15-figure-inventory.csv",
-      "rows": 4,
-      "sha256": "372f50e856e16a08a0e9075c671c488e65aa24734294a44d21f73ed4e7ea8ec3",
+      "rows": 5,
+      "sha256": "977238b17e6d3f13b6b0617103cc111ba988e3f912c6fa3733fa3322f20170bd",
       "source_manifest": "data/manifests/h15-result-tables-and-figures.json",
       "source_path": "results/processed/h15-figure-inventory.csv"
     },
@@ -712,12 +712,12 @@
     },
     {
       "path": "results/processed/h15-figure-data.csv",
-      "sha256": "0aaa73ef02fe02116115cf2ead4b94257dadce930ee8b934f34b179e2e39ce27",
+      "sha256": "4db0f133cb965416396b8a0ddc162ba7c12ae60fe8296c618739847103e9a6a8",
       "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
     },
     {
       "path": "results/processed/h15-figure-inventory.csv",
-      "sha256": "372f50e856e16a08a0e9075c671c488e65aa24734294a44d21f73ed4e7ea8ec3",
+      "sha256": "977238b17e6d3f13b6b0617103cc111ba988e3f912c6fa3733fa3322f20170bd",
       "source_manifest": "data/manifests/h15-result-tables-and-figures.json"
     },
     {

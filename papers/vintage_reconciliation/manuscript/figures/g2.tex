@@ -1,0 +1,76 @@
+% Dibentuk oleh kkciv_vintage.h15.render dari results/processed/h15-figure-data.csv.
+% Jangan disunting langsung; jalankan make h15-figures untuk membentuk ulang.
+\documentclass[border=2pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\pgfplotsset{/pgf/number format/.cd, use comma, 1000 sep={.}}
+\usepgfplotslibrary{groupplots}
+\ifdefined\pdfvariable
+  \pdfvariable suppressoptionalinfo \numexpr 1+2+4+8+16+32+64+128+256+512\relax
+\fi
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+  xlabel={Sel yang direvisi},
+  ylabel={Byte},
+  xtick={1,2,4,8,16,38},
+  xmin=0, xmax=40,
+  width=0.92\linewidth, height=6.2cm,
+  legend style={font=\small, at={(0.5,1.03)}, anchor=south, legend columns=4, draw=none, /tikz/every even column/.append style={column sep=8pt}},
+  grid=both, grid style={line width=0.2pt, draw=gray!25},
+  tick label style={font=\footnotesize}, label style={font=\small},
+  ymode=log,
+]
+\addplot[mark=*, mark size=1.6pt, color=black, thick, error bars/.cd,
+  y dir=both, y explicit]
+table[row sep=\\, y error plus index=2, y error minus index=3] {
+x y eplus eminus \\
+1 13279 3.000000 1.000000 \\
+2 13362 4.000000 3.000000 \\
+4 13410 4.000000 4.000000 \\
+8 13619 0.000000 13.000000 \\
+16 13884 3.000000 15.000000 \\
+38 14459 1.000000 0.000000 \\
+};
+\addlegendentry{B0}
+\addplot[mark=square*, mark size=1.6pt, color=black!70, thick, dashed, error bars/.cd,
+  y dir=both, y explicit]
+table[row sep=\\, y error plus index=2, y error minus index=3] {
+x y eplus eminus \\
+1 468313 6.000000 6.000000 \\
+2 468398 2.000000 7.000000 \\
+4 468491 5.000000 4.000000 \\
+8 468714 3.000000 5.000000 \\
+16 468987 1.000000 6.000000 \\
+38 469682 5.000000 6.000000 \\
+};
+\addlegendentry{B1}
+\addplot[mark=triangle*, mark size=2pt, color=black!45, thick, dotted, error bars/.cd,
+  y dir=both, y explicit]
+table[row sep=\\, y error plus index=2, y error minus index=3] {
+x y eplus eminus \\
+1 25883 1.000000 4.000000 \\
+2 25971 3.000000 1.000000 \\
+4 26004 0.000000 6.000000 \\
+8 26107 0.000000 7.000000 \\
+16 26250 3.000000 2.000000 \\
+38 26363 2.000000 2.000000 \\
+};
+\addlegendentry{B2}
+\addplot[mark=diamond*, mark size=2pt, color=black, thick, dashdotted, error bars/.cd,
+  y dir=both, y explicit]
+table[row sep=\\, y error plus index=2, y error minus index=3] {
+x y eplus eminus \\
+1 49262 399.000000 3.000000 \\
+2 50608 7.000000 409.000000 \\
+4 50789 8.000000 400.000000 \\
+8 50818 9.000000 2.000000 \\
+16 51959 2.000000 411.000000 \\
+38 52873 5.000000 1.000000 \\
+};
+\addlegendentry{B3}
+\end{axis}
+\end{tikzpicture}
+\end{document}

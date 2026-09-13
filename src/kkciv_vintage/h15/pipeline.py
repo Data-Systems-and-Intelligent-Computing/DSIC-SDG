@@ -35,6 +35,8 @@ FIGURE_INVENTORY_COLUMNS = [
     "series",
     "rows",
     "output_path",
+    "origin",
+    "note",
     "caption",
 ]
 SWEEP_STATE_COLUMNS = [
@@ -314,10 +316,34 @@ def build_figures(src: Sources) -> list[dict[str, str]]:
                 "unit": "cells",
             }
         )
-    for row in audit:
+    # G4 as the frame froze it: one bar group per treatment, official against synthetic
+    # requests, taken from the largest sweep point.
+    recall = src.rows("h11-recall.csv")
+    largest = sorted({row["scenario_id"] for row in recall})[-1]
+    for row in sorted(recall, key=lambda item: (item["treatment_id"], item["request_kind"])):
+        if row["scenario_id"] != largest:
+            continue
         points.append(
             {
                 "figure_id": "G4",
+                "series": (
+                    "permintaan resmi"
+                    if row["request_kind"] == "official"
+                    else "permintaan sintetis"
+                ),
+                "x": row["treatment_id"],
+                "y": row["recall_rate"],
+                "y_min": row["recall_rate"],
+                "y_max": row["recall_rate"],
+                "unit": "ratio",
+            }
+        )
+    # G5 is not in the frozen frame. The panel audit did not exist when the frame was
+    # written, and the two scales together say something neither says alone.
+    for row in audit:
+        points.append(
+            {
+                "figure_id": "G5",
                 "series": row["treatment_id"],
                 "x": row["scale"],
                 "y": row["success_rate"],
@@ -371,9 +397,26 @@ def build_inventories(
         "G4": (
             "P4",
             "Keberhasilan memanggil ulang angka terbit per perlakuan",
+            "perlakuan",
+            "rasio",
+            "linear",
+        ),
+        "G5": (
+            "P4",
+            "Keberhasilan memanggil ulang pada kedua skala beban",
             "skala beban",
             "rasio",
             "linear",
+        ),
+    }
+    figure_origin = {
+        "G1": ("frozen_frame", ""),
+        "G2": ("frozen_frame", ""),
+        "G3": ("frozen_frame", ""),
+        "G4": ("frozen_frame", ""),
+        "G5": (
+            "added_after_the_frame_was_frozen",
+            "audit panel H13C belum ada ketika kerangka dibekukan pada H11",
         ),
     }
     figure_rows: list[dict[str, str]] = []
@@ -381,11 +424,21 @@ def build_inventories(
         selected = [row for row in figures if row["figure_id"] == figure_id]
         series = sorted({row["series"] for row in selected})
         caption = f"{title}. Median tiga repetisi beserta nilai minimum dan maksimum. {note}"
+        if figure_id == "G3":
+            caption = (
+                f"{title}. Kurva B0 dan B3 berimpit karena keduanya mengevaluasi tepat sel yang "
+                f"direvisi, demikian pula B1 dan B2 yang selalu menghitung ulang seluruh sel. {note}"
+            )
         if figure_id == "G4":
             caption = (
-                f"{title}. Dua skala beban, yaitu fixture bukti 38 permintaan dan panel provinsi "
-                f"6.983 permintaan. {note}"
+                f"{title}. Permintaan resmi dan permintaan sintetis pada titik sweep terbesar. {note}"
             )
+        elif figure_id == "G5":
+            caption = (
+                f"{title}. Fixture bukti berisi 38 permintaan dan panel provinsi berisi 6.983 "
+                f"permintaan. {note}"
+            )
+        origin, origin_note = figure_origin[figure_id]
         figure_rows.append(
             {
                 "figure_id": figure_id,
@@ -397,6 +450,8 @@ def build_inventories(
                 "series": ";".join(series),
                 "rows": str(len(selected)),
                 "output_path": "results/processed/h15-figure-data.csv",
+                "origin": origin,
+                "note": origin_note,
                 "caption": caption,
             }
         )
@@ -448,6 +503,15 @@ def build_validation(
         all(row["y_min"] and row["y_max"] for row in with_range),
         len(with_range),
         "G1 and G2 carry the range of the three sweep repetitions",
+    )
+    added_figures = [
+        row for row in figure_inventory if row["origin"] == "added_after_the_frame_was_frozen"
+    ]
+    add(
+        "a figure added after the frame was frozen carries its reason",
+        all(row["note"] for row in added_figures),
+        len(added_figures),
+        ";".join(f"{row['figure_id']}:{row['note'][:40]}" for row in added_figures) or "none added",
     )
     add(
         "every figure caption names the declared environment",
