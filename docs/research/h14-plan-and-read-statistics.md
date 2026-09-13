@@ -124,6 +124,19 @@ Store B3 dibaca dari 90 berkas data. Pemadatan berkas pada store merupakan arah 
 tetapi H14 **tidak** mengukurnya, dan tidak ada klaim yang boleh dibuat tentang seberapa besar
 pengaruhnya. Yang diukur di sini hanya apa yang dibaca oleh mekanisme yang sudah dibekukan.
 
+## Reproduksi
+
+```bash
+make h14-collect   # di host stack, berurutan, satu operator
+make h14-run       # audit dan agregasi
+```
+
+Agregasi menolak berjalan bila kontraknya melonggarkan batas "waktu tidak dilaporkan", bila sebuah
+pernyataan tidak membaca apa pun, bila jumlah berkas atau baris berbeda antarrepetisi, bila ukuran
+byte bergeser melebihi toleransi, atau bila rencana berubah setelah identitas JVM dinormalkan.
+Agregasi diulang di VM dari commit yang sama: keenam berkas keluaran berchecksum identik dengan hasil
+di laptop, dan 176 test lulus pada kedua mesin dengan satu test PDF dilewati.
+
 ## Artefak audit
 
 - kontrak: `contracts/h14-plan-and-read-statistics.json`;
